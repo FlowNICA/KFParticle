@@ -32,7 +32,7 @@ void KFPTrackVector::SetParameter(const float_v& value, int iP, int iTr)
   if( (iTr+float_vLen) < Size())
     reinterpret_cast<float_v&>(fP[iP][iTr]) = value;
   else
-    for(int i=0; i<float_v::Size; i++)
+    for(unsigned int i=0; i<float_v::Size; i++)
     {
       if(iTr + i >= Size()) continue;
       fP[iP][iTr+i] = value[i];
@@ -58,7 +58,7 @@ void KFPTrackVector::SetCovariance(const float_v& value, int iC, int iTr)
   if( (iTr+float_vLen) < Size())
     reinterpret_cast<float_v&>(fC[iC][iTr]) = value;
   else
-    for(int i=0; i<float_v::Size; i++)
+    for(unsigned int i=0; i<float_v::Size; i++)
     {
       if(iTr + i >= Size()) continue;
       fC[iC][iTr+i] = value[i];
