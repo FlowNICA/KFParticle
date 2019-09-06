@@ -151,7 +151,7 @@ void KFParticlePVReconstructor::FindPrimaryClusters( int cutNDF )
    **/
 
   if( IsBeamLine() )
-    cutNDF += 2;
+    cutNDF += 2;                                                                                          // Why 2 additional dof? Why not 1?
   
   vector<unsigned short int> notUsedTracks(fNParticles);
   vector<unsigned short int> *notUsedTracksPtr = &notUsedTracks;
