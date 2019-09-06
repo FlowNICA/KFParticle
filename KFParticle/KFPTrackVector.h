@@ -119,10 +119,10 @@ class KFPTrackVector
       {
         case         11: fNE++; break;
         case         13: fNMu++; break;
-        case         19: fNMu++; break;
+        case         19: fNMu++; break;     // ?
         case        211: fNPi++; break;
-        case          1: fNPi++; break;
-        case          3: fNPi++; break;
+        case          1: fNPi++; break;     // ?
+        case          3: fNPi++; break;     // ?
         case        321: fNK++; break;
         case       2212: fNP++; break;
         case 1000010020: fND++; break;
@@ -132,7 +132,7 @@ class KFPTrackVector
       }
     }
     
-    fNMu += fNE; fNPi += fNMu; fNK  += fNPi; fNP  += fNK;
+    fNMu += fNE; fNPi += fNMu; fNK  += fNPi; fNP  += fNK;   // why do we do it?
     fND += fNP; fNT += fND; fNHe3 += fNT; fNHe4 += fNHe3;
   }
   

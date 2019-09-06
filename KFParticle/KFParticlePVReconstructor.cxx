@@ -23,8 +23,8 @@ void KFParticlePVReconstructor::Init(KFPTrackVector *tracks, int nParticles)
    ** 3) the position of the primary vertex is estimated with simplified
    ** Kalman filter equations using all tracks; \n
    ** 4) tracks are checked to deviate from the obtained estimation within
-   ** KFParticlePVReconstructor::fChi2CutPreparation; \n
-   ** 5) from the selected tracks a more precise estimation is obtained
+   ** KFParticlePVReconstructor::fChi2CutPreparation; \n                            // There is no KFParticlePVReconstructor::fChi2CutPreparation in this function.
+   ** 5) from the selected tracks a more precise estimation is obtained             // It is in KFParticlePVReconstructor::FindPrimaryClusters
    ** using KFVertex::ConstructPrimaryVertex() with soft cut 
    ** KFParticlePVReconstructor::fChi2CutPreparation; \n
    ** 6) input particles are transported to the DCA point with the obtained
@@ -45,8 +45,8 @@ void KFParticlePVReconstructor::Init(KFPTrackVector *tracks, int nParticles)
   
   KFPTrack track;
   for ( int iTr = 0; iTr < fNParticles; iTr++ ) {
-    tracks->GetTrack(track,iTr);
-    fParticles[iTr] = KFParticle( track, 211 );
+    tracks->GetTrack(track,iTr);                  // 1)
+    fParticles[iTr] = KFParticle( track, 211 );   // 2)
     fParticles[iTr].AddDaughterId(track.Id());
     float zeroPoint[3]{0,0,0};
     fParticles[iTr].TransportToPoint(zeroPoint);
@@ -138,7 +138,7 @@ void KFParticlePVReconstructor::FindPrimaryClusters( int cutNDF )
    ** 3) then a cluster is formed around this particle;\n
    ** 4) if a beam line is set it is used for the reconstruction as an additional track,
    ** but will not be added to the resulting cluster of daughter particles;\n
-   ** 5) the primary vertex candidate is fitted with KFVertex::ConstructPrimaryVertex()
+   ** 5) the primary vertex candidate is fitted with KFVertex::ConstructPrimaryVertex()                   // How "the primary vertex candidate" is determined?
    ** using KFParticlePVReconstructor::fChi2Cut;\n
    ** 6) cluster is cleaned from particles deviating more then the fChi2Cut from the fitted
    ** candidate;\n
@@ -151,7 +151,7 @@ void KFParticlePVReconstructor::FindPrimaryClusters( int cutNDF )
    **/
 
   if( IsBeamLine() )
-    cutNDF += 2;                                                                                          // Why 2 additional dof? Why not 1?
+    cutNDF += 2;                                                                                          // Why 2 additional NDF? Why not 1 (beam pipe)?
   
   vector<unsigned short int> notUsedTracks(fNParticles);
   vector<unsigned short int> *notUsedTracksPtr = &notUsedTracks;
@@ -258,7 +258,7 @@ void KFParticlePVReconstructor::FindPrimaryClusters( int cutNDF )
         vFlags[iFl] = true;
 //       primVtx.SetVtxGuess(cluster.fP[0], cluster.fP[1], cluster.fP[2]);
       primVtx.SetConstructMethod(0);
-      primVtx.ConstructPrimaryVertex( pParticles, nPrimCand, vFlags, fChi2Cut );
+      primVtx.ConstructPrimaryVertex( pParticles, nPrimCand, vFlags, fChi2Cut );    // it is not an iterative process, isn't it?. We do it only once with (0;0;0) vtx guess [look line 251], don't we?
 
       // clean cluster
       vector<int> clearClusterInd;
@@ -314,7 +314,7 @@ void KFParticlePVReconstructor::FindPrimaryClusters( int cutNDF )
       if(vFlags) delete [] vFlags;
     }
     if(pParticles) delete [] pParticles;
-  }
+  }//while(nNotUsedTracks>0)
 }
 
 void KFParticlePVReconstructor::ReconstructPrimVertex()

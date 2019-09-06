@@ -434,10 +434,10 @@ void KFParticleTopoReconstructor::SortTracks()
   int offset[2] = {0, 4};
   int nSets = 2;
   
-  if(fTracks[4].Size() == 0)
+  if(fTracks[4].Size() == 0)                                                          // tracks defined @last hit position (see line 313 of this code)
     nSets = 1;
   
-  for(int iSet=nSets-1; iSet>=0; iSet--)
+  for(int iSet=nSets-1; iSet>=0; iSet--)    // if nSets==2 we begin with iSet=1, which correspondes to tracks defined @last hit position
   {
     int Size = fTracks[0].Size();
     
@@ -453,14 +453,14 @@ void KFParticleTopoReconstructor::SortTracks()
       sortedTracks[iTr].fPdg = fTracks[0].PDG()[iTr];
     }
     
-    std::sort(sortedTracks.begin(), sortedTracks.end(), KFPTrackIndex::Compare);
+    std::sort(sortedTracks.begin(), sortedTracks.end(), KFPTrackIndex::Compare);    //sorted via pdg codes
     
     for(int iTr=0; iTr<Size; iTr++)
     {
       int iTrSorted = sortedTracks[iTr].fIndex;
       
       //int q = fTracks[offset[iSet]].Q()[iTrSorted];
-      int q = fTracks[0].Q()[iTrSorted]; //take the charge at the first point to avoid ambiguities in array size
+      int q = fTracks[0].Q()[iTrSorted]; //take the charge at the first point to avoid ambiguities in array size      //WHY we consider fTracks[0] only?-without tracks defined @last hit position
       if(fTracks[0].PVIndex()[iTrSorted] < 0) //secondary track
       {
 
@@ -491,15 +491,15 @@ void KFParticleTopoReconstructor::SortTracks()
     }
     
     for(int iTV=1; iTV<4; iTV++)  
-      fTracks[iTV+offset[iSet]].SetTracks(fTracks[offset[iSet]], trackIndex[iTV], nTracks[iTV]);
+      fTracks[iTV+offset[iSet]].SetTracks(fTracks[offset[iSet]], trackIndex[iTV], nTracks[iTV]);        // distribute tracks from 0-th (4-th) array among 0-3-d (4-7-th) according to charge and prim/sec
       
-    KFPTrackVector positive;
+    KFPTrackVector positive;                                                                            // WHY positive only?
     positive.SetTracks(fTracks[offset[iSet]], trackIndex[0], nTracks[0]);
     fTracks[offset[iSet]].Resize(nTracks[0]);
     fTracks[offset[iSet]].Set(positive,nTracks[0],0);
       
     for(int iTV=0; iTV<4; iTV++)
-      fTracks[iTV+offset[iSet]].RecalculateLastIndex();
+      fTracks[iTV+offset[iSet]].RecalculateLastIndex();                                                 // WHAT does this function do? And what is the point?
     
     //correct index of tracks in primary clusters with respect to the sorted array 
     if(iSet == 0)
@@ -518,8 +518,8 @@ void KFParticleTopoReconstructor::SortTracks()
       for(int iPV=0; iPV<NPrimaryVertices(); iPV++)
         for(unsigned int iTrack=0; iTrack<GetPVTrackIndexArray(iPV).size(); iTrack++)
           fKFParticlePVReconstructor->GetPVTrackIndexArray(iPV)[iTrack] = newIndex[GetPVTrackIndexArray(iPV)[iTrack]];
-    }
-  }
+    }//if(iSet == 0)
+  }//for(int iSet=nSets-1; iSet>=0; iSet--)
   
   fChiToPrimVtx[0].resize(fTracks[0].Size(), -1);
   fChiToPrimVtx[1].resize(fTracks[1].Size(), -1);
@@ -533,7 +533,7 @@ void KFParticleTopoReconstructor::SortTracks()
 void KFParticleTopoReconstructor::TransportPVTracksToPrimVertex()
 {
   /** Tracks which are considered as primary, i.e. were used in fit of candidates
-   ** for the primary vertex, are transported to the DCA point to the corresponding
+   ** for the primary vertex, are transported to the DCA point to the corresponding                   // "are transported to the DCA" - what does it mean?
    ** primary vertex.
    **/
   float_v point[3];
@@ -1007,7 +1007,7 @@ void KFParticleTopoReconstructor::ReconstructParticles()
 {
   /** Runs reconstruction of the short-lived particles by KFParticleFinder.
    ** At first, primary tracks are transported to the DCA point with the
-   ** corresponding primary vertices for better precision,
+   ** corresponding primary vertices for better precision,                                        // what does it mean?
    ** chi2-deviation of the secondary tracks to the primary vertex is 
    ** calculated, and than KFParticleFinder is run. Optionally cleanup of
    ** the output array of particle candidates can be run.

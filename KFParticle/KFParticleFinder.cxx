@@ -125,7 +125,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
    ** 1) a new event is initialised; \n
    ** 2) long-lived particles formed from tracks are stored to the output array "Particles"; \n
    ** 3) 2-daughter channels are reconstructed (KFParticleFinder::Find2DaughterDecay()); \n
-   ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n
+   ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n           // 2-charged particles? or smth else?
    ** 5) found primary candidates of \f$K_s^0\f$, \f$\Lambda\f$, \f$\overline{\Lambda}\f$ and \f$\gamma\f$ are transported
    ** to the point of the closest approach with the corresponding primary vertex (KFParticleFinder::ExtrapolateToPV()); \n
    ** 6) reconstruction with the missing mass method (KFParticleFinder::NeutralDaughterDecay()); \n
@@ -581,7 +581,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
 //       //D0* -> D0 pi0
 //       CombinePartPart(vD0PrimEmc[0], vPi0PrimEmc[0], Particles, PrimVtx, fCutsPartPart[1], 0, 10428);
 //     }
-  }
+  }//if(!fMixedEventAnalysis)
   else
   {
     //D0 -> pi+ K-

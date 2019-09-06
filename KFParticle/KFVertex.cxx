@@ -107,7 +107,7 @@ void KFVertex::ConstructPrimaryVertex( const KFParticle *vDaughters[],
 
   for( Int_t it=0; it<nDaughters; it++ ){
     const KFParticle &p = *(vDaughters[it]);
-    float chi = p.GetDeviationFromVertex( *this );      
+    float chi = p.GetDeviationFromVertex( *this );      // do I understand correctly, that *this is an initial guess about vertex coordinates and they are (0;0;0)? - look at lines 251, 261 of KFParticlePVReconstructor.cxx
     if( chi >= ChiCut ){
       vtxFlag[it] = 0;    
       nRest--;
@@ -123,12 +123,12 @@ void KFVertex::ConstructPrimaryVertex( const KFParticle *vDaughters[],
       for( int i=0; i<6; i++ ) fC[i] = constrC[i];
     }
     int nDaughtersNew=0;
-    const KFParticle **vDaughtersNew=new const KFParticle *[nDaughters];
+    const KFParticle **vDaughtersNew=new const KFParticle *[nDaughters];    // why two stars **?      BTW should we delete it twice? What happes when we delete it once (look 5 lines below)
     for( int i=0; i<nDaughters; i++ ){
       if( vtxFlag[i] )  vDaughtersNew[nDaughtersNew++] = vDaughters[i];
     }
     Construct( vDaughtersNew, nDaughtersNew, 0, -1 );
-    if (vDaughtersNew) delete[] vDaughtersNew;
+    if (vDaughtersNew) delete[] vDaughtersNew;            // why do we delete vDaughtersNew constructed just now? We do not "return" them in order to use after line 261 of KFParticlePVReconstructor.cxx
   }
 
   if( nRest<=2 && GetChi2() > ChiCut*ChiCut*GetNDF() ) {
