@@ -522,7 +522,7 @@ void KFParticleTopoReconstructor::SortTracks()
     }//if(iSet == 0)
   }//for(int iSet=nSets-1; iSet>=0; iSet--)
   
-  fChiToPrimVtx[0].resize(fTracks[0].Size(), -1);         // WHAT is the pricipled difference between fTracks 0&1 and all others (2-7)?
+  fChiToPrimVtx[0].resize(fTracks[0].Size(), -1);
   fChiToPrimVtx[1].resize(fTracks[1].Size(), -1);
   
 #ifdef USE_TIMERS
