@@ -309,12 +309,12 @@ void KFParticleTopoReconstructor::Init(KFPTrackVector &tracks, KFPTrackVector &t
   fTracks[1].Resize(0);
   fTracks[2].Resize(0);
   fTracks[3].Resize(0);
-  fTracks[4].Resize(tracksAtLastPoint.Size());
+  fTracks[4].Resize(tracksAtLastPoint.Size());                      // WHY in general tracksAtLastPoint.Size() != tracks.Size()? Will not the following code "fall" in this case?
   fTracks[4].Set(tracksAtLastPoint, tracksAtLastPoint.Size(), 0);
   fTracks[5].Resize(0);
   fTracks[6].Resize(0);
   fTracks[7].Resize(0);
-  fKFParticlePVReconstructor->Init( &fTracks[0], nTracks );
+  fKFParticlePVReconstructor->Init( &fTracks[0], nTracks );         // Moreover, here we consider nTracks = tracks.Size() only
   
 #ifdef USE_TIMERS
   timer.Stop();
@@ -438,7 +438,7 @@ void KFParticleTopoReconstructor::SortTracks()
     nSets = 1;
   
   for(int iSet=nSets-1; iSet>=0; iSet--)    // if nSets==2 we begin with iSet=1, which correspondes to tracks defined @last hit position
-  {
+  {                                         // WHY do we do it twice, if iterator iSet is used since 493 line only? And all the staff (Q, PDG, PVIndex) is the same - why do we determine it twice?-moreover we use fTracks[0] only (and it is clear why))
     int Size = fTracks[0].Size();
     
     vector<KFPTrackIndex> sortedTracks(Size);
@@ -450,18 +450,18 @@ void KFParticleTopoReconstructor::SortTracks()
     for(int iTr=0; iTr<Size; iTr++)
     {
       sortedTracks[iTr].fIndex = iTr;                   // not yet sorted. Altogether from fTracks[0] (@first hit position). WHY there is no @last hit position? Where iSet plays its role?
-      sortedTracks[iTr].fPdg = fTracks[0].PDG()[iTr];   // WHY we take into account fTracks[0] only?-without tracks defined @last hit position
+      sortedTracks[iTr].fPdg = fTracks[0].PDG()[iTr];   // WHY we take into account fTracks[0] only? -All right, PDG cannot change between first&last hit position
     }
     
-    std::sort(sortedTracks.begin(), sortedTracks.end(), KFPTrackIndex::Compare);    //sorted VIA pdg codes, but NOT via +/-, prim/sec, @first/@last
+    std::sort(sortedTracks.begin(), sortedTracks.end(), KFPTrackIndex::Compare);    //sorted VIA pdg codes, but NOT by +/-, prim/sec, @first/@last
     
     for(int iTr=0; iTr<Size; iTr++)
     {
-      int iTrSorted = sortedTracks[iTr].fIndex;
+      int iTrSorted = sortedTracks[iTr].fIndex;       // iTrSorted - number of track in "general" array, sorted with PDG, but not by +/-, prim/sec, @first/@last
       
-      //int q = fTracks[offset[iSet]].Q()[iTrSorted];                                                                 // BTW there was offset, but commented (?)
-      int q = fTracks[0].Q()[iTrSorted]; //take the charge at the first point to avoid ambiguities in array size      // WHY we take into account fTracks[0] only?-without tracks defined @last hit position
-      if(fTracks[0].PVIndex()[iTrSorted] < 0) //secondary track                                                       // WHY we take into account fTracks[0] only?-without tracks defined @last hit position
+      //int q = fTracks[offset[iSet]].Q()[iTrSorted];                                                                 // BTW there was offset, but commented (?) -All right, Q cannot change between first&last hit position
+      int q = fTracks[0].Q()[iTrSorted]; //take the charge at the first point to avoid ambiguities in array size      // WHY we take into account fTracks[0] only? -All right, Q cannot change between first&last hit position
+      if(fTracks[0].PVIndex()[iTrSorted] < 0) //secondary track                                                       // WHY we take into account fTracks[0] only? -All right, PVIndex cannot change between first&last hit position
       {
 
         if(q<0) //secondary negative track
@@ -502,7 +502,7 @@ void KFParticleTopoReconstructor::SortTracks()
     for(int iTV=0; iTV<4; iTV++)
       fTracks[iTV+offset[iSet]].RecalculateLastIndex();                                                 // Now we know the index of last e, mu, pi, ... [e(0-4), mu(5-11), ...]: 4, 11, ... - e.g.
     
-    //correct index of tracks in primary clusters with respect to the sorted array 
+    //correct index of tracks in primary clusters with respect to the sorted array                      // OK, sorted by +/-, prim/sec. BUT was it taken into account sorting by PDGs?
     if(iSet == 0)
     {
       vector<int> newIndex(Size);
@@ -518,12 +518,24 @@ void KFParticleTopoReconstructor::SortTracks()
       
       for(int iPV=0; iPV<NPrimaryVertices(); iPV++)
         for(unsigned int iTrack=0; iTrack<GetPVTrackIndexArray(iPV).size(); iTrack++)
-          fKFParticlePVReconstructor->GetPVTrackIndexArray(iPV)[iTrack] = newIndex[GetPVTrackIndexArray(iPV)[iTrack]];
+          fKFParticlePVReconstructor->GetPVTrackIndexArray(iPV)[iTrack] = newIndex[GetPVTrackIndexArray(iPV)[iTrack]];      // OK, sorted by +/-, prim/sec. BUT was it taken into account sorting by PDGs?
     }//if(iSet == 0)
+    // EXAMPLE to illustrate what was done in previous block:
+    // 0) 0, 5, 10
+    // 1) 1, 2, 8
+    // 2) 4, 6, 7
+    // 3) 3, 9 - iTrSorteds
+    // trackIndex[0][0] = 0, trackIndex[1][2] = 8, ...
+    // newIndex[0] = 0
+    // newIndex[5] = 1
+    // newIndex[10] = 2
+    // newIndex[1] = 3
+    // newIndex[2] = 4
+    // newIndex[8] = 5 ...
   }//for(int iSet=nSets-1; iSet>=0; iSet--)
   
   fChiToPrimVtx[0].resize(fTracks[0].Size(), -1);
-  fChiToPrimVtx[1].resize(fTracks[1].Size(), -1);
+  fChiToPrimVtx[1].resize(fTracks[1].Size(), -1); 
   
 #ifdef USE_TIMERS
   timer.Stop();
