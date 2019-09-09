@@ -449,19 +449,19 @@ void KFParticleTopoReconstructor::SortTracks()
     
     for(int iTr=0; iTr<Size; iTr++)
     {
-      sortedTracks[iTr].fIndex = iTr;
-      sortedTracks[iTr].fPdg = fTracks[0].PDG()[iTr];
+      sortedTracks[iTr].fIndex = iTr;                   // not yet sorted. Altogether from fTracks[0] (@first hit position). WHY there is no @last hit position? Where iSet plays its role?
+      sortedTracks[iTr].fPdg = fTracks[0].PDG()[iTr];   // WHY we take into account fTracks[0] only?-without tracks defined @last hit position
     }
     
-    std::sort(sortedTracks.begin(), sortedTracks.end(), KFPTrackIndex::Compare);    //sorted via pdg codes
+    std::sort(sortedTracks.begin(), sortedTracks.end(), KFPTrackIndex::Compare);    //sorted VIA pdg codes, but NOT via +/-, prim/sec, @first/@last
     
     for(int iTr=0; iTr<Size; iTr++)
     {
       int iTrSorted = sortedTracks[iTr].fIndex;
       
-      //int q = fTracks[offset[iSet]].Q()[iTrSorted];
-      int q = fTracks[0].Q()[iTrSorted]; //take the charge at the first point to avoid ambiguities in array size      //WHY we consider fTracks[0] only?-without tracks defined @last hit position
-      if(fTracks[0].PVIndex()[iTrSorted] < 0) //secondary track
+      //int q = fTracks[offset[iSet]].Q()[iTrSorted];                                                                 // BTW there was offset, but commented (?)
+      int q = fTracks[0].Q()[iTrSorted]; //take the charge at the first point to avoid ambiguities in array size      // WHY we take into account fTracks[0] only?-without tracks defined @last hit position
+      if(fTracks[0].PVIndex()[iTrSorted] < 0) //secondary track                                                       // WHY we take into account fTracks[0] only?-without tracks defined @last hit position
       {
 
         if(q<0) //secondary negative track
@@ -488,18 +488,19 @@ void KFParticleTopoReconstructor::SortTracks()
           nTracks[2]++;
         }
       }
-    }
+    }//for(int iTr=0; iTr<Size; iTr++)
     
     for(int iTV=1; iTV<4; iTV++)  
       fTracks[iTV+offset[iSet]].SetTracks(fTracks[offset[iSet]], trackIndex[iTV], nTracks[iTV]);        // distribute tracks from 0-th (4-th) array among 0-3-d (4-7-th) according to charge and prim/sec
+                                                                                                        // if iSet==1 we fill tracks in 4-7 array from 0-th, not from 4-th!!!
       
-    KFPTrackVector positive;                                                                            // WHY positive only?
+    KFPTrackVector positive;                                                                            // 'positive' is a buffer variable
     positive.SetTracks(fTracks[offset[iSet]], trackIndex[0], nTracks[0]);
     fTracks[offset[iSet]].Resize(nTracks[0]);
     fTracks[offset[iSet]].Set(positive,nTracks[0],0);
       
     for(int iTV=0; iTV<4; iTV++)
-      fTracks[iTV+offset[iSet]].RecalculateLastIndex();                                                 // WHAT does this function do? And what is the point?
+      fTracks[iTV+offset[iSet]].RecalculateLastIndex();                                                 // Now we know the index of last e, mu, pi, ... [e(0-4), mu(5-11), ...]: 4, 11, ... - e.g.
     
     //correct index of tracks in primary clusters with respect to the sorted array 
     if(iSet == 0)
@@ -521,7 +522,7 @@ void KFParticleTopoReconstructor::SortTracks()
     }//if(iSet == 0)
   }//for(int iSet=nSets-1; iSet>=0; iSet--)
   
-  fChiToPrimVtx[0].resize(fTracks[0].Size(), -1);
+  fChiToPrimVtx[0].resize(fTracks[0].Size(), -1);         // WHAT is the pricipled difference between fTracks 0&1 and all others (2-7)?
   fChiToPrimVtx[1].resize(fTracks[1].Size(), -1);
   
 #ifdef USE_TIMERS

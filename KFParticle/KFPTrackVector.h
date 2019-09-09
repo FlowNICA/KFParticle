@@ -132,7 +132,7 @@ class KFPTrackVector
       }
     }
     
-    fNMu += fNE; fNPi += fNMu; fNK  += fNPi; fNP  += fNK;   // why do we do it?
+    fNMu += fNE; fNPi += fNMu; fNK  += fNPi; fNP  += fNK;
     fND += fNP; fNT += fND; fNHe3 += fNT; fNHe4 += fNHe3;
   }
   
