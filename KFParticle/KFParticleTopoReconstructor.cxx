@@ -427,6 +427,8 @@ void KFParticleTopoReconstructor::SortTracks()
    ** In each group they are sorted according to PDG: electrons, muons, pions, 
    ** tracks without PID, kaons, protons, deuterons, tritons, He3, He4.
    **/
+  // How tracks are devided into primary and secondary? - If PV Find Mode = UseMC, then chi2<3 are primary and chi2>3 are secondary. If PV Find Mode = Reconstruct, then ReconstructPrimVertex() is used, and it devides tracks into prim&sec.
+  //                                                                                    ^this cut is hardcoded in CbmKFParticleFinder.cxx
 #ifdef USE_TIMERS
   timer.Start();
 #endif // USE_TIMERS
@@ -546,7 +548,7 @@ void KFParticleTopoReconstructor::SortTracks()
 void KFParticleTopoReconstructor::TransportPVTracksToPrimVertex()
 {
   /** Tracks which are considered as primary, i.e. were used in fit of candidates
-   ** for the primary vertex, are transported to the DCA point to the corresponding                   // "are transported to the DCA" - what does it mean?
+   ** for the primary vertex, are transported to the DCA point to the corresponding
    ** primary vertex.
    **/
   float_v point[3];
@@ -584,23 +586,24 @@ void KFParticleTopoReconstructor::TransportPVTracksToPrimVertex()
 
 void KFParticleTopoReconstructor::GetChiToPrimVertex(KFParticleSIMD* pv, const int nPV)
 { 
-  /** Calculates the chi2-deviation from the primary vertex. If several primary vertices
+  /** Calculates the chi2-deviation from the primary vertex. If several primary vertices    // not clear how the calculated value of chi2 is returned (or filled smw)
    ** are found the minimum value is stored.
    ** \param[in] pv - pointer to the array with primary vertices
    ** \param[in] nPV - number of the primary vertices in the array
    **/
   KFParticleSIMD tmpPart;
   
-  for(int iTV=0; iTV<2; iTV++)
+  for(int iTV=0; iTV<2; iTV++)                                                      // secondary positive&negative tracks defined @first hit position
   {
     unsigned int NTr = fTracks[iTV].Size();
     for(unsigned int iTr=0; iTr < NTr; iTr += float_vLen) 
     { 
+      // not clear syntaxis below
       uint_v trackIndex = iTr + uint_v::IndexesFromZero();
       const int_v& pdg = reinterpret_cast<const int_v&>(fTracks[iTV].PDG()[iTr]);
       tmpPart.Create(fTracks[iTV],trackIndex, pdg);
       
-      float_v& chi2 = reinterpret_cast<float_v&>(fChiToPrimVtx[iTV][iTr]);
+      float_v& chi2 = reinterpret_cast<float_v&>(fChiToPrimVtx[iTV][iTr]);        // fChiToPrimVtx is not changed in any way, is it?
       chi2(simd_cast<float_m>(trackIndex<NTr)) = 10000.f;
 
       for(int iPV=0; iPV<nPV; iPV++)
@@ -608,7 +611,7 @@ void KFParticleTopoReconstructor::GetChiToPrimVertex(KFParticleSIMD* pv, const i
         const float_v point[3] = {pv[iPV].X(), pv[iPV].Y(), pv[iPV].Z()};
         tmpPart.TransportToPoint(point);
         const float_v& chiVec = tmpPart.GetDeviationFromVertex(pv[iPV]);
-        chi2( (chi2>chiVec) && simd_cast<float_m>(trackIndex<NTr) ) = chiVec;
+        chi2( (chi2>chiVec) && simd_cast<float_m>(trackIndex<NTr) ) = chiVec;     // WHAT does this syntaxis mean?
       }
     } 
   }
@@ -1020,7 +1023,7 @@ void KFParticleTopoReconstructor::ReconstructParticles()
 {
   /** Runs reconstruction of the short-lived particles by KFParticleFinder.
    ** At first, primary tracks are transported to the DCA point with the
-   ** corresponding primary vertices for better precision,                                        // what does it mean?
+   ** corresponding primary vertices for better precision,
    ** chi2-deviation of the secondary tracks to the primary vertex is 
    ** calculated, and than KFParticleFinder is run. Optionally cleanup of
    ** the output array of particle candidates can be run.
@@ -1034,8 +1037,8 @@ void KFParticleTopoReconstructor::ReconstructParticles()
   if(fPV.size() < 1) return;
 
   TransportPVTracksToPrimVertex();
-  //calculate chi to primary vertex, chi = sqrt(dr C-1 dr)
-  GetChiToPrimVertex(&(fPV[0]), fPV.size());
+  //calculate chi to primary vertex, chi = sqrt(dr C-1 dr)                              // We calculate chi2 to prim vtx again, in spite of chi2 to prim vtx is inner data for KF PF?
+  GetChiToPrimVertex(&(fPV[0]), fPV.size());                                            // WHERE is it used? GetChiToPrimVertex modifies fPV in some way, doesn't it?
 
   fKFParticleFinder->FindParticles(fTracks, fChiToPrimVtx, fParticles, fPV, fPV.size());
 // #pragma omp critical 

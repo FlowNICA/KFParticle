@@ -125,8 +125,8 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
    ** 1) a new event is initialised; \n
    ** 2) long-lived particles formed from tracks are stored to the output array "Particles"; \n
    ** 3) 2-daughter channels are reconstructed (KFParticleFinder::Find2DaughterDecay()); \n
-   ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n           // 2-charged particles? or smth else?
-   ** 5) found primary candidates of \f$K_s^0\f$, \f$\Lambda\f$, \f$\overline{\Lambda}\f$ and \f$\gamma\f$ are transported
+   ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n           // 2-charged particles (like Delta++)? or smth else?
+   ** 5) found primary candidates of \f$K_s^0\f$, \f$\Lambda\f$, \f$\overline{\Lambda}\f$ and \f$\gamma\f$ are transported        // what is gamma? - photon?
    ** to the point of the closest approach with the corresponding primary vertex (KFParticleFinder::ExtrapolateToPV()); \n
    ** 6) reconstruction with the missing mass method (KFParticleFinder::NeutralDaughterDecay()); \n
    ** 7) all other decays are reconstructed one after another. \n
@@ -152,7 +152,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
                         vRTracks[2].NKaons() * vRTracks[3].NKaons() + 
                         vRTracks[2].NKaons() * vRTracks[3].NProtons() + 
                         vRTracks[3].NKaons() * vRTracks[2].NProtons() + 
-                        vRTracks[2].NElectrons() * vRTracks[3].NElectrons() + 
+                        vRTracks[2].NElectrons() * vRTracks[3].NElectrons() +  // vRTracks[2].NElectrons() means positron, doesn't it?
                         vRTracks[2].NMuons() * vRTracks[3].NMuons();
 
   const int nPart = vRTracks[0].NPions() * vRTracks[1].NPions() +
@@ -165,10 +165,10 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
 
   int nPartEstimation = nPart+vRTracks[0].Size()+vRTracks[1].Size()+vRTracks[2].Size()+vRTracks[3].Size() + nEmcClusters;
 
-  if(nPartEstimation < 100000)
+  if(nPartEstimation < 100000)                                                              // What if NOT?
     Particles.reserve(nPartEstimation);
   //* Finds particles (K0s and Lambda) from a given set of tracks
-  {
+  {                                                                                         // what is this bracket for? To limit scope?
     KFPTrack kfTrack;
     for(int iV=0; iV<4; iV++)
     {
@@ -176,15 +176,15 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
       {
         vRTracks[iV].GetTrack(kfTrack, iTr);
         int pdg = vRTracks[iV].PDG()[iTr];
-        if( pdg == 19 ) pdg =  13;
+        if( pdg == 19 ) pdg =  13;                                                         // is PDG=19 special kind of muon?
         if( pdg ==-19 ) pdg = -13;
         KFParticle tmp(kfTrack, pdg);
-        tmp.SetPDG(pdg);
-        tmp.SetId(Particles.size());
-        vRTracks[iV].SetId(Particles.size(),iTr);
-        if(vRTracks[iV+4].Size() > 0)
+        tmp.SetPDG(pdg);                                                                   // WHY double definition of PID hypothesis - with constructor and via setter?
+        tmp.SetId(Particles.size());                                                       // WHY so strange Id? Inside two loops we consider only 1 track and 1 particle - not array of them
+        vRTracks[iV].SetId(Particles.size(),iTr);                                          // WHY so strange Id?
+        if(vRTracks[iV+4].Size() > 0)                             // array of tracks defined @last hit position
           vRTracks[iV+4].SetId(Particles.size(),iTr);
-        tmp.AddDaughterId( kfTrack.Id() );
+        tmp.AddDaughterId( kfTrack.Id() );                        // WHY kfTrack is the daughter in relation to tmp?
 #ifdef NonhomogeneousField
         for(int iF=0; iF<10; iF++)
           tmp.SetFieldCoeff( vRTracks[iV].FieldCoefficient(iF)[iTr], iF);
@@ -193,7 +193,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
       }
     }
 
-    if(fEmcClusters)
+    if(fEmcClusters)                                             // Do we need ElectroMagnetic Calorimeter clusters for our work?
     {
       KFParticleSIMD tmpGammaSIMD;
       KFParticle tmpGamma;
@@ -214,7 +214,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
         }
       }
     }
-  }
+  }// what is this bracket for? To limit scope?
 
 
 
@@ -591,7 +591,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
     SelectParticles(Particles,fD0bar,PrimVtx,fCutsCharm[2],fCutsCharm[1],
                     KFParticleDatabase::Instance()->GetD0Mass(), KFParticleDatabase::Instance()->GetD0MassSigma(), fSecCuts[0]);
   }
-}
+}//void KFParticleFinder::FindParticles
 
 void KFParticleFinder::ExtrapolateToPV(vector<KFParticle>& vParticles, KFParticleSIMD& PrimVtx)
 {
@@ -1407,7 +1407,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
       }//iTC
     }//iTrTypeNeg
   }//iTrTypePos
-}
+}// void KFParticleFinder::Find2DaughterDecay
 
 void KFParticleFinder::ConstructPrimaryBG(KFPTrackVector* vTracks,
                                           vector<KFParticle>& Particles,
