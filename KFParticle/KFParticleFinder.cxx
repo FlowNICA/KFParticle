@@ -181,7 +181,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
         if( pdg ==-19 ) pdg = -13;
         KFParticle tmp(kfTrack, pdg);
         tmp.SetPDG(pdg);                                                                   // WHY double definition of PID hypothesis - with constructor and via setter?
-        tmp.SetId(Particles.size());                                                       // WHY so strange Id? Inside two loops we consider only 1 track and 1 particle - not array of them
+        tmp.SetId(Particles.size());
         vRTracks[iV].SetId(Particles.size(),iTr);                                          // WHY so strange Id?
         if(vRTracks[iV+4].Size() > 0)                             // array of tracks defined @last hit position
           vRTracks[iV+4].SetId(Particles.size(),iTr);
