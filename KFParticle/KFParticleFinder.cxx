@@ -121,16 +121,17 @@ void KFParticleFinder::Init(int nPV)
 void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* ChiToPrimVtx, std::vector<KFParticle>& Particles,
                                      std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx, int nPV)
 {
+                                                                                                                                  // Are steps below sequential or parallel&independent?
   /** The main interface which runs reconstruction of short-lived particles:\n
    ** 1) a new event is initialised; \n
-   ** 2) long-lived particles formed from tracks are stored to the output array "Particles"; \n
+   ** 2) long-lived particles formed from tracks are stored to the output array "Particles"; \n                                   // WHAT is the principled diff between 2) & 3)?
    ** 3) 2-daughter channels are reconstructed (KFParticleFinder::Find2DaughterDecay()); \n
    ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n           // 2-charged particles (like Delta++)? or smth else?
    ** 5) found primary candidates of \f$K_s^0\f$, \f$\Lambda\f$, \f$\overline{\Lambda}\f$ and \f$\gamma\f$ are transported        // what is gamma? - photon?
    ** to the point of the closest approach with the corresponding primary vertex (KFParticleFinder::ExtrapolateToPV()); \n
-   ** 6) reconstruction with the missing mass method (KFParticleFinder::NeutralDaughterDecay()); \n
+   ** 6) reconstruction with the missing mass method (KFParticleFinder::NeutralDaughterDecay()); \n                               // WHAT is missing mass? Is it corresponded with kinks?
    ** 7) all other decays are reconstructed one after another. \n
-   ** If analysis is run in the mixed event mode only steps 1) and 2) are performed.
+   ** If analysis is run in the mixed event mode only steps 1) and 2) are performed.                                              // WHY other are not performed for superevent?
    ** \param[in] vRTracks - pointer to the array with vectors of tracks:\n
    ** 0) secondary positive at the first hit position; \n
    ** 1) secondary negative at the first hit position; \n
@@ -167,7 +168,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
 
   if(nPartEstimation < 100000)                                                              // What if NOT?
     Particles.reserve(nPartEstimation);
-  //* Finds particles (K0s and Lambda) from a given set of tracks
+  //* Finds particles (K0s and Lambda) from a given set of tracks                           // Do we look for Lambda & K_s^0 in this part of code 2) only?
   {                                                                                         // what is this bracket for? To limit scope?
     KFPTrack kfTrack;
     for(int iV=0; iV<4; iV++)
@@ -977,7 +978,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
    ** 5) secondary negative at the last hit position; \n
    ** 6) primary positive at the last hit position; \n
    ** 7) primary negative at the last hit position. \n
-   ** \param[in] ChiToPrimVtx - arrays with vectors of the \f$\chi^2_{prim}\f$ deviations for track vectors 1) and 2).
+   ** \param[in] ChiToPrimVtx - arrays with vectors of the \f$\chi^2_{prim}\f$ deviations for track vectors 1) and 2).                                        // You meant 0) and 1), didn't you?
    ** \param[out] Particles - output vector with particles.
    ** \param[in] PrimVtx - vector with primary vertices.
    ** \param[in] cuts - set of cuts: \f$\chi^2_{prim}\f$, \f$\chi^2_{geo}\f$, \f$l/\Delta l\f$.
@@ -1017,7 +1018,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
     {
       KFPTrackVector& posTracks = vTracks[ trTypeIndexPos[iTrTypePos] ];
       int_v negTracksSize = negTracks.Size();
-      int nPositiveTracks = posTracks.Size();
+      int nPositiveTracks = posTracks.Size();                                               // WHY different types: int_v & int ? Because of inner and outer loop?
       
       //track categories
       int nTC = 5;
@@ -1026,7 +1027,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
       int startTCNeg[5] = {0};
       int endTCNeg[5] = {0};
       
-      if((iTrTypeNeg == 0) && (iTrTypePos == 0))
+      if((iTrTypeNeg == 0) && (iTrTypePos == 0))                                            // both pos&neg are secondaries
       {
         // Secondary particles
         nTC = 5;
@@ -1039,28 +1040,28 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         //pi- + ghosts
         startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;
         startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();        
-        //K-
-        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();
+        //K-                                                                                // WHAT is a logic of initilization of TCs?
+        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();          // It seems we use fact that particles are sorted (e, mu, pi, K, ...) - FirstKaon(), LastPion() etc. But I do not see systematic&logic...
         startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
         //p-, d-, t-, he3-, he4-
         startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastPion();
         startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracksSize[0];  
       }
       
-      if( iTrTypeNeg != iTrTypePos )
+      if( iTrTypeNeg != iTrTypePos )                                                        // mixed primary & secondary
       {
-        //Mixed particles - only gamma -> e+ e-
-        nTC = 1;
+        //Mixed particles - only gamma -> e+ e-                                             // Is gamma -> e+ e- a pair production or smth else?
+        nTC = 1;                                                                            // Even if yes, why do we mix prim&sec?
         startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();
         startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
       }
       
-      if((iTrTypeNeg == 1) && (iTrTypePos == 1))
+      if((iTrTypeNeg == 1) && (iTrTypePos == 1))                                            // both pos&neg are primaries
       {
         //primary particles
         nTC = 5;
         // e-
-        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();
+        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();       // WHAT is a logic of initilization of TCs?
         startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
         //mu-
         startTCPos[1] = posTracks.FirstMuon(); endTCPos[1] = posTracks.LastMuon();
@@ -1078,7 +1079,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
       
       for(int iTC=0; iTC<nTC; iTC++)
       {
-        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)
+        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)             // WHAT is float_vLen?
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN);
 

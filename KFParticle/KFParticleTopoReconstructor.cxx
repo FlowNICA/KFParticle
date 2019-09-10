@@ -604,7 +604,7 @@ void KFParticleTopoReconstructor::GetChiToPrimVertex(KFParticleSIMD* pv, const i
       tmpPart.Create(fTracks[iTV],trackIndex, pdg);
       
       float_v& chi2 = reinterpret_cast<float_v&>(fChiToPrimVtx[iTV][iTr]);        // fChiToPrimVtx is not changed in any way, is it?
-      chi2(simd_cast<float_m>(trackIndex<NTr)) = 10000.f;
+      chi2(simd_cast<float_m>(trackIndex<NTr)) = 10000.f;                         // HOW is fChiToPrimVtx established?
 
       for(int iPV=0; iPV<nPV; iPV++)
       {
