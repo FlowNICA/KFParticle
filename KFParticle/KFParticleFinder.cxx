@@ -121,15 +121,14 @@ void KFParticleFinder::Init(int nPV)
 void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* ChiToPrimVtx, std::vector<KFParticle>& Particles,
                                      std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx, int nPV)
 {
-                                                                                                                                  // Are steps below sequential or parallel&independent?
   /** The main interface which runs reconstruction of short-lived particles:\n
    ** 1) a new event is initialised; \n
-   ** 2) long-lived particles formed from tracks are stored to the output array "Particles"; \n                                   // WHAT is the principled diff between 2) & 3)?
+   ** 2) long-lived particles formed from tracks are stored to the output array "Particles"; \n                                   // primary particles re-writed
    ** 3) 2-daughter channels are reconstructed (KFParticleFinder::Find2DaughterDecay()); \n
-   ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n           // 2-charged particles (like Delta++)? or smth else?
-   ** 5) found primary candidates of \f$K_s^0\f$, \f$\Lambda\f$, \f$\overline{\Lambda}\f$ and \f$\gamma\f$ are transported        // what is gamma? - photon?
+   ** 4) the 2-daughter same-signed background is collected for resonances (KFParticleFinder::ConstructPrimaryBG()); \n           // construct background from physically non-correlated particles (e.g. pi+ p+ for lambda)
+   ** 5) found primary candidates of \f$K_s^0\f$, \f$\Lambda\f$, \f$\overline{\Lambda}\f$ and \f$\gamma\f$ are transported
    ** to the point of the closest approach with the corresponding primary vertex (KFParticleFinder::ExtrapolateToPV()); \n
-   ** 6) reconstruction with the missing mass method (KFParticleFinder::NeutralDaughterDecay()); \n                               // WHAT is missing mass? Is it corresponded with kinks?
+   ** 6) reconstruction with the missing mass method (KFParticleFinder::NeutralDaughterDecay()); \n
    ** 7) all other decays are reconstructed one after another. \n
    ** If analysis is run in the mixed event mode only steps 1) and 2) are performed.                                              // WHY other are not performed for superevent?
    ** \param[in] vRTracks - pointer to the array with vectors of tracks:\n
@@ -141,7 +140,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
    ** 5) secondary negative at the last hit position; \n
    ** 6) primary positive at the last hit position; \n
    ** 7) primary negative at the last hit position. \n
-   ** \param[in] ChiToPrimVtx - arrays with vectors of the \f$\chi^2_{prim}\f$ deviations for track vectors 1) and 2).
+   ** \param[in] ChiToPrimVtx - arrays with vectors of the \f$\chi^2_{prim}\f$ deviations for track vectors 1) and 2).            // You meant 0) and 1), didn't you?
    ** \param[out] Particles - output vector with particles.
    ** \param[in] PrimVtx - vector with primary vertices.
    ** \param[in] nPV - number of the input primary vertices.
@@ -153,7 +152,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
                         vRTracks[2].NKaons() * vRTracks[3].NKaons() + 
                         vRTracks[2].NKaons() * vRTracks[3].NProtons() + 
                         vRTracks[3].NKaons() * vRTracks[2].NProtons() + 
-                        vRTracks[2].NElectrons() * vRTracks[3].NElectrons() +  // vRTracks[2].NElectrons() means positron, doesn't it?
+                        vRTracks[2].NElectrons() * vRTracks[3].NElectrons() +
                         vRTracks[2].NMuons() * vRTracks[3].NMuons();
 
   const int nPart = vRTracks[0].NPions() * vRTracks[1].NPions() +
@@ -166,9 +165,9 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
 
   int nPartEstimation = nPart+vRTracks[0].Size()+vRTracks[1].Size()+vRTracks[2].Size()+vRTracks[3].Size() + nEmcClusters;
 
-  if(nPartEstimation < 100000)                                                              // What if NOT?
+  if(nPartEstimation < 100000)                                                              // What if NOT?-Maybe this number is large enough. But even if not - it's not a problem. TODO make warning if(false)
     Particles.reserve(nPartEstimation);
-  //* Finds particles (K0s and Lambda) from a given set of tracks                           // Do we look for Lambda & K_s^0 in this part of code 2) only?
+  //* Finds particles (K0s and Lambda) from a given set of tracks
   {                                                                                         // what is this bracket for? To limit scope?
     KFPTrack kfTrack;
     for(int iV=0; iV<4; iV++)
@@ -180,12 +179,12 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
         if( pdg == 19 ) pdg =  13;                                                         // is PDG=19 special kind of muon?
         if( pdg ==-19 ) pdg = -13;
         KFParticle tmp(kfTrack, pdg);
-        tmp.SetPDG(pdg);                                                                   // WHY double definition of PID hypothesis - with constructor and via setter?
+        tmp.SetPDG(pdg);//TODO remove double definition of pdg
         tmp.SetId(Particles.size());
-        vRTracks[iV].SetId(Particles.size(),iTr);                                          // WHY so strange Id?
-        if(vRTracks[iV+4].Size() > 0)                             // array of tracks defined @last hit position
+        vRTracks[iV].SetId(Particles.size(),iTr);                       // all right, Particles.size() corresponds to # of current track
+        if(vRTracks[iV+4].Size() > 0)                                   // array of tracks defined @last hit position
           vRTracks[iV+4].SetId(Particles.size(),iTr);
-        tmp.AddDaughterId( kfTrack.Id() );                        // WHY kfTrack is the daughter in relation to tmp?
+        tmp.AddDaughterId( kfTrack.Id() );                              // all right, this is primary track, it does not have daughter tracks, so daughter id is set equal to track's id
 #ifdef NonhomogeneousField
         for(int iF=0; iF<10; iF++)
           tmp.SetFieldCoeff( vRTracks[iV].FieldCoefficient(iF)[iTr], iF);
@@ -194,7 +193,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
       }
     }
 
-    if(fEmcClusters)                                             // Do we need ElectroMagnetic Calorimeter clusters for our work?
+    if(fEmcClusters)                                                    // Do we need ElectroMagnetic Calorimeter clusters for our work? - Not now. Maybe later or never...
     {
       KFParticleSIMD tmpGammaSIMD;
       KFParticle tmpGamma;
@@ -1018,7 +1017,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
     {
       KFPTrackVector& posTracks = vTracks[ trTypeIndexPos[iTrTypePos] ];
       int_v negTracksSize = negTracks.Size();
-      int nPositiveTracks = posTracks.Size();                                               // WHY different types: int_v & int ? Because of inner and outer loop?
+      int nPositiveTracks = posTracks.Size();
       
       //track categories
       int nTC = 5;
@@ -1032,7 +1031,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         // Secondary particles
         nTC = 5;
         // e-
-        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();
+        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();       // it is a special kind of 'optimization' (not clear for me)
         startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
         //mu-
         startTCPos[1] = 0; endTCPos[1] = 0;
@@ -1040,8 +1039,8 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         //pi- + ghosts
         startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;
         startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();        
-        //K-                                                                                // WHAT is a logic of initilization of TCs?
-        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();          // It seems we use fact that particles are sorted (e, mu, pi, K, ...) - FirstKaon(), LastPion() etc. But I do not see systematic&logic...
+        //K-
+        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();
         startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
         //p-, d-, t-, he3-, he4-
         startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastPion();
@@ -1050,8 +1049,8 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
       
       if( iTrTypeNeg != iTrTypePos )                                                        // mixed primary & secondary
       {
-        //Mixed particles - only gamma -> e+ e-                                             // Is gamma -> e+ e- a pair production or smth else?
-        nTC = 1;                                                                            // Even if yes, why do we mix prim&sec?
+        //Mixed particles - only gamma -> e+ e-
+        nTC = 1;
         startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();
         startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
       }
@@ -1061,7 +1060,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         //primary particles
         nTC = 5;
         // e-
-        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();       // WHAT is a logic of initilization of TCs?
+        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();       // LastParticle() and n...Tracks is not the same (diff=1 because of enumerating from 0, see < & <= below)
         startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
         //mu-
         startTCPos[1] = posTracks.FirstMuon(); endTCPos[1] = posTracks.LastMuon();
@@ -1079,39 +1078,39 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
       
       for(int iTC=0; iTC<nTC; iTC++)
       {
-        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)             // WHAT is float_vLen?
+        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ?       // WHY iTrN += float_vLen when iTrN is int, not int_v
         {
-          const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN);
+          const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // length of the vector (see SIMD), or smaller value if we are close to the end
 
-          int_v negInd = int_v::IndexesFromZero() + int(iTrN);
-
+          int_v negInd = int_v::IndexesFromZero() + int(iTrN);                                                    // BTW, what means int(int)?
+                                                                                                                  //IndexesFromZero() Returns a vector with the entries initialized to 0, 1, 2, 3, 4, 5, ... 
           int_v negPDG = reinterpret_cast<const int_v&>(negTracks.PDG()[iTrN]);
           int_v negPVIndex = reinterpret_cast<const int_v&>(negTracks.PVIndex()[iTrN]);
           int_v negNPixelHits = reinterpret_cast<const int_v&>(negTracks.NPixelHits()[iTrN]);
           
           int_v trackPdgNeg = negPDG;
-          int_m activeNeg = (negPDG != -1);
+          int_m activeNeg = (negPDG != -1);                                                                       // Mask (see Vc lib documentation) with condition 'negPDG != -1'
 #ifdef CBM          
           if( !((negPDG == -1).isEmpty()) )
           {
-            trackPdgNeg(negPVIndex<0 && (negPDG == -1) ) = -211;
+            trackPdgNeg(negPVIndex<0 && (negPDG == -1) ) = -211;                                                  // for secondaries undefined negative tracks are assumed to be pions
                 
-            activeNeg |= int_m(negPVIndex < 0) && int_m(negPDG == -1) ;
-          }
+            activeNeg |= int_m(negPVIndex < 0) && int_m(negPDG == -1) ;                                           // It is principled to have bitwise 'or', isn't it?
+          }                                                                                                       // add to Mask condition 'secondary vtx even for pdg=-1'
 #endif    
-          activeNeg &= (int_v::IndexesFromZero() < int(NTracksNeg));
-              
-          daughterNeg.Load(negTracks, iTrN, negPDG);
+          activeNeg &= (int_v::IndexesFromZero() < int(NTracksNeg));                                              // WHY here we don't write int_m (compare with 3 lines above)?
+                                                                                                                  // add to Mask condition '1,2,3,4,5 smaller than SIMD Vec length' - ???
+          daughterNeg.Load(negTracks, iTrN, negPDG);                                                              // daughterNeg belongs to KFParticleSIMD class
                 
           float_v chiPrimNeg(Vc::Zero);
           float_v chiPrimPos(Vc::Zero);
           
-          if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )
+          if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                            // both pos&neg are secondaries
             chiPrimNeg = reinterpret_cast<const float_v&>( ChiToPrimVtx[trTypeIndexNeg[iTrTypeNeg]][iTrN]);
           
-          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC]; iTrP += float_vLen)
+          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC]; iTrP += float_vLen)                                 // the same problems as in line 1081
           {
-            const int NTracks = (iTrP + float_vLen < nPositiveTracks) ? float_vLen : (nPositiveTracks - iTrP);
+            const int NTracks = (iTrP + float_vLen < nPositiveTracks) ? float_vLen : (nPositiveTracks - iTrP);    // NTracks means "NTracksPos", doesn't it? WHY not name in the same tradition?
 
             const int_v& posPDG = reinterpret_cast<const int_v&>(posTracks.PDG()[iTrP]);
             const int_v& posPVIndex = reinterpret_cast<const  int_v&>(posTracks.PVIndex()[iTrP]);     

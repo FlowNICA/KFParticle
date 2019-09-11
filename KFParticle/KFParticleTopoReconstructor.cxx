@@ -309,8 +309,8 @@ void KFParticleTopoReconstructor::Init(KFPTrackVector &tracks, KFPTrackVector &t
   fTracks[1].Resize(0);
   fTracks[2].Resize(0);
   fTracks[3].Resize(0);
-  fTracks[4].Resize(tracksAtLastPoint.Size());                      // WHY in general tracksAtLastPoint.Size() != tracks.Size()? Will not the following code "fall" in this case?
-  fTracks[4].Set(tracksAtLastPoint, tracksAtLastPoint.Size(), 0);
+  fTracks[4].Resize(tracksAtLastPoint.Size());                      // WHY in general case tracksAtLastPoint.Size() != tracks.Size()? Will not the following code "fall" in this case?
+  fTracks[4].Set(tracksAtLastPoint, tracksAtLastPoint.Size(), 0);   // - All right: tracksAtLastPoint.Size() can be equal to zero. TODO warning if tracksAtLastPoint.Size()!=tracks.Size() && tracksAtLastPoint.Size()!=0
   fTracks[5].Resize(0);
   fTracks[6].Resize(0);
   fTracks[7].Resize(0);
@@ -598,20 +598,19 @@ void KFParticleTopoReconstructor::GetChiToPrimVertex(KFParticleSIMD* pv, const i
     unsigned int NTr = fTracks[iTV].Size();
     for(unsigned int iTr=0; iTr < NTr; iTr += float_vLen) 
     { 
-      // not clear syntaxis below
       uint_v trackIndex = iTr + uint_v::IndexesFromZero();
       const int_v& pdg = reinterpret_cast<const int_v&>(fTracks[iTV].PDG()[iTr]);
       tmpPart.Create(fTracks[iTV],trackIndex, pdg);
       
-      float_v& chi2 = reinterpret_cast<float_v&>(fChiToPrimVtx[iTV][iTr]);        // fChiToPrimVtx is not changed in any way, is it?
-      chi2(simd_cast<float_m>(trackIndex<NTr)) = 10000.f;                         // HOW is fChiToPrimVtx established?
+      float_v& chi2 = reinterpret_cast<float_v&>(fChiToPrimVtx[iTV][iTr]);
+      chi2(simd_cast<float_m>(trackIndex<NTr)) = 10000.f;
 
       for(int iPV=0; iPV<nPV; iPV++)
       {
         const float_v point[3] = {pv[iPV].X(), pv[iPV].Y(), pv[iPV].Z()};
         tmpPart.TransportToPoint(point);
         const float_v& chiVec = tmpPart.GetDeviationFromVertex(pv[iPV]);
-        chi2( (chi2>chiVec) && simd_cast<float_m>(trackIndex<NTr) ) = chiVec;     // WHAT does this syntaxis mean?
+        chi2( (chi2>chiVec) && simd_cast<float_m>(trackIndex<NTr) ) = chiVec;
       }
     } 
   }
@@ -1037,8 +1036,8 @@ void KFParticleTopoReconstructor::ReconstructParticles()
   if(fPV.size() < 1) return;
 
   TransportPVTracksToPrimVertex();
-  //calculate chi to primary vertex, chi = sqrt(dr C-1 dr)                              // We calculate chi2 to prim vtx again, in spite of chi2 to prim vtx is inner data for KF PF?
-  GetChiToPrimVertex(&(fPV[0]), fPV.size());                                            // WHERE is it used? GetChiToPrimVertex modifies fPV in some way, doesn't it?
+  //calculate chi to primary vertex, chi = sqrt(dr C-1 dr)
+  GetChiToPrimVertex(&(fPV[0]), fPV.size());
 
   fKFParticleFinder->FindParticles(fTracks, fChiToPrimVtx, fParticles, fPV, fPV.size());
 // #pragma omp critical 
