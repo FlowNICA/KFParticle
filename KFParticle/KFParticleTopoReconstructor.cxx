@@ -494,7 +494,7 @@ void KFParticleTopoReconstructor::SortTracks()
     
     for(int iTV=1; iTV<4; iTV++)  
       fTracks[iTV+offset[iSet]].SetTracks(fTracks[offset[iSet]], trackIndex[iTV], nTracks[iTV]);        // distribute tracks from 0-th (4-th) array among 0-3-d (4-7-th) according to charge and prim/sec
-                                                                                                        // if iSet==1 we fill tracks in 4-7 array from 0-th, not from 4-th!!!
+
       
     KFPTrackVector positive;                                                                            // 'positive' is a buffer variable
     positive.SetTracks(fTracks[offset[iSet]], trackIndex[0], nTracks[0]);

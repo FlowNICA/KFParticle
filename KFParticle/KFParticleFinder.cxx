@@ -1037,8 +1037,8 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         startTCPos[1] = 0; endTCPos[1] = 0;
         startTCNeg[1] = 0; endTCNeg[1] = 0; 
         //pi- + ghosts
-        startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;
-        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();        
+        startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;               // FirstPion() returns the index of 0-th member of claster with first pion (in order not to lose any)
+        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();          // zeroth index of track does not correspond to any track, does it? Indeed, if you have 0 electrons, FirstElectron=0, LastElectron=0...
         //K-
         startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();
         startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
@@ -1075,15 +1075,15 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastProton();
         startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracks.LastProton();      
       }
-      
+                                                                                                                  // lines 1080-1180 not clear preparations before mother particle construction
       for(int iTC=0; iTC<nTC; iTC++)
       {
-        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ?       // WHY iTrN += float_vLen when iTrN is int, not int_v
+        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ? We lose one track if endTC=Last()=zeroth position in SIMD vector, don't we?
         {
-          const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // length of the vector (see SIMD), or smaller value if we are close to the end
+          const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
           int_v negInd = int_v::IndexesFromZero() + int(iTrN);                                                    // BTW, what means int(int)?
-                                                                                                                  //IndexesFromZero() Returns a vector with the entries initialized to 0, 1, 2, 3, 4, 5, ... 
+                                                                                                                  // vector members are indexes of tracks in certain SIMD cluster (e.g. 8,9,10,11 for 4-dim and iTr=8)
           int_v negPDG = reinterpret_cast<const int_v&>(negTracks.PDG()[iTrN]);
           int_v negPVIndex = reinterpret_cast<const int_v&>(negTracks.PVIndex()[iTrN]);
           int_v negNPixelHits = reinterpret_cast<const int_v&>(negTracks.NPixelHits()[iTrN]);
@@ -1095,11 +1095,11 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
           {
             trackPdgNeg(negPVIndex<0 && (negPDG == -1) ) = -211;                                                  // for secondaries undefined negative tracks are assumed to be pions
                 
-            activeNeg |= int_m(negPVIndex < 0) && int_m(negPDG == -1) ;                                           // It is principled to have bitwise 'or', isn't it?
+            activeNeg |= int_m(negPVIndex < 0) && int_m(negPDG == -1) ;                                           // Bitwise and logic & and | are equivalent for masks, aren't they?
           }                                                                                                       // add to Mask condition 'secondary vtx even for pdg=-1'
 #endif    
           activeNeg &= (int_v::IndexesFromZero() < int(NTracksNeg));                                              // WHY here we don't write int_m (compare with 3 lines above)?
-                                                                                                                  // add to Mask condition '1,2,3,4,5 smaller than SIMD Vec length' - ???
+                                                                                                                  // ^ untill the end of cluster, or end of tracks, if it is closer
           daughterNeg.Load(negTracks, iTrN, negPDG);                                                              // daughterNeg belongs to KFParticleSIMD class
                 
           float_v chiPrimNeg(Vc::Zero);
@@ -1119,54 +1119,54 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
 
             daughterPos.Load(posTracks, iTrP, posPDG);
             
-            if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )
+            if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                            // both pos&neg are secondaries
               chiPrimPos = reinterpret_cast<const float_v&>( ChiToPrimVtx[trTypeIndexPos[iTrTypePos]][iTrP]);
             
             for(int iRot = 0; iRot<float_vLen; iRot++)
             {
 //               if(iRot>0)
               {
-                negPDG = negPDG.rotated(1);
+                negPDG = negPDG.rotated(1);                                                                         // move all elements 1 position left. The first element becomes the last.
                 negPVIndex = negPVIndex.rotated(1);
                 negNPixelHits = negNPixelHits.rotated(1);
                 negInd = negInd.rotated(1);
                 trackPdgNeg = trackPdgNeg.rotated(1);
               
-                daughterNeg.Rotate();
+                daughterNeg.Rotate();                                                                               // performes rotated(1) for all KFParticleSIMD::daughterNeg members: Par, Cov, MagField, Q, Id
                 chiPrimNeg = chiPrimNeg.rotated(1);
 
-                activeNeg = ( (negPDG != -1) || ( (negPVIndex < 0) && (negPDG == -1) ) ) && (negInd < negTracksSize);
+                activeNeg = ( (negPDG != -1) || ( (negPVIndex < 0) && (negPDG == -1) ) ) && (negInd < negTracksSize); // WHY re-define activeNeg?
               }
-              const int_m& isSecondary = int_m( negPVIndex < 0 ) && isPosSecondary;
-              const int_m& isPrimary   = int_m( negPVIndex >= 0 ) && (!isPosSecondary);
+              const int_m& isSecondary = int_m( negPVIndex < 0 ) && isPosSecondary;                                 // both +&- are secondaries
+              const int_m& isPrimary   = int_m( negPVIndex >= 0 ) && (!isPosSecondary);                             // both +&- are primaries
             
-              float_m closeDaughters = simd_cast<float_m>(activeNeg && (int_v::IndexesFromZero() < int_v(NTracks)));
+              float_m closeDaughters = simd_cast<float_m>(activeNeg && (int_v::IndexesFromZero() < int_v(NTracks)));// the same mask (?), but float instead of int
               
-              if(closeDaughters.isEmpty() && (iTC != 0)) continue;
-              
+              if(closeDaughters.isEmpty() && (iTC != 0)) continue;                                                  // WHAT is special with iTC==0? - this TC corresponds to e+e-. And what?
+                              // ^ returns true if all mask's components are false
               
               int_v trackPdgPos[2];
               int_m active[2];
 
-              active[0] = (posPDG != -1);
-              active[0] &= ((isPrimary && (posPVIndex == negPVIndex)) || !(isPrimary));
+              active[0] = (posPDG != -1);                                                                           // no undefined pid among positives
+              active[0] &= ((isPrimary && (posPVIndex == negPVIndex)) || !(isPrimary));                             // both +&- are primaries and belong to the same PV, or both are secondaries
 
               active[1] = int_m(false);
               
               trackPdgPos[0] = posPDG;
 #ifdef CBM
               int nPDGPos = 2;
-              if( (posPDG == -1).isEmpty() && (posPDG > 1000000000).isEmpty() && (posPDG == 211).isEmpty() )
+              if( (posPDG == -1).isEmpty() && (posPDG > 1000000000).isEmpty() && (posPDG == 211).isEmpty() )        // there are no undefined pid, no nuclei, no pions
               {
                 nPDGPos = 1;
               }
               else
               {
-                trackPdgPos[0](isSecondary && posPDG == -1) = 211;
+                trackPdgPos[0](isSecondary && posPDG == -1) = 211;                                                  // undefined secondaries are assumed to be pions
                 trackPdgPos[1] = 2212;
                 
-                active[0] |= isSecondary && int_m(posPDG == -1);
-                active[1]  = isSecondary && (int_m(posPDG == -1) || (posPDG > 1000000000) || (posPDG == 211));
+                active[0] |= isSecondary && int_m(posPDG == -1);                                                    // added both +&- are secondaries with well-defined positives
+                active[1]  = isSecondary && (int_m(posPDG == -1) || (posPDG > 1000000000) || (posPDG == 211));      // both +&- are secondaries and positive is from (non-defs, nuclei, pions)
               }
 #else
               int nPDGPos = 1;
@@ -1190,10 +1190,10 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                 
                 if(!fMixedEventAnalysis)
                 {
-                  if(iTC==0)
+                  if(iTC==0)  //  iTC == 0 includes All particles (see lines 1034-1035, 1063-1064), but below we require pdg==11 explicitly
                   {
-                    motherPDG( (abs(trackPdgPos[iPDGPos]) == 11) || int_m(abs(trackPdgNeg) == 11) || isSecondary ) = 22; //gamma -> e+ e-
-                  }
+                    motherPDG( (abs(trackPdgPos[iPDGPos]) == 11) || int_m(abs(trackPdgNeg) == 11) || isSecondary ) = 22; //gamma -> e+ e-                   // WHY OR instead of AND between Pos&Neg? - compare with blocks below
+                  }                                                                                                                                         // WHY "OR secondaries" regardless signs? - compare with blocks below
                   else if(iTC==1)
                   {
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])== 13 || abs(trackPdgPos[iPDGPos])==19)
@@ -1201,11 +1201,11 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                   }
                   else if(iTC==2)
                   {
-                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==        211) && int_m(abs(trackPdgNeg) ==  211) ) =   310; //K0 -> pi+ pi-
+                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==        211) && int_m(abs(trackPdgNeg) ==  211) ) =   310; //K0 -> pi+ pi-         // More or less clear...
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==       2212) && int_m(abs(trackPdgNeg) ==  211) ) =  3122; //Lambda -> p+ pi-
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])== 1000010020) && int_m(abs(trackPdgNeg) ==  211) ) =  3003; //LambdaN -> d+ pi-
-                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])== 1000010030) && int_m(abs(trackPdgNeg) ==  211) ) =  3103; //LambdaNN -> t+ pi-
-                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])== 1000020030) && int_m(abs(trackPdgNeg) ==  211) ) =  3004; //H3Lambda -> He3+ pi-
+                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])== 1000010030) && int_m(abs(trackPdgNeg) ==  211) ) =  3103; //LambdaNN -> t+ pi-    // NB: mother particle is constructed from "honest" daughter pdgs, not "optimized"
+                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])== 1000020030) && int_m(abs(trackPdgNeg) ==  211) ) =  3004; //H3Lambda -> He3+ pi-  //     but particles listing is defined exactly as optimized in 1030-1077 lines
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])== 1000020040) && int_m(abs(trackPdgNeg) ==  211) ) =  3005; //H4Lambda -> He4+ pi-
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==        321) && int_m(abs(trackPdgNeg) ==  211) ) =  -421; //D0_bar -> pi- K+
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])==        321) && int_m(abs(trackPdgNeg) ==  211) ) =   313; //K*0 -> K+ pi-
@@ -1215,7 +1215,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                   else if(iTC==3)
                   {
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  211) && int_m(abs(trackPdgNeg) ==  321) ) =   421; //D0 -> pi+ K-
-                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  321) && int_m(abs(trackPdgNeg) ==  321) ) =   426; //D0 -> K+ K-
+                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  321) && int_m(abs(trackPdgNeg) ==  321) ) =   426; //D0 -> K+ K-                  // special id for D0-meson?
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])==  211) && int_m(abs(trackPdgNeg) ==  321) ) =  -313; //K*0_bar -> K- pi+
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])== 2212) && int_m(abs(trackPdgNeg) ==  321) ) =  3124; //Lambda* -> p K-
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])==  321) && int_m(abs(trackPdgNeg) ==  321) ) =   333; //phi -> K+ K-
@@ -1232,7 +1232,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])==  211) && int_m(abs(trackPdgNeg) ==       2212) ) =  -2114; //Delta0_bar -> p- pi+
                   }
                 }
-                else
+                else                                                                                                                                           // not clear with superevent mode
                 {
                   if(iTC==0)
                     motherPDG(                (abs(trackPdgPos[iPDGPos])==   11) && int_m(abs(trackPdgNeg) ==   11) ) =    22; //gamma -> e+ e-
@@ -1245,27 +1245,27 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  211) && int_m(abs(trackPdgNeg) ==  321) ) =   421; //D0 -> pi+ K-
                 }
                 
-                if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )
+                if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                                  // both pos&neg are secondaries
                 {
                   float_v chiprimCut = fCuts2D[0];
-                  chiprimCut( simd_cast<float_m>(abs(motherPDG) == 421 || abs(motherPDG) == 426) ) = fCutCharmChiPrim;
-                  active[iPDGPos] &= simd_cast<int_m>(chiPrimNeg > chiprimCut && chiPrimPos > chiprimCut);
+                  chiprimCut( simd_cast<float_m>(abs(motherPDG) == 421 || abs(motherPDG) == 426) ) = fCutCharmChiPrim;        // apply charm-chi-prim-cut for D0-mesons
+                  active[iPDGPos] &= simd_cast<int_m>(chiPrimNeg > chiprimCut && chiPrimPos > chiprimCut);                    // reject secondary tracks if they point at PV
                 }
                 
-                active[iPDGPos] &= (motherPDG != -1);
+                active[iPDGPos] &= (motherPDG != -1);                                                                         // reject non-defined mother particles
                 if(!(fDecayReconstructionList.empty()))
                 {
                   for(int iV=0; iV<float_vLen; iV++)
                   {
                     if(!(active[iPDGPos][iV])) continue;
-                    if(fDecayReconstructionList.find(motherPDG[iV]) == fDecayReconstructionList.end())
+                    if(fDecayReconstructionList.find(motherPDG[iV]) == fDecayReconstructionList.end())                        // WHAT does it mean? .end() element isn't used, is it?
                       motherPDG[iV] = -1;
                   }
                   active[iPDGPos] &= (motherPDG != -1);
                 }
                 if(active[iPDGPos].isEmpty()) continue;
 
-                if(!( (iTrTypePos == 1) && (iTrTypeNeg == 1) ) )
+                if(!( (iTrTypePos == 1) && (iTrTypeNeg == 1) ) )                                                              // at least one of tracks is secondary. WHY we consider 1 primary?
                 {
                   float_v dS[2];
                   daughterNeg.GetDStoParticleFast( daughterPos, dS );   
@@ -1277,26 +1277,26 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                   float_v dz = negParameters[2]-posParameters[2];
                   float_v dr = sqrt(dx*dx+dy*dy+dz*dz);
 
-                  active[iPDGPos] &= simd_cast<int_m>(dr < float_v(fDistanceCut));
+                  active[iPDGPos] &= simd_cast<int_m>(dr < float_v(fDistanceCut));                                            // cut on distance between tracks is applied
                   if(active[iPDGPos].isEmpty()) continue;
                   
-                  float_v p1p2 = posParameters[3]*negParameters[3] + posParameters[4]*negParameters[4] + posParameters[5]*negParameters[5];
-                  float_v p12  = posParameters[3]*posParameters[3] + posParameters[4]*posParameters[4] + posParameters[5]*posParameters[5];
-                  float_v p22  = negParameters[3]*negParameters[3] + negParameters[4]*negParameters[4] + negParameters[5]*negParameters[5];
-                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p12);
-                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p22);
+                  float_v p1p2 = posParameters[3]*negParameters[3] + posParameters[4]*negParameters[4] + posParameters[5]*negParameters[5];     // scalar composition of pos&neg track momenta
+                  float_v p12  = posParameters[3]*posParameters[3] + posParameters[4]*posParameters[4] + posParameters[5]*posParameters[5];     // squre pos track momentum
+                  float_v p22  = negParameters[3]*negParameters[3] + negParameters[4]*negParameters[4] + negParameters[5]*negParameters[5];     // squre neg track momentum
+                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p12);                  // projection of p2 on p1 is negative and larger than p1 by abs      // WHY such cut is applied?
+                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p22);                  // -//-                                                              // -//-
                 }
                 
                 const float_v& ptNeg2 = daughterNeg.Px()*daughterNeg.Px() + daughterNeg.Py()*daughterNeg.Py();
                 const float_v& ptPos2 = daughterPos.Px()*daughterPos.Px() + daughterPos.Py()*daughterPos.Py();
-                if( !((abs(motherPDG) == 421 || abs(motherPDG) == 426).isEmpty()) )
+                if( !((abs(motherPDG) == 421 || abs(motherPDG) == 426).isEmpty()) )                                               // at least 1 D0-meson is present
                 {
-                  active[iPDGPos] &= ( (abs(motherPDG) == 421 || abs(motherPDG) == 426) && 
+                  active[iPDGPos] &= ( (abs(motherPDG) == 421 || abs(motherPDG) == 426) &&                                        // apply cut for D0-mesons only
                                       simd_cast<int_m>(ptNeg2 >= fCutCharmPt*fCutCharmPt) && 
                                       simd_cast<int_m>(ptPos2 >= fCutCharmPt*fCutCharmPt) &&
-                                      simd_cast<int_m>(chiPrimNeg > fCutCharmChiPrim) && simd_cast<int_m>(chiPrimPos > fCutCharmChiPrim) &&
+                                      simd_cast<int_m>(chiPrimNeg > fCutCharmChiPrim) && simd_cast<int_m>(chiPrimPos > fCutCharmChiPrim) &&   // reject secondary tracks if they point at PV
                                       int_m(negNPixelHits >= int_v(3)) && int_m(posNPixelHits >= int_v(3)) )
-                                    || (!(abs(motherPDG) == 421 || abs(motherPDG) == 426));
+                                    || (!(abs(motherPDG) == 421 || abs(motherPDG) == 426));                                       // do not take non-D0-mesons
                 }
                 
                 if(active[iPDGPos].isEmpty()) continue;
@@ -1306,8 +1306,8 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                   if(!(active[iPDGPos][iV])) continue;
                   
 
-                  idPosDaughters[nBufEntry] = iTrP+iV;
-                  idNegDaughters[nBufEntry] = negInd[iV];
+                  idPosDaughters[nBufEntry] = iTrP+iV;          // WHAT is nBufEntry?
+                  idNegDaughters[nBufEntry] = negInd[iV];       // negInd = {8,9,10,11} e.g.
                   
                   daughterPosPDG[nBufEntry] = trackPdgPos[iPDGPos][iV];
                   daughterNegPDG[nBufEntry] = trackPdgNeg[iV];
@@ -1318,15 +1318,15 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                     daughterNegPDG[nBufEntry] =  11;
                   }
                   
-                  pvIndexMother[nBufEntry] = isPrimary[iV] ? negPVIndex[iV] : -1;
+                  pvIndexMother[nBufEntry] = isPrimary[iV] ? negPVIndex[iV] : -1;                                 // pvIndexMother gets the index of PV (or -1 if tracks are secondary)
                   
-                  if( iTrTypeNeg != iTrTypePos ) pvIndexMother[nBufEntry] = 0;
+                  if( iTrTypeNeg != iTrTypePos ) pvIndexMother[nBufEntry] = 0;                                    // pvIndexMother gets index 0 if daughter tracks are mixed prim&sec
                   
-                  V0PDG[nBufEntry] = motherPDG[iV];
+                  V0PDG[nBufEntry] = motherPDG[iV];                                                               // motherPDG was constructed from daughters
                   
                   nBufEntry++;
 
-                  if(int(nBufEntry) == float_vLen)
+                  if(int(nBufEntry) == float_vLen)                                                                // passed all members of SIMD-claster and went out from it
                   {
                     KFParticleDatabase::Instance()->GetMotherMass(V0PDG,massMotherPDG,massMotherPDGSigma);
                     mother.SetPDG( V0PDG );
