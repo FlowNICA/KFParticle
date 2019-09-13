@@ -626,7 +626,7 @@ void KFParticleFinder::ExtrapolateToPV(vector<KFParticle>& vParticles, KFParticl
   }
 }
 
-inline void KFParticleFinder::ConstructV0(KFPTrackVector* vTracks,
+inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
                                           int iTrTypePos,                 // 0, 2 for sec and prim respectively
                                           int iTrTypeNeg,                 // 1, 3 for sec and prim respectively
                                           uint_v& idPosDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
@@ -959,9 +959,9 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
   }
 }
 
-void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_float* ChiToPrimVtx,
+void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const kfvector_float* ChiToPrimVtx,
                                           vector<KFParticle>& Particles,
-                                          std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                                          const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                                           const float* cuts,
                                           const float* secCuts,
                                           vector< vector<KFParticle> >* vMotherPrim,
@@ -1082,7 +1082,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
-          int_v negInd = int_v::IndexesFromZero() + int(iTrN);                                                    // BTW, what means int(int)?
+          int_v negInd = int_v::IndexesFromZero() + iTrN;                                                    // BTW, what means int(int)?
                                                                                                                   // vector members are indices of tracks in certain SIMD cluster (e.g. 8,9,10,11 for 4-dim and iTr=8)
           int_v negPDG = reinterpret_cast<const int_v&>(negTracks.PDG()[iTrN]);
           int_v negPVIndex = reinterpret_cast<const int_v&>(negTracks.PVIndex()[iTrN]);
