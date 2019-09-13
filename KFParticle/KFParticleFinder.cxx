@@ -627,26 +627,26 @@ void KFParticleFinder::ExtrapolateToPV(vector<KFParticle>& vParticles, KFParticl
 }
 
 inline void KFParticleFinder::ConstructV0(KFPTrackVector* vTracks,
-                                          int iTrTypePos,
-                                          int iTrTypeNeg,
-                                          uint_v& idPosDaughters,
-                                          uint_v& idNegDaughters,
+                                          int iTrTypePos,                 // 0, 2 for sec and prim respectively
+                                          int iTrTypeNeg,                 // 1, 3 for sec and prim respectively
+                                          uint_v& idPosDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
+                                          uint_v& idNegDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
                                           int_v& daughterPosPDG,
                                           int_v& daughterNegPDG,
-                                          KFParticleSIMD& mother,
-                                          KFParticle& mother_temp,
-                                          const unsigned short NTracks,
-                                          kfvector_floatv& l,
-                                          kfvector_floatv& dl,
+                                          KFParticleSIMD& mother,         // declared only, not initialised in Find2DaughterDecay()
+                                          KFParticle& mother_temp,        // declared only, not initialised in Find2DaughterDecay()
+                                          const unsigned short NTracks,   // nBufEntry
+                                          kfvector_floatv& l,             // declared only, not initialised in Find2DaughterDecay()
+                                          kfvector_floatv& dl,            // declared only, not initialised in Find2DaughterDecay()
                                           vector<KFParticle>& Particles,
                                           std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
-                                          const float* cuts,
-                                          const int_v& pvIndex,
-                                          const float* secCuts,
-                                          const float_v& massMotherPDG,
-                                          const float_v& massMotherPDGSigma,
-                                          KFParticleSIMD& motherPrimSecCand,
-                                          int& nPrimSecCand,
+                                          const float* cuts,              // argument of Find2DaughterDecay()
+                                          const int_v& pvIndex,           // PV index of mother, -1 if secondary, 0 if mixed(???)
+                                          const float* secCuts,           // argument of Find2DaughterDecay()
+                                          const float_v& massMotherPDG,   // from database
+                                          const float_v& massMotherPDGSigma,    // from database
+                                          KFParticleSIMD& motherPrimSecCand,    // declared only
+                                          int& nPrimSecCand,                    // declared and initialised with 0
                                           vector< vector<KFParticle> >* vMotherPrim,
                                           vector<KFParticle>* vMotherSec
                                          )
@@ -688,8 +688,8 @@ inline void KFParticleFinder::ConstructV0(KFPTrackVector* vTracks,
   float_m isPrimary(simd_cast<float_m>(pvIndex>-1));
   int_v trackId;
   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
-  trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );
-  posDaughter.SetId(trackId);
+  trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // not clear what 'gather' function performs...
+  posDaughter.SetId(trackId);                                                           // ^"Constructs or loads a vector from the objects at mem with indices"
 
   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
   trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
@@ -707,7 +707,7 @@ inline void KFParticleFinder::ConstructV0(KFPTrackVector* vTracks,
   float_m saveParticle(simd_cast<float_m>(int_v::IndexesFromZero() < int(NTracks)));
   float_v chi2Cut = cuts[1];
   float_v ldlCut  = cuts[2];
-  if( !(simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420)).isEmpty() )
+  if( !(simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420)).isEmpty() )                 // D0-meson or smth similar
   {
     chi2Cut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = fCutsCharm[0];
     ldlCut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = -1;//fCutsCharm[1];
@@ -1083,7 +1083,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
           int_v negInd = int_v::IndexesFromZero() + int(iTrN);                                                    // BTW, what means int(int)?
-                                                                                                                  // vector members are indexes of tracks in certain SIMD cluster (e.g. 8,9,10,11 for 4-dim and iTr=8)
+                                                                                                                  // vector members are indices of tracks in certain SIMD cluster (e.g. 8,9,10,11 for 4-dim and iTr=8)
           int_v negPDG = reinterpret_cast<const int_v&>(negTracks.PDG()[iTrN]);
           int_v negPVIndex = reinterpret_cast<const int_v&>(negTracks.PVIndex()[iTrN]);
           int_v negNPixelHits = reinterpret_cast<const int_v&>(negTracks.NPixelHits()[iTrN]);
@@ -1321,15 +1321,15 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                   pvIndexMother[nBufEntry] = isPrimary[iV] ? negPVIndex[iV] : -1;                                 // pvIndexMother gets the index of PV (or -1 if tracks are secondary)
                   
                   if( iTrTypeNeg != iTrTypePos ) pvIndexMother[nBufEntry] = 0;                                    // pvIndexMother gets index 0 if daughter tracks are mixed prim&sec
-                  
-                  V0PDG[nBufEntry] = motherPDG[iV];                                                               // motherPDG was constructed from daughters
+                                                                                                                  // BUT PV=0 is usual index for PV. Is it Ok?
+                  V0PDG[nBufEntry] = motherPDG[iV];                                                               // motherPDG was constructed from daughters. V0PDG belongs to int_v
                   
                   nBufEntry++;
 
                   if(int(nBufEntry) == float_vLen)                                                                // passed all members of SIMD-claster and went out from it
                   {
                     KFParticleDatabase::Instance()->GetMotherMass(V0PDG,massMotherPDG,massMotherPDGSigma);
-                    mother.SetPDG( V0PDG );
+                    mother.SetPDG( V0PDG );                                                                       // mother belongs to KFParticleSIMD
                     ConstructV0(vTracks, trTypeIndexPos[iTrTypePos], trTypeIndexNeg[iTrTypeNeg],                
                                 idPosDaughters, idNegDaughters, daughterPosPDG, daughterNegPDG,
                                 mother, mother_temp,
@@ -1340,14 +1340,14 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                   }
                   
                   //TODO optimize this part of code for D-mesons
-                  if(motherPDG[iV] == 310 && 
+                  if(motherPDG[iV] == 310 &&                                                                       // K0-meson
                      (fDecayReconstructionList.empty() ||
-                      (!(fDecayReconstructionList.empty()) && !(fDecayReconstructionList.find(420) == fDecayReconstructionList.end()) ) ) &&
+                      (!(fDecayReconstructionList.empty()) && !(fDecayReconstructionList.find(420) == fDecayReconstructionList.end()) ) ) &&  // rec list is empty or if not, pdg==420(?) is searched for
                      negNPixelHits[iV] >= 3 && posNPixelHits[iV] >= 3 &&
-                     chiPrimNeg[iV] > fCutCharmChiPrim && chiPrimPos[iV] > fCutCharmChiPrim &&
+                     chiPrimNeg[iV] > fCutCharmChiPrim && chiPrimPos[iV] > fCutCharmChiPrim &&                     // these are cuts for D0-mesons, but how is it related to lines above?
                      ptNeg2[iV] >= fCutCharmPt*fCutCharmPt && ptPos2[iV] >= fCutCharmPt*fCutCharmPt )
                   {
-                    idPosDaughters[nBufEntry] = iTrP+iV;
+                    idPosDaughters[nBufEntry] = iTrP+iV;                                                           // these 4 lines reproduce lines 1309-1313, but rhs was not changed...
                     idNegDaughters[nBufEntry] = negInd[iV];
                     
                     daughterPosPDG[nBufEntry] = trackPdgPos[iPDGPos][iV];
@@ -1355,11 +1355,11 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
                     
                     pvIndexMother[nBufEntry] = isPrimary[iV] ? negPVIndex[iV] : -1;
                     
-                    V0PDG[nBufEntry] = 420;
+                    V0PDG[nBufEntry] = 420;                                                                         // WHAT is pdg==420?
                     
-                    nBufEntry++;
+                    nBufEntry++;                                                                                    // WHY increment nBufEntry once again?
 
-                    if(int(nBufEntry) == float_vLen)
+                    if(int(nBufEntry) == float_vLen)                                                                // passed all members of SIMD-claster and went out from it
                     {
                       KFParticleDatabase::Instance()->GetMotherMass(V0PDG,massMotherPDG,massMotherPDGSigma);
                       mother.SetPDG( V0PDG );
