@@ -136,33 +136,33 @@ class KFPTrackVector
     fND += fNP; fNT += fND; fNHe3 += fNT; fNHe4 += fNHe3;
   }
   
-  int FirstElectron()  { return 0; } ///< Returns index of the first electron.
+  int FirstElectron() const  { return 0; } ///< Returns index of the first electron.
   const int& LastElectron()  const { return fNE; } ///< Returns index of the last electron.
-  int NElectrons() { return fNE; } ///< Returns number of electrons.
-  int FirstMuon()  { return int(fNE/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first muon.
-  const int& LastMuon()  const { return fNMu; } ///< Returns index of the last muon.
-  int NMuons() { return fNMu - fNE; } ///< Returns number of muons.
-  int FirstPion()  { return int(fNMu/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first pion.
+  int NElectrons() const { return fNE; } ///< Returns number of electrons.
+  int FirstMuon() const { return int(fNE/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first muon.
+  const int& LastMuon() const { return fNMu; } ///< Returns index of the last muon.
+  int NMuons() const { return fNMu - fNE; } ///< Returns number of muons.
+  int FirstPion() const { return int(fNMu/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first pion.
   const int& LastPion()  const { return fNPi; } ///< Returns index of the last pion.
-  int NPions() { return fNPi - fNMu; } ///< Returns number of pions.
-  int FirstKaon()  { return int(fNPi/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first kaon.
+  int NPions() const { return fNPi - fNMu; } ///< Returns number of pions.
+  int FirstKaon() const { return int(fNPi/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first kaon.
   const int& LastKaon()  const { return fNK; } ///< Returns index of the last kaon.
-  int NKaons() { return fNK - fNPi; } ///< Returns number of kaons.
-  int FirstProton()  { return int(fNK/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first proton.
+  int NKaons() const { return fNK - fNPi; } ///< Returns number of kaons.
+  int FirstProton() const { return int(fNK/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first proton.
   const int& LastProton()  const { return fNP; } ///< Returns index of the last proton.
-  int NProtons() { return fNP - fNK; } ///< Returns number of protons.
-  int FirstDeuteron()  { return int(fNP/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first deuteron.
-  const int& LastDeuteron()  const { return fND; } ///< Returns index of the last deuteron.
-  int NDeuterons() { return fND - fNP; } ///< Returns number of deuterons.
-  int FirstTritium()  { return int(fND/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first triton.
+  int NProtons() const { return fNP - fNK; } ///< Returns number of protons.
+  int FirstDeuteron() const { return int(fNP/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first deuteron.
+  const int& LastDeuteron() const { return fND; } ///< Returns index of the last deuteron.
+  int NDeuterons() const { return fND - fNP; } ///< Returns number of deuterons.
+  int FirstTritium() const { return int(fND/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first triton.
   const int& LastTritium()  const { return fNT; } ///< Returns index of the last triton.
-  int NTritiums() { return fNT - fND; } ///< Returns number of tritons.
-  int FirstHe3()  { return int(fNT/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first He3.
+  int NTritiums() const { return fNT - fND; } ///< Returns number of tritons.
+  int FirstHe3() const { return int(fNT/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first He3.
   const int& LastHe3()  const { return fNHe3; } ///< Returns index of the last He3.
-  int NHe3s() { return fNHe3 - fNT; } ///< Returns number of He3 tracks.
-  int FirstHe4()  { return int(fNHe3/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first He4.
+  int NHe3s() const { return fNHe3 - fNT; } ///< Returns number of He3 tracks.
+  int FirstHe4() const { return int(fNHe3/float_vLen)*float_vLen; } ///< Returns index of the first element of the SIMD vector with the first He4.
   const int& LastHe4()  const { return fNHe4; } ///< Returns index of the last He4.
-  int NHe4s() { return fNHe4 - fNHe3; } ///< Returns number of He4 tracks.
+  int NHe4s() const { return fNHe4 - fNHe3; } ///< Returns number of He4 tracks.
   
   void AddElectron() {fNE++;}   ///< Increases by one index of the last electron.
   void AddMuon()     {fNMu++;}  ///< Increases by one index of the last muon.
@@ -176,8 +176,8 @@ class KFPTrackVector
 
   void RotateXY( float_v alpha, int firstElement );
   
-  void PrintTrack(int n);
-  void Print();
+  void PrintTrack(int n) const;
+  void Print() const;
   
   const KFPTrackVector& operator = (const KFPTrackVector& track)
   {
