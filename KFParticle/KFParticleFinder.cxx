@@ -1215,7 +1215,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                   else if(iTC==3)
                   {
                     motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  211) && int_m(abs(trackPdgNeg) ==  321) ) =   421; //D0 -> pi+ K-
-                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  321) && int_m(abs(trackPdgNeg) ==  321) ) =   426; //D0 -> K+ K-                  // special id for D0-meson?
+                    motherPDG( isSecondary && (abs(trackPdgPos[iPDGPos])==  321) && int_m(abs(trackPdgNeg) ==  321) ) =   426; //D0 -> K+ K-                  // maybe different modes cannot have the same mother pdg (?)
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])==  211) && int_m(abs(trackPdgNeg) ==  321) ) =  -313; //K*0_bar -> K- pi+
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])== 2212) && int_m(abs(trackPdgNeg) ==  321) ) =  3124; //Lambda* -> p K-
                     motherPDG( isPrimary   && (abs(trackPdgPos[iPDGPos])==  321) && int_m(abs(trackPdgNeg) ==  321) ) =   333; //phi -> K+ K-
@@ -1258,7 +1258,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                   for(int iV=0; iV<float_vLen; iV++)
                   {
                     if(!(active[iPDGPos][iV])) continue;
-                    if(fDecayReconstructionList.find(motherPDG[iV]) == fDecayReconstructionList.end())                        // WHAT does it mean? .end() element isn't used, is it?
+                    if(fDecayReconstructionList.find(motherPDG[iV]) == fDecayReconstructionList.end())
                       motherPDG[iV] = -1;
                   }
                   active[iPDGPos] &= (motherPDG != -1);
@@ -1281,10 +1281,10 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                   if(active[iPDGPos].isEmpty()) continue;
                   
                   float_v p1p2 = posParameters[3]*negParameters[3] + posParameters[4]*negParameters[4] + posParameters[5]*negParameters[5];     // scalar composition of pos&neg track momenta
-                  float_v p12  = posParameters[3]*posParameters[3] + posParameters[4]*posParameters[4] + posParameters[5]*posParameters[5];     // squre pos track momentum
-                  float_v p22  = negParameters[3]*negParameters[3] + negParameters[4]*negParameters[4] + negParameters[5]*negParameters[5];     // squre neg track momentum
-                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p12);                  // projection of p2 on p1 is negative and larger than p1 by abs      // WHY such cut is applied?
-                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p22);                  // -//-                                                              // -//-
+                  float_v p12  = posParameters[3]*posParameters[3] + posParameters[4]*posParameters[4] + posParameters[5]*posParameters[5];     // square pos track momentum
+                  float_v p22  = negParameters[3]*negParameters[3] + negParameters[4]*negParameters[4] + negParameters[5]*negParameters[5];     // square neg track momentum
+                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p12);                  // daughter particle's momentum has the same direction as mother's      // WHY such cut is applied?
+                  active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p22);                  // -//-                                                                 // -//-
                 }
                 
                 const float_v& ptNeg2 = daughterNeg.Px()*daughterNeg.Px() + daughterNeg.Py()*daughterNeg.Py();

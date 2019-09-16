@@ -49,7 +49,7 @@ class KFParticleFinder
 
   void ExtrapolateToPV(std::vector<KFParticle>& vParticles, KFParticleSIMD& PrimVtx);
      
-  inline void ConstructV0(KFPTrackVector* vTracks,
+  inline void ConstructV0(const KFPTrackVector* vTracks,
                     int iTrTypePos,
                     int iTrTypeNeg,
                     uint_v& idPosDaughters,
@@ -101,9 +101,9 @@ class KFParticleFinder
                               std::vector< std::vector<KFParticle> >* vMotherPrim,
                               std::vector<KFParticle>* vMotherSec);
 
-  void Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_float* ChiToPrimVtx,
+  void Find2DaughterDecay(const KFPTrackVector* vTracks, kfvector_float* ChiToPrimVtx,
                           std::vector<KFParticle>& Particles,
-                          std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                          const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                           const float* cuts,
                           const float* secCuts,
                           std::vector< std::vector<KFParticle> >* vMotherPrim,
