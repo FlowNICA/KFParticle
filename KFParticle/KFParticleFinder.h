@@ -101,9 +101,9 @@ class KFParticleFinder
                               std::vector< std::vector<KFParticle> >* vMotherPrim,
                               std::vector<KFParticle>* vMotherSec);
 
-  void Find2DaughterDecay(const KFPTrackVector* vTracks, kfvector_float* ChiToPrimVtx,
+  void Find2DaughterDecay(const KFPTrackVector* vTracks, const kfvector_float* ChiToPrimVtx,
                           std::vector<KFParticle>& Particles,
-                          const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                          std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                           const float* cuts,
                           const float* secCuts,
                           std::vector< std::vector<KFParticle> >* vMotherPrim,

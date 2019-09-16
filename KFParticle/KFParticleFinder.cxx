@@ -961,7 +961,7 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
 
 void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const kfvector_float* ChiToPrimVtx,
                                           vector<KFParticle>& Particles,
-                                          const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                                          std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                                           const float* cuts,
                                           const float* secCuts,
                                           vector< vector<KFParticle> >* vMotherPrim,
@@ -1011,11 +1011,11 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
 
   for( int iTrTypeNeg = 0; iTrTypeNeg<2; iTrTypeNeg++)
   {
-    KFPTrackVector& negTracks = vTracks[ trTypeIndexNeg[iTrTypeNeg] ];
+    const KFPTrackVector& negTracks = vTracks[ trTypeIndexNeg[iTrTypeNeg] ];
     
     for(int iTrTypePos=0; iTrTypePos<2; iTrTypePos++)
     {
-      KFPTrackVector& posTracks = vTracks[ trTypeIndexPos[iTrTypePos] ];
+      const KFPTrackVector& posTracks = vTracks[ trTypeIndexPos[iTrTypePos] ];
       int_v negTracksSize = negTracks.Size();
       int nPositiveTracks = posTracks.Size();
       

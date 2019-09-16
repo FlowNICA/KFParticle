@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/user/cbmdir/kfpf/KFParti
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6d2fd/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6d2fd.dir/build.make CMakeFiles/cmTC_6d2fd.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_bc2ba/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bc2ba.dir/build.make CMakeFiles/cmTC_bc2ba.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_6d2fd.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_6d2fd.dir/testCCompiler.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_6d2fd
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6d2fd.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_6d2fd.dir/testCCompiler.c.o  -o cmTC_6d2fd -rdynamic 
+Building C object CMakeFiles/cmTC_bc2ba.dir/testCCompiler.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_bc2ba.dir/testCCompiler.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_bc2ba
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc2ba.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_bc2ba.dir/testCCompiler.c.o  -o cmTC_bc2ba -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a572a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a572a.dir/build.make CMakeFiles/cmTC_a572a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7618f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7618f.dir/build.make CMakeFiles/cmTC_7618f.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.7/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_a572a
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a572a.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o  -o cmTC_a572a -rdynamic  
+Building C object CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.7/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_7618f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7618f.dir/link.txt --verbose=1
+/usr/bin/cc      -v CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o  -o cmTC_7618f -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -59,8 +59,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a572a' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDtjztd.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a572a /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7618f' '-rdynamic' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2l6Mx2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_7618f /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -68,14 +68,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_a572a/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_a572a.dir/build.make CMakeFiles/cmTC_a572a.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_7618f/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_7618f.dir/build.make CMakeFiles/cmTC_7618f.dir/build]
   ignore line: [make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»]
-  ignore line: [Building C object CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.7/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_a572a]
-  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a572a.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o  -o cmTC_a572a -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.7/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_7618f]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7618f.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o  -o cmTC_7618f -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -85,13 +85,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a572a' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccDtjztd.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_a572a /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_7618f' '-rdynamic' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2l6Mx2.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_7618f /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccDtjztd.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc2l6Mx2.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -109,7 +109,7 @@ Parsed C implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_a572a] ==> ignore
+    arg [cmTC_7618f] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -121,7 +121,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_a572a.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_7618f.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -155,14 +155,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_80a51/fast"
-/usr/bin/make -f CMakeFiles/cmTC_80a51.dir/build.make CMakeFiles/cmTC_80a51.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4f0e6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4f0e6.dir/build.make CMakeFiles/cmTC_4f0e6.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_80a51.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_80a51.dir/feature_tests.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_80a51
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_80a51.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_80a51.dir/feature_tests.c.o  -o cmTC_80a51 -rdynamic 
+Building C object CMakeFiles/cmTC_4f0e6.dir/feature_tests.c.o
+/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_4f0e6.dir/feature_tests.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_4f0e6
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4f0e6.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_4f0e6.dir/feature_tests.c.o  -o cmTC_4f0e6 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -175,14 +175,14 @@ make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/bu
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a83a0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a83a0.dir/build.make CMakeFiles/cmTC_a83a0.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e6f4d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e6f4d.dir/build.make CMakeFiles/cmTC_e6f4d.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_a83a0.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_a83a0.dir/feature_tests.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_a83a0
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a83a0.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_a83a0.dir/feature_tests.c.o  -o cmTC_a83a0 -rdynamic 
+Building C object CMakeFiles/cmTC_e6f4d.dir/feature_tests.c.o
+/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_e6f4d.dir/feature_tests.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_e6f4d
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e6f4d.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_e6f4d.dir/feature_tests.c.o  -o cmTC_e6f4d -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -195,14 +195,14 @@ make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/bu
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1a329/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1a329.dir/build.make CMakeFiles/cmTC_1a329.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_35129/fast"
+/usr/bin/make -f CMakeFiles/cmTC_35129.dir/build.make CMakeFiles/cmTC_35129.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building C object CMakeFiles/cmTC_1a329.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_1a329.dir/feature_tests.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_1a329
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1a329.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_1a329.dir/feature_tests.c.o  -o cmTC_1a329 -rdynamic 
+Building C object CMakeFiles/cmTC_35129.dir/feature_tests.c.o
+/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_35129.dir/feature_tests.c.o   -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_35129
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_35129.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_35129.dir/feature_tests.c.o  -o cmTC_35129 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -213,28 +213,28 @@ make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/bu
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_5ad19/fast"
-/usr/bin/make -f CMakeFiles/cmTC_5ad19.dir/build.make CMakeFiles/cmTC_5ad19.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4e1d5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4e1d5.dir/build.make CMakeFiles/cmTC_4e1d5.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_5ad19.dir/testCXXCompiler.cxx.o
-/usr/bin/c++      -o CMakeFiles/cmTC_5ad19.dir/testCXXCompiler.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_5ad19
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5ad19.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_5ad19.dir/testCXXCompiler.cxx.o  -o cmTC_5ad19 -rdynamic 
+Building CXX object CMakeFiles/cmTC_4e1d5.dir/testCXXCompiler.cxx.o
+/usr/bin/c++      -o CMakeFiles/cmTC_4e1d5.dir/testCXXCompiler.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_4e1d5
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4e1d5.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_4e1d5.dir/testCXXCompiler.cxx.o  -o cmTC_4e1d5 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_d35aa/fast"
-/usr/bin/make -f CMakeFiles/cmTC_d35aa.dir/build.make CMakeFiles/cmTC_d35aa.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4d621/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4d621.dir/build.make CMakeFiles/cmTC_4d621.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++      -o CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.7/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_d35aa
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d35aa.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d35aa -rdynamic  
+Building CXX object CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++      -o CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.7/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_4d621
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d621.dir/link.txt --verbose=1
+/usr/bin/c++       -v CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4d621 -rdynamic  
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
@@ -244,8 +244,8 @@ Thread model: posix
 gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d35aa' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cczkHKzC.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_d35aa /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4d621' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccYU697B.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_4d621 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -253,14 +253,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_d35aa/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_d35aa.dir/build.make CMakeFiles/cmTC_d35aa.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_4d621/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_4d621.dir/build.make CMakeFiles/cmTC_4d621.dir/build]
   ignore line: [make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»]
-  ignore line: [Building CXX object CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.7/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_d35aa]
-  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d35aa.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d35aa -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.7/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_4d621]
+  ignore line: [/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d621.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4d621 -rdynamic  ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper]
@@ -270,13 +270,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.11) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/5/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/5/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_d35aa' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/cczkHKzC.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_d35aa /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4d621' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/5/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper -plugin-opt=-fresolution=/tmp/ccYU697B.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -z relro -o cmTC_4d621 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o -L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.. CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/5/crtend.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cczkHKzC.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccYU697B.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -294,7 +294,7 @@ Parsed CXX implicit link information from above output:
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_d35aa] ==> ignore
+    arg [cmTC_4d621] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o] ==> ignore
@@ -306,7 +306,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/5/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/5/../../..]
-    arg [CMakeFiles/cmTC_d35aa.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_4d621.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -338,14 +338,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_64279/fast"
-/usr/bin/make -f CMakeFiles/cmTC_64279.dir/build.make CMakeFiles/cmTC_64279.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3805a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3805a.dir/build.make CMakeFiles/cmTC_3805a.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_64279.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_64279.dir/feature_tests.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_64279
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64279.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_64279.dir/feature_tests.cxx.o  -o cmTC_64279 -rdynamic 
+Building CXX object CMakeFiles/cmTC_3805a.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_3805a.dir/feature_tests.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_3805a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3805a.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_3805a.dir/feature_tests.cxx.o  -o cmTC_3805a -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -411,14 +411,14 @@ make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/bu
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4a956/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4a956.dir/build.make CMakeFiles/cmTC_4a956.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d33dc/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d33dc.dir/build.make CMakeFiles/cmTC_d33dc.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_4a956.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_4a956.dir/feature_tests.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_4a956
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a956.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_4a956.dir/feature_tests.cxx.o  -o cmTC_4a956 -rdynamic 
+Building CXX object CMakeFiles/cmTC_d33dc.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_d33dc.dir/feature_tests.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_d33dc
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d33dc.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_d33dc.dir/feature_tests.cxx.o  -o cmTC_d33dc -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -484,14 +484,14 @@ make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/bu
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_308e6/fast"
-/usr/bin/make -f CMakeFiles/cmTC_308e6.dir/build.make CMakeFiles/cmTC_308e6.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a99ca/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a99ca.dir/build.make CMakeFiles/cmTC_a99ca.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_308e6.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_308e6.dir/feature_tests.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_308e6
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_308e6.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_308e6.dir/feature_tests.cxx.o  -o cmTC_308e6 -rdynamic 
+Building CXX object CMakeFiles/cmTC_a99ca.dir/feature_tests.cxx.o
+/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_a99ca.dir/feature_tests.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_a99ca
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a99ca.dir/link.txt --verbose=1
+/usr/bin/c++        CMakeFiles/cmTC_a99ca.dir/feature_tests.cxx.o  -o cmTC_a99ca -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
@@ -555,14 +555,14 @@ make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/bu
 Performing C++ SOURCE FILE Test Vc_HAVE_SSE_SINCOS succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_598c4/fast"
-/usr/bin/make -f CMakeFiles/cmTC_598c4.dir/build.make CMakeFiles/cmTC_598c4.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_6b44f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6b44f.dir/build.make CMakeFiles/cmTC_6b44f.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_598c4.dir/src.cxx.o
-/usr/bin/c++     -DVc_HAVE_SSE_SINCOS   -o CMakeFiles/cmTC_598c4.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_598c4
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_598c4.dir/link.txt --verbose=1
-/usr/bin/c++    -DVc_HAVE_SSE_SINCOS    CMakeFiles/cmTC_598c4.dir/src.cxx.o  -o cmTC_598c4 -rdynamic /usr/lib/x86_64-linux-gnu/libmvec.so 
+Building CXX object CMakeFiles/cmTC_6b44f.dir/src.cxx.o
+/usr/bin/c++     -DVc_HAVE_SSE_SINCOS   -o CMakeFiles/cmTC_6b44f.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_6b44f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b44f.dir/link.txt --verbose=1
+/usr/bin/c++    -DVc_HAVE_SSE_SINCOS    CMakeFiles/cmTC_6b44f.dir/src.cxx.o  -o cmTC_6b44f -rdynamic /usr/lib/x86_64-linux-gnu/libmvec.so 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -582,11 +582,11 @@ int main() { return 0; }
 Performing C++ SOURCE FILE Test Vc_HAVE_AVX_SINCOS succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7bf6f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7bf6f.dir/build.make CMakeFiles/cmTC_7bf6f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_dadbf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dadbf.dir/build.make CMakeFiles/cmTC_dadbf.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_7bf6f.dir/src.cxx.o
-/usr/bin/c++     -DVc_HAVE_AVX_SINCOS   -o CMakeFiles/cmTC_7bf6f.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Building CXX object CMakeFiles/cmTC_dadbf.dir/src.cxx.o
+/usr/bin/c++     -DVc_HAVE_AVX_SINCOS   -o CMakeFiles/cmTC_dadbf.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
 /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx: In function ‘__m256 f0(__m256)’:
 /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx:10:21: warning: AVX vector return without AVX enabled changes the ABI [-Wpsabi]
  __m256  f0(__m256  x) { return _ZGVdN8v_cosf(_ZGVdN8v_sinf(x)); }
@@ -595,9 +595,9 @@ Building CXX object CMakeFiles/cmTC_7bf6f.dir/src.cxx.o
  __m256  f0(__m256  x) { return _ZGVdN8v_cosf(_ZGVdN8v_sinf(x)); }
          ^
 /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx:10:9: warning: AVX vector argument without AVX enabled changes the ABI [-Wpsabi]
-Linking CXX executable cmTC_7bf6f
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7bf6f.dir/link.txt --verbose=1
-/usr/bin/c++    -DVc_HAVE_AVX_SINCOS    CMakeFiles/cmTC_7bf6f.dir/src.cxx.o  -o cmTC_7bf6f -rdynamic /usr/lib/x86_64-linux-gnu/libmvec.so 
+Linking CXX executable cmTC_dadbf
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dadbf.dir/link.txt --verbose=1
+/usr/bin/c++    -DVc_HAVE_AVX_SINCOS    CMakeFiles/cmTC_dadbf.dir/src.cxx.o  -o cmTC_dadbf -rdynamic /usr/lib/x86_64-linux-gnu/libmvec.so 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -617,14 +617,14 @@ int main() { return 0; }
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__Wabi succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e3a85/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e3a85.dir/build.make CMakeFiles/cmTC_e3a85.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_5cd5f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5cd5f.dir/build.make CMakeFiles/cmTC_5cd5f.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_e3a85.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__Wabi   -Wabi -o CMakeFiles/cmTC_e3a85.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_e3a85
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3a85.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__Wabi    CMakeFiles/cmTC_e3a85.dir/src.cxx.o  -o cmTC_e3a85 -rdynamic 
+Building CXX object CMakeFiles/cmTC_5cd5f.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__Wabi   -Wabi -o CMakeFiles/cmTC_5cd5f.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_5cd5f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5cd5f.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__Wabi    CMakeFiles/cmTC_5cd5f.dir/src.cxx.o  -o cmTC_5cd5f -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -633,14 +633,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__fabi_version_0 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c8615/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c8615.dir/build.make CMakeFiles/cmTC_c8615.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_61725/fast"
+/usr/bin/make -f CMakeFiles/cmTC_61725.dir/build.make CMakeFiles/cmTC_61725.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_c8615.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__fabi_version_0   -fabi-version=0 -o CMakeFiles/cmTC_c8615.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_c8615
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c8615.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__fabi_version_0    CMakeFiles/cmTC_c8615.dir/src.cxx.o  -o cmTC_c8615 -rdynamic 
+Building CXX object CMakeFiles/cmTC_61725.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__fabi_version_0   -fabi-version=0 -o CMakeFiles/cmTC_61725.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_61725
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_61725.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__fabi_version_0    CMakeFiles/cmTC_61725.dir/src.cxx.o  -o cmTC_61725 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -649,14 +649,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__fabi_compat_version_0 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ff774/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ff774.dir/build.make CMakeFiles/cmTC_ff774.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_76405/fast"
+/usr/bin/make -f CMakeFiles/cmTC_76405.dir/build.make CMakeFiles/cmTC_76405.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_ff774.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__fabi_compat_version_0   -fabi-compat-version=0 -o CMakeFiles/cmTC_ff774.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_ff774
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ff774.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__fabi_compat_version_0    CMakeFiles/cmTC_ff774.dir/src.cxx.o  -o cmTC_ff774 -rdynamic 
+Building CXX object CMakeFiles/cmTC_76405.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__fabi_compat_version_0   -fabi-compat-version=0 -o CMakeFiles/cmTC_76405.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_76405
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76405.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__fabi_compat_version_0    CMakeFiles/cmTC_76405.dir/src.cxx.o  -o cmTC_76405 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -665,14 +665,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__ffp_contract_fast succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e01fc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e01fc.dir/build.make CMakeFiles/cmTC_e01fc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_07767/fast"
+/usr/bin/make -f CMakeFiles/cmTC_07767.dir/build.make CMakeFiles/cmTC_07767.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_e01fc.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__ffp_contract_fast   -ffp-contract=fast -o CMakeFiles/cmTC_e01fc.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_e01fc
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e01fc.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__ffp_contract_fast    CMakeFiles/cmTC_e01fc.dir/src.cxx.o  -o cmTC_e01fc -rdynamic 
+Building CXX object CMakeFiles/cmTC_07767.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__ffp_contract_fast   -ffp-contract=fast -o CMakeFiles/cmTC_07767.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_07767
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07767.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__ffp_contract_fast    CMakeFiles/cmTC_07767.dir/src.cxx.o  -o cmTC_07767 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -681,14 +681,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__march_ivybridge succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e272a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e272a.dir/build.make CMakeFiles/cmTC_e272a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_92e5a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_92e5a.dir/build.make CMakeFiles/cmTC_92e5a.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_e272a.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__march_ivybridge   -march=ivybridge -o CMakeFiles/cmTC_e272a.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_e272a
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e272a.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__march_ivybridge    CMakeFiles/cmTC_e272a.dir/src.cxx.o  -o cmTC_e272a -rdynamic 
+Building CXX object CMakeFiles/cmTC_92e5a.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__march_ivybridge   -march=ivybridge -o CMakeFiles/cmTC_92e5a.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_92e5a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_92e5a.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__march_ivybridge    CMakeFiles/cmTC_92e5a.dir/src.cxx.o  -o cmTC_92e5a -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -697,14 +697,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__msse2 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_89053/fast"
-/usr/bin/make -f CMakeFiles/cmTC_89053.dir/build.make CMakeFiles/cmTC_89053.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_5eb02/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5eb02.dir/build.make CMakeFiles/cmTC_5eb02.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_89053.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse2   -msse2 -o CMakeFiles/cmTC_89053.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_89053
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89053.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse2    CMakeFiles/cmTC_89053.dir/src.cxx.o  -o cmTC_89053 -rdynamic 
+Building CXX object CMakeFiles/cmTC_5eb02.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse2   -msse2 -o CMakeFiles/cmTC_5eb02.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_5eb02
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5eb02.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse2    CMakeFiles/cmTC_5eb02.dir/src.cxx.o  -o cmTC_5eb02 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -713,14 +713,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__msse3 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6eaf5/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6eaf5.dir/build.make CMakeFiles/cmTC_6eaf5.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_f328c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f328c.dir/build.make CMakeFiles/cmTC_f328c.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_6eaf5.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse3   -msse3 -o CMakeFiles/cmTC_6eaf5.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_6eaf5
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6eaf5.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse3    CMakeFiles/cmTC_6eaf5.dir/src.cxx.o  -o cmTC_6eaf5 -rdynamic 
+Building CXX object CMakeFiles/cmTC_f328c.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse3   -msse3 -o CMakeFiles/cmTC_f328c.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f328c
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f328c.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse3    CMakeFiles/cmTC_f328c.dir/src.cxx.o  -o cmTC_f328c -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -729,28 +729,28 @@ Source file was:
 Determining if the include file pmmintrin.h exists passed with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_59fa3/fast"
-/usr/bin/make -f CMakeFiles/cmTC_59fa3.dir/build.make CMakeFiles/cmTC_59fa3.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3c0f8/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3c0f8.dir/build.make CMakeFiles/cmTC_3c0f8.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_59fa3.dir/CheckIncludeFile.cxx.o
-/usr/bin/c++     -msse3    -o CMakeFiles/cmTC_59fa3.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
-Linking CXX executable cmTC_59fa3
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59fa3.dir/link.txt --verbose=1
-/usr/bin/c++    -msse3     CMakeFiles/cmTC_59fa3.dir/CheckIncludeFile.cxx.o  -o cmTC_59fa3 -rdynamic 
+Building CXX object CMakeFiles/cmTC_3c0f8.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -msse3    -o CMakeFiles/cmTC_3c0f8.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_3c0f8
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3c0f8.dir/link.txt --verbose=1
+/usr/bin/c++    -msse3     CMakeFiles/cmTC_3c0f8.dir/CheckIncludeFile.cxx.o  -o cmTC_3c0f8 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mssse3 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1a0a9/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1a0a9.dir/build.make CMakeFiles/cmTC_1a0a9.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e3178/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e3178.dir/build.make CMakeFiles/cmTC_e3178.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_1a0a9.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mssse3   -mssse3 -o CMakeFiles/cmTC_1a0a9.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_1a0a9
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1a0a9.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mssse3    CMakeFiles/cmTC_1a0a9.dir/src.cxx.o  -o cmTC_1a0a9 -rdynamic 
+Building CXX object CMakeFiles/cmTC_e3178.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mssse3   -mssse3 -o CMakeFiles/cmTC_e3178.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e3178
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3178.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mssse3    CMakeFiles/cmTC_e3178.dir/src.cxx.o  -o cmTC_e3178 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -759,28 +759,28 @@ Source file was:
 Determining if the include file tmmintrin.h exists passed with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8954c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8954c.dir/build.make CMakeFiles/cmTC_8954c.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_62c41/fast"
+/usr/bin/make -f CMakeFiles/cmTC_62c41.dir/build.make CMakeFiles/cmTC_62c41.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_8954c.dir/CheckIncludeFile.cxx.o
-/usr/bin/c++     -mssse3    -o CMakeFiles/cmTC_8954c.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
-Linking CXX executable cmTC_8954c
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8954c.dir/link.txt --verbose=1
-/usr/bin/c++    -mssse3     CMakeFiles/cmTC_8954c.dir/CheckIncludeFile.cxx.o  -o cmTC_8954c -rdynamic 
+Building CXX object CMakeFiles/cmTC_62c41.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -mssse3    -o CMakeFiles/cmTC_62c41.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_62c41
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_62c41.dir/link.txt --verbose=1
+/usr/bin/c++    -mssse3     CMakeFiles/cmTC_62c41.dir/CheckIncludeFile.cxx.o  -o cmTC_62c41 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__msse4_1 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4cc4a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4cc4a.dir/build.make CMakeFiles/cmTC_4cc4a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_48f95/fast"
+/usr/bin/make -f CMakeFiles/cmTC_48f95.dir/build.make CMakeFiles/cmTC_48f95.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_4cc4a.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse4_1   -msse4.1 -o CMakeFiles/cmTC_4cc4a.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_4cc4a
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4cc4a.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse4_1    CMakeFiles/cmTC_4cc4a.dir/src.cxx.o  -o cmTC_4cc4a -rdynamic 
+Building CXX object CMakeFiles/cmTC_48f95.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse4_1   -msse4.1 -o CMakeFiles/cmTC_48f95.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_48f95
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_48f95.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse4_1    CMakeFiles/cmTC_48f95.dir/src.cxx.o  -o cmTC_48f95 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -789,28 +789,28 @@ Source file was:
 Determining if the include file smmintrin.h exists passed with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_50502/fast"
-/usr/bin/make -f CMakeFiles/cmTC_50502.dir/build.make CMakeFiles/cmTC_50502.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_6269b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6269b.dir/build.make CMakeFiles/cmTC_6269b.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_50502.dir/CheckIncludeFile.cxx.o
-/usr/bin/c++     -msse4.1    -o CMakeFiles/cmTC_50502.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
-Linking CXX executable cmTC_50502
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50502.dir/link.txt --verbose=1
-/usr/bin/c++    -msse4.1     CMakeFiles/cmTC_50502.dir/CheckIncludeFile.cxx.o  -o cmTC_50502 -rdynamic 
+Building CXX object CMakeFiles/cmTC_6269b.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -msse4.1    -o CMakeFiles/cmTC_6269b.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_6269b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6269b.dir/link.txt --verbose=1
+/usr/bin/c++    -msse4.1     CMakeFiles/cmTC_6269b.dir/CheckIncludeFile.cxx.o  -o cmTC_6269b -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__msse4_2 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8b84b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8b84b.dir/build.make CMakeFiles/cmTC_8b84b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4b670/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4b670.dir/build.make CMakeFiles/cmTC_4b670.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_8b84b.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse4_2   -msse4.2 -o CMakeFiles/cmTC_8b84b.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_8b84b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8b84b.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse4_2    CMakeFiles/cmTC_8b84b.dir/src.cxx.o  -o cmTC_8b84b -rdynamic 
+Building CXX object CMakeFiles/cmTC_4b670.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__msse4_2   -msse4.2 -o CMakeFiles/cmTC_4b670.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_4b670
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b670.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__msse4_2    CMakeFiles/cmTC_4b670.dir/src.cxx.o  -o cmTC_4b670 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -819,14 +819,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mavx succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f15f8/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f15f8.dir/build.make CMakeFiles/cmTC_f15f8.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e2835/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e2835.dir/build.make CMakeFiles/cmTC_e2835.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_f15f8.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mavx   -mavx -o CMakeFiles/cmTC_f15f8.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_f15f8
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f15f8.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mavx    CMakeFiles/cmTC_f15f8.dir/src.cxx.o  -o cmTC_f15f8 -rdynamic 
+Building CXX object CMakeFiles/cmTC_e2835.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mavx   -mavx -o CMakeFiles/cmTC_e2835.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_e2835
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e2835.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mavx    CMakeFiles/cmTC_e2835.dir/src.cxx.o  -o cmTC_e2835 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -835,28 +835,28 @@ Source file was:
 Determining if the include file immintrin.h exists passed with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_6acd1/fast"
-/usr/bin/make -f CMakeFiles/cmTC_6acd1.dir/build.make CMakeFiles/cmTC_6acd1.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_e60a6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e60a6.dir/build.make CMakeFiles/cmTC_e60a6.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_6acd1.dir/CheckIncludeFile.cxx.o
-/usr/bin/c++     -mavx    -o CMakeFiles/cmTC_6acd1.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
-Linking CXX executable cmTC_6acd1
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6acd1.dir/link.txt --verbose=1
-/usr/bin/c++    -mavx     CMakeFiles/cmTC_6acd1.dir/CheckIncludeFile.cxx.o  -o cmTC_6acd1 -rdynamic 
+Building CXX object CMakeFiles/cmTC_e60a6.dir/CheckIncludeFile.cxx.o
+/usr/bin/c++     -mavx    -o CMakeFiles/cmTC_e60a6.dir/CheckIncludeFile.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/CheckIncludeFile.cxx
+Linking CXX executable cmTC_e60a6
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e60a6.dir/link.txt --verbose=1
+/usr/bin/c++    -mavx     CMakeFiles/cmTC_e60a6.dir/CheckIncludeFile.cxx.o  -o cmTC_e60a6 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_sse4a succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9a997/fast"
-/usr/bin/make -f CMakeFiles/cmTC_9a997.dir/build.make CMakeFiles/cmTC_9a997.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a7669/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a7669.dir/build.make CMakeFiles/cmTC_a7669.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_9a997.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_sse4a   -mno-sse4a -o CMakeFiles/cmTC_9a997.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_9a997
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9a997.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_sse4a    CMakeFiles/cmTC_9a997.dir/src.cxx.o  -o cmTC_9a997 -rdynamic 
+Building CXX object CMakeFiles/cmTC_a7669.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_sse4a   -mno-sse4a -o CMakeFiles/cmTC_a7669.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a7669
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7669.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_sse4a    CMakeFiles/cmTC_a7669.dir/src.cxx.o  -o cmTC_a7669 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -865,14 +865,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_fma succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_97b97/fast"
-/usr/bin/make -f CMakeFiles/cmTC_97b97.dir/build.make CMakeFiles/cmTC_97b97.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_431bf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_431bf.dir/build.make CMakeFiles/cmTC_431bf.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_97b97.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_fma   -mno-fma -o CMakeFiles/cmTC_97b97.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_97b97
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97b97.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_fma    CMakeFiles/cmTC_97b97.dir/src.cxx.o  -o cmTC_97b97 -rdynamic 
+Building CXX object CMakeFiles/cmTC_431bf.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_fma   -mno-fma -o CMakeFiles/cmTC_431bf.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_431bf
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_431bf.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_fma    CMakeFiles/cmTC_431bf.dir/src.cxx.o  -o cmTC_431bf -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -881,14 +881,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_bmi2 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_eccc7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_eccc7.dir/build.make CMakeFiles/cmTC_eccc7.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_5ee07/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5ee07.dir/build.make CMakeFiles/cmTC_5ee07.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_eccc7.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_bmi2   -mno-bmi2 -o CMakeFiles/cmTC_eccc7.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_eccc7
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eccc7.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_bmi2    CMakeFiles/cmTC_eccc7.dir/src.cxx.o  -o cmTC_eccc7 -rdynamic 
+Building CXX object CMakeFiles/cmTC_5ee07.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_bmi2   -mno-bmi2 -o CMakeFiles/cmTC_5ee07.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_5ee07
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5ee07.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_bmi2    CMakeFiles/cmTC_5ee07.dir/src.cxx.o  -o cmTC_5ee07 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -897,14 +897,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx2 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3b495/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3b495.dir/build.make CMakeFiles/cmTC_3b495.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7fc1a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7fc1a.dir/build.make CMakeFiles/cmTC_7fc1a.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_3b495.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx2   -mno-avx2 -o CMakeFiles/cmTC_3b495.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_3b495
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b495.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx2    CMakeFiles/cmTC_3b495.dir/src.cxx.o  -o cmTC_3b495 -rdynamic 
+Building CXX object CMakeFiles/cmTC_7fc1a.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx2   -mno-avx2 -o CMakeFiles/cmTC_7fc1a.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_7fc1a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7fc1a.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx2    CMakeFiles/cmTC_7fc1a.dir/src.cxx.o  -o cmTC_7fc1a -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -913,14 +913,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_xop succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f75bd/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f75bd.dir/build.make CMakeFiles/cmTC_f75bd.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_f3527/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f3527.dir/build.make CMakeFiles/cmTC_f3527.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_f75bd.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_xop   -mno-xop -o CMakeFiles/cmTC_f75bd.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_f75bd
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f75bd.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_xop    CMakeFiles/cmTC_f75bd.dir/src.cxx.o  -o cmTC_f75bd -rdynamic 
+Building CXX object CMakeFiles/cmTC_f3527.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_xop   -mno-xop -o CMakeFiles/cmTC_f3527.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_f3527
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f3527.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_xop    CMakeFiles/cmTC_f3527.dir/src.cxx.o  -o cmTC_f3527 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -929,14 +929,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_fma4 succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_a6f8e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_a6f8e.dir/build.make CMakeFiles/cmTC_a6f8e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_ad074/fast"
+/usr/bin/make -f CMakeFiles/cmTC_ad074.dir/build.make CMakeFiles/cmTC_ad074.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_a6f8e.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_fma4   -mno-fma4 -o CMakeFiles/cmTC_a6f8e.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_a6f8e
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a6f8e.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_fma4    CMakeFiles/cmTC_a6f8e.dir/src.cxx.o  -o cmTC_a6f8e -rdynamic 
+Building CXX object CMakeFiles/cmTC_ad074.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_fma4   -mno-fma4 -o CMakeFiles/cmTC_ad074.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_ad074
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad074.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_fma4    CMakeFiles/cmTC_ad074.dir/src.cxx.o  -o cmTC_ad074 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -945,14 +945,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512f succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_e4798/fast"
-/usr/bin/make -f CMakeFiles/cmTC_e4798.dir/build.make CMakeFiles/cmTC_e4798.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d4768/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d4768.dir/build.make CMakeFiles/cmTC_d4768.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_e4798.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512f   -mno-avx512f -o CMakeFiles/cmTC_e4798.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_e4798
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4798.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512f    CMakeFiles/cmTC_e4798.dir/src.cxx.o  -o cmTC_e4798 -rdynamic 
+Building CXX object CMakeFiles/cmTC_d4768.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512f   -mno-avx512f -o CMakeFiles/cmTC_d4768.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_d4768
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4768.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512f    CMakeFiles/cmTC_d4768.dir/src.cxx.o  -o cmTC_d4768 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -961,14 +961,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512vl succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1a184/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1a184.dir/build.make CMakeFiles/cmTC_1a184.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7c634/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7c634.dir/build.make CMakeFiles/cmTC_7c634.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_1a184.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512vl   -mno-avx512vl -o CMakeFiles/cmTC_1a184.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_1a184
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1a184.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512vl    CMakeFiles/cmTC_1a184.dir/src.cxx.o  -o cmTC_1a184 -rdynamic 
+Building CXX object CMakeFiles/cmTC_7c634.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512vl   -mno-avx512vl -o CMakeFiles/cmTC_7c634.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_7c634
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7c634.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512vl    CMakeFiles/cmTC_7c634.dir/src.cxx.o  -o cmTC_7c634 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -977,14 +977,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512pf succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8c41b/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8c41b.dir/build.make CMakeFiles/cmTC_8c41b.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_bc7c7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bc7c7.dir/build.make CMakeFiles/cmTC_bc7c7.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_8c41b.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512pf   -mno-avx512pf -o CMakeFiles/cmTC_8c41b.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_8c41b
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8c41b.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512pf    CMakeFiles/cmTC_8c41b.dir/src.cxx.o  -o cmTC_8c41b -rdynamic 
+Building CXX object CMakeFiles/cmTC_bc7c7.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512pf   -mno-avx512pf -o CMakeFiles/cmTC_bc7c7.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_bc7c7
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc7c7.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512pf    CMakeFiles/cmTC_bc7c7.dir/src.cxx.o  -o cmTC_bc7c7 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -993,14 +993,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512er succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_26c3a/fast"
-/usr/bin/make -f CMakeFiles/cmTC_26c3a.dir/build.make CMakeFiles/cmTC_26c3a.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_941f7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_941f7.dir/build.make CMakeFiles/cmTC_941f7.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_26c3a.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512er   -mno-avx512er -o CMakeFiles/cmTC_26c3a.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_26c3a
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_26c3a.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512er    CMakeFiles/cmTC_26c3a.dir/src.cxx.o  -o cmTC_26c3a -rdynamic 
+Building CXX object CMakeFiles/cmTC_941f7.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512er   -mno-avx512er -o CMakeFiles/cmTC_941f7.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_941f7
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_941f7.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512er    CMakeFiles/cmTC_941f7.dir/src.cxx.o  -o cmTC_941f7 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -1009,14 +1009,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512cd succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_87ac7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_87ac7.dir/build.make CMakeFiles/cmTC_87ac7.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_5d686/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5d686.dir/build.make CMakeFiles/cmTC_5d686.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_87ac7.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512cd   -mno-avx512cd -o CMakeFiles/cmTC_87ac7.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_87ac7
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_87ac7.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512cd    CMakeFiles/cmTC_87ac7.dir/src.cxx.o  -o cmTC_87ac7 -rdynamic 
+Building CXX object CMakeFiles/cmTC_5d686.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512cd   -mno-avx512cd -o CMakeFiles/cmTC_5d686.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_5d686
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5d686.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512cd    CMakeFiles/cmTC_5d686.dir/src.cxx.o  -o cmTC_5d686 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -1025,14 +1025,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512dq succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0b654/fast"
-/usr/bin/make -f CMakeFiles/cmTC_0b654.dir/build.make CMakeFiles/cmTC_0b654.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_2029b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2029b.dir/build.make CMakeFiles/cmTC_2029b.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_0b654.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512dq   -mno-avx512dq -o CMakeFiles/cmTC_0b654.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_0b654
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0b654.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512dq    CMakeFiles/cmTC_0b654.dir/src.cxx.o  -o cmTC_0b654 -rdynamic 
+Building CXX object CMakeFiles/cmTC_2029b.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512dq   -mno-avx512dq -o CMakeFiles/cmTC_2029b.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_2029b
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2029b.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512dq    CMakeFiles/cmTC_2029b.dir/src.cxx.o  -o cmTC_2029b -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -1041,14 +1041,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512bw succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_286ca/fast"
-/usr/bin/make -f CMakeFiles/cmTC_286ca.dir/build.make CMakeFiles/cmTC_286ca.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_44c98/fast"
+/usr/bin/make -f CMakeFiles/cmTC_44c98.dir/build.make CMakeFiles/cmTC_44c98.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_286ca.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512bw   -mno-avx512bw -o CMakeFiles/cmTC_286ca.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_286ca
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_286ca.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512bw    CMakeFiles/cmTC_286ca.dir/src.cxx.o  -o cmTC_286ca -rdynamic 
+Building CXX object CMakeFiles/cmTC_44c98.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512bw   -mno-avx512bw -o CMakeFiles/cmTC_44c98.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_44c98
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_44c98.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512bw    CMakeFiles/cmTC_44c98.dir/src.cxx.o  -o cmTC_44c98 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -1057,14 +1057,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512ifma succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ac322/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ac322.dir/build.make CMakeFiles/cmTC_ac322.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_3c8e6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3c8e6.dir/build.make CMakeFiles/cmTC_3c8e6.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_ac322.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512ifma   -mno-avx512ifma -o CMakeFiles/cmTC_ac322.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_ac322
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ac322.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512ifma    CMakeFiles/cmTC_ac322.dir/src.cxx.o  -o cmTC_ac322 -rdynamic 
+Building CXX object CMakeFiles/cmTC_3c8e6.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512ifma   -mno-avx512ifma -o CMakeFiles/cmTC_3c8e6.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_3c8e6
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3c8e6.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512ifma    CMakeFiles/cmTC_3c8e6.dir/src.cxx.o  -o cmTC_3c8e6 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:
@@ -1073,14 +1073,14 @@ Source file was:
 Performing C++ SOURCE FILE Test check_cxx_compiler_flag__mno_avx512vbmi succeeded with the following output:
 Change Dir: /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_78037/fast"
-/usr/bin/make -f CMakeFiles/cmTC_78037.dir/build.make CMakeFiles/cmTC_78037.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a66e1/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a66e1.dir/build.make CMakeFiles/cmTC_a66e1.dir/build
 make[1]: вход в каталог «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
-Building CXX object CMakeFiles/cmTC_78037.dir/src.cxx.o
-/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512vbmi   -mno-avx512vbmi -o CMakeFiles/cmTC_78037.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
-Linking CXX executable cmTC_78037
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_78037.dir/link.txt --verbose=1
-/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512vbmi    CMakeFiles/cmTC_78037.dir/src.cxx.o  -o cmTC_78037 -rdynamic 
+Building CXX object CMakeFiles/cmTC_a66e1.dir/src.cxx.o
+/usr/bin/c++     -Dcheck_cxx_compiler_flag__mno_avx512vbmi   -mno-avx512vbmi -o CMakeFiles/cmTC_a66e1.dir/src.cxx.o -c /home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_a66e1
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a66e1.dir/link.txt --verbose=1
+/usr/bin/c++    -Dcheck_cxx_compiler_flag__mno_avx512vbmi    CMakeFiles/cmTC_a66e1.dir/src.cxx.o  -o cmTC_a66e1 -rdynamic 
 make[1]: выход из каталога «/home/user/cbmdir/kfpf/KFParticle/build/CMakeFiles/CMakeTmp»
 
 Source file was:

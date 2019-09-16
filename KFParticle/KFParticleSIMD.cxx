@@ -204,7 +204,7 @@ void KFParticleSIMD::Create(KFPTrack* Track[], int NTracks, const Int_t *pdg)
   }
 }
 
-KFParticleSIMD::KFParticleSIMD(KFPTrackVector &track, uint_v& index, const int_v& pdg): KFParticleBaseSIMD()
+KFParticleSIMD::KFParticleSIMD(const KFPTrackVector &track, uint_v& index, const int_v& pdg): KFParticleBaseSIMD()
 #ifdef NonhomogeneousField
 , fField()
 #endif
@@ -218,7 +218,7 @@ KFParticleSIMD::KFParticleSIMD(KFPTrackVector &track, uint_v& index, const int_v
   Create(track, index, pdg);
 }
 
-void KFParticleSIMD::Create(KFPTrackVector &track, uint_v& index, const int_v& pdg)
+void KFParticleSIMD::Create(const KFPTrackVector &track, uint_v& index, const int_v& pdg)
 {
   /** Create a particle from a set of tracks with indices "index" stored in the KFPTrackVector format.
    ** The function should be used in case if indices are random. If they are aligned please use function Load()
