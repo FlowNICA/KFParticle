@@ -101,11 +101,11 @@ class KFParticleSIMD :public KFParticleBaseSIMD
 
   KFParticleSIMD( const KFPTrack *track, Int_t PID );
   KFParticleSIMD( KFPTrack* Track[], int NTracks, const Int_t *pdg=0 );
-  KFParticleSIMD( const KFPTrackVector &track, uint_v& index, const int_v& pdg );
+  KFParticleSIMD( const KFPTrackVector &track, const uint_v& index, const int_v& pdg );
 
   void Create(KFPTrack* Track[], int NTracks, const Int_t *pdg=0);
-  void Create(const KFPTrackVector &track, uint_v& index, const int_v& pdg);
-  void Load(KFPTrackVector &track, int index, const int_v& pdg);
+  void Create(const KFPTrackVector &track, const uint_v& index, const int_v& pdg);
+  void Load(const KFPTrackVector &track, int index, const int_v& pdg);
   void Rotate();
 
   KFParticleSIMD(KFPTrack &Track, const Int_t *pdg=0);

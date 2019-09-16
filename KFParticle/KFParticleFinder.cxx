@@ -627,19 +627,19 @@ void KFParticleFinder::ExtrapolateToPV(vector<KFParticle>& vParticles, KFParticl
 }
 
 inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
-                                          int iTrTypePos,                 // 0, 2 for sec and prim respectively
-                                          int iTrTypeNeg,                 // 1, 3 for sec and prim respectively
-                                          uint_v& idPosDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
-                                          uint_v& idNegDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
-                                          int_v& daughterPosPDG,
-                                          int_v& daughterNegPDG,
+                                          const int iTrTypePos,                 // 0, 2 for sec and prim respectively
+                                          const int iTrTypeNeg,                 // 1, 3 for sec and prim respectively
+                                          const uint_v& idPosDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
+                                          const uint_v& idNegDaughters,         // position inside SIMD vector (e.g. {8,9,10,11})
+                                          const int_v& daughterPosPDG,
+                                          const int_v& daughterNegPDG,
                                           KFParticleSIMD& mother,         // declared only, not initialised in Find2DaughterDecay()
                                           KFParticle& mother_temp,        // declared only, not initialised in Find2DaughterDecay()
                                           const unsigned short NTracks,   // nBufEntry
                                           kfvector_floatv& l,             // declared only, not initialised in Find2DaughterDecay()
                                           kfvector_floatv& dl,            // declared only, not initialised in Find2DaughterDecay()
                                           vector<KFParticle>& Particles,
-                                          std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                                          const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                                           const float* cuts,              // argument of Find2DaughterDecay()
                                           const int_v& pvIndex,           // PV index of mother, -1 if secondary, 0 if mixed(???)
                                           const float* secCuts,           // argument of Find2DaughterDecay()
@@ -689,7 +689,7 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   int_v trackId;
   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
   trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // not clear what 'gather' function performs...
-  posDaughter.SetId(trackId);                                                           // ^"Constructs or loads a vector from the objects at mem with indices"
+  posDaughter.SetId(trackId);                                                           // ^"Constructs or loads a vector from the objects at mem with indices" - Vc documentation
 
   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
   trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
@@ -707,7 +707,7 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   float_m saveParticle(simd_cast<float_m>(int_v::IndexesFromZero() < int(NTracks)));
   float_v chi2Cut = cuts[1];
   float_v ldlCut  = cuts[2];
-  if( !(simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420)).isEmpty() )                 // D0-meson or smth similar
+  if( !(simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420)).isEmpty() )                 // D0-meson is present in at least one member of SIMD-vector
   {
     chi2Cut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = fCutsCharm[0];
     ldlCut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = -1;//fCutsCharm[1];
@@ -861,7 +861,7 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
 inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
                                                 int& NParticles,
                                                 KFParticle& mother_temp,
-                                                std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                                                const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                                                 const float* secCuts,
                                                 vector< vector<KFParticle> >* vMotherPrim,
                                                 vector<KFParticle>* vMotherSec)
@@ -961,7 +961,7 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
 
 void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const kfvector_float* ChiToPrimVtx,
                                           vector<KFParticle>& Particles,
-                                          std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
+                                          const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                                           const float* cuts,
                                           const float* secCuts,
                                           vector< vector<KFParticle> >* vMotherPrim,
