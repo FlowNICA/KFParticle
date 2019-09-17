@@ -80,11 +80,11 @@ class KFParticleSIMD :public KFParticleBaseSIMD
 #ifdef NonhomogeneousField
   , fField() 
 #endif
-  { ; }
+  {}
 
   //* Destructor (empty)
 
-  ~KFParticleSIMD(){ ; }
+  ~KFParticleSIMD(){}
 
   //* Construction of mother particle by its 2-3-4 daughters
 
@@ -129,17 +129,6 @@ class KFParticleSIMD :public KFParticleBaseSIMD
 
   //* Simple accessors 
 
-  float_v GetX    () const ; ///< Retruns X coordinate of the particle, fP[0].
-  float_v GetY    () const ; ///< Retruns Y coordinate of the particle, fP[1].
-  float_v GetZ    () const ; ///< Retruns Z coordinate of the particle, fP[2].
-  float_v GetPx   () const ; ///< Retruns X component of the momentum, fP[3].
-  float_v GetPy   () const ; ///< Retruns Y component of the momentum, fP[4].
-  float_v GetPz   () const ; ///< Retruns Z component of the momentum, fP[5].
-  float_v GetE    () const ; ///< Returns energy of the particle, fP[6].
-  float_v GetS    () const ; ///< Returns dS=l/p, l - decay length, fP[7], defined if production vertex is set.
-  int_v   GetQ    () const ; ///< Returns charge of the particle.
-  float_v GetChi2 () const ; ///< Returns Chi2 of the fit.
-  int_v   GetNDF  () const ; ///< Returns number of decrease of freedom.
 
   Bool_t GetAtProductionVertex() const { return fAtProductionVertex; }  ///< Returns a flag which shows if the particle is located at the production point
 
@@ -410,61 +399,6 @@ inline KFParticleSIMD::KFParticleSIMD( const KFParticleSIMD &d1,
   mother+= d3;
   mother+= d4;
   *this = mother;
-}
-
-inline float_v KFParticleSIMD::GetX    () const 
-{ 
-  return KFParticleBaseSIMD::GetX();    
-}
-
-inline float_v KFParticleSIMD::GetY    () const 
-{ 
-  return KFParticleBaseSIMD::GetY();    
-}
-
-inline float_v KFParticleSIMD::GetZ    () const 
-{ 
-  return KFParticleBaseSIMD::GetZ();    
-}
-
-inline float_v KFParticleSIMD::GetPx   () const 
-{ 
-  return KFParticleBaseSIMD::GetPx();   
-}
-
-inline float_v KFParticleSIMD::GetPy   () const 
-{ 
-  return KFParticleBaseSIMD::GetPy();   
-}
-
-inline float_v KFParticleSIMD::GetPz   () const 
-{ 
-  return KFParticleBaseSIMD::GetPz();   
-}
-
-inline float_v KFParticleSIMD::GetE    () const 
-{ 
-  return KFParticleBaseSIMD::GetE();    
-}
-
-inline float_v KFParticleSIMD::GetS    () const 
-{ 
-  return KFParticleBaseSIMD::GetS();    
-}
-
-inline int_v    KFParticleSIMD::GetQ    () const 
-{ 
-  return KFParticleBaseSIMD::GetQ();    
-}
-
-inline float_v KFParticleSIMD::GetChi2 () const 
-{ 
-  return KFParticleBaseSIMD::GetChi2(); 
-}
-
-inline int_v    KFParticleSIMD::GetNDF  () const 
-{ 
-  return KFParticleBaseSIMD::GetNDF();  
 }
 
 inline float_v KFParticleSIMD::GetParameter ( int i ) const 
