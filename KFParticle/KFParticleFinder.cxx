@@ -876,7 +876,7 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
    ** \param[out] vMotherPrim - array with output primary candidates if any.
    ** \param[out] vMotherSec - array with output secondary candidates if any.
    **/
-  // Do I understand correctly that primary mother is "usual", and secondary is "cascade"? Or smth else?
+                                                                      // Do I understand correctly that primary mother is "usual", and secondary is "cascade"? Or smth else?
   KFParticleSIMD motherTopo;
   float_v massMotherPDG, massMotherPDGSigma;
   
@@ -1082,7 +1082,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
-          int_v negInd = int_v::IndexesFromZero() + iTrN;                                                    // BTW, what means int(int)?
+          int_v negInd = int_v::IndexesFromZero() + iTrN;                                                         // BTW, what means int(int)?
                                                                                                                   // vector members are indices of tracks in certain SIMD cluster (e.g. 8,9,10,11 for 4-dim and iTr=8)
           int_v negPDG = reinterpret_cast<const int_v&>(negTracks.PDG()[iTrN]);
           int_v negPVIndex = reinterpret_cast<const int_v&>(negTracks.PVIndex()[iTrN]);
@@ -1155,7 +1155,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
               
               trackPdgPos[0] = posPDG;
 #ifdef CBM
-              int nPDGPos = 2;
+              int nPDGPos = 2;                                                                                      // two kindes of positives dependent on experiment configuration.
               if( (posPDG == -1).isEmpty() && (posPDG > 1000000000).isEmpty() && (posPDG == 211).isEmpty() )        // there are no undefined pid, no nuclei, no pions
               {
                 nPDGPos = 1;
@@ -1301,18 +1301,18 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                 
                 if(active[iPDGPos].isEmpty()) continue;
 
-                for(int iV=0; iV<float_vLen; iV++)
+                for(int iV=0; iV<float_vLen; iV++)                              // this loop maps 'scalar' and SIMD-vector quantities. But I do not understand how...
                 {
                   if(!(active[iPDGPos][iV])) continue;
                   
 
-                  idPosDaughters[nBufEntry] = iTrP+iV;          // WHAT is nBufEntry?
-                  idNegDaughters[nBufEntry] = negInd[iV];       // negInd = {8,9,10,11} e.g.
-                  
+                  idPosDaughters[nBufEntry] = iTrP+iV;          // WHAT is nBufEntry?         // iTrP - SIMD'ized track number
+                  idNegDaughters[nBufEntry] = negInd[iV];       // negInd = {8,9,10,11} e.g.  // negInd= SIMD{0,1,2,3} + iTrN, where iTrN is also SIMD'ized
+                                                                // both id(Pos/Neg)Daughters are pass-through numbers of tracks
                   daughterPosPDG[nBufEntry] = trackPdgPos[iPDGPos][iV];
-                  daughterNegPDG[nBufEntry] = trackPdgNeg[iV];
+                  daughterNegPDG[nBufEntry] = trackPdgNeg[iV];                                // PDG of certain track (mentioned above)
                   
-                  if(motherPDG[iV] == 22)
+                  if(motherPDG[iV] == 22)                       // all gammas are assumed to 'decay' into e+e-
                   {
                     daughterPosPDG[nBufEntry] = -11;
                     daughterNegPDG[nBufEntry] =  11;
@@ -1320,9 +1320,9 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                   
                   pvIndexMother[nBufEntry] = isPrimary[iV] ? negPVIndex[iV] : -1;                                 // pvIndexMother gets the index of PV (or -1 if tracks are secondary)
                   
-                  if( iTrTypeNeg != iTrTypePos ) pvIndexMother[nBufEntry] = 0;                                    // pvIndexMother gets index 0 if daughter tracks are mixed prim&sec
-                                                                                                                  // BUT PV=0 is usual index for PV. Is it Ok?
-                  V0PDG[nBufEntry] = motherPDG[iV];                                                               // motherPDG was constructed from daughters. V0PDG belongs to int_v
+                  if( iTrTypeNeg != iTrTypePos ) pvIndexMother[nBufEntry] = 0;                                    // pvIndexMother gets index 0 if daughter tracks are mixed prim&sec // BUT PV=0 is usual index for PV. Is it Ok?
+                                                                                                                  
+                  V0PDG[nBufEntry] = motherPDG[iV];                                                               // motherPDG - that was constructed from daughters. V0PDG belongs to int_v
                   
                   nBufEntry++;
 
@@ -1339,15 +1339,15 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                     nBufEntry = 0; 
                   }
                   
-                  //TODO optimize this part of code for D-mesons
+                  //TODO optimize this part of code for D-mesons          // IF we operate with the last entry of SIMD-vector, we will not check the condition below !!!  TODO change positions of logic blocks to avoid this problem
                   if(motherPDG[iV] == 310 &&                                                                       // K0-meson
-                     (fDecayReconstructionList.empty() ||
-                      (!(fDecayReconstructionList.empty()) && !(fDecayReconstructionList.find(420) == fDecayReconstructionList.end()) ) ) &&  // rec list is empty or if not, pdg==420(?) is searched for
+                     (fDecayReconstructionList.empty() ||                         // Empty reconstruction list means we search for ALL decay modes, doesn't it?
+                      (!(fDecayReconstructionList.empty()) && !(fDecayReconstructionList.find(420) == fDecayReconstructionList.end()) ) ) &&  // We do not search for 420 mode (D0 meson, but what exact mode?)
                      negNPixelHits[iV] >= 3 && posNPixelHits[iV] >= 3 &&
                      chiPrimNeg[iV] > fCutCharmChiPrim && chiPrimPos[iV] > fCutCharmChiPrim &&                     // these are cuts for D0-mesons, but how is it related to lines above?
                      ptNeg2[iV] >= fCutCharmPt*fCutCharmPt && ptPos2[iV] >= fCutCharmPt*fCutCharmPt )
                   {
-                    idPosDaughters[nBufEntry] = iTrP+iV;                                                           // these 4 lines reproduce lines 1309-1313, but rhs was not changed...
+                    idPosDaughters[nBufEntry] = iTrP+iV;                                                           // these 5 lines reproduce lines 1309-1313, but rhs was not changed...
                     idNegDaughters[nBufEntry] = negInd[iV];
                     
                     daughterPosPDG[nBufEntry] = trackPdgPos[iPDGPos][iV];
@@ -1355,7 +1355,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                     
                     pvIndexMother[nBufEntry] = isPrimary[iV] ? negPVIndex[iV] : -1;
                     
-                    V0PDG[nBufEntry] = 420;                                                                         // WHAT is pdg==420?
+                    V0PDG[nBufEntry] = 420;                                                                         // V0 is assumed to be D0-meson (some mode)
                     
                     nBufEntry++;                                                                                    // WHY increment nBufEntry once again?
 
@@ -1379,12 +1379,12 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
           }//iTrP
         }//iTrN
         
-        if( nBufEntry>0 )
+        if( nBufEntry>0 )                         // Reached end of previous loops, but nBufEntry == float_vLen not fulfilled
         {
           for(int iV=nBufEntry; iV<float_vLen; iV++)
           {
-            idPosDaughters[iV] = idPosDaughters[0];
-            idNegDaughters[iV] = idNegDaughters[0];
+            idPosDaughters[iV] = idPosDaughters[0];       // Unused SIMD members are filled with zeroth member of current SIMD-cluster. Maybe it's necessary in order not to rebuild structure of ConstructV0()
+            idNegDaughters[iV] = idNegDaughters[0];       // PDGs are not filled. But "old" values still remain !!!
           }
 
           KFParticleDatabase::Instance()->GetMotherMass(V0PDG,massMotherPDG,massMotherPDGSigma);
