@@ -820,14 +820,13 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
         mother_temp.SetPDG(100113);                                               // set mother to be rho
         mother_temp.SetId(Particles.size());
         Particles.push_back(mother_temp);
-        
-        if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) )  // WHY one for inside another? Do not we reproduce mother twice if both if=true ?
-        {
-          mother_temp.SetPDG(443);                                                // set mother to be J/Psi
-          mother_temp.SetId(Particles.size());
-          Particles.push_back(mother_temp);
-        }
       }  
+      if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) )  // WHY one for inside another? Do not we reproduce mother twice if both if=true ?
+      {
+        mother_temp.SetPDG(443);                                                // set mother to be J/Psi
+        mother_temp.SetId(Particles.size());
+        Particles.push_back(mother_temp);
+      }
     }
 
     if( mother.PDG()[iv] == 200113 )                    // rho
