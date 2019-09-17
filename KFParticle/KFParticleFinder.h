@@ -74,8 +74,8 @@ class KFParticleFinder
                     std::vector<KFParticle>* vMotherSec = 0
                   ) __attribute__((always_inline));
   
-  void SaveV0PrimSecCand(KFParticleSIMD& mother,
-                          int& NParticles,
+  void SaveV0PrimSecCand( KFParticleSIMD& mother,
+                          const int& NParticles,
                           KFParticle& mother_temp,
                           const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                           const float* secCuts,

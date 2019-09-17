@@ -710,10 +710,10 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   if( !(simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420)).isEmpty() )                 // D0-meson is present in at least one member of SIMD-vector
   {
     chi2Cut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = fCutsCharm[0];
-    ldlCut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = -1;//fCutsCharm[1];
+    ldlCut( simd_cast<float_m>(abs(mother.PDG()) == 421 || abs(mother.PDG()) == 426 || abs(mother.PDG()) == 420) ) = -1;//fCutsCharm[1];  // WHY this cut is set -1, not fCutsCharm[1]?
   }
   
-  saveParticle &= (mother.Chi2()/simd_cast<float_v>(mother.NDF()) < chi2Cut );
+  saveParticle &= (mother.Chi2()/simd_cast<float_v>(mother.NDF()) < chi2Cut );    // Chi2() is const, GetChi2() is not const. // Do we need two representations?
   saveParticle &= KFPMath::Finite(mother.GetChi2());
   saveParticle &= (mother.GetChi2() > 0.0f);
   saveParticle &= (mother.GetChi2() == mother.GetChi2());
@@ -728,13 +728,13 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   {
     float_m isParticleFromVertexLocal;
     mother.GetDistanceToVertexLine(PrimVtx[iP], l[iP], dl[iP], &isParticleFromVertexLocal);
-    isParticleFromVertex |= isParticleFromVertexLocal;
+    isParticleFromVertex |= isParticleFromVertexLocal;                // WHY isParticleFromVertex does not have [iP]? It means we are interested in flying from ANY vertex, doesn't it?
     float_v ldl = (l[iP]/dl[iP]);
-    lMin( (l[iP] < lMin) && saveParticle) = l[iP];
-    ldlMin( (ldl < ldlMin) && saveParticle) = ldl;
-  }
+    lMin( (l[iP] < lMin) && saveParticle) = l[iP];                    // minimal l among all the PVs    // Does it mean that we determine the PV of constructed mother here?
+    ldlMin( (ldl < ldlMin) && saveParticle) = ldl;                    // minimal l/dl among all PVs
+  }                                                                   // WHY we search min ??? (In case of chi2, see line 910, it is clear, but l and dl...)
 
-  saveParticle &= (lMin < 200.f);
+  saveParticle &= (lMin < 200.f);                                     // WHY 200? WHAT does it mean? We have fLCut in 760 line. What is the unit?
 #ifdef NonhomogeneousField  
   KFParticleSIMD motherTopo;
     ldlMin = 1.e8f;
@@ -747,9 +747,9 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
     ldlMin( (ldl < ldlMin) && saveParticle) = ldl;
   }
 #endif
-  saveParticle &= ( (float_m(!isPrimary) && ldlMin > ldlCut) || float_m(isPrimary) );
+  saveParticle &= ( (float_m(!isPrimary) && ldlMin > ldlCut) || float_m(isPrimary) );   // save all primary particles and those secondaries which ldl>cut
   
-  saveParticle &= (float_m(!isPrimary) && isParticleFromVertex) || isPrimary;
+  saveParticle &= (float_m(!isPrimary) && isParticleFromVertex) || isPrimary;           // save all primaries and those secondaries which point to ANY primary vertex // lines 750&752 can be merged, cannot they?
   if( saveParticle.isEmpty() ) return;
   
   float_m isK0     = saveParticle && simd_cast<float_m>(mother.PDG() == int_v(310));
@@ -757,8 +757,8 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   float_m isGamma  = saveParticle && simd_cast<float_m>(mother.PDG() == int_v(22));
   float_m isHyperNuclei = saveParticle && simd_cast<float_m>(abs(mother.PDG()) > 3000 && abs(mother.PDG()) < 3104);
   
-  saveParticle &= ( ((isK0 || isLambda || isHyperNuclei) && lMin > float_v(fLCut)) || !(isK0 || isLambda || isHyperNuclei) );
-
+  saveParticle &= ( ((isK0 || isLambda || isHyperNuclei) && lMin > float_v(fLCut)) || !(isK0 || isLambda || isHyperNuclei) ); // save K0s, Lambdas and hypernuclei which satisfy fLCut, and all others
+                                                                                                                              // fLCut is not set, is it?
   float_m saveMother(false);
   
   if( !(isK0.isEmpty()) || !(isLambda.isEmpty()) || !(isGamma.isEmpty()))
@@ -767,16 +767,16 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
 
     mother.GetMass(mass, errMass);
     saveMother = saveParticle;
-    saveMother &= (abs(mass - massMotherPDG)/massMotherPDGSigma) < secCuts[0];
+    saveMother &= (abs(mass - massMotherPDG)/massMotherPDGSigma) < secCuts[0];// WHAT is this cut??? Do we throw out particles with "bad" mass?
     saveMother &= ((ldlMin > secCuts[2]) && !isGamma) || isGamma;
-    saveMother &= (isK0 || isLambda || isGamma);
+    saveMother &= (isK0 || isLambda || isGamma);                              // What about another particles?
   }
   
-  for(int iv=0; iv<NTracks; iv++)
-  {
+  for(int iv=0; iv<NTracks; iv++)                 // NTracks is the same as nBufEntry in 'outer' (Find2DaughterDecay()) function
+  {                                               // NTracks is limited with length of SIMD vector?
     if(!saveParticle[iv]) continue;
   
-    mother.GetKFParticle(mother_temp, iv);
+    mother.GetKFParticle(mother_temp, iv);        // mother is KFParticleSIMD; mother_temp is KFParticle. iv is the index of object to be copied from vector to scalar. But HOW is it related to NTracks???
     int motherId = Particles.size();
     mother_temp.SetId(Particles.size());
     if( mother.PDG()[iv] == 421 ) 
@@ -810,39 +810,39 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
     
     Particles.push_back(mother_temp);
     
-    if( mother.PDG()[iv] == 22 && isPrimary[iv] )
+    if( mother.PDG()[iv] == 22 && isPrimary[iv] )       // primary photon
     {
-      float negPt2 = negDaughter.Px()[iv]*negDaughter.Px()[iv] + negDaughter.Py()[iv]*negDaughter.Py()[iv];
-      float posPt2 = posDaughter.Px()[iv]*posDaughter.Px()[iv] + posDaughter.Py()[iv]*posDaughter.Py()[iv];
+      const float negPt2 = negDaughter.Px()[iv]*negDaughter.Px()[iv] + negDaughter.Py()[iv]*negDaughter.Py()[iv];
+      const float posPt2 = posDaughter.Px()[iv]*posDaughter.Px()[iv] + posDaughter.Py()[iv]*posDaughter.Py()[iv];
 
-      if( (negPt2 >fCutLVMPt*fCutLVMPt) && (posPt2 >fCutLVMPt*fCutLVMPt) )
+      if( (negPt2 >fCutLVMPt*fCutLVMPt) && (posPt2 >fCutLVMPt*fCutLVMPt) )        // IS it ok this cut is set 0, isn't it?
       {
-        mother_temp.SetPDG(100113);
+        mother_temp.SetPDG(100113);                                               // set mother to be rho
         mother_temp.SetId(Particles.size());
         Particles.push_back(mother_temp);
         
-        if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) )
+        if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) )  // WHY one for inside another? Do not we reproduce mother twice if both if=true ?
         {
-          mother_temp.SetPDG(443);
+          mother_temp.SetPDG(443);                                                // set mother to be J/Psi
           mother_temp.SetId(Particles.size());
           Particles.push_back(mother_temp);
         }
       }  
     }
 
-    if( mother.PDG()[iv] == 200113 )
+    if( mother.PDG()[iv] == 200113 )                    // rho
     {
-      float negPt2 = negDaughter.Px()[iv]*negDaughter.Px()[iv] + negDaughter.Py()[iv]*negDaughter.Py()[iv];
-      float posPt2 = posDaughter.Px()[iv]*posDaughter.Px()[iv] + posDaughter.Py()[iv]*posDaughter.Py()[iv];
+      const float negPt2 = negDaughter.Px()[iv]*negDaughter.Px()[iv] + negDaughter.Py()[iv]*negDaughter.Py()[iv];
+      const float posPt2 = posDaughter.Px()[iv]*posDaughter.Px()[iv] + posDaughter.Py()[iv]*posDaughter.Py()[iv];
       
-      if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) && (abs(daughterPosPDG[iv]) == 13) && (abs(daughterNegPDG[iv]) == 13))
+      if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) && (abs(daughterPosPDG[iv]) == 13) && (abs(daughterNegPDG[iv]) == 13))   // daughters are muons
       {
-        mother_temp.SetPDG(100443);
+        mother_temp.SetPDG(100443);                     // set mother to be J/Psi
         mother_temp.SetId(Particles.size());
         Particles.push_back(mother_temp);
       }  
     }
-    
+    // Do I understand correctly that conditions in 813 and 833 lines are set for cases of misidentifying of particles in Find2DaughterDecay() ?
     if(saveMother[iv])
     {
       mother.SetId(motherId);
@@ -855,11 +855,11 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
         nPrimSecCand = 0;
       }
     }
-  }
+  }//iv
 }
 
 inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
-                                                int& NParticles,
+                                                const int& NParticles,
                                                 KFParticle& mother_temp,
                                                 const std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                                                 const float* secCuts,
@@ -876,13 +876,13 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
    ** \param[out] vMotherPrim - array with output primary candidates if any.
    ** \param[out] vMotherSec - array with output secondary candidates if any.
    **/
-  
+  // Do I understand correctly that primary mother is "usual", and secondary is "cascade"? Or smth else?
   KFParticleSIMD motherTopo;
   float_v massMotherPDG, massMotherPDGSigma;
   
   float_m isSec(false);
   float_m isPrim(false);
-  vector<int> iPrimVert[float_vLen];
+  vector<int> iPrimVert[float_vLen];    // array of vectors
 
   KFParticleDatabase::Instance()->GetMotherMass(mother.PDG(),massMotherPDG,massMotherPDGSigma);
   
@@ -900,29 +900,29 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
   float_m isPrimaryPart(false);
 
   float_v chi2TopoMin = 1.e4f;
-  
+  // Do I understand correctly that we do not know, to which PV the certain mother particle belongs?
   for(int iP=0; iP< fNPV; iP++)
   {
     motherTopo = mother;
     motherTopo.SetProductionVertex(PrimVtx[iP]);
     
     const float_v& motherTopoChi2Ndf = motherTopo.GetChi2()/simd_cast<float_v>(motherTopo.GetNDF());
-    chi2TopoMin(motherTopoChi2Ndf < chi2TopoMin) = motherTopoChi2Ndf;
+    chi2TopoMin(motherTopoChi2Ndf < chi2TopoMin) = motherTopoChi2Ndf;                             // min chi2/ndf among PVs for certain particle
     const float_m isPrimaryPartLocal = ( motherTopoChi2Ndf < secCuts[1] );
     if(isPrimaryPartLocal.isEmpty()) continue;
     isPrimaryPart |= isPrimaryPartLocal;
-    for(int iV=0; iV<NParticles; iV++)
+    for(int iV=0; iV<NParticles; iV++)                                       // NParticles is equal to SIMD length
     {
       if(isPrimaryPartLocal[iV])
       {
         motherTopo.GetKFParticle(mother_temp, iV);
-        fPrimCandidatesTopo[arrayIndex[iV]][iP].push_back(mother_temp);
-        iPrimVert[iV].push_back(iP);
+        fPrimCandidatesTopo[arrayIndex[iV]][iP].push_back(mother_temp);     // WHAT if none of 895-898 lines works? We try to get to vector's element with index -1...
+        iPrimVert[iV].push_back(iP);    // array of vectors
       }
     }
     
-    motherTopo.SetNonlinearMassConstraint(massMotherPDG);
-    for(int iV=0; iV<NParticles; iV++)
+    motherTopo.SetNonlinearMassConstraint(massMotherPDG);                   // WHAT is it?
+    for(int iV=0; iV<NParticles; iV++)                                      // the same as previous loop, but after mass constraint
     {
       if(isPrimaryPartLocal[iV])
       {
@@ -930,13 +930,13 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
         fPrimCandidatesTopoMass[arrayIndex[iV]][iP].push_back(mother_temp);
       }
     }
-  }
+  }//iP
   
-  isPrim |= ( ( isPrimaryPart ) && (isK0 || isLambda || isGamma) );
-#ifdef __ROOT__
+  isPrim |= ( ( isPrimaryPart ) && (isK0 || isLambda || isGamma) );           // And what about other particles?
+#ifdef __ROOT__                                                               // WHAT is __ROOT__ ???
   isSec  |= ( (!isPrimaryPart ) && (isK0 || isLambda || isGamma) && (chi2TopoMin < float_v(500.f)) );
 #else
-  isSec  |= ( (!isPrimaryPart ) && (isK0 || isLambda || isGamma) );
+  isSec  |= ( (!isPrimaryPart ) && (isK0 || isLambda || isGamma) );            // WHAT is it ^ ?
 #endif
   
   mother.SetNonlinearMassConstraint(massMotherPDG);

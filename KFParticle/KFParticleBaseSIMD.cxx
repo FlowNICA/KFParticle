@@ -1229,7 +1229,7 @@ void KFParticleBaseSIMD::SetProductionVertex( const KFParticleBaseSIMD &Vtx )
   fAtProductionVertex = 1;
 }
 
-void KFParticleBaseSIMD::SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], float_v mass, float_m mask )
+void KFParticleBaseSIMD::SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], const float_v mass, const float_m mask )
 {
   /** Sets the exact nonlinear mass constraint on the state vector mP with the covariance matrix mC.
    ** \param[in,out] mP - the state vector to be modified
@@ -1329,7 +1329,7 @@ void KFParticleBaseSIMD::SetMassConstraint( float_v *mP, float_v *mC, float_v mJ
   mP[6](mask) *= lpi;
 }
 
-void KFParticleBaseSIMD::SetNonlinearMassConstraint( float_v mass )
+void KFParticleBaseSIMD::SetNonlinearMassConstraint( const float_v mass )
 {
   /** Sets the exact nonlinear mass constraint on the current particle.
    ** \param[in] mass - the mass to be set on the particle

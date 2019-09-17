@@ -125,7 +125,7 @@ class KFParticleBaseSIMD {
 
   //* Simple accessors 
 
-  float_v GetX    () const { return fP[0]; } ///< Returns the sum of masses of the daughters
+  float_v GetX    () const { return fP[0]; } ///< Returns the sum of masses of the daughters  // not correct comments by M.Z.
   float_v GetY    () const { return fP[1]; } ///< Returns the sum of masses of the daughters
   float_v GetZ    () const { return fP[2]; } ///< Returns the sum of masses of the daughters
   float_v GetPx   () const { return fP[3]; } ///< Returns the sum of masses of the daughters
@@ -212,7 +212,7 @@ class KFParticleBaseSIMD {
 
   //* Set mass constraint 
 
-  void SetNonlinearMassConstraint( float_v Mass );
+  void SetNonlinearMassConstraint( const float_v Mass );
   void SetMassConstraint( float_v Mass, float_v SigmaMass = float_v(0.f) );
 
   //* Set no decay length for resonances
@@ -312,7 +312,7 @@ class KFParticleBaseSIMD {
   void GetMeasurement( const KFParticleBaseSIMD& daughter, float_v m[], float_v V[], float_v D[3][3] ) ;
 
   //* Mass constraint function. is needed for the nonlinear mass constraint and a fit with mass constraint
-  void SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], float_v mass, float_m mask );
+  void SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], const float_v mass, const float_m mask );
 
   float_v fP[8];              ///< Particle parameters { X, Y, Z, Px, Py, Pz, E, S[=DecayLength/P]}.
   float_v fC[36];             ///< Low-triangle covariance matrix of fP.
