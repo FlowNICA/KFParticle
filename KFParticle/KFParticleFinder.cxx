@@ -685,22 +685,22 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
    ** \param[out] vMotherPrim - array with output primary candidates if any.
    ** \param[out] vMotherSec - array with output secondary candidates if any.
    **/
-  float_m isPrimary(simd_cast<float_m>(pvIndex>-1));
+  float_m isPrimary(simd_cast<float_m>(pvIndex>-1));                                    // means that at least one daughter track is primary
   int_v trackId;
   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
-  trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // not clear what 'gather' function performs...
-  posDaughter.SetId(trackId);                                                           // ^"Constructs or loads a vector from the objects at mem with indices" - Vc documentation
+  trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // gather copies Id() from vTracks into trackId for particles lised in idPosDaughters
+  posDaughter.SetId(trackId);
 
   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
   trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
   negDaughter.SetId(trackId);   
 #ifdef CBM
   float_v ds[2] = {0.f,0.f};
-  float_v dsdr[4][6];
-  negDaughter.GetDStoParticle( posDaughter, ds, dsdr );
-  negDaughter.TransportToDS(ds[0], dsdr[0]);
+  float_v dsdr[4][6];                                                                   // Do I understand correctly that:
+  negDaughter.GetDStoParticle( posDaughter, ds, dsdr );                                 // here we search for point of closest approach between two daughters, don't we
+  negDaughter.TransportToDS(ds[0], dsdr[0]);                                            // here we transport daughter to PCA, don't we?
   posDaughter.TransportToDS(ds[1], dsdr[3]);
-#endif
+#endif                                                                                  // and what if not? We do not transport, do we? How can we perform code below (e.g. apply cuts)
   const KFParticleSIMD* vDaughtersPointer[2] = {&negDaughter, &posDaughter};
   mother.Construct(vDaughtersPointer, 2, 0);
   
@@ -815,13 +815,13 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
       const float negPt2 = negDaughter.Px()[iv]*negDaughter.Px()[iv] + negDaughter.Py()[iv]*negDaughter.Py()[iv];
       const float posPt2 = posDaughter.Px()[iv]*posDaughter.Px()[iv] + posDaughter.Py()[iv]*posDaughter.Py()[iv];
 
-      if( (negPt2 >fCutLVMPt*fCutLVMPt) && (posPt2 >fCutLVMPt*fCutLVMPt) )        // IS it ok this cut is set 0, isn't it?
+      if( (negPt2 >fCutLVMPt*fCutLVMPt) && (posPt2 >fCutLVMPt*fCutLVMPt) )        // IS it ok this cut is set 0?
       {
         mother_temp.SetPDG(100113);                                               // set mother to be rho
         mother_temp.SetId(Particles.size());
         Particles.push_back(mother_temp);
       }  
-      if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) )  // WHY one for inside another? Do not we reproduce mother twice if both if=true ?
+      if( (negPt2 >fCutJPsiPt*fCutJPsiPt) && (posPt2 >fCutJPsiPt*fCutJPsiPt) )
       {
         mother_temp.SetPDG(443);                                                // set mother to be J/Psi
         mother_temp.SetId(Particles.size());
@@ -841,7 +841,7 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
         Particles.push_back(mother_temp);
       }  
     }
-    // Do I understand correctly that conditions in 813 and 833 lines are set for cases of misidentifying of particles in Find2DaughterDecay() ?
+
     if(saveMother[iv])
     {
       mother.SetId(motherId);
@@ -875,7 +875,7 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
    ** \param[out] vMotherPrim - array with output primary candidates if any.
    ** \param[out] vMotherSec - array with output secondary candidates if any.
    **/
-                                                                      // Do I understand correctly that primary mother is "usual", and secondary is "cascade"? Or smth else?
+
   KFParticleSIMD motherTopo;
   float_v massMotherPDG, massMotherPDGSigma;
   
@@ -931,7 +931,7 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
     }
   }//iP
   
-  isPrim |= ( ( isPrimaryPart ) && (isK0 || isLambda || isGamma) );           // And what about other particles?
+  isPrim |= ( ( isPrimaryPart ) && (isK0 || isLambda || isGamma) );
 #ifdef __ROOT__                                                               // WHAT is __ROOT__ ???
   isSec  |= ( (!isPrimaryPart ) && (isK0 || isLambda || isGamma) && (chi2TopoMin < float_v(500.f)) );
 #else
@@ -1081,23 +1081,23 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
-          int_v negInd = int_v::IndexesFromZero() + iTrN;                                                         // BTW, what means int(int)?
+          int_v negInd = int_v::IndexesFromZero() + iTrN;                                                         
                                                                                                                   // vector members are indices of tracks in certain SIMD cluster (e.g. 8,9,10,11 for 4-dim and iTr=8)
           int_v negPDG = reinterpret_cast<const int_v&>(negTracks.PDG()[iTrN]);
           int_v negPVIndex = reinterpret_cast<const int_v&>(negTracks.PVIndex()[iTrN]);
           int_v negNPixelHits = reinterpret_cast<const int_v&>(negTracks.NPixelHits()[iTrN]);
           
           int_v trackPdgNeg = negPDG;
-          int_m activeNeg = (negPDG != -1);                                                                       // Mask (see Vc lib documentation) with condition 'negPDG != -1'
+          int_m activeNeg = (negPDG != -1);
 #ifdef CBM          
           if( !((negPDG == -1).isEmpty()) )
           {
             trackPdgNeg(negPVIndex<0 && (negPDG == -1) ) = -211;                                                  // for secondaries undefined negative tracks are assumed to be pions
                 
-            activeNeg |= int_m(negPVIndex < 0) && int_m(negPDG == -1) ;                                           // Bitwise and logic & and | are equivalent for masks, aren't they?
+            activeNeg |= int_m(negPVIndex < 0) && int_m(negPDG == -1) ;
           }                                                                                                       // add to Mask condition 'secondary vtx even for pdg=-1'
 #endif    
-          activeNeg &= (int_v::IndexesFromZero() < int(NTracksNeg));                                              // WHY here we don't write int_m (compare with 3 lines above)?
+          activeNeg &= (int_v::IndexesFromZero() < int(NTracksNeg));
                                                                                                                   // ^ untill the end of cluster, or end of tracks, if it is closer
           daughterNeg.Load(negTracks, iTrN, negPDG);                                                              // daughterNeg belongs to KFParticleSIMD class
                 
@@ -1252,15 +1252,15 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                 }
                 
                 active[iPDGPos] &= (motherPDG != -1);                                                                         // reject non-defined mother particles
-                if(!(fDecayReconstructionList.empty()))
+                if(!(fDecayReconstructionList.empty()))                                                                       // in fact empty = full
                 {
                   for(int iV=0; iV<float_vLen; iV++)
                   {
                     if(!(active[iPDGPos][iV])) continue;
-                    if(fDecayReconstructionList.find(motherPDG[iV]) == fDecayReconstructionList.end())
+                    if(fDecayReconstructionList.find(motherPDG[iV]) == fDecayReconstructionList.end()) 
                       motherPDG[iV] = -1;
                   }
-                  active[iPDGPos] &= (motherPDG != -1);
+                  active[iPDGPos] &= (motherPDG != -1);                                                     // if we do not search for certain decay, all found mothers with this id are rejected
                 }
                 if(active[iPDGPos].isEmpty()) continue;
 
@@ -1383,7 +1383,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
           for(int iV=nBufEntry; iV<float_vLen; iV++)
           {
             idPosDaughters[iV] = idPosDaughters[0];       // Unused SIMD members are filled with zeroth member of current SIMD-cluster. Maybe it's necessary in order not to rebuild structure of ConstructV0()
-            idNegDaughters[iV] = idNegDaughters[0];       // PDGs are not filled. But "old" values still remain !!!
+            idNegDaughters[iV] = idNegDaughters[0];
           }
 
           KFParticleDatabase::Instance()->GetMotherMass(V0PDG,massMotherPDG,massMotherPDGSigma);
