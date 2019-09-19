@@ -894,7 +894,7 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
   arrayIndex(mother.PDG() ==   int_v(310)) = 0;
   arrayIndex(mother.PDG() ==  int_v(3122)) = 1;
   arrayIndex(mother.PDG() == int_v(-3122)) = 2;
-  arrayIndex(mother.PDG() ==    int_v(22)) = 3;
+  arrayIndex(mother.PDG() ==    int_v(22)) = 3;       // TODO add Warning if arrayIndex remains -1 because in 918 and 929 you'll have segmentation fault
 
   float_m isPrimaryPart(false);
 
@@ -910,13 +910,13 @@ inline void KFParticleFinder::SaveV0PrimSecCand(KFParticleSIMD& mother,
     const float_m isPrimaryPartLocal = ( motherTopoChi2Ndf < secCuts[1] );
     if(isPrimaryPartLocal.isEmpty()) continue;
     isPrimaryPart |= isPrimaryPartLocal;
-    for(int iV=0; iV<NParticles; iV++)                                       // NParticles is equal to SIMD length
+    for(int iV=0; iV<NParticles; iV++)
     {
       if(isPrimaryPartLocal[iV])
       {
         motherTopo.GetKFParticle(mother_temp, iV);
         fPrimCandidatesTopo[arrayIndex[iV]][iP].push_back(mother_temp);     // WHAT if none of 895-898 lines works? We try to get to vector's element with index -1...
-        iPrimVert[iV].push_back(iP);    // array of vectors
+        iPrimVert[iV].push_back(iP);    // array of vectors                 // those PVs which are associated to primary particles as their sources
       }
     }
     
