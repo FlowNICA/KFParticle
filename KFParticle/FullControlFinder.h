@@ -14,13 +14,15 @@ class FullControlFinder{
   KFVertex prim_vx_;
   std::vector<KFPTrackVector> sorted_tracks_{4};
   
-  enum eTrackTypes
+  enum class eTrackTypes : int
   {
-    secPos = 0,
-    secNeg,
-    primPos,
-    primNeg,
+    kSecPos = 0,
+    kSecNeg,
+    kPrimPos,
+    kPrimNeg,
+    kNumberOfTrackTypes
   };
   
-  
+//  for(eTrackTypes i=eTrackTypes::kSecPos; i<eTrackTypes::kNumberOfTrackTypes; i++)
+
 };
