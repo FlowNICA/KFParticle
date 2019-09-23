@@ -12,9 +12,9 @@
   
   namespace PDGs
   {
-    int proton = 2212;
-    int pionMinus = -211;
-    int lambda = 3122;
+    proton = 2212;
+    pionMinus = -211;
+    lambda = 3122;
   }
 
 #endif // FullControlConstants_H

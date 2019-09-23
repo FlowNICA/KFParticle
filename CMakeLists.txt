@@ -118,6 +118,7 @@ Set(NODICT_HEADERS
   KFParticlePerformance/KFPartMatch.h
   
   KFParticle/FullControlFinder.h
+  KFParticle/FullControlConstants.h
 )
 
 install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
