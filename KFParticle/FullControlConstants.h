@@ -10,11 +10,8 @@
     kNumberOfTrackTypes
   };
   
-  namespace PDGs
-  {
-    proton = 2212;
-    pionMinus = -211;
-    lambda = 3122;
-  }
+  constexpr int pdg_proton = 2212;
+  constexpr int pdg_pionMinus = -211;
+  constexpr int pdg_lambda = 3122;
 
 #endif // FullControlConstants_H
