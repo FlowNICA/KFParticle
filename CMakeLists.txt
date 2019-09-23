@@ -65,6 +65,8 @@ set (SOURCES
   KFParticlePerformance/KFTopoPerformance.cxx
   KFParticlePerformance/KFMCParticle.cxx
   KFParticleTest/KFParticleTest.cxx
+  
+  KFParticle/FullControlFinder.cxx
 )
 
 set (HEADERS
@@ -114,6 +116,8 @@ Set(NODICT_HEADERS
   KFParticlePerformance/KFMCVertex.h
   KFParticlePerformance/KFMCTrack.h
   KFParticlePerformance/KFPartMatch.h
+  
+  KFParticle/FullControlFinder.h
 )
 
 install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
