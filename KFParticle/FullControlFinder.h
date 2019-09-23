@@ -21,6 +21,6 @@ class FullControlFinder{
   
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
   
-  };
+  }; 
 
 #endif //FullControlFinder_H

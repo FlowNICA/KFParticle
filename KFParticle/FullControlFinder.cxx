@@ -44,5 +44,5 @@ void FullControlFinder::FindParticles()
       if(!(tracks_.PDG()[trIndex_[kSecPos][iSecPos]]==pdg_proton && tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]]==pdg_pionMinus)) continue;
       N++;
     }
-  std::cout << N << std::endl;
+  std::cout << nSecPoses << "\n" << nSecNegs << std::endl;
 }
