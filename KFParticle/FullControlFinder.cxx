@@ -1,7 +1,5 @@
 #include "FullControlFinder.h"
 
-FullControlFinder::FullControlFinder() {}
-
 void FullControlFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
 {
   tracks_ = tracks;
@@ -10,7 +8,7 @@ void FullControlFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
 
 void FullControlFinder::SortTracks()
 {
-  int Size = tracks_.Size();
+  const int Size = tracks_.Size();
   std::vector<int> trIndex[4];
   
   for(int iTr = 0; iTr < Size; iTr++)
@@ -32,7 +30,7 @@ void FullControlFinder::SortTracks()
   }
      
   for(int iTrType=0; iTrType<4; iTrType++)
-    sorted_tracks_[iTrType].SetTracks(tracks_, trIndex[iTrType], trIndex[iTrType].size());
+    sorted_tracks_[iTrType].SetTracks(&tracks_, trIndex[iTrType], trIndex[iTrType].size());
   
   
 }
