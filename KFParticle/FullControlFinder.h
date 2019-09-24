@@ -3,6 +3,7 @@
 
 #include "KFPTrackVector.h"
 #include "KFVertex.h"
+#include "KFPTrack.h"
 #include "FullControlConstants.h"
 
 class FullControlFinder{
@@ -12,6 +13,7 @@ class FullControlFinder{
   
   void Init(const KFPTrackVector &tracks, const KFVertex &pv);
   void SortTracks();
+  float GetChiToPrimaryVertex(const KFPTrack &track, const int pid);
   void FindParticles();
 
  protected:
