@@ -44,6 +44,8 @@ void FullControlFinder::FindParticles()
 {
   int nSecPoses = trIndex_[kSecPos].size();
   int nSecNegs  = trIndex_[kSecNeg].size();
+  
+  int N = 0;
     
   for(int iSecPos=0; iSecPos<nSecPoses; iSecPos++)
   {
@@ -62,7 +64,36 @@ void FullControlFinder::FindParticles()
       
       if(!(tracks_.PDG()[trIndex_[kSecPos][iSecPos]]==pdg_proton && tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]]==pdg_pionMinus)) continue;
 
-      
+      N++;
     }
   }
+  
+  std::cout << N << std::endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
