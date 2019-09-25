@@ -30,6 +30,9 @@ class FullControlFinder{
   KFVertex prim_vx_;
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
   
+  float mass_{-999.};
+  float mass_err_{-999.};
+  
   float chi2_prim_pos_{-999.};
   float chi2_prim_neg_{-999.};
   float distance_{-999.};

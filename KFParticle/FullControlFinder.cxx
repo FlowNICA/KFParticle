@@ -121,8 +121,6 @@ void FullControlFinder::FindMotherProperties(const KFParticleSIMD mother, float 
   KFVertex prim_vx_tmp = prim_vx_;
   const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);
 
- // const KFParticleSIMD prim_vx_Simd(KFPVertex(prim_vx_));
-
   mother.GetDistanceToVertexLine(prim_vx_Simd, l_Simd, dl_Simd, &isFromPV_Simd);
   
   l = l_Simd[0];
@@ -180,7 +178,13 @@ void FullControlFinder::FindParticles()
       if(l_ > cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
       if(is_from_pv_ == -1) continue;
-      if(l_ < cut_l_down_) continue;    
+      if(l_ < cut_l_down_) continue;
+      
+      KFParticle particle;
+      mother.GetKFParticle(particle, 0);
+      particle.GetMass(mass_, mass_err_);
+      sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
+      if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
       
       
