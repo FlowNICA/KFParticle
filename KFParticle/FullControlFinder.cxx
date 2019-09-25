@@ -175,9 +175,9 @@ void FullControlFinder::FindParticles()
       FindMotherProperties(mother, l_, ldl_, is_from_pv_);
       
       if(l_ > cut_l_up_) continue;
-      if(ldl_ < cut_ldl_) continue;
+      //if(ldl_ < cut_ldl_) continue;
       if(is_from_pv_ == -1) continue;
-      //if(l_ < cut_l_down_) continue;    
+      if(l_ < cut_l_down_) continue;    
       
       
       
