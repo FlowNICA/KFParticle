@@ -28,6 +28,8 @@ class FullControlFinder{
   float chi2_prim_pos_{-999.};
   float chi2_prim_neg_{-999.};
   float distance_{-999.};
+  float cosine_daughter_pos_{-999.};
+  float cosine_daughter_neg_{-999.};
   float chi2_geo_{-999.};
   float l_{-999.};
   float ldl_{-999.};
@@ -36,6 +38,8 @@ class FullControlFinder{
   float cut_chi2_prim_pos_{3.};
   float cut_chi2_prim_neg_{3.};
   float cut_distance_{10.};
+  float cut_cosine_daughter_pos_{0.};
+  float cut_cosine_daughter_neg_{0.};
   float cut_chi2_geo_{3.};
   float cut_l_up_{200.}; float cut_l_down_{-5.};
   float cut_ldl_{5.}; float cut_ldl_sec_{10.};
