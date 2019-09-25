@@ -119,7 +119,6 @@ void FullControlFinder::FindParticles()
       
       cosine_daughter_pos_ = FindCosMomentumSum(pars1, pars2);
       cosine_daughter_neg_ = FindCosMomentumSum(pars2, pars1);
-      std::cout << cosine_daughter_pos_ << "\t" << cosine_daughter_neg_ << "\n";
 
       N++;
     }
