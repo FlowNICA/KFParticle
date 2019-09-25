@@ -92,7 +92,7 @@ float FullControlFinder::GetDistanceBetweenParticles(const std::array<float, 8> 
   return dr;
 }
 
-float FullControlFinder::FindCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const
+float FullControlFinder::GetCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const
 {
   // Find cosine bitween daughter1 and mother momenta
   const std::array<float, 3> P1 = {pars1.at(3), pars1.at(4), pars1.at(5)};
@@ -124,14 +124,14 @@ KFParticleSIMD FullControlFinder::ConstructMother(const KFPTrack &track1, const 
   return mother;
 }
 
-float FullControlFinder::FindChi2Geo(const KFParticleSIMD mother) const
+float FullControlFinder::GetChi2Geo(const KFParticleSIMD mother) const
 {
  float_v chi2 = mother.Chi2()/simd_cast<float_v>(mother.NDF());
  
  return chi2[0];
 }
 
-void FullControlFinder::FindMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const
+void FullControlFinder::GetMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const
 {
   float_v l_Simd;
   float_v dl_Simd;
@@ -149,7 +149,7 @@ void FullControlFinder::FindMotherProperties(const KFParticleSIMD mother, float 
     isFromPV = -1;  
 }
 
-float FullControlFinder::FindChi2Topo(const KFParticleSIMD mother) const
+float FullControlFinder::GetChi2Topo(const KFParticleSIMD mother) const
 {
   KFParticleSIMD motherTopo = mother;
   KFVertex prim_vx_tmp = prim_vx_;
@@ -175,6 +175,11 @@ void FullControlFinder::SaveParticle()
   vec_is_from_pv_.push_back(is_from_pv_);
   vec_sigma_mass_ratio_.push_back(sigma_mass_ratio_);
   vec_chi2_topo_.push_back(chi2_topo_); 
+}
+
+std::vector<float> FullControlFinder::GetMass() const
+{
+  return vec_mass_;
 }
 
 void FullControlFinder::FindParticles()
@@ -209,21 +214,21 @@ void FullControlFinder::FindParticles()
       distance_ = GetDistanceBetweenParticles(pars1, pars2);
       if(distance_ > cut_distance_) continue;
       
-      cosine_daughter_pos_ = FindCosMomentumSum(pars1, pars2);
-      cosine_daughter_neg_ = FindCosMomentumSum(pars2, pars1);
+      cosine_daughter_pos_ = GetCosMomentumSum(pars1, pars2);
+      cosine_daughter_neg_ = GetCosMomentumSum(pars2, pars1);
       if(cosine_daughter_pos_ < cut_cosine_daughter_pos_ || cosine_daughter_neg_ < cut_cosine_daughter_neg_) continue;
       
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
-      chi2_geo_ = FindChi2Geo(mother);
+      chi2_geo_ = GetChi2Geo(mother);
       if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
       if(chi2_geo_ > cut_chi2_geo_) continue;
       
-      FindMotherProperties(mother, l_, ldl_, is_from_pv_);
+      GetMotherProperties(mother, l_, ldl_, is_from_pv_);
       
       if(l_ > cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
-      if(is_from_pv_ == cut_is_from_pv_) continue;
+//       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ < cut_l_down_) continue;
       
       KFParticle particle;
@@ -232,7 +237,7 @@ void FullControlFinder::FindParticles()
       sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
       //if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
-      chi2_topo_ = FindChi2Topo(mother);
+      chi2_topo_ = GetChi2Topo(mother);
       //if(chi2_topo_ > cut_chi2_topo_) continue;
       //if(ldl_ < cut_ldl_sec_) continue;
       

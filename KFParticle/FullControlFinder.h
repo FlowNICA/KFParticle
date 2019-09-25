@@ -18,13 +18,15 @@ class FullControlFinder{
   float GetChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
   void  GetParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2) const;
   float GetDistanceBetweenParticles(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
-  float FindCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
+  float GetCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
   KFParticleSIMD ConstructMother(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2) const;
-  float FindChi2Geo(const KFParticleSIMD mother) const;
-  void  FindMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
-  float FindChi2Topo(const KFParticleSIMD mother) const;
+  float GetChi2Geo(const KFParticleSIMD mother) const;
+  void  GetMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
+  float GetChi2Topo(const KFParticleSIMD mother) const;
   void  FindParticles();
   void  SaveParticle();
+  
+  std::vector<float> GetMass() const;
 
  protected:
 
