@@ -13,6 +13,7 @@ class FullControlFinder{
   virtual ~FullControlFinder() = default;
   
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
+  void  CancelCuts();
   void  SortTracks();
   float GetChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
   void  GetParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2) const;
