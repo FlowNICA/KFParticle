@@ -119,7 +119,7 @@ void FullControlFinder::FindParticles()
       
       cosine_daughter_pos_ = FindCosMomentumSum(pars1, pars2);
       cosine_daughter_neg_ = FindCosMomentumSum(pars2, pars1);
-      if(cosine_daughter_pos_ < cut_cosine_daughter_pos_) continue;
+      if(cosine_daughter_neg_ < cut_cosine_daughter_pos_) continue;
 
       N++;
     }
