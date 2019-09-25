@@ -176,7 +176,7 @@ void FullControlFinder::FindParticles()
       
       if(l_ > cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
-      if(is_from_pv_ == -1) continue;
+      //if(is_from_pv_ == -1) continue;
       if(l_ < cut_l_down_) continue;    
       
       
