@@ -210,12 +210,12 @@ void FullControlFinder::FindParticles()
       
       cosine_daughter_pos_ = FindCosMomentumSum(pars1, pars2);
       cosine_daughter_neg_ = FindCosMomentumSum(pars2, pars1);
-//       if(cosine_daughter_pos_ < cut_cosine_daughter_pos_ || cosine_daughter_neg_ < cut_cosine_daughter_neg_) continue;
+      if(cosine_daughter_pos_ < cut_cosine_daughter_pos_ || cosine_daughter_neg_ < cut_cosine_daughter_neg_) continue;
       
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
       chi2_geo_ = FindChi2Geo(mother);
-//       if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
+      if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
 //       if(chi2_geo_ > cut_chi2_geo_) continue;
       
       FindMotherProperties(mother, l_, ldl_, is_from_pv_);
