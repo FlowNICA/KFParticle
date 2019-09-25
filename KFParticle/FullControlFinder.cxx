@@ -120,6 +120,9 @@ void FullControlFinder::FindMotherProperties(const KFParticleSIMD mother, float 
   float_m isFromPV_Simd;
   KFVertex prim_vx_tmp = prim_vx_;
   const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);
+
+ // const KFParticleSIMD prim_vx_Simd(KFPVertex(prim_vx_));
+
   mother.GetDistanceToVertexLine(prim_vx_Simd, l_Simd, dl_Simd, &isFromPV_Simd);
   
   l = l_Simd[0];
