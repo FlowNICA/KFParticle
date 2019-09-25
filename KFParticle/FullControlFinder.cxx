@@ -197,33 +197,33 @@ void FullControlFinder::FindParticles()
       if(!(tracks_.PDG()[trIndex_[kSecPos][iSecPos]]==pdg_proton && tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]]==pdg_pionMinus)) continue;
       
       chi2_prim_pos_ = GetChiToPrimaryVertex(trackPos, pidPos);
-      if(chi2_prim_pos_<=cut_chi2_prim_pos_) continue;      
+//       if(chi2_prim_pos_<=cut_chi2_prim_pos_) continue;      
       chi2_prim_neg_ = GetChiToPrimaryVertex(trackNeg, pidNeg);
-      if(chi2_prim_neg_<=cut_chi2_prim_neg_) continue;
+//       if(chi2_prim_neg_<=cut_chi2_prim_neg_) continue;
       
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
       GetParamsInPCA(trackPos, pidPos, trackNeg, pidNeg, pars1, pars2);
       
       distance_ = GetDistanceBetweenParticles(pars1, pars2);
-      if(distance_ > cut_distance_) continue;
+//       if(distance_ > cut_distance_) continue;
       
       cosine_daughter_pos_ = FindCosMomentumSum(pars1, pars2);
       cosine_daughter_neg_ = FindCosMomentumSum(pars2, pars1);
-      if(cosine_daughter_pos_ < cut_cosine_daughter_pos_ || cosine_daughter_neg_ < cut_cosine_daughter_neg_) continue;
+//       if(cosine_daughter_pos_ < cut_cosine_daughter_pos_ || cosine_daughter_neg_ < cut_cosine_daughter_neg_) continue;
       
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
       chi2_geo_ = FindChi2Geo(mother);
-      if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
-      if(chi2_geo_ > cut_chi2_geo_) continue;
+//       if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
+//       if(chi2_geo_ > cut_chi2_geo_) continue;
       
       FindMotherProperties(mother, l_, ldl_, is_from_pv_);
       
-      if(l_ > cut_l_up_) continue;
-      if(ldl_ < cut_ldl_) continue;
-      if(is_from_pv_ == cut_is_from_pv_) continue;
-      if(l_ < cut_l_down_) continue;
+//       if(l_ > cut_l_up_) continue;
+//       if(ldl_ < cut_ldl_) continue;
+//       if(is_from_pv_ == cut_is_from_pv_) continue;
+//       if(l_ < cut_l_down_) continue;
       
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
