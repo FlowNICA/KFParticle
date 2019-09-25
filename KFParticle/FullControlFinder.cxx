@@ -169,7 +169,7 @@ void FullControlFinder::FindParticles()
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       chi2_geo_ = FindChi2Geo(mother);
       
-      if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
+      if(!finite(chi2_geo_) || chi2_geo_ <= 0);// continue;
       if(chi2_geo_ > cut_chi2_geo_) continue;
       
       
