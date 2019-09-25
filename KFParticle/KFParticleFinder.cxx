@@ -1279,7 +1279,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                   active[iPDGPos] &= simd_cast<int_m>(dr < float_v(fDistanceCut));                                            // cut on distance between tracks is applied
                   if(active[iPDGPos].isEmpty()) continue;
                   
-                  float_v p1p2 = posParameters[3]*negParameters[3] + posParameters[4]*negParameters[4] + posParameters[5]*negParameters[5];     // scalar composition of pos&neg track momenta
+                  float_v p1p2 = posParameters[3]*negParameters[3] + posParameters[4]*negParameters[4] + posParameters[5]*negParameters[5];     // scalar product of pos&neg track momenta
                   float_v p12  = posParameters[3]*posParameters[3] + posParameters[4]*posParameters[4] + posParameters[5]*posParameters[5];     // square pos track momentum
                   float_v p22  = negParameters[3]*negParameters[3] + negParameters[4]*negParameters[4] + negParameters[5]*negParameters[5];     // square neg track momentum
                   active[iPDGPos] &= simd_cast<int_m>(p1p2 > -p12);                  // daughter particle's momentum has the same direction as mother's      // WHY such cut is applied?
