@@ -24,6 +24,7 @@ class FullControlFinder{
   void  FindMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
   float FindChi2Topo(const KFParticleSIMD mother) const;
   void  FindParticles();
+  void  SaveParticle();
 
  protected:
 
@@ -33,6 +34,8 @@ class FullControlFinder{
   
   float mass_{-999.};
   float mass_err_{-999.};
+  std::vector<float> vec_mass_;
+  std::vector<float> vec_mass_err_;
   
   float chi2_prim_pos_{-999.};
   float chi2_prim_neg_{-999.};
@@ -46,6 +49,18 @@ class FullControlFinder{
   float sigma_mass_ratio_{-999.};
   float chi2_topo_{-999.};
   
+  std::vector<float> vec_chi2_prim_pos_;
+  std::vector<float> vec_chi2_prim_neg_;
+  std::vector<float> vec_distance_;
+  std::vector<float> vec_cosine_daughter_pos_;
+  std::vector<float> vec_cosine_daughter_neg_;
+  std::vector<float> vec_chi2_geo_;
+  std::vector<float> vec_l_;
+  std::vector<float> vec_ldl_;
+  std::vector<int>   vec_is_from_pv_;
+  std::vector<float> vec_sigma_mass_ratio_;
+  std::vector<float> vec_chi2_topo_; 
+  
   float cut_chi2_prim_pos_{3.};
   float cut_chi2_prim_neg_{3.};
   float cut_distance_{10.};
@@ -53,6 +68,7 @@ class FullControlFinder{
   float cut_cosine_daughter_neg_{0.};
   float cut_chi2_geo_{3.};
   float cut_l_up_{200.}; float cut_l_down_{-5.};
+  int   cut_is_from_pv_{-1};
   float cut_ldl_{5.}; float cut_ldl_sec_{10.};
   float cut_sigma_mass_ratio_{3.};
   float cut_chi2_topo_{5.};

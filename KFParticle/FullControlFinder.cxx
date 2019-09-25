@@ -9,6 +9,23 @@ void FullControlFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
   prim_vx_ = pv;
 }
 
+void FullControlFinder::CancelCuts()
+{
+  cut_chi2_geo_ = 799.;
+  cut_chi2_prim_neg_ = -799.;
+  cut_chi2_prim_pos_ = -799.;
+  cut_chi2_topo_ = 799.;
+  cut_cosine_daughter_neg_ = -799.;
+  cut_cosine_daughter_pos_ = -799.;
+  cut_distance_ = 799.;
+  cut_l_down_ = -799.;
+  cut_l_up_ =  799.;
+  cut_ldl_ = -799.;
+  cut_ldl_sec_ = -799.;
+  cut_sigma_mass_ratio_ = 799.;
+  cut_is_from_pv_ = 799;
+}
+
 void FullControlFinder::SortTracks()
 {
   const int Size = tracks_.Size();
@@ -142,6 +159,23 @@ float FullControlFinder::FindChi2Topo(const KFParticleSIMD mother) const
   return chi2[0];
 }
 
+void FullControlFinder::SaveParticle()
+{
+  vec_mass_.push_back(mass_);
+  vec_mass_err_.push_back(mass_err_);
+  vec_chi2_prim_pos_.push_back(chi2_prim_pos_);
+  vec_chi2_prim_neg_.push_back(chi2_prim_neg_);
+  vec_distance_.push_back(distance_);
+  vec_cosine_daughter_pos_.push_back(cosine_daughter_pos_);
+  vec_cosine_daughter_neg_.push_back(cosine_daughter_neg_);
+  vec_chi2_geo_.push_back(chi2_geo_);
+  vec_l_.push_back(l_);
+  vec_ldl_.push_back(ldl_);
+  vec_is_from_pv_.push_back(is_from_pv_);
+  vec_sigma_mass_ratio_.push_back(sigma_mass_ratio_);
+  vec_chi2_topo_.push_back(chi2_topo_); 
+}
+
 void FullControlFinder::FindParticles()
 {
   int nSecPoses = trIndex_[kSecPos].size();
@@ -151,21 +185,21 @@ void FullControlFinder::FindParticles()
     
   for(int iSecPos=0; iSecPos<nSecPoses; iSecPos++)
   {
-    KFPTrack trackPos;
-    tracks_.GetTrack(trackPos, trIndex_[kSecPos][iSecPos]);
-    const int pidPos = tracks_.PDG()[trIndex_[kSecPos][iSecPos]];
-    chi2_prim_pos_ = GetChiToPrimaryVertex(trackPos, pidPos);
-    if(chi2_prim_pos_<=cut_chi2_prim_pos_) continue;
-    
     for(int iSecNeg=0; iSecNeg<nSecNegs; iSecNeg++)
-    {
+    {    
+      KFPTrack trackPos;
+      tracks_.GetTrack(trackPos, trIndex_[kSecPos][iSecPos]);
+      const int pidPos = tracks_.PDG()[trIndex_[kSecPos][iSecPos]];
       KFPTrack trackNeg;
       tracks_.GetTrack(trackNeg, trIndex_[kSecNeg][iSecNeg]);
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
-      chi2_prim_neg_ = GetChiToPrimaryVertex(trackNeg, pidNeg);
-      if(chi2_prim_neg_<=cut_chi2_prim_neg_) continue;
       
       if(!(tracks_.PDG()[trIndex_[kSecPos][iSecPos]]==pdg_proton && tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]]==pdg_pionMinus)) continue;
+      
+      chi2_prim_pos_ = GetChiToPrimaryVertex(trackPos, pidPos);
+      if(chi2_prim_pos_<=cut_chi2_prim_pos_) continue;      
+      chi2_prim_neg_ = GetChiToPrimaryVertex(trackNeg, pidNeg);
+      if(chi2_prim_neg_<=cut_chi2_prim_neg_) continue;
       
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
@@ -188,7 +222,7 @@ void FullControlFinder::FindParticles()
       
       if(l_ > cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
-      if(is_from_pv_ == -1) continue;
+      if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ < cut_l_down_) continue;
       
       KFParticle particle;
@@ -201,10 +235,8 @@ void FullControlFinder::FindParticles()
       //if(chi2_topo_ > cut_chi2_topo_) continue;
       //if(ldl_ < cut_ldl_sec_) continue;
       
-
-      N++;
+      SaveParticle();
     }
   }
   
-  std::cout << N << std::endl;
 }
