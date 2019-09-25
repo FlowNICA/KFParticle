@@ -198,7 +198,7 @@ void FullControlFinder::FindParticles()
       //if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
       chi2_topo_ = FindChi2Topo(mother);
-      if(chi2_topo_ > cut_chi2_topo_) continue;
+      //if(chi2_topo_ > cut_chi2_topo_) continue;
       //if(ldl_ < cut_ldl_sec_) continue;
       
 
