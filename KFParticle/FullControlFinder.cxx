@@ -199,7 +199,7 @@ void FullControlFinder::FindParticles()
       
       chi2_topo_ = FindChi2Topo(mother);
       if(chi2_topo_ > cut_chi2_topo_) continue;
-      if(ldl_ < cut_ldl_sec_) continue;
+      //if(ldl_ < cut_ldl_sec_) continue;
       
 
       N++;
