@@ -235,7 +235,7 @@ void FullControlFinder::FindParticles()
       mother.GetKFParticle(particle, 0);
       particle.GetMass(mass_, mass_err_);
       sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
-      //if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
+      if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
       chi2_topo_ = GetChi2Topo(mother);
 //       if(chi2_topo_ > cut_chi2_topo_) continue;
