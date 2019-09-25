@@ -11,19 +11,19 @@ void FullControlFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
 
 void FullControlFinder::CancelCuts()
 {
-  cut_chi2_geo_ = 799.;
-  cut_chi2_prim_neg_ = -799.;
-  cut_chi2_prim_pos_ = -799.;
-  cut_chi2_topo_ = 799.;
-  cut_cosine_daughter_neg_ = -799.;
-  cut_cosine_daughter_pos_ = -799.;
-  cut_distance_ = 799.;
-  cut_l_down_ = -799.;
-  cut_l_up_ =  799.;
-  cut_ldl_ = -799.;
-  cut_ldl_sec_ = -799.;
-  cut_sigma_mass_ratio_ = 799.;
-  cut_is_from_pv_ = 799;
+  cut_chi2_geo_ = 79999.;
+  cut_chi2_prim_neg_ = -79999.;
+  cut_chi2_prim_pos_ = -79999.;
+  cut_chi2_topo_ = 79999.;
+  cut_cosine_daughter_neg_ = -79999.;
+  cut_cosine_daughter_pos_ = -79999.;
+  cut_distance_ = 79999.;
+  cut_l_down_ = -79999.;
+  cut_l_up_ =  79999.;
+  cut_ldl_ = -79999.;
+  cut_ldl_sec_ = -79999.;
+  cut_sigma_mass_ratio_ = 79999.;
+  cut_is_from_pv_ = 79999;
 }
 
 void FullControlFinder::SortTracks()
