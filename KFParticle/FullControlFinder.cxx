@@ -246,6 +246,6 @@ void FullControlFinder::FindParticles()
     }
   }
   
-  std::cout << N << std::endl;
+//   std::cout << N << std::endl;
   
 }
