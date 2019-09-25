@@ -228,7 +228,7 @@ void FullControlFinder::FindParticles()
       
       if(l_ > cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
-      if(is_from_pv_ == cut_is_from_pv_) continue;
+//       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ < cut_l_down_) continue;
       
       KFParticle particle;
@@ -238,8 +238,8 @@ void FullControlFinder::FindParticles()
       //if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
       chi2_topo_ = GetChi2Topo(mother);
-      if(chi2_topo_ > cut_chi2_topo_) continue;
-      if(ldl_ < cut_ldl_sec_) continue;
+//       if(chi2_topo_ > cut_chi2_topo_) continue;
+//       if(ldl_ < cut_ldl_sec_) continue;
       
       N++;
       SaveParticle();
