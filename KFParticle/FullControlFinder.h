@@ -37,6 +37,7 @@ class FullControlFinder{
   float chi2_geo_{-999.};
   float l_{-999.};
   float ldl_{-999.};
+  int   is_from_pv_{-999};
   float sigma_mass_ratio_{-999.};
   
   float cut_chi2_prim_pos_{3.};
