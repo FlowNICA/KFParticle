@@ -4,6 +4,7 @@
 #include "KFPTrackVector.h"
 #include "KFVertex.h"
 #include "KFPTrack.h"
+#include "KFParticleSIMD.h"
 #include "FullControlConstants.h"
 
 class FullControlFinder{
@@ -13,10 +14,13 @@ class FullControlFinder{
   
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
   void  SortTracks();
-  float GetChiToPrimaryVertex(const KFPTrack &track, const int pid);
-  void  GetParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2);
-  float GetDistanceBetweenParticles(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2);
-  float FindCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2);
+  float GetChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
+  void  GetParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2) const;
+  float GetDistanceBetweenParticles(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
+  float FindCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
+  KFParticleSIMD ConstructMother(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2) const;
+  float FindChi2Geo(const KFParticleSIMD mother) const;
+  void  FindMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
   void  FindParticles();
 
  protected:
