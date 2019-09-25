@@ -22,6 +22,7 @@ class FullControlFinder{
   KFParticleSIMD ConstructMother(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2) const;
   float FindChi2Geo(const KFParticleSIMD mother) const;
   void  FindMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
+  float FindChi2Topo(const KFParticleSIMD mother) const;
   void  FindParticles();
 
  protected:
@@ -43,6 +44,7 @@ class FullControlFinder{
   float ldl_{-999.};
   int   is_from_pv_{-999};
   float sigma_mass_ratio_{-999.};
+  float chi2_topo_{-999.};
   
   float cut_chi2_prim_pos_{3.};
   float cut_chi2_prim_neg_{3.};
@@ -53,6 +55,7 @@ class FullControlFinder{
   float cut_l_up_{200.}; float cut_l_down_{-5.};
   float cut_ldl_{5.}; float cut_ldl_sec_{10.};
   float cut_sigma_mass_ratio_{3.};
+  float cut_chi2_topo_{5.};
   
   }; 
 

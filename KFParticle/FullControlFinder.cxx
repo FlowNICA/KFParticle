@@ -131,6 +131,17 @@ void FullControlFinder::FindMotherProperties(const KFParticleSIMD mother, float 
     isFromPV = -1;  
 }
 
+float FullControlFinder::FindChi2Topo(const KFParticleSIMD mother) const
+{
+  KFParticleSIMD motherTopo = mother;
+  KFVertex prim_vx_tmp = prim_vx_;
+  const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);
+  motherTopo.SetProductionVertex(prim_vx_Simd);
+  const float_v& chi2 = motherTopo.GetChi2()/simd_cast<float_v>(motherTopo.GetNDF());
+  
+  return chi2[0];
+}
+
 void FullControlFinder::FindParticles()
 {
   int nSecPoses = trIndex_[kSecPos].size();
@@ -186,7 +197,9 @@ void FullControlFinder::FindParticles()
       sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
       //if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
-      
+      chi2_topo_ = FindChi2Topo(mother);
+      if(chi2_topo_ > cut_chi2_topo_) continue;
+      if(l_ < cut_l_up_) continue;
       
 
       N++;
