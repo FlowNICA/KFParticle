@@ -116,14 +116,14 @@ float FullControlFinder::FindChi2Geo(const KFParticleSIMD mother) const
 void FullControlFinder::FindMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const
 {
   float_v l_Simd;
-  float_v ldl_Simd;
+  float_v dl_Simd;
   float_m isFromPV_Simd;
   KFVertex prim_vx_tmp = prim_vx_;
   const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);
-  mother.GetDistanceToVertexLine(prim_vx_Simd, l_Simd, ldl_Simd, &isFromPV_Simd);
+  mother.GetDistanceToVertexLine(prim_vx_Simd, l_Simd, dl_Simd, &isFromPV_Simd);
   
   l = l_Simd[0];
-  ldl = ldl_Simd[0];
+  ldl = l_Simd[0]/dl_Simd[0];
   if(isFromPV_Simd[0] == true)
     isFromPV = 0;
   else
@@ -175,7 +175,7 @@ void FullControlFinder::FindParticles()
       FindMotherProperties(mother, l_, ldl_, is_from_pv_);
       
       if(l_ > cut_l_up_) continue;
-      //if(ldl_ < cut_ldl_) continue;
+      if(ldl_ < cut_ldl_) continue;
       if(is_from_pv_ == -1) continue;
       if(l_ < cut_l_down_) continue;    
       
