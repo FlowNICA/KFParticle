@@ -176,12 +176,7 @@ void FullControlFinder::SaveParticle()
   vec_sigma_mass_ratio_.push_back(sigma_mass_ratio_);
   vec_chi2_topo_.push_back(chi2_topo_); 
 }
-
-std::vector<float> FullControlFinder::GetMass() const
-{
-  return vec_mass_;
-}
-
+ 
 void FullControlFinder::FindParticles()
 {
   int nSecPoses = trIndex_[kSecPos].size();

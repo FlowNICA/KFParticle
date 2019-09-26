@@ -26,21 +26,19 @@ class FullControlFinder{
   void  FindParticles();
   void  SaveParticle();
   
-  std::vector<float> GetMass() const;
-  std::vector<float> GetMassErr() const;
-  std::vector<float> GetChi2PrimPos() const;
-  std::vector<float> GetChi2PrimNeg() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-//   std::vector<float> Get() const;
-  
-
+  std::vector<float> GetMass() const {return vec_mass_;}
+  std::vector<float> GetMassErr() const {return vec_mass_err_;}
+  std::vector<float> GetChi2PrimPos() const {return vec_chi2_prim_pos_;}
+  std::vector<float> GetChi2PrimNeg() const {return vec_chi2_prim_neg_;}
+  std::vector<float> GetDistance() const {return vec_distance_;}
+  std::vector<float> GetCosineDaiughterPos() const {return vec_cosine_daughter_pos_;}
+  std::vector<float> GetCosineDaiughterNeg() const {return vec_cosine_daughter_neg_;}
+  std::vector<float> GetChi2Geo() const {return vec_chi2_geo_;}
+  std::vector<float> GetL() const {return vec_l_;}
+  std::vector<float> GetLdL() const {return vec_ldl_;}
+  std::vector<int>   GetIsFromPV() const {return vec_is_from_pv_;}
+  std::vector<float> GetSigmaMassRatio() const {return vec_sigma_mass_ratio_;}
+  std::vector<float> GetChi2Topo() const {return vec_chi2_topo_;}
   
 
  protected:
