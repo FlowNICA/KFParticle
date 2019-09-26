@@ -15,18 +15,33 @@ class FullControlFinder{
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
   void  CancelCuts();
   void  SortTracks();
-  float GetChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
-  void  GetParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2) const;
-  float GetDistanceBetweenParticles(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
-  float GetCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
+  float CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
+  void  CalculateParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2) const;
+  float CalculateDistanceBetweenParticles(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
+  float CalculateCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const;
   KFParticleSIMD ConstructMother(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2) const;
-  float GetChi2Geo(const KFParticleSIMD mother) const;
-  void  GetMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
-  float GetChi2Topo(const KFParticleSIMD mother) const;
+  float CalculateChi2Geo(const KFParticleSIMD mother) const;
+  void  CalculateMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
+  float CalculateChi2Topo(const KFParticleSIMD mother) const;
   void  FindParticles();
   void  SaveParticle();
   
   std::vector<float> GetMass() const;
+  std::vector<float> GetMassErr() const;
+  std::vector<float> GetChi2PrimPos() const;
+  std::vector<float> GetChi2PrimNeg() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+//   std::vector<float> Get() const;
+  
+
+  
 
  protected:
 
