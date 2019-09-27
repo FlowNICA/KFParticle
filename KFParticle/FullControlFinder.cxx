@@ -223,7 +223,7 @@ void FullControlFinder::FindParticles()
       
       if(l_ >= cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
-      //if(is_from_pv_ == cut_is_from_pv_) continue;
+      if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ < cut_l_down_) continue;
       
       KFParticle particle;

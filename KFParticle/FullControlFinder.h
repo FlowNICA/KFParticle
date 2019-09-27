@@ -78,7 +78,7 @@ class FullControlFinder{
   
   float cut_chi2_prim_pos_{3.};
   float cut_chi2_prim_neg_{3.};
-  float cut_distance_{10.};
+  float cut_distance_{1.};
   float cut_cosine_daughter_pos_{0.};
   float cut_cosine_daughter_neg_{0.};
   float cut_chi2_geo_{3.};
