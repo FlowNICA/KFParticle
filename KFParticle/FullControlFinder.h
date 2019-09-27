@@ -83,8 +83,8 @@ class FullControlFinder{
   std::vector<float> vec_sigma_mass_ratio_;
   std::vector<float> vec_chi2_topo_; 
   
-  float cut_chi2_prim_pos_{3.};
-  float cut_chi2_prim_neg_{3.};
+  float cut_chi2_prim_pos_{18.4207};
+  float cut_chi2_prim_neg_{18.4207};
   float cut_distance_{1.};
   float cut_cosine_daughter_pos_{0.};
   float cut_cosine_daughter_neg_{0.};

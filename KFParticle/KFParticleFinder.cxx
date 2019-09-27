@@ -717,7 +717,6 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   saveParticle &= KFPMath::Finite(mother.GetChi2());
   saveParticle &= (mother.GetChi2() > 0.0f);
   saveParticle &= (mother.GetChi2() == mother.GetChi2());
-  std::cout << "chi2GeoCut = " << chi2Cut << std::endl;
 
   if( saveParticle.isEmpty() ) return;
   
@@ -749,7 +748,6 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   }
 #endif
   saveParticle &= ( (float_m(!isPrimary) && ldlMin > ldlCut) || float_m(isPrimary) );   // save all primary particles and those secondaries which ldl>cut
-  std::cout << "ldlCut = " << ldlCut[0] << std::endl;
   
   saveParticle &= (float_m(!isPrimary) && isParticleFromVertex) || isPrimary;           // save all primaries and those secondaries which point to ANY primary vertex // lines 750&752 can be merged, cannot they?
   if( saveParticle.isEmpty() ) return;
@@ -761,7 +759,6 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   
   saveParticle &= ( ((isK0 || isLambda || isHyperNuclei) && lMin > float_v(fLCut)) || !(isK0 || isLambda || isHyperNuclei) ); // save K0s, Lambdas and hypernuclei which satisfy fLCut, and all others
                                                                                                                               // fLCut is not set, is it?
-  std::cout << "fLCut = " << fLCut << std::endl;
   float_m saveMother(false);
   
   if( !(isK0.isEmpty()) || !(isLambda.isEmpty()) || !(isGamma.isEmpty()))
@@ -1250,7 +1247,6 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                 if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                                  // both pos&neg are secondaries
                 {
                   float_v chiprimCut = fCuts2D[0];
-                  std::cout << "chiprimCut = " << chiprimCut[0] << std::endl;
                   chiprimCut( simd_cast<float_m>(abs(motherPDG) == 421 || abs(motherPDG) == 426) ) = fCutCharmChiPrim;        // apply charm-chi-prim-cut for D0-mesons
                   active[iPDGPos] &= simd_cast<int_m>(chiPrimNeg > chiprimCut && chiPrimPos > chiprimCut);                    // reject secondary tracks if they point at PV
                 }
@@ -1281,7 +1277,6 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                   float_v dr = sqrt(dx*dx+dy*dy+dz*dz);
 
                   active[iPDGPos] &= simd_cast<int_m>(dr < float_v(fDistanceCut));                                            // cut on distance between tracks is applied
-                  std::cout << "distance cut = " << fDistanceCut << std::endl;
                   if(active[iPDGPos].isEmpty()) continue;
                   
                   float_v p1p2 = posParameters[3]*negParameters[3] + posParameters[4]*negParameters[4] + posParameters[5]*negParameters[5];     // scalar product of pos&neg track momenta
