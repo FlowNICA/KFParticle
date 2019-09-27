@@ -241,6 +241,16 @@ void FullControlFinder::FindParticles()
       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ < cut_l_down_) continue;
       
+ 
+//       auto* Lambda = lambdas_->AddChannel();
+//       Lambda->Init( config_.GetBranchConfig( lambdas_->GetId() ) );
+
+       
+      
+      
+      
+      
+      
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
       particle.GetMass(mass_, mass_err_);
@@ -250,8 +260,16 @@ void FullControlFinder::FindParticles()
       chi2_topo_ = CalculateChi2Topo(mother);
 //       if(chi2_topo_ > cut_chi2_topo_) continue;
 //       if(ldl_ < cut_ldl_sec_) continue;
+
+//       Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
+//       Lambda->SetField( float(mass), mass_field_id_);
+//       Lambda->SetField( float(rapidity), rap_field_id_);
+//       Lambda->SetField( int(3122), pdg_field_id_w_);
       
       N++;
+      
+      
+      
       SaveParticle();
     }
   }

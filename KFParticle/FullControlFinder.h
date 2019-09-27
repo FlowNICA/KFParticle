@@ -7,6 +7,9 @@
 #include "KFParticleSIMD.h"
 #include "FullControlConstants.h"
 
+// #include "AnalysisTree/Detector.h"
+// #include "AnalysisTree/Configuration.h"
+
 class FullControlFinder{
  public:
   FullControlFinder() = default;
@@ -26,7 +29,7 @@ class FullControlFinder{
   void  FindParticles();
   void  SaveParticle();
   
-  std::vector<float> GetMass() const {return vec_mass_;}
+  const std::vector<float>& GetMass() const {return vec_mass_;}
   std::vector<float> GetMassErr() const {return vec_mass_err_;}
   std::vector<float> GetChi2PrimPos() const {return vec_chi2_prim_pos_;}
   std::vector<float> GetChi2PrimNeg() const {return vec_chi2_prim_neg_;}
@@ -51,6 +54,9 @@ class FullControlFinder{
   float mass_err_{-999.};
   std::vector<float> vec_mass_;
   std::vector<float> vec_mass_err_;
+  
+//   AnalysisTree::TrackDetector* lambdas_{nullptr};
+//   AnalysisTree::Configuration* config_{nullptr};
   
   float chi2_prim_pos_{-999.};
   float chi2_prim_neg_{-999.};
