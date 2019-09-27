@@ -207,7 +207,7 @@ void FullControlFinder::FindParticles()
     {    
       KFPTrack trackPos;
       tracks_.GetTrack(trackPos, trIndex_[kSecPos][iSecPos]);
-      const int pidPos = tracks_.PDG()[trIndex_[kSecPos][iSecPos]];
+      int pidPos = tracks_.PDG()[trIndex_[kSecPos][iSecPos]];
       if(pidPos == -1 || pidPos > 1000000000 || pidPos == 211)
         pidPos = pdg_proton;
       
