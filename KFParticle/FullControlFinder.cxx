@@ -50,29 +50,29 @@ void FullControlFinder::SortTracks()
   }
 }
 
-// float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
-// {
-//   KFParticle tmpPart(track, pid);
-//   const float point[3] = {prim_vx_.X(), prim_vx_.Y(), prim_vx_.Z()};
-//   tmpPart.TransportToPoint(point);
-//   
-//   return tmpPart.GetDeviationFromVertex(prim_vx_);
-// }
-
 float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
 {
   KFParticle tmpPart(track, pid);
-  KFParticleSIMD tmpPartSIMD(tmpPart);
+  const float point[3] = {prim_vx_.X(), prim_vx_.Y(), prim_vx_.Z()};
+  tmpPart.TransportToPoint(point);
   
-  KFVertex prim_vx_tmp = prim_vx_;
-  const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);  
-  const float_v point[3] = {prim_vx_Simd.X(), prim_vx_Simd.Y(), prim_vx_Simd.Z()};
-  
-  tmpPartSIMD.TransportToPoint(point);
-  float_v chi2vec = tmpPartSIMD.GetDeviationFromVertex(prim_vx_Simd);
-  
-  return chi2vec[0];
+  return tmpPart.GetDeviationFromVertex(prim_vx_);
 }
+
+// float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
+// {
+//   KFParticle tmpPart(track, pid);
+//   KFParticleSIMD tmpPartSIMD(tmpPart);
+//   
+//   KFVertex prim_vx_tmp = prim_vx_;
+//   const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);  
+//   const float_v point[3] = {prim_vx_Simd.X(), prim_vx_Simd.Y(), prim_vx_Simd.Z()};
+//   
+//   tmpPartSIMD.TransportToPoint(point);
+//   float_v chi2vec = tmpPartSIMD.GetDeviationFromVertex(prim_vx_Simd);
+//   
+//   return chi2vec[0];
+// }
 
 void FullControlFinder::CalculateParamsInPCA(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2, std::array<float, 8> &pars1, std::array<float, 8> &pars2) const
 {
