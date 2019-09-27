@@ -1179,7 +1179,8 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                 active[0] = (negInd < negTracksSize) && (int_v::IndexesFromZero() < int_v(NTracks));
               }
 
-              std::cout << "nPDGPos = " << nPDGPos << std::endl;
+              if(iTC==2)
+                std::cout << "nPDGPos = " << nPDGPos << std::endl;
               for(int iPDGPos=0; iPDGPos<nPDGPos; iPDGPos++)
               {
                 if(active[iPDGPos].isEmpty()) continue;
