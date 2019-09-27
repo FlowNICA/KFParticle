@@ -208,11 +208,14 @@ void FullControlFinder::FindParticles()
       KFPTrack trackPos;
       tracks_.GetTrack(trackPos, trIndex_[kSecPos][iSecPos]);
       const int pidPos = tracks_.PDG()[trIndex_[kSecPos][iSecPos]];
+      if(pidPos == -1 || pidPos > 1000000000 || pidPos == 211)
+        pidPos = pdg_proton;
+      
       KFPTrack trackNeg;
       tracks_.GetTrack(trackNeg, trIndex_[kSecNeg][iSecNeg]);
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
       
-      if(!(tracks_.PDG()[trIndex_[kSecPos][iSecPos]]==pdg_proton && tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]]==pdg_pionMinus)) continue;
+      if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
       
       chi2_prim_pos_ = CalculateChiToPrimaryVertex(trackPos, pidPos);
       if(chi2_prim_pos_<=cut_chi2_prim_pos_) continue;      
