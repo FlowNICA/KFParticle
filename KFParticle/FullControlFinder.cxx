@@ -217,11 +217,11 @@ void FullControlFinder::FindParticles()
       
       chi2_geo_ = CalculateChi2Geo(mother);
       if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
-      if(chi2_geo_ > cut_chi2_geo_) continue;
+      if(chi2_geo_ >= cut_chi2_geo_) continue;
       
       CalculateMotherProperties(mother, l_, ldl_, is_from_pv_);
       
-      if(l_ > cut_l_up_) continue;
+      if(l_ >= cut_l_up_) continue;
       if(ldl_ < cut_ldl_) continue;
       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ < cut_l_down_) continue;
