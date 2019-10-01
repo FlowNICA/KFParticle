@@ -50,15 +50,15 @@ void FullControlFinder::SortTracks()
   }
 }
 
-// float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
-// {
-//   // Scalar version
-//   KFParticle tmpPart(track, pid);
-//   const float point[3] = {prim_vx_.X(), prim_vx_.Y(), prim_vx_.Z()};
-//   tmpPart.TransportToPoint(point);
-//   
-//   return tmpPart.GetDeviationFromVertex(prim_vx_);
-// }
+/*float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
+{
+  // Scalar version
+  KFParticle tmpPart(track, pid);
+  const float point[3] = {prim_vx_.X(), prim_vx_.Y(), prim_vx_.Z()};
+  tmpPart.TransportToPoint(point);
+  
+  return tmpPart.GetDeviationFromVertex(prim_vx_);
+}*/
 
 float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
 {
@@ -192,6 +192,12 @@ void FullControlFinder::SaveParticle()
   vec_is_from_pv_.push_back(is_from_pv_);
   vec_sigma_mass_ratio_.push_back(sigma_mass_ratio_);
   vec_chi2_topo_.push_back(chi2_topo_); 
+}
+
+void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration conf)
+{
+  lambdas_ = track_det;
+  config_ = conf;
 }
  
 void FullControlFinder::FindParticles()
