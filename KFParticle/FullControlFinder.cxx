@@ -246,7 +246,7 @@ void FullControlFinder::FindParticles()
       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ <= cut_l_down_) continue;
       
-//       auto* Lambda = lambdas_->AddChannel();
+      auto* Lambda = lambdas_->AddChannel();
 //       Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
 
 
