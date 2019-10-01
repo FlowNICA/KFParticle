@@ -246,8 +246,8 @@ void FullControlFinder::FindParticles()
       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ <= cut_l_down_) continue;
       
-      auto* Lambda = lambdas_->AddChannel();
-      Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
+//       auto* Lambda = lambdas_->AddChannel();
+//       Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
 
 
       KFParticle particle;
@@ -263,10 +263,10 @@ void FullControlFinder::FindParticles()
 //       if(ldl_ < cut_ldl_sec_) continue;
 //---------------------------------------------------------------------------
 
-      Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
-      Lambda->SetField( float(particle.GetMass()), mass_field_id_);
-      //Lambda->SetField( float(particle.GetRapidity()), rap_field_id_);
-      Lambda->SetField( int(3122), pdg_field_id_w_);
+//       Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
+//       Lambda->SetField( float(particle.GetMass()), mass_field_id_);
+//       //Lambda->SetField( float(particle.GetRapidity()), rap_field_id_);
+//       Lambda->SetField( int(3122), pdg_field_id_w_);
       
       N++;
       
