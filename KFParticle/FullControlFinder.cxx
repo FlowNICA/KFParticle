@@ -196,8 +196,8 @@ void FullControlFinder::SaveParticle()
 
 void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf)
 {
-  lambdas_ = track_det;
-  config_ = conf;
+  &lambdas_ = track_det;
+  &config_ = conf;
 }
  
 void FullControlFinder::FindParticles()
