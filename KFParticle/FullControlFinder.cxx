@@ -246,30 +246,27 @@ void FullControlFinder::FindParticles()
       if(is_from_pv_ == cut_is_from_pv_) continue;
       if(l_ <= cut_l_down_) continue;
       
- 
-//       auto* Lambda = lambdas_->AddChannel();
-//       Lambda->Init( config_.GetBranchConfig( lambdas_->GetId() ) );
+      auto* Lambda = lambdas_->AddChannel();
+      Lambda->Init( config_.GetBranchConfig( lambdas_->GetId() ) );
 
-       
-      
-      
-      
-      
-      
+
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
       particle.GetMass(mass_, mass_err_);
-      sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
-//       if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
       
-      chi2_topo_ = CalculateChi2Topo(mother);
+//--------- cuts unused at the current stage of reconstruction---------------      
+//       sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
+//       if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
+//      
+//       chi2_topo_ = CalculateChi2Topo(mother);
 //       if(chi2_topo_ > cut_chi2_topo_) continue;
 //       if(ldl_ < cut_ldl_sec_) continue;
+//---------------------------------------------------------------------------
 
-//       Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
-//       Lambda->SetField( float(mass), mass_field_id_);
-//       Lambda->SetField( float(rapidity), rap_field_id_);
-//       Lambda->SetField( int(3122), pdg_field_id_w_);
+      Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
+      Lambda->SetField( float(particle.GetMass()), mass_field_id_);
+      //Lambda->SetField( float(particle.GetRapidity()), rap_field_id_);
+      Lambda->SetField( int(3122), pdg_field_id_w_);
       
       N++;
       

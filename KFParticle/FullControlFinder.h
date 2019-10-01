@@ -7,8 +7,11 @@
 #include "KFParticleSIMD.h"
 #include "FullControlConstants.h"
 
-// #include "AnalysisTree/Detector.h"
-// #include "AnalysisTree/Configuration.h"
+#include "AnalysisTree/Track.h"
+#include "AnalysisTree/Hit.h"
+#include "AnalysisTree/Detector.h"
+#include "AnalysisTree/Configuration.h"
+#include "AnalysisTree/EventHeader.h"
 
 class FullControlFinder{
  public:
@@ -56,8 +59,8 @@ class FullControlFinder{
   std::vector<float> vec_mass_;
   std::vector<float> vec_mass_err_;
   
-//   AnalysisTree::TrackDetector* lambdas_{nullptr};
-//   AnalysisTree::Configuration* config_{nullptr};
+  AnalysisTree::TrackDetector* lambdas_{nullptr};
+  AnalysisTree::Configuration* config_{nullptr};
   
   float chi2_prim_pos_{-999.};
   float chi2_prim_neg_{-999.};
