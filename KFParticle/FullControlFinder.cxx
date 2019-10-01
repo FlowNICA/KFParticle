@@ -194,10 +194,10 @@ void FullControlFinder::SaveParticle()
   vec_chi2_topo_.push_back(chi2_topo_); 
 }
 
-void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf)
+void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration conf)
 {
-  &lambdas_ = track_det;
-  &config_ = conf;
+  lambdas_ = track_det;
+  config_ = &conf;
 }
  
 void FullControlFinder::FindParticles()
