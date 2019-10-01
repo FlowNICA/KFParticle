@@ -98,6 +98,10 @@ class FullControlFinder{
   float cut_sigma_mass_ratio_{3.};
   float cut_chi2_topo_{5.};
   
+  int mass_field_id_{-1};
+  int rap_field_id_{-1};
+  int pdg_field_id_w_{-1};
+  
   }; 
 
 #endif //FullControlFinder_H
