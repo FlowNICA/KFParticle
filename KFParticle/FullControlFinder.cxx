@@ -274,7 +274,8 @@ void FullControlFinder::FindParticles()
 
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
-      mass_ = particle.GetMass();
+      float mass_err;   // unused now
+      particle.GetMass(mass_, mass_err);
       
 //--------- cuts unused at the current stage of reconstruction---------------      
       float sigma_mass_ratio = fabs(mass_ - mass_lambda) / sigma_lambda;
