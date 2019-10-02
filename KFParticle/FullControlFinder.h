@@ -26,7 +26,7 @@ class FullControlFinder{
   
   void  FindParticles();
   
-  std::vector<float> GetMass(){return vec_mass_;} const;
+  std::vector<float> GetMass() const {return vec_mass_;};
 
  protected:
    
