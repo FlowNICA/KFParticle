@@ -274,9 +274,10 @@ void FullControlFinder::FindParticles()
 
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
+      mass_ = particle.GetMass();
       
 //--------- cuts unused at the current stage of reconstruction---------------      
-      float sigma_mass_ratio = fabs(particle.GetMass() - mass_lambda) / sigma_lambda;
+      float sigma_mass_ratio = fabs(mass_ - mass_lambda) / sigma_lambda;
       Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
 //       if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
 //      
@@ -287,7 +288,7 @@ void FullControlFinder::FindParticles()
 //---------------------------------------------------------------------------
 
       Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
-      Lambda->SetField( float(particle.GetMass()), mass_field_id_);
+      Lambda->SetField( float(mass_), mass_field_id_);
       Lambda->SetField( float(particle.GetRapidity()), rap_field_id_);
       Lambda->SetField( int(3122), pdg_field_id_w_);
             
