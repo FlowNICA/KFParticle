@@ -277,9 +277,7 @@ void FullControlFinder::FindParticles()
       Lambda->SetField( float(1.15), mass_field_id_);
       Lambda->SetField( float(2.9), rap_field_id_);
       Lambda->SetField( int(32), pdg_field_id_w_);
-      
-      Lambda->Print();
-      
+            
       N++;
       
       SaveParticle();
