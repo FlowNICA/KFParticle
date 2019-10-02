@@ -180,24 +180,24 @@ float FullControlFinder::CalculateChi2Topo(const KFParticleSIMD mother) const
 void FullControlFinder::SaveParticle()
 {
   vec_mass_.push_back(mass_);
-  vec_mass_err_.push_back(mass_err_);
-  vec_chi2_prim_pos_.push_back(chi2_prim_pos_);
-  vec_chi2_prim_neg_.push_back(chi2_prim_neg_);
-  vec_distance_.push_back(distance_);
-  vec_cosine_daughter_pos_.push_back(cosine_daughter_pos_);
-  vec_cosine_daughter_neg_.push_back(cosine_daughter_neg_);
-  vec_chi2_geo_.push_back(chi2_geo_);
-  vec_l_.push_back(l_);
-  vec_ldl_.push_back(ldl_);
-  vec_is_from_pv_.push_back(is_from_pv_);
-  vec_sigma_mass_ratio_.push_back(sigma_mass_ratio_);
-  vec_chi2_topo_.push_back(chi2_topo_); 
 }
 
 void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf)
 {
   lambdas_ = track_det;
   config_ = conf;
+  
+  chi2_prim_pos_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("chi2primpos");
+  chi2_prim_neg_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("chi2primneg");
+  distance_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("distance");
+  cosine_daughter_pos_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("cosinepos");
+  cosine_daughter_neg_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("cosineneg");
+  chi2_geo_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("chi2geo");
+  l_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("l");
+  ldl_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("ldl");
+  is_from_pv_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("isfrompv");
+  sigma_mass_ratio_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("sigmamassratio");
+  chi2_topo_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("chi2topo");
   
   mass_field_id_  = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("mass");
   rap_field_id_   = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("rapidity");
@@ -227,48 +227,60 @@ void FullControlFinder::FindParticles()
       
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
       
-      chi2_prim_pos_ = CalculateChiToPrimaryVertex(trackPos, pidPos);
-      if(chi2_prim_pos_<=cut_chi2_prim_pos_) continue;      
-      chi2_prim_neg_ = CalculateChiToPrimaryVertex(trackNeg, pidNeg);
-      if(chi2_prim_neg_<=cut_chi2_prim_neg_) continue;
+      AnalysisTree::Track* Lambda = lambdas_->AddChannel();
+      Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
+      
+      float chi2_prim_pos = CalculateChiToPrimaryVertex(trackPos, pidPos);
+      Lambda -> SetField(chi2_prim_pos, chi2_prim_pos_field_id_);
+      if(chi2_prim_pos <= cut_chi2_prim_pos_) continue;      
+      float chi2_prim_neg = CalculateChiToPrimaryVertex(trackNeg, pidNeg);
+      Lambda -> SetField(chi2_prim_neg, chi2_prim_neg_field_id_);
+      if(chi2_prim_neg <= cut_chi2_prim_neg_) continue;
       
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
       CalculateParamsInPCA(trackPos, pidPos, trackNeg, pidNeg, pars1, pars2);
       
-      distance_ = CalculateDistanceBetweenParticles(pars1, pars2);
-      if(distance_ > cut_distance_) continue;
+      float distance = CalculateDistanceBetweenParticles(pars1, pars2);
+      Lambda -> SetField(distance, distance_field_id_);
+      if(distance > cut_distance_) continue;
       
-      cosine_daughter_pos_ = CalculateCosMomentumSum(pars1, pars2);
-      cosine_daughter_neg_ = CalculateCosMomentumSum(pars2, pars1);
-      if(cosine_daughter_pos_ < cut_cosine_daughter_pos_ || cosine_daughter_neg_ < cut_cosine_daughter_neg_) continue;
+      float cosine_daughter_pos = CalculateCosMomentumSum(pars1, pars2);
+      float cosine_daughter_neg = CalculateCosMomentumSum(pars2, pars1);
+      Lambda -> SetField(cosine_daughter_pos, cosine_daughter_pos_field_id_);
+      Lambda -> SetField(cosine_daughter_neg, cosine_daughter_neg_field_id_);
+      if(cosine_daughter_pos < cut_cosine_daughter_pos_ || cosine_daughter_neg < cut_cosine_daughter_neg_) continue;
       
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
-      chi2_geo_ = CalculateChi2Geo(mother);
-      if(!finite(chi2_geo_) || chi2_geo_ <= 0) continue;
-      if(chi2_geo_ >= cut_chi2_geo_) continue;
+      float chi2_geo = CalculateChi2Geo(mother);
+      Lambda -> SetField(chi2_geo, chi2_geo_field_id_);
+      if(!finite(chi2_geo) || chi2_geo <= 0) continue;
+      if(chi2_geo >= cut_chi2_geo_) continue;
       
-      CalculateMotherProperties(mother, l_, ldl_, is_from_pv_);
+      float l, ldl, is_from_pv;
+      CalculateMotherProperties(mother, l, ldl, is_from_pv);
       
-      if(l_ >= cut_l_up_) continue;
-      if(ldl_ <= cut_ldl_) continue;
-      if(is_from_pv_ == cut_is_from_pv_) continue;
-      if(l_ <= cut_l_down_) continue;
+      Lambda -> SetField(l, l_field_id_);
+      Lambda -> SetField(ldl, ldl_field_id_);
+      Lambda -> SetField(is_from_pv, is_from_pv_field_id_);
       
-      AnalysisTree::Track* Lambda = lambdas_->AddChannel();
-      Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
-
+      if(l >= cut_l_up_) continue;
+      if(ldl <= cut_ldl_) continue;
+      if(is_from_pv == cut_is_from_pv_) continue;
+      if(l <= cut_l_down_) continue;
+      
 
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
-      particle.GetMass(mass_, mass_err_);
       
 //--------- cuts unused at the current stage of reconstruction---------------      
-//       sigma_mass_ratio_ = fabs(mass_ - mass_lambda) / sigma_lambda;
+      float sigma_mass_ratio = fabs(particle.GetMass() - mass_lambda) / sigma_lambda;
+      Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
 //       if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
 //      
-//       chi2_topo_ = CalculateChi2Topo(mother);
+      float chi2_topo = CalculateChi2Topo(mother);
+      Lambda -> SetField(chi2_topo, chi2_topo_field_id_);
 //       if(chi2_topo_ > cut_chi2_topo_) continue;
 //       if(ldl_ < cut_ldl_sec_) continue;
 //---------------------------------------------------------------------------

@@ -15,6 +15,7 @@
 
 class FullControlFinder{
  public:
+   
   FullControlFinder() = default;
   virtual ~FullControlFinder() = default;
   
@@ -24,21 +25,6 @@ class FullControlFinder{
   void  SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf);
   
   void  FindParticles();
-  
-  const std::vector<float>& GetMass() const {return vec_mass_;}
-  std::vector<float> GetMassErr() const {return vec_mass_err_;}
-  std::vector<float> GetChi2PrimPos() const {return vec_chi2_prim_pos_;}
-  std::vector<float> GetChi2PrimNeg() const {return vec_chi2_prim_neg_;}
-  std::vector<float> GetDistance() const {return vec_distance_;}
-  std::vector<float> GetCosineDaiughterPos() const {return vec_cosine_daughter_pos_;}
-  std::vector<float> GetCosineDaiughterNeg() const {return vec_cosine_daughter_neg_;}
-  std::vector<float> GetChi2Geo() const {return vec_chi2_geo_;}
-  std::vector<float> GetL() const {return vec_l_;}
-  std::vector<float> GetLdL() const {return vec_ldl_;}
-  std::vector<int>   GetIsFromPV() const {return vec_is_from_pv_;}
-  std::vector<float> GetSigmaMassRatio() const {return vec_sigma_mass_ratio_;}
-  std::vector<float> GetChi2Topo() const {return vec_chi2_topo_;}
-  
 
  protected:
    
@@ -57,37 +43,24 @@ class FullControlFinder{
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
   
   float mass_{-999.};
-  float mass_err_{-999.};
   std::vector<float> vec_mass_;
-  std::vector<float> vec_mass_err_;
   
   AnalysisTree::TrackDetector* lambdas_{nullptr};
   AnalysisTree::Configuration* config_{nullptr};
   
-  float chi2_prim_pos_{-999.};
-  float chi2_prim_neg_{-999.};
-  float distance_{-999.};
-  float cosine_daughter_pos_{-999.};
-  float cosine_daughter_neg_{-999.};
-  float chi2_geo_{-999.};
-  float l_{-999.};
-  float ldl_{-999.};
-  int   is_from_pv_{-999};
-  float sigma_mass_ratio_{-999.};
-  float chi2_topo_{-999.};
-  
-  std::vector<float> vec_chi2_prim_pos_;
-  std::vector<float> vec_chi2_prim_neg_;
-  std::vector<float> vec_distance_;
-  std::vector<float> vec_cosine_daughter_pos_;
-  std::vector<float> vec_cosine_daughter_neg_;
-  std::vector<float> vec_chi2_geo_;
-  std::vector<float> vec_l_;
-  std::vector<float> vec_ldl_;
-  std::vector<int>   vec_is_from_pv_;
-  std::vector<float> vec_sigma_mass_ratio_;
-  std::vector<float> vec_chi2_topo_; 
-  
+  // lambda candidate selection parameters (to be cut)
+  int chi2_prim_pos_field_id_ {-1};
+  int chi2_prim_neg_field_id_ {-1};
+  int distance_field_id_ {-1};
+  int cosine_daughter_pos_field_id_ {-1};
+  int cosine_daughter_neg_field_id_ {-1};
+  int chi2_geo_field_id_ {-1};
+  int l_field_id_ {-1};
+  int ldl_field_id_ {-1};
+  int is_from_pv_field_id_ {-1};
+  int sigma_mass_ratio_field_id_ {-1};
+  int chi2_topo_field_id_ {-1};
+    
   float cut_chi2_prim_pos_{18.4207};
   float cut_chi2_prim_neg_{18.4207};
   float cut_distance_{1.};
@@ -100,6 +73,7 @@ class FullControlFinder{
   float cut_sigma_mass_ratio_{3.};
   float cut_chi2_topo_{5.};
   
+  // lamda selected parameters
   int mass_field_id_{-1};
   int rap_field_id_{-1};
   int pdg_field_id_w_{-1};
