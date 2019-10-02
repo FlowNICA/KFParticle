@@ -21,7 +21,7 @@ class FullControlFinder{
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
   void  CancelCuts();
   void  SortTracks();
-  void  SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration conf);
+  void  SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf);
   
   void  FindParticles();
   
