@@ -258,7 +258,8 @@ void FullControlFinder::FindParticles()
       if(!finite(chi2_geo) || chi2_geo <= 0) continue;
       if(chi2_geo >= cut_chi2_geo_) continue;
       
-      float l, ldl, is_from_pv;
+      float l, ldl;
+      int is_from_pv;
       CalculateMotherProperties(mother, l, ldl, is_from_pv);
       
       Lambda -> SetField(l, l_field_id_);

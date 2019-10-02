@@ -25,6 +25,8 @@ class FullControlFinder{
   void  SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf);
   
   void  FindParticles();
+  
+  std::vector<float> GetMass(return mass_) const;
 
  protected:
    
@@ -44,6 +46,7 @@ class FullControlFinder{
   
   float mass_{-999.};
   std::vector<float> vec_mass_;
+  
   
   AnalysisTree::TrackDetector* lambdas_{nullptr};
   AnalysisTree::Configuration* config_{nullptr};
