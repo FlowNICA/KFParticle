@@ -202,7 +202,6 @@ void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_de
   mass_field_id_  = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("mass");
   rap_field_id_   = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("rapidity");
   pdg_field_id_w_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("pdg");
-  
 }
  
 void FullControlFinder::FindParticles()
@@ -279,9 +278,9 @@ void FullControlFinder::FindParticles()
       Lambda->SetField( float(2.9), rap_field_id_);
       Lambda->SetField( int(32), pdg_field_id_w_);
       
+      Lampda->Print();
+      
       N++;
-      
-      
       
       SaveParticle();
     }
