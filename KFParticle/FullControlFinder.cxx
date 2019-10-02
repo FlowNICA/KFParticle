@@ -201,7 +201,7 @@ void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_de
   
   mass_field_id_  = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("mass");
   rap_field_id_   = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("rapidity");
-  //pdg_field_id_w_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("pdg");
+  pdg_field_id_w_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("pdg");
   
 }
  
