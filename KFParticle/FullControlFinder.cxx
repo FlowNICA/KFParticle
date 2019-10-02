@@ -274,9 +274,9 @@ void FullControlFinder::FindParticles()
 //---------------------------------------------------------------------------
 
       Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
-      Lambda->SetField( float(1.15), mass_field_id_);
-      Lambda->SetField( float(2.9), rap_field_id_);
-      Lambda->SetField( int(32), pdg_field_id_w_);
+      Lambda->SetField( float(particle.GetMass()), mass_field_id_);
+      Lambda->SetField( float(particle.GetRapidity()), rap_field_id_);
+      Lambda->SetField( int(3122), pdg_field_id_w_);
             
       N++;
       
