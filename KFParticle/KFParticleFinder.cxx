@@ -1030,19 +1030,19 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
         // Secondary particles
         nTC = 5;
         // e-
-        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron()+1;       // it is a special kind of 'optimization' (not clear for me)
-        startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron()+1; 
+        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();       // it is a special kind of 'optimization' (not clear for me)
+        startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
         //mu-
         startTCPos[1] = 0; endTCPos[1] = 0;
         startTCNeg[1] = 0; endTCNeg[1] = 0; 
         //pi- + ghosts
         startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;               // FirstPion() returns the index of 0-th member of claster with first pion (in order not to lose any)
-        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion()+1;          // zeroth index of track does not correspond to any track, does it? Indeed, if you have 0 electrons, FirstElectron=0, LastElectron=0...
+        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();          // zeroth index of track does not correspond to any track, does it? Indeed, if you have 0 electrons, FirstElectron=0, LastElectron=0...
         //K-
-        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon()+1;
-        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon()+1;  
+        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();
+        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
         //p-, d-, t-, he3-, he4-
-        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastPion()+1;
+        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastPion();
         startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracksSize[0];  
       }
       
@@ -1059,25 +1059,25 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
         //primary particles
         nTC = 5;
         // e-
-        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron()+1;       // LastParticle() and n...Tracks is not the same (diff=1 because of enumerating from 0, see < & <= below)
-        startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron()+1; 
+        startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();       // LastParticle() and n...Tracks is not the same (diff=1 because of enumerating from 0, see < & <= below)
+        startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
         //mu-
-        startTCPos[1] = posTracks.FirstMuon(); endTCPos[1] = posTracks.LastMuon()+1;
-        startTCNeg[1] = negTracks.FirstMuon(); endTCNeg[1] = negTracks.LastMuon()+1; 
+        startTCPos[1] = posTracks.FirstMuon(); endTCPos[1] = posTracks.LastMuon();
+        startTCNeg[1] = negTracks.FirstMuon(); endTCNeg[1] = negTracks.LastMuon(); 
         //pi- + ghosts
-        startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = posTracks.LastProton()+1;
-        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion()+1;        
+        startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = posTracks.LastProton();
+        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();        
         //K-
         startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = nPositiveTracks;
-        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon()+1;  
+        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
         //p-
-        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastProton()+1;
-        startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracks.LastProton()+1;      
+        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastProton();
+        startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracks.LastProton();      
       }
                                                                                                                   // lines 1080-1180 not clear preparations before mother particle construction
       for(int iTC=0; iTC<nTC; iTC++)
       {
-        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]-1 && iTrN < negTracksSize[0]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ? We lose one track if endTC=Last()=zeroth position in SIMD vector, don't we?
+        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC] && iTrN < negTracksSize[0]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ? We lose one track if endTC=Last()=zeroth position in SIMD vector, don't we?
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
@@ -1107,7 +1107,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
           if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                            // both pos&neg are secondaries
             chiPrimNeg = reinterpret_cast<const float_v&>( ChiToPrimVtx[trTypeIndexNeg[iTrTypeNeg]][iTrN]);
           
-          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC]-1 && iTrP < nPositiveTracks; iTrP += float_vLen)                                 // the same problems as in line 1081
+          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC] && iTrP < nPositiveTracks; iTrP += float_vLen)                                 // the same problems as in line 1081
           {
             const int NTracks = (iTrP + float_vLen < nPositiveTracks) ? float_vLen : (nPositiveTracks - iTrP);    // NTracks means "NTracksPos", doesn't it? WHY not name in the same tradition?
 
