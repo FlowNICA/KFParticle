@@ -1077,7 +1077,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
                                                                                                                   // lines 1080-1180 not clear preparations before mother particle construction
       for(int iTC=0; iTC<nTC; iTC++)
       {
-        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC] && iTrN < negTracksSize[0]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ? We lose one track if endTC=Last()=zeroth position in SIMD vector, don't we?
+        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]-1 && iTrN < negTracksSize[0]; iTrN += float_vLen)                                   // WHY iTrN < endTCNeg[iTC], not <= ? We lose one track if endTC=Last()=zeroth position in SIMD vector, don't we?
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN); // number of tracks in certain SIMD cluster. float_vLen or untill the end, if end is closer
 
@@ -1107,7 +1107,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
           if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                            // both pos&neg are secondaries
             chiPrimNeg = reinterpret_cast<const float_v&>( ChiToPrimVtx[trTypeIndexNeg[iTrTypeNeg]][iTrN]);
           
-          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC] && iTrP < nPositiveTracks; iTrP += float_vLen)                                 // the same problems as in line 1081
+          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC]-1 && iTrP < nPositiveTracks; iTrP += float_vLen)                                 // the same problems as in line 1081
           {
             const int NTracks = (iTrP + float_vLen < nPositiveTracks) ? float_vLen : (nPositiveTracks - iTrP);    // NTracks means "NTracksPos", doesn't it? WHY not name in the same tradition?
 
