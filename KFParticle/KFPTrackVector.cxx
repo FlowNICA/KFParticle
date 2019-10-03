@@ -87,7 +87,7 @@ void KFPTrackVector::Resize(const int n)
   fPVIndex.resize(n);
   fNPixelHits.resize(n);
   
-  fMotherPdg.resise(n);
+  fMotherPdg.resize(n);
 }
 
 void KFPTrackVector::Set(KFPTrackVector& v, int vSize, int offset)
