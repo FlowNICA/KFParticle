@@ -63,6 +63,8 @@ class FullControlFinder{
   int is_from_pv_field_id_ {-1};
   int sigma_mass_ratio_field_id_ {-1};
   int chi2_topo_field_id_ {-1};
+  
+  int mother_is_lambda_field_id_ {-1};
     
   float cut_chi2_prim_pos_{18.4207};
   float cut_chi2_prim_neg_{18.4207};

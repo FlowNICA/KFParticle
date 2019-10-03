@@ -40,7 +40,7 @@ class KFPTrackVector
 {
   friend class KFParticleTopoReconstructor;
  public:
-  KFPTrackVector():fId(), fPDG(), fQ(), fPVIndex(), fNPixelHits(), fNE(0), fNMu(0), fNPi(0), fNK(0), fNP(0), fND(0), fNT(0), fNHe3(0), fNHe4(0) { }
+  KFPTrackVector():fId(), fPDG(), fQ(), fPVIndex(), fNPixelHits(), fMotherPdg(), fNE(0), fNMu(0), fNPi(0), fNK(0), fNP(0), fND(0), fNT(0), fNHe3(0), fNHe4(0) { }
   ~KFPTrackVector() { }
 
   /**Returns size of the vectors. All data vectors have the same size. */
@@ -80,6 +80,8 @@ class KFPTrackVector
   const kfvector_int& Q()          const { return fQ; }       ///< Returns constant reference to the vector with charge KFPTrackVector::fQ.
   const kfvector_int& PVIndex()    const { return fPVIndex; } ///< Returns constant reference to the vector with indices of corresponding primary vertex KFPTrackVector::fPVIndex.
   const kfvector_int& NPixelHits() const { return fNPixelHits; } ///< Returns constant reference to the vector with the number of precise measurements KFPTrackVector::fNPixelHits.
+  
+  const kfvector_int& MotherPdg()  const { return fMotherPdg; }  ///< Returns constant reference to the vector with the mother's particle pdg
 
   float Pt(const int n) const { return sqrt(fP[3][n]*fP[3][n]+fP[4][n]*fP[4][n]); } ///< Returns transverse momentum of the track with index "n".
   float P(const int n)  const { return sqrt(fP[3][n]*fP[3][n]+fP[4][n]*fP[4][n]+fP[5][n]*fP[5][n]); } ///< Returns momentum of the track with index "n".
@@ -108,6 +110,8 @@ class KFPTrackVector
   void SetLastTritium (int n)              { fNT = n; }                  ///< Sets index of the last triton.
   void SetLastHe3     (int n)              { fNHe3 = n; }                ///< Sets index of the last He3.
   void SetLastHe4     (int n)              { fNHe4 = n; }                ///< Sets index of the last He4.
+  
+  void SetMotherPdg   (int value, int iTr) { fMotherPdg[iTr] = value; }  ///< Sets mother's particle pdg
   
   void RecalculateLastIndex()
   {
@@ -227,6 +231,12 @@ class KFPTrackVector
     for(int n=0; n<localSize; n++)
       fNPixelHits[n] = track.fNPixelHits[n];
     
+    
+    fMotherPdg.resize(localSize);
+    for(int n=0; n<localSize; n++)
+      fMotherPdg[n] = track.fMotherPdg[n];
+    
+    
     fNE   = track.fNE;
     fNMu  = track.fNMu;
     fNPi  = track.fNPi;
@@ -275,6 +285,11 @@ class KFPTrackVector
     offset += Size();
 
     memcpy( &(data[offset]), &(fNPixelHits[0]), Size()*sizeof(float));
+    offset += Size();
+    
+    
+    
+    memcpy( &(data[offset]), &(fMotherPdg[0]), Size()*sizeof(float));
     offset += Size();
     
 #ifdef NonhomogeneousField
@@ -333,6 +348,12 @@ class KFPTrackVector
     memcpy( &(fNPixelHits[0]), &(data[offset]), Size()*sizeof(float));
     offset += Size();
     
+    
+    
+    memcpy( &(fMotherPdg[0]), &(data[offset]), Size()*sizeof(float));
+    offset += Size();
+    
+    
 #ifdef NonhomogeneousField
     for(int iF=0; iF<10; iF++)
     {
@@ -368,6 +389,8 @@ class KFPTrackVector
   kfvector_int fQ;          ///< Vector with the charge of the tracks.
   kfvector_int fPVIndex;    ///< Vector with the index of the corresponding primary vertex. If track is considered secondary "-1" is stored.
   kfvector_int fNPixelHits; ///< Vector with the number of hits from precise detectors (like MVD in CBM, HFT in STAR, ITS in ALICE, etc.) 
+  
+  kfvector_int fMotherPdg;  ///< Vector with the mother's pdg from MC
   
   /** The coefficients of the field approximation of each field component along the track trajectory using parabolas: \n
    ** cx0 = fField[0], cx1 = fField[1], cx2 = fField[2] - coefficients of the Bx approximation; \n

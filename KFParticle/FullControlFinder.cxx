@@ -199,6 +199,8 @@ void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_de
   sigma_mass_ratio_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("sigmamassratio");
   chi2_topo_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("chi2topo");
   
+  mother_is_lambda_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("motherislamda");
+  
   mass_field_id_  = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("mass");
   rap_field_id_   = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("rapidity");
   pdg_field_id_w_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("pdg");
@@ -227,14 +229,13 @@ void FullControlFinder::FindParticles()
       
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
       
-      AnalysisTree::Track* Lambda = lambdas_->AddChannel();
-      Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
+      int mother_is_lamda = 0;
+      if(tracks_.MotherPdg()[trIndex_[kSecPos][iSecPos] == 3122 && tracks_.MotherPdg()[trIndex_[kSecNeg][iSecNeg]] == 3122)
+        mother_is_lamda = 1;
       
       float chi2_prim_pos = CalculateChiToPrimaryVertex(trackPos, pidPos);
-      Lambda -> SetField(chi2_prim_pos, chi2_prim_pos_field_id_);
       if(chi2_prim_pos <= cut_chi2_prim_pos_) continue;      
       float chi2_prim_neg = CalculateChiToPrimaryVertex(trackNeg, pidNeg);
-      Lambda -> SetField(chi2_prim_neg, chi2_prim_neg_field_id_);
       if(chi2_prim_neg <= cut_chi2_prim_neg_) continue;
       
       std::array<float, 8> pars1;
@@ -242,19 +243,15 @@ void FullControlFinder::FindParticles()
       CalculateParamsInPCA(trackPos, pidPos, trackNeg, pidNeg, pars1, pars2);
       
       float distance = CalculateDistanceBetweenParticles(pars1, pars2);
-      Lambda -> SetField(distance, distance_field_id_);
       if(distance > cut_distance_) continue;
       
       float cosine_daughter_pos = CalculateCosMomentumSum(pars1, pars2);
       float cosine_daughter_neg = CalculateCosMomentumSum(pars2, pars1);
-      Lambda -> SetField(cosine_daughter_pos, cosine_daughter_pos_field_id_);
-      Lambda -> SetField(cosine_daughter_neg, cosine_daughter_neg_field_id_);
       if(cosine_daughter_pos < cut_cosine_daughter_pos_ || cosine_daughter_neg < cut_cosine_daughter_neg_) continue;
       
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
       float chi2_geo = CalculateChi2Geo(mother);
-      Lambda -> SetField(chi2_geo, chi2_geo_field_id_);
       if(!finite(chi2_geo) || chi2_geo <= 0) continue;
       if(chi2_geo >= cut_chi2_geo_) continue;
       
@@ -262,16 +259,13 @@ void FullControlFinder::FindParticles()
       int is_from_pv;
       CalculateMotherProperties(mother, l, ldl, is_from_pv);
       
-      Lambda -> SetField(l, l_field_id_);
-      Lambda -> SetField(ldl, ldl_field_id_);
-      Lambda -> SetField(is_from_pv, is_from_pv_field_id_);
+      
       
       if(l >= cut_l_up_) continue;
       if(ldl <= cut_ldl_) continue;
       if(is_from_pv == cut_is_from_pv_) continue;
       if(l <= cut_l_down_) continue;
       
-
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
       float mass_err;   // unused now
@@ -279,19 +273,35 @@ void FullControlFinder::FindParticles()
       
 //--------- cuts unused at the current stage of reconstruction---------------      
       float sigma_mass_ratio = fabs(mass_ - mass_lambda) / sigma_lambda;
-      Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
 //       if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
 //      
       float chi2_topo = CalculateChi2Topo(mother);
-      Lambda -> SetField(chi2_topo, chi2_topo_field_id_);
 //       if(chi2_topo_ > cut_chi2_topo_) continue;
 //       if(ldl_ < cut_ldl_sec_) continue;
 //---------------------------------------------------------------------------
+      
+      // All cuts passed. Only "good" lambda-candidates remain
+      AnalysisTree::Track* Lambda = lambdas_->AddChannel();
+      Lambda->Init( config_->GetBranchConfig( lambdas_->GetId() ) );
 
-      Lambda->SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
-      Lambda->SetField( float(mass_), mass_field_id_);
-      Lambda->SetField( float(particle.GetRapidity()), rap_field_id_);
-      Lambda->SetField( int(3122), pdg_field_id_w_);
+      Lambda -> SetField(chi2_prim_pos, chi2_prim_pos_field_id_);
+      Lambda -> SetField(chi2_prim_neg, chi2_prim_neg_field_id_);
+      Lambda -> SetField(distance, distance_field_id_);
+      Lambda -> SetField(cosine_daughter_pos, cosine_daughter_pos_field_id_);
+      Lambda -> SetField(cosine_daughter_neg, cosine_daughter_neg_field_id_);
+      Lambda -> SetField(chi2_geo, chi2_geo_field_id_);
+      Lambda -> SetField(l, l_field_id_);
+      Lambda -> SetField(ldl, ldl_field_id_);
+      Lambda -> SetField(is_from_pv, is_from_pv_field_id_);
+      Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
+      Lambda -> SetField(chi2_topo, chi2_topo_field_id_);
+      
+      Lambda -> SetField(mother_is_lamda, mother_is_lambda_field_id_);
+
+      Lambda -> SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
+      Lambda -> SetField( float(mass_), mass_field_id_);
+      Lambda -> SetField( float(particle.GetRapidity()), rap_field_id_);
+      Lambda -> SetField( int(3122), pdg_field_id_w_);
       
       N++;
       
