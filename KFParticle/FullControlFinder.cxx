@@ -230,7 +230,7 @@ void FullControlFinder::FindParticles()
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
       
       int mother_is_lamda = 0;
-      if(tracks_.MotherPdg()[trIndex_[kSecPos][iSecPos] == 3122 && tracks_.MotherPdg()[trIndex_[kSecNeg][iSecNeg]] == 3122)
+      if(tracks_.MotherPdg()[trIndex_[kSecPos][iSecPos]] == 3122 && tracks_.MotherPdg()[trIndex_[kSecNeg][iSecNeg]] == 3122)
         mother_is_lamda = 1;
       
       float chi2_prim_pos = CalculateChiToPrimaryVertex(trackPos, pidPos);
