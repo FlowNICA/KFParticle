@@ -296,7 +296,7 @@ void FullControlFinder::FindParticles()
       Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
       Lambda -> SetField(chi2_topo, chi2_topo_field_id_);
       
-      Lambda -> SetField(mother_is_lamda, mother_is_lambda_field_id_);
+      //Lambda -> SetField(mother_is_lamda, mother_is_lambda_field_id_);
 
       Lambda -> SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
       Lambda -> SetField( float(mass_), mass_field_id_);
