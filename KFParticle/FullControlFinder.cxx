@@ -199,7 +199,7 @@ void FullControlFinder::SetATConfiguration(AnalysisTree::TrackDetector* track_de
   sigma_mass_ratio_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("sigmamassratio");
   chi2_topo_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("chi2topo");
   
-  mother_is_lambda_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("motherislamda");
+  mother_is_lambda_field_id_ = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("motherislambda");
   
   mass_field_id_  = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("mass");
   rap_field_id_   = config_->GetBranchConfig( lambdas_->GetId() ).GetFieldId("rapidity");
@@ -296,7 +296,6 @@ void FullControlFinder::FindParticles()
       Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
       Lambda -> SetField(chi2_topo, chi2_topo_field_id_);
       
-      std::cout << mother_is_lambda_field_id_ << std::endl;
       Lambda -> SetField(mother_is_lamda, mother_is_lambda_field_id_);
 
       Lambda -> SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
