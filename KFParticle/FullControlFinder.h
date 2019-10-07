@@ -26,6 +26,8 @@ class FullControlFinder{
   
   void  FindParticles();
   
+  const KFPTrackVector* GetTracks() const {return tracks_};
+  
   std::vector<float> GetMass() const {return vec_mass_;};
 
  protected:
