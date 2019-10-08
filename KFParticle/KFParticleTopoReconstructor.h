@@ -209,7 +209,7 @@ class KFParticleTopoReconstructor{
   void GetListOfDaughterTracks(const KFParticle& particle, std::vector<int>& daughters);
   bool ParticleHasRepeatingDaughters(const KFParticle& particle);
 
-  const KFParticleTopoReconstructor &operator=(const KFParticleTopoReconstructor& a)
+  const KFParticleTopoReconstructor& operator=(const KFParticleTopoReconstructor& a)
   {
     /** Copy operator. All pointers are set to zero, other members are copied. Returns the current object after copying is finished. **/
     fKFParticlePVReconstructor = 0;

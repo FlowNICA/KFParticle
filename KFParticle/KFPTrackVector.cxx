@@ -86,8 +86,6 @@ void KFPTrackVector::Resize(const int n)
   fQ.resize(n);
   fPVIndex.resize(n);
   fNPixelHits.resize(n);
-  
-  fMotherPdg.resize(n);
 }
 
 void KFPTrackVector::Set(KFPTrackVector& v, int vSize, int offset)
@@ -115,8 +113,6 @@ void KFPTrackVector::Set(KFPTrackVector& v, int vSize, int offset)
     fQ[offset+iV] = v.fQ[iV];
     fPVIndex[offset+iV] = v.fPVIndex[iV];
     fNPixelHits[offset+iV] = v.fNPixelHits[iV];
-    
-    fMotherPdg[offset+iV] = v.fMotherPdg[iV];
   }
 }
 
@@ -233,19 +229,6 @@ void KFPTrackVector::SetTracks(const KFPTrackVector& track, const kfvector_uint&
     int_v& vec = reinterpret_cast<int_v&>(fNPixelHits[iElement]);
     vec.gather(&(track.fNPixelHits[0]), index, int_m(iElement+uint_v::IndexesFromZero()<nIndexes));
   }
-  
-  {
-    int iElement=0;
-    for(iElement=0; iElement<nIndexes-float_vLen; iElement += float_vLen)
-    {
-      const uint_v& index = reinterpret_cast<const uint_v&>(trackIndex[iElement]);
-      int_v& vec = reinterpret_cast<int_v&>(fMotherPdg[iElement]);
-      vec.gather(&(track.fMotherPdg[0]), index);
-    }
-    const uint_v& index = reinterpret_cast<const uint_v&>(trackIndex[iElement]);
-    int_v& vec = reinterpret_cast<int_v&>(fMotherPdg[iElement]);
-    vec.gather(&(track.fMotherPdg[0]), index, int_m(iElement+uint_v::IndexesFromZero()<nIndexes));
-  }
 }
 
 void KFPTrackVector::GetTrack(KFPTrack& track, const int n)
@@ -338,7 +321,7 @@ void KFPTrackVector::RotateXY( float_v alpha, int firstElement )
 } // RotateXY
 
 
-void KFPTrackVector::PrintTrack(int n) const
+void KFPTrackVector::PrintTrack(int n)
 {
   /** Prints parameters of the track with index "n".
    ** \param[in] n - index of track to be printed
@@ -351,10 +334,10 @@ void KFPTrackVector::PrintTrack(int n) const
     std::cout << fC[i][n] << " ";
   std::cout << std::endl;
   
-  std::cout  <<  fId[n] << " " << fPDG[n] << " " << fQ[n] << " " << fPVIndex[n]  << " " << fNPixelHits[n] << " " << fMotherPdg[n] << std::endl;
+  std::cout  <<  fId[n] << " " << fPDG[n] << " " << fQ[n] << " " << fPVIndex[n]  << " " << fNPixelHits[n] << std::endl;
 }
 
-void KFPTrackVector::Print() const
+void KFPTrackVector::Print()
 {
   /** Prints all field of the current object. **/
   
