@@ -321,7 +321,7 @@ void KFPTrackVector::RotateXY( float_v alpha, int firstElement )
 } // RotateXY
 
 
-void KFPTrackVector::PrintTrack(int n)
+void KFPTrackVector::PrintTrack(int n) const
 {
   /** Prints parameters of the track with index "n".
    ** \param[in] n - index of track to be printed
@@ -337,7 +337,7 @@ void KFPTrackVector::PrintTrack(int n)
   std::cout  <<  fId[n] << " " << fPDG[n] << " " << fQ[n] << " " << fPVIndex[n]  << " " << fNPixelHits[n] << std::endl;
 }
 
-void KFPTrackVector::Print()
+void KFPTrackVector::Print() const
 {
   /** Prints all field of the current object. **/
   
