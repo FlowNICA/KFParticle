@@ -261,6 +261,16 @@ void FullControlFinder::FindParticles()
       float mass_err;                         // unused
       particle.GetMass(mass_, mass_err);
       
+      if(mother_id_.size!=0)
+      {
+        if(mother_id_.at(trIndex_[kSecPos][iSecPos]) == mother_id_.at(trIndex_[kSecNeg][iSecNeg]) && 
+           mother_id_.at(trIndex_[kSecPos][iSecPos]) >=0 && 
+           mother_id_.at(trIndex_[kSecPos][iSecPos]) == pdg_lambda)
+          is_signal_ = 1;
+        else
+          is_signal_ = 0;
+      }
+      
 //--------- cuts unused at the current stage of reconstruction---------------      
       float sigma_mass_ratio = fabs(mass_ - mass_lambda) / sigma_lambda;
 //       if(sigma_mass_ratio_ > cut_sigma_mass_ratio_) continue;
