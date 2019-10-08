@@ -7,12 +7,6 @@
 #include "KFParticleSIMD.h"
 #include "FullControlConstants.h"
 
-#include "AnalysisTree/Track.h"
-#include "AnalysisTree/Hit.h"
-#include "AnalysisTree/Detector.h"
-#include "AnalysisTree/Configuration.h"
-#include "AnalysisTree/EventHeader.h"
-
 class FullControlFinder{
  public:
    
@@ -22,14 +16,29 @@ class FullControlFinder{
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
   void  CancelCuts();
   void  SortTracks();
-  void  SetATConfiguration(AnalysisTree::TrackDetector* track_det, AnalysisTree::Configuration* conf);
   
   void  FindParticles();
   
   const KFPTrackVector* GetTracks() const {return &tracks_;};
   
-  std::vector<float> GetMass() const {return vec_mass_;};
-
+  const std::vector<float>& GetMass() const {return vec_mass_;};
+  const std::vector<float>& GetPx() const {return vec_px_;};
+  const std::vector<float>& GetPy() const {return vec_py_;};
+  const std::vector<float>& GetPz() const {return vec_pz_;};
+  const std::vector<float>& GetRapidity() const {return vec_rap_;};
+  const std::vector<int>  & GetIsSignal() const {return vec_is_signal_;};
+  const std::vector<float>& GetChi2PrimPos() const {return vec_chi2_prim_pos_;};
+  const std::vector<float>& GetChi2PrimNeg() const {return vec_chi2_prim_neg_;};
+  const std::vector<float>& GetDistance() const {return vec_distance_;};
+  const std::vector<float>& GetCosDaughterPos() const {return vec_cosine_daughter_pos_;};
+  const std::vector<float>& GetCosDaughterNeg() const {return vec_cosine_daughter_neg_;};
+  const std::vector<float>& GetChi2Geo() const {return vec_chi2_geo_;};
+  const std::vector<float>& GetL() const {return vec_l_;};
+  const std::vector<float>& GetLdL() const {return vec_ldl_;};
+  const std::vector<int>  & GetIsFromPV() const {return vec_is_from_pv_;};
+  const std::vector<float>& GetSigmaMassRatio() const {return vec_sigma_mass_ratio_;};
+  const std::vector<float>& GetChi2Topo() const {return vec_chi2_topo_;};
+  
  protected:
    
   float CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
@@ -46,25 +55,46 @@ class FullControlFinder{
   KFVertex prim_vx_;
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
   
-  float mass_{-999.};
+  float mass_ {-999.};
+  float px_ {-999.};
+  float py_ {-999.};
+  float pz_ {-999.};
+  float rap_ {-999.};
+  int   is_signal_ {-1};
+  
   std::vector<float> vec_mass_;
-  
-  
-  AnalysisTree::TrackDetector* lambdas_{nullptr};
-  AnalysisTree::Configuration* config_{nullptr};
-  
+  std::vector<float> vec_px_;
+  std::vector<float> vec_py_;
+  std::vector<float> vec_pz_;
+  std::vector<float> vec_rap_; 
+  std::vector<int>   vec_is_signal_;
+    
   // lambda candidate selection parameters (to be cut)
-  int chi2_prim_pos_field_id_ {-1};
-  int chi2_prim_neg_field_id_ {-1};
-  int distance_field_id_ {-1};
-  int cosine_daughter_pos_field_id_ {-1};
-  int cosine_daughter_neg_field_id_ {-1};
-  int chi2_geo_field_id_ {-1};
-  int l_field_id_ {-1};
-  int ldl_field_id_ {-1};
-  int is_from_pv_field_id_ {-1};
-  int sigma_mass_ratio_field_id_ {-1};
-  int chi2_topo_field_id_ {-1};
+  float chi2_prim_pos_ {-1.};
+  float chi2_prim_neg_ {-1.};
+  float distance_ {-1.};
+  float cosine_daughter_pos_ {-1.};
+  float cosine_daughter_neg_ {-1.};
+  float chi2_geo_ {-1.};
+  float l_ {-1.};
+  float ldl_ {-1.};
+  int   is_from_pv_ {-1};
+  float sigma_mass_ratio_ {-1.};
+  float chi2_topo_ {-1.};
+  
+  // vectors with lamda selection parameters (to be written)
+  std::vector<float> vec_chi2_prim_pos_;
+  std::vector<float> vec_chi2_prim_neg_;
+  std::vector<float> vec_distance_;
+  std::vector<float> vec_cosine_daughter_pos_;
+  std::vector<float> vec_cosine_daughter_neg_;
+  std::vector<float> vec_chi2_geo_;
+  std::vector<float> vec_l_;
+  std::vector<float> vec_ldl_;
+  std::vector<int>   vec_is_from_pv_;
+  std::vector<float> vec_sigma_mass_ratio_;
+  std::vector<float> vec_chi2_topo_;
+  
       
   float cut_chi2_prim_pos_{18.4207};
   float cut_chi2_prim_neg_{18.4207};
@@ -77,11 +107,6 @@ class FullControlFinder{
   float cut_ldl_{5.}; float cut_ldl_sec_{10.};
   float cut_sigma_mass_ratio_{3.};
   float cut_chi2_topo_{5.};
-  
-  // lamda selected parameters
-  int mass_field_id_{-1};
-  int rap_field_id_{-1};
-  int pdg_field_id_w_{-1};
   
   }; 
 
