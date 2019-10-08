@@ -261,7 +261,7 @@ void FullControlFinder::FindParticles()
       float mass_err;                         // unused
       particle.GetMass(mass_, mass_err);
       
-      if(mother_id_.size!=0)
+      if(mother_id_.size()!=0)
       {
         if(mother_id_.at(trIndex_[kSecPos][iSecPos]) == mother_id_.at(trIndex_[kSecNeg][iSecNeg]) && 
            mother_id_.at(trIndex_[kSecPos][iSecPos]) >=0 && 
