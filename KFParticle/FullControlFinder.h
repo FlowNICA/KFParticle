@@ -14,6 +14,7 @@ class FullControlFinder{
   virtual ~FullControlFinder() = default;
   
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
+  void  SetMotherInfo(std::vector<int> motherId, std::vector<int> motherPdg);
   void  CancelCuts();
   void  SortTracks();
   
@@ -53,6 +54,9 @@ class FullControlFinder{
   
   KFPTrackVector tracks_;
   KFVertex prim_vx_;
+  std::vector<int> mother_id_;
+  std::vector<int> mother_pdg_;
+  
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
   
   float mass_ {-999.};

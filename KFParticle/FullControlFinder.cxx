@@ -9,6 +9,12 @@ void FullControlFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
   prim_vx_ = pv;
 }
 
+void FullControlFinder::SetMotherInfo(std::vector<int> motherId, std::vector<int> motherPdg)
+{
+  mother_id_ = motherId;
+  mother_pdg_ = motherPdg;
+}
+
 void FullControlFinder::CancelCuts()
 {
   float practInf = 1e9;
