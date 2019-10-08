@@ -228,9 +228,7 @@ void FullControlFinder::FindParticles()
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
       
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
-      
-      int mother_is_lamda = 0;
-      
+            
       float chi2_prim_pos = CalculateChiToPrimaryVertex(trackPos, pidPos);
       if(chi2_prim_pos <= cut_chi2_prim_pos_) continue;      
       float chi2_prim_neg = CalculateChiToPrimaryVertex(trackNeg, pidNeg);
@@ -294,8 +292,6 @@ void FullControlFinder::FindParticles()
       Lambda -> SetField(sigma_mass_ratio, sigma_mass_ratio_field_id_);
       Lambda -> SetField(chi2_topo, chi2_topo_field_id_);
       
-      Lambda -> SetField(mother_is_lamda, mother_is_lambda_field_id_);
-
       Lambda -> SetMomentum( float(particle.GetPx()), float(particle.GetPy()), float(particle.GetPz()) );
       Lambda -> SetField( float(mass_), mass_field_id_);
       Lambda -> SetField( float(particle.GetRapidity()), rap_field_id_);
