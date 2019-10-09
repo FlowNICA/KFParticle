@@ -3,6 +3,8 @@
 #include "KFParticleSIMD.h"
 #include "KFParticle.h"
 
+#include "Output_interface.h"
+
 void FullControlFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
 {
   tracks_ = tracks;
