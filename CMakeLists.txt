@@ -67,6 +67,8 @@ set (SOURCES
   KFParticleTest/KFParticleTest.cxx
   
   KFParticle/FullControlFinder.cxx
+  Interface/General_interface.cxx
+  Interface/Output_interface.cxx
 )
 
 set (HEADERS
@@ -119,6 +121,8 @@ Set(NODICT_HEADERS
   
   KFParticle/FullControlFinder.h
   KFParticle/FullControlConstants.h
+  Interface/General_interface.h
+  Interface/Output_interface.h
 )
 
 install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
