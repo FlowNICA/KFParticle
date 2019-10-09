@@ -6,8 +6,10 @@
 #include "KFPTrack.h"
 #include "KFParticleSIMD.h"
 #include "FullControlConstants.h"
+#include "FC_Cuts.h"
 
-class FullControlFinder{
+class FullControlFinder
+{
   
  public:
    
@@ -42,20 +44,8 @@ class FullControlFinder{
   
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
              
- // KFPFCuts cuts_;
-
-  float cut_chi2_prim_pos_{18.4207};
-  float cut_chi2_prim_neg_{18.4207};
-  float cut_distance_{1.};
-  float cut_cosine_daughter_pos_{0.};
-  float cut_cosine_daughter_neg_{0.};
-  float cut_chi2_geo_{3.};
-  float cut_l_up_{200.}; float cut_l_down_{-5.};
-  int   cut_is_from_pv_{-1};
-  float cut_ldl_{5.}; float cut_ldl_sec_{10.};
-  float cut_sigma_mass_ratio_{3.};
-  float cut_chi2_topo_{5.};
+  FC_Cuts cuts_;
   
-  }; 
+}; 
 
 #endif //FullControlFinder_H
