@@ -42,6 +42,8 @@ class FullControlFinder{
   
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
              
+ // KFPFCuts cuts_;
+
   float cut_chi2_prim_pos_{18.4207};
   float cut_chi2_prim_neg_{18.4207};
   float cut_distance_{1.};

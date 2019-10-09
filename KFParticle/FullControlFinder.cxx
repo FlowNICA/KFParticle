@@ -234,12 +234,16 @@ void FullControlFinder::FindParticles()
       chi2_prim_neg_ = CalculateChiToPrimaryVertex(trackNeg, pidNeg);
       if(chi2_prim_neg_ <= cut_chi2_prim_neg_) continue;
       
+     // Candidate lambda;
+
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
       CalculateParamsInPCA(trackPos, pidPos, trackNeg, pidNeg, pars1, pars2);
       
+      //lambda.SetDistance(CalculateDistanceBetweenParticles(pars1, pars2));
+
       distance_ = CalculateDistanceBetweenParticles(pars1, pars2);
-      if(distance_ > cut_distance_) continue;
+     // if(lambda.GetDistance() > cuts_.GetDistanceCut()) continue;
       
       cosine_daughter_pos_ = CalculateCosMomentumSum(pars1, pars2);
       cosine_daughter_neg_ = CalculateCosMomentumSum(pars2, pars1);
