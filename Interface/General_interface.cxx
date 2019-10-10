@@ -31,10 +31,9 @@ void General_interface::AddTrack(float x, float y, float z,
                                  float field[10],
                                  int charge,
                                  int pdg,
+                                 int id,
                                  int nhits,
-                                 int passcuts,
-                                 int motherId,
-                                 int motherPdg)
+                                 int passcuts)
 {
   if(nhits<3 || passcuts == 0 || pdg == 0 || pdg == -2)
     return;  
@@ -51,11 +50,9 @@ void General_interface::AddTrack(float x, float y, float z,
   for(int i=0; i<10; i++)
     particle.SetFieldCoeff(field[i], i);
   particle.Q() = charge;
+  particle.SetPDG(pdg);
   
   tracks_.push_back(particle);
-  pdg_.push_back(pdg);  
-  mother_id_.push_back(motherId);
-  mother_pdg_.push_back(motherPdg);
 }
 
 KFParticleTopoReconstructor* General_interface::CreateTopoReconstructor()
@@ -73,7 +70,7 @@ KFParticleTopoReconstructor* General_interface::CreateTopoReconstructor()
       track_tmp.SetCovariance(tracks_[iTr].GetCovariance(iC), iC, iTr);
     for(Int_t iF=0; iF<10; iF++)
       track_tmp.SetFieldCoefficient(tracks_[iTr].GetFieldCoeff()[iF], iF, iTr);
-    track_tmp.SetPDG(pdg_[iTr], iTr);
+    track_tmp.SetPDG(tracks_[iTr].GetPDG(), iTr);
     track_tmp.SetQ(tracks_[iTr].GetQ(), iTr);
     track_tmp.SetPVIndex(-1, iTr);    
   }
@@ -100,7 +97,7 @@ FullControlFinder General_interface::CreateFCFinder()
       track_tmp.SetCovariance(tracks_[iTr].GetCovariance(iC), iC, iTr);
     for(Int_t iF=0; iF<10; iF++)
       track_tmp.SetFieldCoefficient(tracks_[iTr].GetFieldCoeff()[iF], iF, iTr);
-    track_tmp.SetPDG(pdg_[iTr], iTr);
+    track_tmp.SetPDG(tracks_[iTr].GetPDG(), iTr);
     track_tmp.SetQ(tracks_[iTr].GetQ(), iTr);
     track_tmp.SetPVIndex(-1, iTr);   
   }

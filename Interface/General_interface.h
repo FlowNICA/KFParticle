@@ -15,7 +15,7 @@ class General_interface{
   void SetPV(float x, float y, float z);
   void SetPV(KFVertex vertex);
   void SetPV(KFPVertex vertex);
-  void AddTrack(float x, float y, float z, float px, float py, float pz, std::vector<float> cov, float field[10], int charge, int pdg, int nhits=4, int passcuts=1, int motherId=-999, int motherPdg=-999);
+  void AddTrack(float x, float y, float z, float px, float py, float pz, std::vector<float> cov, float field[10], int charge, int pdg, int id, int nhits=4, int passcuts=1);
   KFParticleTopoReconstructor* CreateTopoReconstructor();                                                                                             //^ not good
   FullControlFinder CreateFCFinder();
   
@@ -26,9 +26,6 @@ class General_interface{
   KFVertex vtx_;
   
   std::vector<KFParticle> tracks_;
-  std::vector<int> pdg_;
-  std::vector<int> mother_id_;
-  std::vector<int> mother_pdg_;
 };
 
 #endif //General_interface_H
