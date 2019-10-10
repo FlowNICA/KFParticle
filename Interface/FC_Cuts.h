@@ -16,20 +16,24 @@ class FC_Cuts
   void SetCutCosineDaughterPos(float value){cut_cosine_daughter_pos_ = value;};
   void SetCutCosineDaughterNeg(float value){cut_cosine_daughter_neg_ = value;};
   void SetCutChi2Geo(float value){cut_chi2_geo_ = value;};
-  void SetCutL(float value){cut_l_ = value;};
+  void SetCutLUp(float value){cut_l_up_ = value;};
+  void SetCutLDown(float value){cut_l_down_ = value;};
   void SetCutLdL(float value){cut_ldl_ = value;};
   void SetCutIsFromPV(int value){cut_is_from_pv_ = value;};
   void SetCutSigmaMassRatio(float value){cut_sigma_mass_ratio_ = value;};
   void SetCutChi2Topo(float value){cut_chi2_topo_ = value;};
   
+  void  CancelCuts();
+  
   //  lambda candidate parameters getters
   const float GetCutChi2PrimPos() const {return cut_chi2_prim_pos_;};
   const float GetCutChi2PrimNeg() const {return cut_chi2_prim_neg_;};
   const float GetCutDistance() const {return cut_distance_;};
-  const float GetCutCosDaughterPos() const {return cut_cosine_daughter_pos_;};
-  const float GetCutCosDaughterNeg() const {return cut_cosine_daughter_neg_;};
+  const float GetCutCosineDaughterPos() const {return cut_cosine_daughter_pos_;};
+  const float GetCutCosineDaughterNeg() const {return cut_cosine_daughter_neg_;};
   const float GetCutChi2Geo() const {return cut_chi2_geo_;};
-  const float GetCutL() const {return cut_l_;};
+  const float GetCutLUp() const {return cut_l_up_;};
+  const float GetCutLDown() const {return cut_l_down_;};
   const float GetCutLdL() const {return cut_ldl_;};
   const int   GetCutIsFromPV() const {return cut_is_from_pv_;};
   const float GetCutSigmaMassRatio() const {return cut_sigma_mass_ratio_;};

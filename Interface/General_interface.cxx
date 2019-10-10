@@ -105,7 +105,6 @@ FullControlFinder General_interface::CreateFCFinder()
     track_tmp.SetPVIndex(-1, iTr);   
   }
   FCF.Init(track_tmp, vtx_);
-  FCF.SetMotherInfo(mother_id_, mother_pdg_);
   
   return FCF;  
 }

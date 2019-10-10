@@ -17,13 +17,13 @@ class FullControlFinder
   virtual ~FullControlFinder() = default;
   
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
-  void  SetMotherInfo(std::vector<int> motherId, std::vector<int> motherPdg);
-  void  CancelCuts();
   void  SortTracks();
   
   void  FindParticles();
   
   const KFPTrackVector* GetTracks() const {return &tracks_;};
+  
+  const std::vector<float>& GetMass() const {return vec_mass_;};            // TODO remove after debug procedure
   
  protected:
    
@@ -39,13 +39,13 @@ class FullControlFinder
   
   KFPTrackVector tracks_;
   KFVertex prim_vx_;
-  std::vector<int> mother_id_;
-  std::vector<int> mother_pdg_;
   
   std::array<std::vector<int>, kNumberOfTrackTypes> trIndex_;
              
   FC_Cuts cuts_;
   
-}; 
+  float mass_;                             // TODO remove after debug procedure
+  std::vector<float> vec_mass_;            // TODO remove after debug procedure
+};
 
-#endif //FullControlFinder_H
+#endif//FullControlFinder_H

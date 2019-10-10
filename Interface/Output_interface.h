@@ -3,7 +3,7 @@
 
 #include "KFParticle.h"
 
-class Output_interface: KFParticle
+class Output_interface
 {
   
  public:
@@ -30,8 +30,8 @@ class Output_interface: KFParticle
   const float GetChi2PrimPos() const {return chi2_prim_pos_;};
   const float GetChi2PrimNeg() const {return chi2_prim_neg_;};
   const float GetDistance() const {return distance_;};
-  const float GetCosDaughterPos() const {return cosine_daughter_pos_;};
-  const float GetCosDaughterNeg() const {return cosine_daughter_neg_;};
+  const float GetCosineDaughterPos() const {return cosine_daughter_pos_;};
+  const float GetCosineDaughterNeg() const {return cosine_daughter_neg_;};
   const float GetChi2Geo() const {return chi2_geo_;};
   const float GetL() const {return l_;};
   const float GetLdL() const {return ldl_;};

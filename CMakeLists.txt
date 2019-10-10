@@ -21,7 +21,8 @@ endif ()
 
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS} ${ROOTSYS})
 
-set(FIXTARGET FALSE CACHE BOOL "Compile for fix target geometry.")
+# set(FIXTARGET FALSE CACHE BOOL "Compile for fix target geometry.")
+set(FIXTARGET TRUE CACHE BOOL "Compile for fix target geometry.")
 
 find_package(ROOT REQUIRED COMPONENTS Core Hist Matrix Physics EG Gpad Graf Graf3d RIO MathCore)
 If(DEFINED Vc_INCLUDE_DIR AND Vc_LIBRARIES)
@@ -32,6 +33,7 @@ EndIf()
 
 Set(INCLUDE_DIRECTORIES
   ${PROJECT_SOURCE_DIR}/KFParticle
+  ${PROJECT_SOURCE_DIR}/Interface
   ${PROJECT_SOURCE_DIR}/KFParticlePerformance
 )
 
