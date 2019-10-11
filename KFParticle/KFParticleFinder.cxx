@@ -1107,7 +1107,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
           if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )                                                            // both pos&neg are secondaries
             chiPrimNeg = reinterpret_cast<const float_v&>( ChiToPrimVtx[trTypeIndexNeg[iTrTypeNeg]][iTrN]);
           
-          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC] &&; iTrP += float_vLen)                                 // the same problems as in line 1081
+          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC]; iTrP += float_vLen)                                 // the same problems as in line 1081
           {
             const int NTracks = (iTrP + float_vLen < nPositiveTracks) ? float_vLen : (nPositiveTracks - iTrP);    // NTracks means "NTracksPos", doesn't it? WHY not name in the same tradition?
 
