@@ -25,7 +25,7 @@ class FullControlFinder
   
   const std::vector<float>& GetMass() const {return vec_mass_;};            // TODO remove after debug procedure
   
-  FC_Cuts& GetCuts() const {return cuts_;};                                        // Is it OK to use setter as getter (not constant reference)
+  FC_Cuts& GetCuts() {return cuts_;};                                        // Is it OK to use setter as getter (not constant reference)
   
  protected:
    
