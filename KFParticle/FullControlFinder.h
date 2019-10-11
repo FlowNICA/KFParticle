@@ -7,6 +7,7 @@
 #include "KFParticleSIMD.h"
 #include "FullControlConstants.h"
 #include "FC_Cuts.h"
+#include "Output_interface.h"
 
 class FullControlFinder
 {
@@ -25,8 +26,10 @@ class FullControlFinder
   
   const std::vector<float>& GetMass() const {return vec_mass_;};            // TODO remove after debug procedure
   
-  FC_Cuts& GetCuts() {return cuts_;};                                        // Is it OK to use setter as getter (not constant reference)
+  const std::vector<Output_interface>& GetLambda() const {return vec_lambda_;};
   
+  FC_Cuts& GetCuts() {return cuts_;};                                       // Is it OK to use setter as getter (not constant reference)? How to do better?
+                                                                            // WHY does not work with 'second' const?
  protected:
    
   float CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const;
@@ -48,6 +51,9 @@ class FullControlFinder
   
   float mass_;                             // TODO remove after debug procedure
   std::vector<float> vec_mass_;            // TODO remove after debug procedure
+  
+  Output_interface lambda_;                       // IS it ok to make them (global) fields?
+  std::vector<Output_interface> vec_lambda_;
 };
 
 #endif//FullControlFinder_H

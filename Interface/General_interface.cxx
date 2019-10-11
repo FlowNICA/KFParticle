@@ -73,6 +73,7 @@ KFParticleTopoReconstructor* General_interface::CreateTopoReconstructor()
     track_tmp.SetPDG(tracks_[iTr].GetPDG(), iTr);
     track_tmp.SetQ(tracks_[iTr].GetQ(), iTr);
     track_tmp.SetPVIndex(-1, iTr);    
+    track_tmp.SetId(tracks_[iTr].Id(), iTr);
   }
   TR->Init(track_tmp, track_empty);
   
@@ -100,6 +101,7 @@ FullControlFinder General_interface::CreateFCFinder()
     track_tmp.SetPDG(tracks_[iTr].GetPDG(), iTr);
     track_tmp.SetQ(tracks_[iTr].GetQ(), iTr);
     track_tmp.SetPVIndex(-1, iTr);   
+    track_tmp.SetId(tracks_[iTr].Id(), iTr);
   }
   FCF.Init(track_tmp, vtx_);
   
