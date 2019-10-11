@@ -230,6 +230,8 @@ void FullControlFinder::FindParticles()
       float mass_err; // unused
       particle.GetMass(mass_, mass_err);
       
+      particle.SetPDG(pdg_lambda);
+      
       N++;
       lambda_.SetParticle(particle);
       SaveParticle();

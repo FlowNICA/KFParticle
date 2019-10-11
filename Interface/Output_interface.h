@@ -39,7 +39,7 @@ class Output_interface
   const float GetSigmaMassRatio() const {return sigma_mass_ratio_;};
   const float GetChi2Topo() const {return chi2_topo_;};
              
-  const KFParticle GetParticle() const {return particle_;};
+  const KFParticle& GetParticle() const {return particle_;};
 
  protected:
    

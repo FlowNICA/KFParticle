@@ -104,6 +104,7 @@ FullControlFinder General_interface::CreateFCFinder()
     track_tmp.SetId(tracks_[iTr].Id(), iTr);
   }
   FCF.Init(track_tmp, vtx_);
+  FCF.SetCuts(cuts_);
   
   return FCF;  
 }
@@ -137,18 +138,3 @@ double General_interface::InversedChi2Prob(double p, int ndf) const
   
   return chi2Centr;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
