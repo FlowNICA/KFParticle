@@ -28,7 +28,8 @@ class FullControlFinder
   
   const std::vector<Output_interface>& GetLambda() const {return vec_lambda_;};
   
-  FC_Cuts& GetCuts() {return cuts_;};                                       // Is it OK to use setter as getter (not constant reference)? How to do better?
+  void SetCuts(const FC_Cuts& cuts) { cuts_ = cuts; }
+  const FC_Cuts& GetCuts() const {return cuts_;};                                       // Is it OK to use setter as getter (not constant reference)? How to do better?
                                                                             // WHY does not work with 'second' const?
  protected:
    
