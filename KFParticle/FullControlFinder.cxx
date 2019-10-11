@@ -206,7 +206,7 @@ void FullControlFinder::FindParticles()
       lambda_.SetCosineDaughterNeg(CalculateCosMomentumSum(pars2, pars1));
       if(lambda_.GetCosineDaughterPos() < cuts_.GetCutCosineDaughterPos() || lambda_.GetCosineDaughterNeg() < cuts_.GetCutCosineDaughterNeg()) continue;
       
-      std::cout << cuts_.GetCutDistance() << std::endl;
+      std::cout << cuts_.GetCutDistance() << std::endl; 
       
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
