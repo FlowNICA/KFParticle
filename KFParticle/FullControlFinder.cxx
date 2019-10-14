@@ -161,10 +161,10 @@ float FullControlFinder::CalculateChi2Topo(const KFParticleSIMD mother) const
   return chi2[0];
 }
 
-void FullControlFinder::SaveParticle()
+void FullControlFinder::SaveParticle(Output_interface Lambda)
 {
   vec_mass_.push_back(mass_);
-  vec_lambda_.push_back(lambda_);
+  vec_lambda_.push_back(Lambda);
 }
  
 void FullControlFinder::FindParticles()
@@ -189,40 +189,42 @@ void FullControlFinder::FindParticles()
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
       
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
+      
+      Output_interface lambda;
             
-      lambda_.SetChi2PrimPos(CalculateChiToPrimaryVertex(trackPos, pidPos));
-      if(lambda_.GetChi2PrimPos() <= cuts_.GetCutChi2PrimPos()) continue;
-      lambda_.SetChi2PrimNeg(CalculateChiToPrimaryVertex(trackNeg, pidNeg));
-      if(lambda_.GetChi2PrimNeg() <= cuts_.GetCutChi2PrimNeg()) continue;
+      lambda.SetChi2PrimPos(CalculateChiToPrimaryVertex(trackPos, pidPos));
+      if(lambda.GetChi2PrimPos() <= cuts_.GetCutChi2PrimPos()) continue;
+      lambda.SetChi2PrimNeg(CalculateChiToPrimaryVertex(trackNeg, pidNeg));
+      if(lambda.GetChi2PrimNeg() <= cuts_.GetCutChi2PrimNeg()) continue;
                   
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
       CalculateParamsInPCA(trackPos, pidPos, trackNeg, pidNeg, pars1, pars2);
       
-      lambda_.SetDistance(CalculateDistanceBetweenParticles(pars1, pars2));
-      if(lambda_.GetDistance() > cuts_.GetCutDistance()) continue;
+      lambda.SetDistance(CalculateDistanceBetweenParticles(pars1, pars2));
+      if(lambda.GetDistance() > cuts_.GetCutDistance()) continue;
       
-      lambda_.SetCosineDaughterPos(CalculateCosMomentumSum(pars1, pars2));
-      lambda_.SetCosineDaughterNeg(CalculateCosMomentumSum(pars2, pars1));
-      if(lambda_.GetCosineDaughterPos() < cuts_.GetCutCosineDaughterPos() || lambda_.GetCosineDaughterNeg() < cuts_.GetCutCosineDaughterNeg()) continue;
+      lambda.SetCosineDaughterPos(CalculateCosMomentumSum(pars1, pars2));
+      lambda.SetCosineDaughterNeg(CalculateCosMomentumSum(pars2, pars1));
+      if(lambda.GetCosineDaughterPos() < cuts_.GetCutCosineDaughterPos() || lambda.GetCosineDaughterNeg() < cuts_.GetCutCosineDaughterNeg()) continue;
             
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
-      lambda_.SetChi2Geo(CalculateChi2Geo(mother));
-      if(!finite(lambda_.GetChi2Geo()) || lambda_.GetChi2Geo() <= 0) continue;
-      if(lambda_.GetChi2Geo() >= cuts_.GetCutChi2Geo()) continue;
+      lambda.SetChi2Geo(CalculateChi2Geo(mother));
+      if(!finite(lambda.GetChi2Geo()) || lambda.GetChi2Geo() <= 0) continue;
+      if(lambda.GetChi2Geo() >= cuts_.GetCutChi2Geo()) continue;
       
       float l, ldl;
       int isfrompv;
       CalculateMotherProperties(mother, l, ldl, isfrompv);
-      lambda_.SetL(l);
-      lambda_.SetLdL(ldl);
-      lambda_.SetIsFromPV(isfrompv);
+      lambda.SetL(l);
+      lambda.SetLdL(ldl);
+      lambda.SetIsFromPV(isfrompv);
       
-      if(lambda_.GetL() >= cuts_.GetCutLUp()) continue;
-      if(lambda_.GetLdL() <= cuts_.GetCutLdL()) continue;
-      if(lambda_.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
-      if(lambda_.GetL() <= cuts_.GetCutLDown()) continue;
+      if(lambda.GetL() >= cuts_.GetCutLUp()) continue;
+      if(lambda.GetLdL() <= cuts_.GetCutLdL()) continue;
+      if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
+      if(lambda.GetL() <= cuts_.GetCutLDown()) continue;
       
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
@@ -233,8 +235,8 @@ void FullControlFinder::FindParticles()
       particle.SetPDG(pdg_lambda);
       
       N++;
-      lambda_.SetParticle(particle);
-      SaveParticle();
+      lambda.SetParticle(particle);
+      SaveParticle(lambda);
     }
   }
   

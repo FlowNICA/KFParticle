@@ -41,7 +41,7 @@ class FullControlFinder
   float CalculateChi2Geo(const KFParticleSIMD mother) const;
   void  CalculateMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
   float CalculateChi2Topo(const KFParticleSIMD mother) const;
-  void  SaveParticle();
+  void  SaveParticle(Output_interface Lambda);
   
   KFPTrackVector tracks_;
   KFVertex prim_vx_;
@@ -53,7 +53,6 @@ class FullControlFinder
   float mass_;                             // TODO remove after debug procedure
   std::vector<float> vec_mass_;            // TODO remove after debug procedure
   
-  Output_interface lambda_;                       // IS it ok to make them (global) fields?
   std::vector<Output_interface> vec_lambda_;
 };
 
