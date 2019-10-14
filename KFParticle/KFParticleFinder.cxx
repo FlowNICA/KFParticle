@@ -1037,7 +1037,7 @@ void KFParticleFinder::Find2DaughterDecay(const KFPTrackVector* vTracks, const k
         startTCNeg[1] = 0; endTCNeg[1] = 0; 
         //pi- + ghosts
         startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;               // FirstPion() returns the index of 0-th member of claster with first pion (in order not to lose any)
-        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();          // zeroth index of track does not correspond to any track, does it? Indeed, if you have 0 electrons, FirstElectron=0, LastElectron=0...
+        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion()+1;          // zeroth index of track does not correspond to any track, does it? Indeed, if you have 0 electrons, FirstElectron=0, LastElectron=0...
         //K-
         startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();
         startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
