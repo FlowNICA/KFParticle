@@ -26,7 +26,7 @@ class FullControlFinder
   
   const std::vector<float>& GetMass() const {return vec_mass_;};            // TODO remove after debug procedure
   
-  const std::vector<Output_interface>& GetLambda() const {return vec_lambda_;};
+  const std::vector<Output_interface>& GetLambdas() const {return vec_lambda_;};
   
   void  SetCuts(const FC_Cuts& cuts) { cuts_ = cuts; }
   const FC_Cuts& GetCuts() const {return cuts_;};                                       // Is it OK to use setter as getter (not constant reference)? How to do better?
