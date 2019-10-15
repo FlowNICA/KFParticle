@@ -108,7 +108,8 @@ KFParticleSIMD FullControlFinder::ConstructMother(const KFPTrack &track1, const 
 {
   KFParticle particle1(track1, pid1);
   KFParticle particle2(track2, pid2);
-  std::cout << track1.Id() << "\t" << track2.Id() << std::endl;
+  particle1.SetId(track1.Id());
+  particle2.SetId(track2.Id());
   KFParticleSIMD particleSIMD1(particle1);    // the same particle is copied to each SIMD element
   KFParticleSIMD particleSIMD2(particle2);
   
