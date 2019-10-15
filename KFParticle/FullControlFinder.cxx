@@ -230,6 +230,7 @@ void FullControlFinder::FindParticles()
       
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
+      std::cout << particle.DaughtaerIds()[0] << "\t" << particle.DaughtaerIds()[1] << "\n";
       
       float mass_err; // unused
       particle.GetMass(mass_, mass_err);
