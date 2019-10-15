@@ -51,6 +51,7 @@ void General_interface::AddTrack(float x, float y, float z,
     particle.SetFieldCoeff(field[i], i);
   particle.Q() = charge;
   particle.SetPDG(pdg);
+  particle.SetId(id);
   
   tracks_.push_back(particle);
 }
