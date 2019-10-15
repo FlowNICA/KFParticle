@@ -689,11 +689,14 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   int_v trackId;
   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
   trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // gather copies Id() from vTracks into trackId for particles lised in idPosDaughters
-  //posDaughter.SetId(trackId);
+  posDaughter.SetId(trackId);
+  for(int i=0; i<float_vLen; i++)
+    std::cout << trackId[i] << "\t";
+  std::cout << "\n";
 
   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
   trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
-  //negDaughter.SetId(trackId);   
+  negDaughter.SetId(trackId);   
 #ifdef CBM
   float_v ds[2] = {0.f,0.f};
   float_v dsdr[4][6];                                                                   // Do I understand correctly that:
