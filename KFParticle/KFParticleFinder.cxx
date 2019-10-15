@@ -181,9 +181,9 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
         KFParticle tmp(kfTrack, pdg);
         tmp.SetPDG(pdg);//TODO remove double definition of pdg
         tmp.SetId(Particles.size());
-        vRTracks[iV].SetId(Particles.size(),iTr);                       // all right, Particles.size() corresponds to # of current track
-        if(vRTracks[iV+4].Size() > 0)                                   // array of tracks defined @last hit position
-          vRTracks[iV+4].SetId(Particles.size(),iTr);
+//         vRTracks[iV].SetId(Particles.size(),iTr);                       // all right, Particles.size() corresponds to # of current track
+//         if(vRTracks[iV+4].Size() > 0)                                   // array of tracks defined @last hit position
+//           vRTracks[iV+4].SetId(Particles.size(),iTr);
         tmp.AddDaughterId( kfTrack.Id() );                              // all right, this is primary track, it does not have daughter tracks, so daughter id is set equal to track's id
 #ifdef NonhomogeneousField
         for(int iF=0; iF<10; iF++)
@@ -686,24 +686,24 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
    ** \param[out] vMotherSec - array with output secondary candidates if any.
    **/
   float_m isPrimary(simd_cast<float_m>(pvIndex>-1));                                    // means that at least one daughter track is primary
-/*  int_v trackId;
+  int_v trackId;
   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
   trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // gather copies Id() from vTracks into trackId for particles lised in idPosDaughters
   posDaughter.SetId(trackId);
   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
   trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
-  negDaughter.SetId(trackId);*/   
+  negDaughter.SetId(trackId);   
   
 
-  int_v trackId;
-  KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
-  for(int i=0; i<float_vLen ; i++)
-    trackId[i] = vTracks[iTrTypePos].Id()[idPosDaughters[i]];
-  posDaughter.SetId(trackId);
-  KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
-  for(int i=0; i<float_vLen ; i++)
-    trackId[i] = vTracks[iTrTypeNeg].Id()[idNegDaughters[i]];  
-  negDaughter.SetId(trackId);     
+//   int_v trackId;
+//   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
+//   for(int i=0; i<float_vLen ; i++)
+//     trackId[i] = vTracks[iTrTypePos].Id()[idPosDaughters[i]];
+//   posDaughter.SetId(trackId);
+//   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
+//   for(int i=0; i<float_vLen ; i++)
+//     trackId[i] = vTracks[iTrTypeNeg].Id()[idNegDaughters[i]];  
+//   negDaughter.SetId(trackId);     
   
   
 #ifdef CBM
