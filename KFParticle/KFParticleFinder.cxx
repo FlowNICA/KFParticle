@@ -777,6 +777,7 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
     if(!saveParticle[iv]) continue;
   
     mother.GetKFParticle(mother_temp, iv);        // mother is KFParticleSIMD; mother_temp is KFParticle. iv is the index of object to be copied from vector to scalar. But HOW is it related to NTracks???
+    std::cout << "KF" << mother_temp.DaughterIds()[0] << "\t" << mother_temp.DaughterIds()[1] << "\n";
     int motherId = Particles.size();
     mother_temp.SetId(Particles.size());
     if( mother.PDG()[iv] == 421 ) 
