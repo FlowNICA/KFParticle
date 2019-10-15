@@ -108,6 +108,7 @@ KFParticleSIMD FullControlFinder::ConstructMother(const KFPTrack &track1, const 
 {
   KFParticle particle1(track1, pid1);
   KFParticle particle2(track2, pid2);
+  std::cout << particle1.Id() << "\t" << particle2.Id() << std::endl;
   KFParticleSIMD particleSIMD1(particle1);    // the same particle is copied to each SIMD element
   KFParticleSIMD particleSIMD2(particle2);
   
@@ -187,9 +188,7 @@ void FullControlFinder::FindParticles()
       KFPTrack trackNeg;
       tracks_.GetTrack(trackNeg, trIndex_[kSecNeg][iSecNeg]);
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
-      
-      std::cout << trackPos.Id() << "\t" << trackNeg.Id() << std::endl;
-      
+            
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
       
       Output_interface lambda;
