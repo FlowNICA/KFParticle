@@ -51,7 +51,7 @@ void General_interface::AddTrack(float x, float y, float z,
     particle.SetFieldCoeff(field[i], i);
   particle.Q() = charge;
   particle.SetPDG(pdg);
-  particle.SetId(id);
+  particle.SetId(-id);
   
   tracks_.push_back(particle);
 }
@@ -102,7 +102,7 @@ FullControlFinder General_interface::CreateFCFinder()
     track_tmp.SetPDG(tracks_[iTr].GetPDG(), iTr);
     track_tmp.SetQ(tracks_[iTr].GetQ(), iTr);
     track_tmp.SetPVIndex(-1, iTr);   
-    track_tmp.SetId(tracks_[iTr].Id(), iTr);
+    track_tmp.SetId(2*tracks_[iTr].Id(), iTr);
   }
   FCF.Init(track_tmp, vtx_);
   FCF.SetCuts(cuts_);
