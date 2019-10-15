@@ -688,12 +688,12 @@ inline void KFParticleFinder::ConstructV0(const KFPTrackVector* vTracks,
   float_m isPrimary(simd_cast<float_m>(pvIndex>-1));                                    // means that at least one daughter track is primary
   int_v trackId;
   KFParticleSIMD posDaughter(vTracks[iTrTypePos],idPosDaughters, daughterPosPDG);
-  //trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // gather copies Id() from vTracks into trackId for particles lised in idPosDaughters
-  posDaughter.SetId(trackId);
+  trackId.gather( &(vTracks[iTrTypePos].Id()[0]), idPosDaughters );                     // gather copies Id() from vTracks into trackId for particles lised in idPosDaughters
+  //posDaughter.SetId(trackId);
 
   KFParticleSIMD negDaughter(vTracks[iTrTypeNeg],idNegDaughters, daughterNegPDG);
-  //trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
-  negDaughter.SetId(trackId);   
+  trackId.gather( &(vTracks[iTrTypeNeg].Id()[0]), idNegDaughters );
+  //negDaughter.SetId(trackId);   
 #ifdef CBM
   float_v ds[2] = {0.f,0.f};
   float_v dsdr[4][6];                                                                   // Do I understand correctly that:
