@@ -147,9 +147,9 @@ void FullControlFinder::CalculateMotherProperties(const KFParticleSIMD mother, f
   l = l_Simd[0];
   ldl = l_Simd[0]/dl_Simd[0];
   if(isFromPV_Simd[0] == true)
-    isFromPV = 0;
+    isFromPV = 1;
   else
-    isFromPV = -1;  
+    isFromPV = 0;  
 }
 
 float FullControlFinder::CalculateChi2Topo(const KFParticleSIMD mother) const
@@ -217,7 +217,7 @@ void FullControlFinder::FindParticles()
       if(lambda.GetChi2Geo() >= cuts_.GetCutChi2Geo()) continue;
       
       float l, ldl;
-      int isfrompv;
+      int isfrompv = -1;
       CalculateMotherProperties(mother, l, ldl, isfrompv);
       lambda.SetL(l);
       lambda.SetLdL(ldl);

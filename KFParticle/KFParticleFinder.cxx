@@ -176,7 +176,7 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
       {
         vRTracks[iV].GetTrack(kfTrack, iTr);
         int pdg = vRTracks[iV].PDG()[iTr];
-        if( pdg == 19 ) pdg =  13;                                                         // is PDG=19 special kind of muon?
+        if( pdg == 19 ) pdg =  13;                                                         // is PDG=19 special kind of muon? Yes, it dependes on number of hits used for muon reconstruction
         if( pdg ==-19 ) pdg = -13;
         KFParticle tmp(kfTrack, pdg);
         tmp.SetPDG(pdg);//TODO remove double definition of pdg
