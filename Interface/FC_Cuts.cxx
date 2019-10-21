@@ -13,7 +13,9 @@ void FC_Cuts::CancelCuts()
   cut_l_down_ = -practInf;
   cut_l_up_ =  practInf;
   cut_ldl_ = -practInf;
+  cut_is_from_pv_ = 799;
+  cut_cosine_topo_ = -practInf;
   cut_ldl_sec_ = -practInf;
   cut_sigma_mass_ratio_ = practInf;
-  cut_is_from_pv_ = 799;
+  
 }

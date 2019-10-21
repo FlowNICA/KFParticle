@@ -40,6 +40,7 @@ class FullControlFinder
   KFParticleSIMD ConstructMother(const KFPTrack &track1, const int pid1, const KFPTrack &track2, const int pid2) const;
   float CalculateChi2Geo(const KFParticleSIMD mother) const;
   void  CalculateMotherProperties(const KFParticleSIMD mother, float &l, float &ldl, int &isFromPV) const;
+  float CalculateCosTopo(const KFParticleSIMD mother) const;
   float CalculateChi2Topo(const KFParticleSIMD mother) const;
   void  SaveParticle(Output_interface Lambda);
   

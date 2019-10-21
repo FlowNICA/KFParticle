@@ -152,6 +152,26 @@ void FullControlFinder::CalculateMotherProperties(const KFParticleSIMD mother, f
     isFromPV = 0;  
 }
 
+float FullControlFinder::CalculateCosTopo(const KFParticleSIMD mother) const
+{
+  float x_mother = mother.GetX()[0];
+  float y_mother = mother.GetY()[0];
+  float z_mother = mother.GetZ()[0];
+  
+  float px_mother = mother.GetPx()[0];
+  float py_mother = mother.GetPy()[0];
+  float pz_mother = mother.GetPz()[0];  
+  
+  float delta_x = x_mother - prim_vx_.GetX();
+  float delta_y = y_mother - prim_vx_.GetY();
+  float delta_z = z_mother - prim_vx_.GetZ();
+  
+  float sp = delta_x*px_mother + delta_y*py_mother + delta_z*pz_mother;
+  float norm = sqrt(delta_x*delta_x + delta_y*delta_y + delta_z*delta_z) * sqrt(px_mother*px_mother + py_mother*py_mother + pz_mother*pz_mother);
+  
+  return sp/norm;  
+}
+
 float FullControlFinder::CalculateChi2Topo(const KFParticleSIMD mother) const
 {
   KFParticleSIMD motherTopo = mother;
@@ -223,10 +243,16 @@ void FullControlFinder::FindParticles()
       lambda.SetLdL(ldl);
       lambda.SetIsFromPV(isfrompv);
       
+      lambda.SetCosineTopo(CalculateCosTopo(mother));
+      
       if(lambda.GetL() >= cuts_.GetCutLUp()) continue;
       if(lambda.GetLdL() <= cuts_.GetCutLdL()) continue;
-      if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
+      //if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
+      if(lambda.GetCosineTopo() <= cuts_.GetCutCosineTopo()) continue;
       if(lambda.GetL() <= cuts_.GetCutLDown()) continue;
+      
+      lambda.SetChi2Topo(CalculateChi2Topo(mother));
+      if(lambda.GetChi2Topo() > cuts_.GetCutChi2Topo()) continue;
       
       KFParticle particle;
       mother.GetKFParticle(particle, 0);

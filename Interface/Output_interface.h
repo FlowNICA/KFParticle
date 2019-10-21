@@ -21,6 +21,7 @@ class Output_interface
   void SetL(float value) {l_ = value;};
   void SetLdL(float value) {ldl_ = value;};
   void SetIsFromPV(int value) {is_from_pv_ = value;};
+  void SetCosineTopo(float value) {cosine_topo_ = value;};
   void SetSigmaMassRatio(float value) {sigma_mass_ratio_ = value;};
   void SetChi2Topo(float value) {chi2_topo_ = value;};
   
@@ -36,6 +37,7 @@ class Output_interface
   const float GetL() const {return l_;};
   const float GetLdL() const {return ldl_;};
   const int   GetIsFromPV() const {return is_from_pv_;};
+  const float GetCosineTopo() const {return cosine_topo_;};
   const float GetSigmaMassRatio() const {return sigma_mass_ratio_;};
   const float GetChi2Topo() const {return chi2_topo_;};
              
@@ -53,6 +55,7 @@ class Output_interface
   float l_ {-1.};
   float ldl_ {-1.};
   int   is_from_pv_ {-1};
+  float cosine_topo_{-1.};
   float sigma_mass_ratio_ {-1.};
   float chi2_topo_ {-1.};
 

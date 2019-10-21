@@ -20,6 +20,7 @@ class FC_Cuts
   void SetCutLDown(float value){cut_l_down_ = value;};
   void SetCutLdL(float value){cut_ldl_ = value;};
   void SetCutIsFromPV(int value){cut_is_from_pv_ = value;};
+  void SetCutCosineTopo(float value){cut_cosine_topo_ = value;};
   void SetCutSigmaMassRatio(float value){cut_sigma_mass_ratio_ = value;};
   void SetCutChi2Topo(float value){cut_chi2_topo_ = value;};
   
@@ -36,6 +37,7 @@ class FC_Cuts
   const float GetCutLDown() const {return cut_l_down_;};
   const float GetCutLdL() const {return cut_ldl_;};
   const int   GetCutIsFromPV() const {return cut_is_from_pv_;};
+  const float GetCutCosineTopo() const {return cut_cosine_topo_;};
   const float GetCutSigmaMassRatio() const {return cut_sigma_mass_ratio_;};
   const float GetCutChi2Topo() const {return cut_chi2_topo_;};
 
@@ -51,6 +53,7 @@ class FC_Cuts
   float cut_chi2_geo_{3.};
   float cut_l_up_{200.}; float cut_l_down_{-5.};
   int   cut_is_from_pv_{0};
+  float cut_cosine_topo_{0.};
   float cut_ldl_{5.}; float cut_ldl_sec_{10.};
   float cut_sigma_mass_ratio_{3.};
   float cut_chi2_topo_{5.};   
