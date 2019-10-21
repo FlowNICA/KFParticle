@@ -292,7 +292,7 @@ class KFParticleBaseSIMD {
   const int_v& GetPDG () const { return fPDG; } ///< Returns the PDG hypothesis.
   const int_v& PDG () const { return fPDG; } ///< Returns the PDG hypothesis.
 
-  void GetDistanceToVertexLine( const KFParticleBaseSIMD &Vertex, float_v &l, float_v &dl, float_m *isParticleFromVertex = 0 ) const;
+  void GetDistanceToVertexLine( const KFParticleBaseSIMD& Vertex, float_v& l, float_v& dl, float_m* isParticleFromVertex = nullptr ) const;
 
   static void MultQSQt( const float_v Q[], const float_v S[], float_v SOut[], const int kN  );
 

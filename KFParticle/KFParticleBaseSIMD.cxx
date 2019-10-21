@@ -1518,7 +1518,7 @@ void KFParticleBaseSIMD::TransportToDSLine( float_v dS, const float_v* dsdr )
   fSFromDecay+= dS;
 }
 
-void KFParticleBaseSIMD::GetDistanceToVertexLine( const KFParticleBaseSIMD &Vertex, float_v &l, float_v &dl, float_m *isParticleFromVertex ) const 
+void KFParticleBaseSIMD::GetDistanceToVertexLine( const KFParticleBaseSIMD& Vertex, float_v& l, float_v& dl, float_m* isParticleFromVertex ) const 
 {
   /** Calculates the distance between the particle position and the vertex together with the error.
    ** Errors of both particle and vertex are taken into account. Also optionally checks if partcile
@@ -1545,7 +1545,7 @@ void KFParticleBaseSIMD::GetDistanceToVertexLine( const KFParticleBaseSIMD &Vert
   dl(!ok) = 1.e8f;
   dl(ok) = sqrt( dl )/l;
 
-  if(isParticleFromVertex)
+  if(isParticleFromVertex != nullptr)
   {
     *isParticleFromVertex = ok && ( l<float_v(3.f*dl) );
     float_v cosV = dx*fP[3] + dy*fP[4] + dz*fP[5];
