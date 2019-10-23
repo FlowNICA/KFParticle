@@ -54,13 +54,13 @@ float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, cons
   const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);  
   const float_v point[3] = {prim_vx_Simd.X(), prim_vx_Simd.Y(), prim_vx_Simd.Z()};
   
-//   std::cout << "\nvtx " << prim_vx_Simd.X()[0] << "\t" << prim_vx_Simd.Y()[0] << "\t" << prim_vx_Simd.Z()[0] << std::endl;
+  std::cout << "\nvtx " << prim_vx_Simd.X()[0] << "\t" << prim_vx_Simd.Y()[0] << "\t" << prim_vx_Simd.Z()[0] << std::endl;
   
-//   std::cout << "prt " << tmpPartSIMD.X()[0] << "\t" << tmpPartSIMD.Y()[0] << "\t" << tmpPartSIMD.Z()[0] << std::endl;  
-//   tmpPartSIMD.TransportToPoint(point);
+  std::cout << "prt " << tmpPartSIMD.X()[0] << "\t" << tmpPartSIMD.Y()[0] << "\t" << tmpPartSIMD.Z()[0] << std::endl;  
+  tmpPartSIMD.TransportToPoint(point);
 
   float_v chi2vec = tmpPartSIMD.GetDeviationFromVertex(prim_vx_Simd);
-//   std::cout << "tns " << tmpPartSIMD.X()[0] << "\t" << tmpPartSIMD.Y()[0] << "\t" << tmpPartSIMD.Z()[0] << "\t\t" << chi2vec[0] << std::endl;
+  std::cout << "tns " << tmpPartSIMD.X()[0] << "\t" << tmpPartSIMD.Y()[0] << "\t" << tmpPartSIMD.Z()[0] << "\t\t" << chi2vec[0] << std::endl;
   
   return chi2vec[0];
 }
