@@ -294,7 +294,7 @@ class KFParticleBaseSIMD {
 
   void GetDistanceToVertexLine( const KFParticleBaseSIMD &Vertex, float_v &l, float_v &dl, float_m *isParticleFromVertex = 0 ) const;
 
-  static void MultQSQt( const float_v Q[], const float_v S[], float_v SOut[], const int kN  );
+  static void MultQSQt( const float_v Q[], const float_v S[], float_v SOut[], int kN  );
 
  protected:
   /** Converts a pair of indices {i,j} of the covariance matrix to one index corresponding to the triangular form. */

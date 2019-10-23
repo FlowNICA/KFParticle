@@ -55,10 +55,10 @@ class KFMCParticle :public TObject
   int  GetPDG()            const {return fPDG;}       ///< Returns PDG code of the current particle KFMCParticle::fPDG.
   
   bool IsReconstructable(int i) const {return fIsReconstructable[i];} ///< Returns a flag showing if particle can be reconstructed with KFMCParticle::fIsReconstructable index "i".
-  void SetAsReconstructable(int i) { fIsReconstructable[i] = 1;} ///< Defines the particle as those which should be reconstructed for the efficiency set "i".
+  void SetAsReconstructable(int i) { fIsReconstructable[i] = true;} ///< Defines the particle as those which should be reconstructed for the efficiency set "i".
     
   bool IsReconstructableV0(int i) const {return fIsV0[i];} ///< Returns a flag showing if particle is a reconstructable V0.
-  void SetAsReconstructableV0(int i) { fIsV0[i] = 1;}      ///< Defines the particle as V0 which should be reconstructed for the efficiency set "i".
+  void SetAsReconstructableV0(int i) { fIsV0[i] = true;}      ///< Defines the particle as V0 which should be reconstructed for the efficiency set "i".
   
   void SetInitialParticleId(int i) {fInitialParticleId = i;} ///< Sets Id of the Monte Carlo particle, from which the current particle was copied.
   int InitialParticleId() const {return fInitialParticleId;} ///< Returns the Id of the Monte Carlo particle, from which the current particle was copied.

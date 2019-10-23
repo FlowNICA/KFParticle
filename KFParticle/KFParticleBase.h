@@ -191,7 +191,7 @@ class KFParticleBase :public TObject {
   void TransportToDecayVertex();
   void TransportToProductionVertex();
   void TransportToDS( float dS, const float* dsdr );
-  void TransportBz( float Bz, float dS, const float* dsdr, float P[], float C[], float* dsdr1=0, float* F=0, float* F1=0 ) const;
+  void TransportBz( float Bz, float dS, const float* dsdr, float P[], float C[], const float* dsdr1=0, float* F=0, float* F1=0 ) const;
   void TransportCBM( float dS, const float* dsdr, float P[], float C[], float* dsdr1=0, float* F=0, float* F1=0 ) const;  
 
   //* 
@@ -215,7 +215,7 @@ class KFParticleBase :public TObject {
   void SubtractFromParticle( KFParticleBase &Vtx ) const;
 
   static void GetArmenterosPodolanski(KFParticleBase& positive, KFParticleBase& negative, float QtAlfa[2] );
-  void RotateXY(float angle, float Vtx[3]);
+  void RotateXY(float angle, const float Vtx[3]);
 
   int Id() const { return fId; } ///< Returns Id of the particle.
   int NDaughters() const { return fDaughtersIds.size(); } ///< Returns number of daughter particles.
@@ -251,7 +251,7 @@ class KFParticleBase :public TObject {
   }
   /** Return an element of the covariance matrix with {i,j} indices. */
   float & Cij( Int_t i, Int_t j ){ return fC[IJ(i,j)]; }
-  void TransportLine( float S, const float* dsdr, float P[], float C[], float* dsdr1, float* F, float* F1 ) const ;
+  void TransportLine( float S, const float* dsdr, float P[], float C[], const float* dsdr1, float* F, float* F1 ) const ;
   bool GetMeasurement( const KFParticleBase& daughter, float m[], float V[], float D[3][3] ) ;
   void SetMassConstraint( float *mP, float *mC, float mJ[7][7], float mass );
 

@@ -22,7 +22,7 @@
 static const float_v small = 1.e-20f;
 
 KFParticleBaseSIMD::KFParticleBaseSIMD() :fQ(0), fNDF(-3), fChi2(0.f), fSFromDecay(0.f),
-  SumDaughterMass(0.f), fMassHypo(-1.f), fId(-1), fAtProductionVertex(0), fPDG(0), fConstructMethod(0), fDaughterIds()
+  SumDaughterMass(0.f), fMassHypo(-1.f), fId(-1), fAtProductionVertex(false), fPDG(0), fConstructMethod(0), fDaughterIds()
 { 
   /** The default constructor, initialises the parameters by: \n
    ** 1) all parameters are set to 0; \n

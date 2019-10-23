@@ -36,7 +36,7 @@ class KFEfficiencyParticleInfo
   /** \brief Constructor with all parameters set in. There is no other way to define the parameters other then use this constructor.*/
   KFEfficiencyParticleInfo(std::string name, std::string title, int pdg, float histoMin, float histoMax, float mass, float lifeTime, int charge, float massSigma ):
     fName(name), fTitle(title), fPDG(pdg), fHistoMin(histoMin), fHistoMax(histoMax), fMass(mass), fLifeTime(lifeTime), fCharge(charge), fMassSigma(massSigma) {};
-  ~KFEfficiencyParticleInfo() {};
+  ~KFEfficiencyParticleInfo() = default;;
   
   //accessors
   std::string Name()      const { return fName; }      ///< Returns name of the decay in the file with histograms.
@@ -317,8 +317,8 @@ class KFPartEfficiencies :public TObject
     };
                                         
     int mPartMaxMult[nParticles];
-    for(int i=0; i<nParticles; i++)
-      mPartMaxMult[i] = 20;
+    for(int & i : mPartMaxMult)
+      i = 20;
     mPartMaxMult[fFirstStableParticleIndex + 4] = 500;
     mPartMaxMult[fFirstStableParticleIndex + 5] = 500;
     mPartMaxMult[fFirstStableParticleIndex + 6] = 50;
@@ -1079,7 +1079,7 @@ class KFPartEfficiencies :public TObject
       fPdgToIndex[particleInfo[iP].PDG()] = iP;
   }
 
-  virtual ~KFPartEfficiencies(){};
+  virtual ~KFPartEfficiencies()= default;;
 
   /** \brief Returns index of the decay with a given PDG code in the scheme of the KF Particle Finder. If it is not present there - returns "-1". */
   int GetParticleIndex(int pdg)
@@ -1141,7 +1141,7 @@ class KFPartEfficiencies :public TObject
     ratio_clone  = clone/allReco;
   };
   
-  void Inc(bool isReco, int nClones, bool isMC1, bool isMC2, bool isMC3, std::string name)
+  void Inc(bool isReco, int nClones, bool isMC1, bool isMC2, bool isMC3, const std::string& name)
   {
     /** Increases counters by one, if the corresponding boolean variable is "true".
      ** \param[in] isReco - "true" if particle is reconstructed
@@ -1163,7 +1163,7 @@ class KFPartEfficiencies :public TObject
       clone.counters[index] += nClones;
   };
 
-  void IncReco(bool isGhost, bool isBg, std::string name)
+  void IncReco(bool isGhost, bool isBg, const std::string& name)
   {
     /** Increases counters by one, if the corresponding boolean variable is "true".
      ** \param[in] isGhost - "true" if ghost is added
@@ -1261,7 +1261,7 @@ class KFPartEfficiencies :public TObject
     return strm;
   }
   /** \brief Adds efficiency from the file with the name defined by "fileName" to the current objects. */
-  void AddFromFile(std::string fileName)
+  void AddFromFile(const std::string& fileName)
   {
     std::fstream file(fileName.data(),std::fstream::in);
     file >> *this;

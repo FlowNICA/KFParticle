@@ -85,7 +85,7 @@ class KFPInputData
      **/ 
     std::ifstream ifile(prefix.data());
     if ( !ifile.is_open() ) return 0;
-    int nSets;
+    int nSets{0};
     ifile >> fBz;
     ifile >> nSets;
     for(int iSet=0; iSet<nSets; iSet++)

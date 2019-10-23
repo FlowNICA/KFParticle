@@ -33,7 +33,7 @@ struct KFMCCounter
   std::vector<T> counters; ///< Counters of different set of particles.
 
   KFMCCounter():NCounters(0),counters(0) { }
-  KFMCCounter(int nCounters):NCounters(nCounters), counters(nCounters,T(0)) { } ///< Constructs the object with the set of counters "nCounters".
+  explicit KFMCCounter(int nCounters):NCounters(nCounters), counters(nCounters,T(0)) { } ///< Constructs the object with the set of counters "nCounters".
 
   void AddCounter(){ NCounters++; counters.push_back(T(0)); } ///< Adds a counter to the existing list.
   void AddCounters(int nCounters){ NCounters += nCounters; counters.resize( NCounters, T(0)); } ///< Adds several counters to the existing list.

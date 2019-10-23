@@ -64,19 +64,19 @@ class KFMCVertex
   bool IsReconstructable() const { return fIsReconstructable; }     ///< Returns flag showing if the vertex can be found (definition is based on the reconstructed tracks)
   bool IsReconstructed()  const { return fIsReconstructed;   }      ///< Returns flag showing if the vertex was reconstructed
   
-  void SetReconstructable() { fIsReconstructable = 1; }        ///< Defines the current vertex as such that can be reconstructed (based on the reconstructed tracks)
-  void SetUnReconstructable() { fIsReconstructable = 0; }      ///< Defines the current vertex as such that can not be reconstructed (based on the reconstructed tracks)     
+  void SetReconstructable() { fIsReconstructable = true; }        ///< Defines the current vertex as such that can be reconstructed (based on the reconstructed tracks)
+  void SetUnReconstructable() { fIsReconstructable = false; }      ///< Defines the current vertex as such that can not be reconstructed (based on the reconstructed tracks)
   
-  void SetMCReconstructable() { fIsMCReconstructable = 1; }    ///< Defines the current vertex as such that can be reconstructed (based on the MC tracks)
-  void SetMCUnReconstructable() { fIsMCReconstructable = 0; }  ///< Defines the current vertex as such that can not be reconstructed (based on the MC tracks)
+  void SetMCReconstructable() { fIsMCReconstructable = true; }    ///< Defines the current vertex as such that can be reconstructed (based on the MC tracks)
+  void SetMCUnReconstructable() { fIsMCReconstructable = false; }  ///< Defines the current vertex as such that can not be reconstructed (based on the MC tracks)
   
-  void SetReconstructed() { fIsReconstructed = 1; }   ///< Defines the current vertex as such that was reconstructed
-  void SetUnReconstructed() { fIsReconstructed = 0; } ///< Defines the current vertex as such that was not reconstructed
+  void SetReconstructed() { fIsReconstructed = true; }   ///< Defines the current vertex as such that was reconstructed
+  void SetUnReconstructed() { fIsReconstructed = false; } ///< Defines the current vertex as such that was not reconstructed
 
   void SetNReconstructedDaughters(int n) { fNReconstructedDaughters = n; } ///< Defines number of the reconstructed tracks produced at the current vertex.
   
   bool IsTriggerPV() const { return fIsTriggerPV; } ///< Returns flag showing if the vertex is considerred as tigger.
-  void SetTriggerPV() { fIsTriggerPV = 1; }         ///< Defines the current vertex as the trigger primary vertex.
+  void SetTriggerPV() { fIsTriggerPV = true; }         ///< Defines the current vertex as the trigger primary vertex.
   
   friend std::ostream& operator<<(std::ostream& out, const KFMCVertex &a);
   friend std::istream& operator>>(std::istream& in, KFMCVertex &a);

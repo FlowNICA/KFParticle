@@ -11,9 +11,9 @@
 
 #include "KFMCVertex.h"
 
-KFMCVertex::KFMCVertex():fDaughterTracks(0),fIsReconstructable(0),fIsMCReconstructable(0),fIsReconstructed(0),fNReconstructedDaughters(0),fIsTriggerPV(0)
+KFMCVertex::KFMCVertex():fDaughterTracks(0),fIsReconstructable(false),fIsMCReconstructable(false),fIsReconstructed(false),fNReconstructedDaughters(0),fIsTriggerPV(false)
 {
-  for( int i = 0; i < 3; i++) fPar[i] = 0;
+  for(float & i : fPar) i = 0;
 }
 
 std::ostream& operator<<(std::ostream& out, const KFMCVertex &a)
@@ -22,7 +22,7 @@ std::ostream& operator<<(std::ostream& out, const KFMCVertex &a)
    ** \param[in] out - stream, where coordinates will be printed
    ** \param[in] a - vertex to be printed
    **/
-  for (int i = 0; i < 3; i++) out << a.fPar[i] << std::endl;
+  for (float i : a.fPar) out << i << std::endl;
   return out;
 }
 
@@ -32,7 +32,7 @@ std::istream& operator>>(std::istream& in, KFMCVertex &a)
    ** \param[in] in - input stream
    ** \param[in] a - vertex, where the coordinates will be read in
    **/
-  for (int i = 0; i < 3; i++) in >> a.fPar[i];
+  for (float & i : a.fPar) in >> i;
   return in;
 }
 
