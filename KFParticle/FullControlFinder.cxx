@@ -60,7 +60,7 @@ float FullControlFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, cons
   tmpPartSIMD.TransportToPoint(point);
 
   float_v chi2vec = tmpPartSIMD.GetDeviationFromVertex(prim_vx_Simd);
-  std::cout << "tns" tmpPartSIMD.X()[0] << "\t" << tmpPartSIMD.Y()[0] << "\t" << tmpPartSIMD.Z()[0] << "\t\t" << chi2vec[0] << std::endl;
+  std::cout << "tns" << tmpPartSIMD.X()[0] << "\t" << tmpPartSIMD.Y()[0] << "\t" << tmpPartSIMD.Z()[0] << "\t\t" << chi2vec[0] << std::endl;
   
   return chi2vec[0];
 }
