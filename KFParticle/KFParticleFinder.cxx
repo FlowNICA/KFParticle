@@ -738,14 +738,14 @@ inline void KFParticleFinder::ConstructV0(KFPTrackVector* vTracks,
   }
 
   saveParticle &= (lMin < 200.f);
-#ifdef NonhomogeneousField  
+#ifdef NonhomogeneousField
   KFParticleSIMD motherTopo;
     ldlMin = 1.e8f;
   for(int iP=0; iP<fNPV; iP++)
   {
     motherTopo = mother;
     motherTopo.SetProductionVertex(PrimVtx[iP]);
-    motherTopo.GetDecayLength(l[iP], dl[iP]);
+    motherTopo.KFParticleBaseSIMD::GetDecayLength(l[iP], dl[iP]);
     float_v ldl = (l[iP]/dl[iP]);
     ldlMin( (ldl < ldlMin) && saveParticle) = ldl;
   }
