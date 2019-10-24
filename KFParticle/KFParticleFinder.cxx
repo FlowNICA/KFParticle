@@ -768,7 +768,7 @@ inline void KFParticleFinder::ConstructV0(KFPTrackVector* vTracks,
   { 
     float_v mass, errMass;
 
-    mother.GetMass(mass, errMass);
+    mother.KFParticleBaseSIMD::GetMass(mass, errMass);
     saveMother = saveParticle;
     saveMother &= (abs(mass - massMotherPDG)/massMotherPDGSigma) < secCuts[0];
     saveMother &= ((ldlMin > secCuts[2]) && !isGamma) || isGamma;
@@ -1728,7 +1728,7 @@ void KFParticleFinder::ConstructTrackV0Cand(KFPTrackVector& vTracks,
   {
     motherTopo[iP] = mother;
     motherTopo[iP].SetProductionVertex(PrimVtx[iP]);
-    motherTopo[iP].GetDecayLength(l[iP], dl[iP]);
+    motherTopo[iP].KFParticleBaseSIMD::GetDecayLength(l[iP], dl[iP]);
     float_v ldl = (l[iP]/dl[iP]);
     ldlMin( (ldl < ldlMin) && active) = ldl;
   }
