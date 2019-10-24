@@ -19,16 +19,15 @@ KFMCParticle::KFMCParticle() :fDaughterIds(), fMCTrackID(-1), fMotherId(-1), fPD
 {
   for(int i=0; i<3; i++)
   {
-    fIsReconstructable[i] = 0;
-    fIsV0[i] = 0;
+    fIsReconstructable[i] = false;
+    fIsV0[i] = false;
   }
-  fIsReconstructable[3] = 0;
-  fIsReconstructable[4] = 0;
+  fIsReconstructable[3] = false;
+  fIsReconstructable[4] = false;
 }
 
 KFMCParticle::~KFMCParticle()
-{
-}
+= default;
 
 void KFMCParticle::AddDaughter( int i )
 {

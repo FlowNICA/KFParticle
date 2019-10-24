@@ -97,7 +97,7 @@ std::ostream&  operator<<(std::ostream& os, const KFParticleBase& particle) {
 
 #ifndef __ROOT__
 KFParticleBase::KFParticleBase() : fChi2(0), fSFromDecay(0), 
-   SumDaughterMass(0), fMassHypo(-1), fNDF(-3), fId(-1), fAtProductionVertex(0), fQ(0), fConstructMethod(0), fPDG(0), fDaughtersIds()
+   SumDaughterMass(0), fMassHypo(-1), fNDF(-3), fId(-1), fAtProductionVertex(false), fQ(0), fConstructMethod(0), fPDG(0), fDaughtersIds()
 { 
   /** The default constructor, initialises the parameters by: \n
    ** 1) all parameters are set to 0; \n
@@ -132,16 +132,16 @@ void KFParticleBase::Initialize( const float Param[], const float Cov[], Int_t C
   for( Int_t i=0; i<6 ; i++ ) fP[i] = Param[i];
   for( Int_t i=0; i<21; i++ ) fC[i] = Cov[i];
 
-  float energy = sqrt( Mass*Mass + fP[3]*fP[3] + fP[4]*fP[4] + fP[5]*fP[5]);
+  float energy = std::sqrt( Mass*Mass + fP[3]*fP[3] + fP[4]*fP[4] + fP[5]*fP[5]);
   fP[6] = energy;
   fP[7] = 0;
   fQ = Charge;
   fNDF = 0;
   fChi2 = 0;
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   fSFromDecay = 0;
 
-  float energyInv = 1./energy;
+  float energyInv = 1.f/energy;
   float 
     h0 = fP[3]*energyInv,
     h1 = fP[4]*energyInv,
@@ -172,15 +172,15 @@ void KFParticleBase::Initialize()
    ** 5) NDF = -3, since 3 parameters should be fitted: X, Y, Z. 
    **/
 
-  for( Int_t i=0; i<8; i++) fP[i] = 0;
-  for(Int_t i=0;i<36;++i) fC[i]=0.;
+  for(float & i : fP) i = 0;
+  for(float & i : fC) i=0.;
   fC[0] = fC[2] = fC[5] = 100.;
   fC[35] = 1.;
   fNDF  = -3;
   fChi2 =  0.;
   fQ = 0;
   fSFromDecay = 0;
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   SumDaughterMass = 0;
   fMassHypo = -1;
 }
@@ -199,10 +199,10 @@ Int_t KFParticleBase::GetMomentum( float &p, float &error )  const
   float y2 = y*y;
   float z2 = z*z;
   float p2 = x2+y2+z2;
-  p = sqrt(p2);
+  p = std::sqrt(p2);
   error = (x2*fC[9]+y2*fC[14]+z2*fC[20] + 2*(x*y*fC[13]+x*z*fC[18]+y*z*fC[19]) );
   if( error>1.e-16 && p>1.e-4 ){
-    error = sqrt(error)/p;
+    error = std::sqrt(error)/p;
     return 0;
   }
   error = 1.e8;
@@ -221,10 +221,10 @@ Int_t KFParticleBase::GetPt( float &pt, float &error )  const
   float px2 = px*px;
   float py2 = py*py;
   float pt2 = px2+py2;
-  pt = sqrt(pt2);
+  pt = std::sqrt(pt2);
   error = (px2*fC[9] + py2*fC[14] + 2*px*py*fC[13] );
   if( error>0 && pt>1.e-4 ){
-    error = sqrt(error)/pt;
+    error = std::sqrt(error)/pt;
     return 0;
   }
   error = 1.e10;
@@ -243,13 +243,13 @@ Int_t KFParticleBase::GetEta( float &eta, float &error )  const
   float pz = fP[5];
   float pt2 = px*px + py*py;
   float p2 = pt2 + pz*pz;
-  float p = sqrt(p2);
+  float p = std::sqrt(p2);
   float a = p + pz;
   float b = p - pz;
   eta = 1.e10;
   if( b > 1.e-8 ){
     float c = a/b;
-    if( c>1.e-8 ) eta = 0.5*log(c);
+    if( c>1.e-8 ) eta = 0.5f*std::log(c);
   }
   float h3 = -px*pz;
   float h4 = -py*pz;  
@@ -258,7 +258,7 @@ Int_t KFParticleBase::GetEta( float &eta, float &error )  const
   error = (h3*h3*fC[9] + h4*h4*fC[14] + pt4*fC[20] + 2*( h3*(h4*fC[13] + fC[18]*pt2) + pt2*h4*fC[19] ) );
 
   if( error>0 && p2pt4>1.e-10 ){
-    error = sqrt(error/p2pt4);
+    error = std::sqrt(error/p2pt4);
     return 0;
   }
 
@@ -278,10 +278,10 @@ Int_t KFParticleBase::GetPhi( float &phi, float &error )  const
   float px2 = px*px;
   float py2 = py*py;
   float pt2 = px2 + py2;
-  phi = atan2(py,px);
+  phi = std::atan2(py,px);
   error = (py2*fC[9] + px2*fC[14] - 2*px*py*fC[13] );
   if( error>0 && pt2>1.e-4 ){
-    error = sqrt(error)/pt2;
+    error = std::sqrt(error)/pt2;
     return 0;
   }
   error = 1.e10;
@@ -299,10 +299,10 @@ Int_t KFParticleBase::GetR( float &r, float &error )  const
   float y = fP[1];
   float x2 = x*x;
   float y2 = y*y;
-  r = sqrt(x2 + y2);
+  r = std::sqrt(x2 + y2);
   error = (x2*fC[0] + y2*fC[2] - 2*x*y*fC[1] );
   if( error>0 && r>1.e-4 ){
-    error = sqrt(error)/r;
+    error = std::sqrt(error)/r;
     return 0;
   }
   error = 1.e10;
@@ -329,14 +329,14 @@ Int_t KFParticleBase::GetMass( float &m, float &error ) const
   if(m2<0.)
   {
     error = 1.e3;
-    m = -sqrt(-m2);
+    m = -std::sqrt(-m2);
     return 1;
   }
 
-  m  = sqrt(m2);
+  m  = std::sqrt(m2);
   if( m>1.e-6 ){
     if( s >= 0 ) {
-      error = sqrt(s)/m;
+      error = std::sqrt(s)/m;
       return 0;
     }
   }
@@ -366,12 +366,12 @@ Int_t KFParticleBase::GetDecayLength( float &l, float &error ) const
   float y2 = y*y;
   float z2 = z*z;
   float p2 = x2+y2+z2;
-  l = t*sqrt(p2);
+  l = t*std::sqrt(p2);
   if( p2>1.e-4){
     error = p2*fC[35] + t*t/p2*(x2*fC[9]+y2*fC[14]+z2*fC[20]
 				+ 2*(x*y*fC[13]+x*z*fC[18]+y*z*fC[19]) )
       + 2*t*(x*fC[31]+y*fC[32]+z*fC[33]);
-    error = sqrt(fabs(error));
+    error = std::sqrt(std::fabs(error));
     return 0;
   }
   error = 1.e20;
@@ -393,11 +393,11 @@ Int_t KFParticleBase::GetDecayLengthXY( float &l, float &error ) const
   float x2 = x*x;
   float y2 = y*y;
   float pt2 = x2+y2;
-  l = t*sqrt(pt2);
+  l = t*std::sqrt(pt2);
   if( pt2>1.e-4){
     error = pt2*fC[35] + t*t/pt2*(x2*fC[9]+y2*fC[14] + 2*x*y*fC[13] )
       + 2*t*(x*fC[31]+y*fC[32]);
-    error = sqrt(fabs(error));
+    error = std::sqrt(std::fabs(error));
     return 0;
   }
   error = 1.e20;
@@ -420,7 +420,7 @@ Int_t KFParticleBase::GetLifeTime( float &ctau, float &error ) const
   ctau = fP[7]*m;
   error = m*m*fC[35] + 2*fP[7]*cTM + fP[7]*fP[7]*dm*dm;
   if( error > 0 ){
-    error = sqrt( error );
+    error = std::sqrt( error );
     return 0;
   }
   error = 1.e20;
@@ -466,8 +466,8 @@ bool KFParticleBase::GetMeasurement( const KFParticleBase& daughter, float m[], 
     }
     GetDStoParticle( daughter, ds, dsdr );
     
-    if( fabs(ds[0]*fP[5]) > 1000.f || fabs(ds[1]*daughter.fP[5]) > 1000.f)
-      return 0;
+    if( std::fabs(ds[0]*fP[5]) > 1000.f || std::fabs(ds[1]*daughter.fP[5]) > 1000.f)
+      return false;
 
     float V0Tmp[36] = {0.};
     float V1Tmp[36] = {0.};
@@ -605,7 +605,7 @@ bool KFParticleBase::GetMeasurement( const KFParticleBase& daughter, float m[], 
 //     }
   }
   
-  return 1;
+  return true;
 }
 
 void KFParticleBase::AddDaughter( const KFParticleBase &Daughter )
@@ -1042,8 +1042,8 @@ void KFParticleBase::AddDaughterWithEnergyFitMC( const KFParticleBase &Daughter 
 
     float mMassParticle  = fP[6]*fP[6] - (fP[3]*fP[3] + fP[4]*fP[4] + fP[5]*fP[5]);
     float mMassDaughter  = m[6]*m[6] - (m[3]*m[3] + m[4]*m[4] + m[5]*m[5]);
-    if(mMassParticle > 0) mMassParticle = sqrt(mMassParticle);
-    if(mMassDaughter > 0) mMassDaughter = sqrt(mMassDaughter);
+    if(mMassParticle > 0) mMassParticle = std::sqrt(mMassParticle);
+    if(mMassDaughter > 0) mMassDaughter = std::sqrt(mMassDaughter);
 
     if( fMassHypo > -0.5)
       SetMassConstraint(fP,fC,mJ1,fMassHypo);
@@ -1335,7 +1335,7 @@ void KFParticleBase::SetProductionVertex( const KFParticleBase &Vtx )
     fSFromDecay = -fP[7];
   }
   
-  fAtProductionVertex = 1;
+  fAtProductionVertex = true;
 }
 
 void KFParticleBase::SetMassConstraint( float *mP, float *mC, float mJ[7][7], float mass )
@@ -1356,10 +1356,10 @@ void KFParticleBase::SetMassConstraint( float *mP, float *mC, float mJ[7][7], fl
   const float c = energy2 - p2 - mass2;
 
   float lambda = 0;
-  if(fabs(b) > 1.e-10) lambda = -c / b;
+  if(std::fabs(b) > 1.e-10) lambda = -c / b;
 
   float d = 4.*energy2*p2 - mass2*(energy2-p2-2.*mass2);
-  if(d>=0 && fabs(a) > 1.e-10) lambda = (energy2 + p2 - sqrt(d))/a;
+  if(d>=0 && std::fabs(a) > 1.e-10) lambda = (energy2 + p2 - std::sqrt(d))/a;
 
   if(mP[6] < 0) //If energy < 0 we need a lambda < 0
     lambda = -1000000.; //Empirical, a better solution should be found
@@ -1374,9 +1374,9 @@ void KFParticleBase::SetMassConstraint( float *mP, float *mC, float mJ[7][7], fl
 
     float f  = -mass2 * lambda4 + a*lambda2 + b*lambda + c;
     float df = -4.*mass2 * lambda2*lambda + 2.*a*lambda + b;
-    if(fabs(df) < 1.e-10) break;
+    if(std::fabs(df) < 1.e-10) break;
     lambda -= f/df;
-    if(fabs(lambda0 - lambda) < 1.e-8) break;
+    if(std::fabs(lambda0 - lambda) < 1.e-8) break;
   }
 
   const float lpi = 1./(1. + lambda);
@@ -1393,7 +1393,7 @@ void KFParticleBase::SetMassConstraint( float *mP, float *mC, float mJ[7][7], fl
   dfx[2] = -2.*(1. + lambda)*(1. + lambda)*mP[5];
   dfx[3] = 2.*(1. - lambda)*(1. - lambda)*mP[6];
   float dlx[4] = {1,1,1,1};
-  if(fabs(dfl) > 1.e-10 )
+  if(std::fabs(dfl) > 1.e-10 )
   {
     for(int i=0; i<4; i++)
       dlx[i] = -dfx[i] / dfl;
@@ -1481,7 +1481,7 @@ void KFParticleBase::SetMassConstraint( float Mass, float SigmaMass )
   float s2 = m2*SigmaMass*SigmaMass; // sigma^2
 
   float p2 = fP[3]*fP[3] + fP[4]*fP[4] + fP[5]*fP[5]; 
-  float e0 = sqrt(m2+p2);
+  float e0 = std::sqrt(m2+p2);
 
   float mH[8];
   mH[0] = mH[1] = mH[2] = 0.;
@@ -1562,11 +1562,11 @@ void KFParticleBase::Construct( const KFParticleBase* vDaughters[], Int_t nDaugh
 
   const int maxIter = 1;
   for( Int_t iter=0; iter<maxIter; iter++ ){
-    fAtProductionVertex = 0;
+    fAtProductionVertex = false;
     fSFromDecay = 0;
     SumDaughterMass = 0;
 
-    for(Int_t i=0;i<36;++i) fC[i]=0.;
+    for(float & i : fC) i=0.;
     fC[35] = 1.;
     
     fNDF  = -3;
@@ -1587,7 +1587,7 @@ void KFParticleBase::TransportToDecayVertex()
   /** Transports the particle to its decay vertex */
   float dsdr[6] = {0.f};
   if( fSFromDecay != 0 ) TransportToDS( -fSFromDecay, dsdr );
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
 }
 
 void KFParticleBase::TransportToProductionVertex()
@@ -1595,7 +1595,7 @@ void KFParticleBase::TransportToProductionVertex()
   /** Transports the particle to its production vertex */
   float dsdr[6] = {0.f}; 
   if( fSFromDecay != -fP[7] ) TransportToDS( -fSFromDecay-fP[7], dsdr );
-  fAtProductionVertex = 1;
+  fAtProductionVertex = true;
 }
 
 
@@ -1677,7 +1677,7 @@ float KFParticleBase::GetDStoPointBz( float B, const float xyz[3], float dsdr[6]
   float abq = bq*a;
 
   const float LocalSmall = 1.e-8f;
-  bool mask = ( fabs(bq)<LocalSmall );
+  bool mask = ( std::fabs(bq)<LocalSmall );
   if(mask && p2>1.e-4f)
   {
     dS = (a + dz*pz)/p2;
@@ -1694,13 +1694,13 @@ float KFParticleBase::GetDStoPointBz( float B, const float xyz[3], float dsdr[6]
     return dS;
   }
   
-  dS = atan2( abq, pt2 + bq*(dy*px -dx*py) )/bq;
+  dS = std::atan2( abq, pt2 + bq*(dy*px -dx*py) )/bq;
 
   float bs= bq*dS;
 
-  float s = sin(bs), c = cos(bs);
+  float s = std::sin(bs), c = std::cos(bs);
 
-  if(fabs(bq) < LocalSmall)
+  if(std::fabs(bq) < LocalSmall)
     bq = LocalSmall;
   float bbq = bq*(dx*py - dy*px) - pt2;
   
@@ -1713,7 +1713,7 @@ float KFParticleBase::GetDStoPointBz( float B, const float xyz[3], float dsdr[6]
   
   float sz(0.f);
   float cCoeff =  (bbq*c - abq*s) - pz*pz ;
-  if(fabs(cCoeff) > 1.e-8f)
+  if(std::fabs(cCoeff) > 1.e-8f)
     sz = (dS*pz - dz)*pz / cCoeff;
 
   float dcdr[6] = {0.f};
@@ -1731,12 +1731,12 @@ float KFParticleBase::GetDStoPointBz( float B, const float xyz[3], float dsdr[6]
   dS += sz;
   
   bs= bq*dS;
-  s = sin(bs), c = cos(bs);
+  s = std::sin(bs), c = std::cos(bs);
   
   float sB, cB;
-  const float kOvSqr6 = 1.f/sqrt(float(6.f));
+  const float kOvSqr6 = 1.f/std::sqrt(float(6.f));
 
-  if(LocalSmall < fabs(bs))
+  if(LocalSmall < std::fabs(bs))
   {
     sB = s/bq;
     cB = (1.f-c)/bq;
@@ -1760,7 +1760,7 @@ float KFParticleBase::GetDStoPointBz( float B, const float xyz[3], float dsdr[6]
   a = dx*p[3]+dy*p[4] + dz*pz;
   abq = bq*a;
 
-  dS += atan2( abq, p2 + bq*(dy*p[3] -dx*p[4]) )/bq;
+  dS += std::atan2( abq, p2 + bq*(dy*p[3] -dx*p[4]) )/bq;
   
   return dS;
 }
@@ -1815,12 +1815,12 @@ float KFParticleBase::GetDStoPointB( const float* B, const float xyz[3], float d
   const float& By = B[1];
   const float& Bz = B[2];
   
-  const float& Bxz = sqrt(Bx*Bx + Bz*Bz);
-  const float& Br = sqrt(Bx*Bx + By*By + Bz*Bz);
+  const float& Bxz = std::sqrt(Bx*Bx + Bz*Bz);
+  const float& Br = std::sqrt(Bx*Bx + By*By + Bz*Bz);
     
   float cosA = 1;
   float sinA = 0;
-  if(fabs(Bxz) > 1.e-8f)
+  if(std::fabs(Bxz) > 1.e-8f)
   {
     cosA = Bz/Bxz;
     sinA = Bx/Bxz;
@@ -1905,7 +1905,7 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
   }
 
   //* Get dS to another particle for Bz field
-  const float kOvSqr6 = 1.f/sqrt(float(6.f));
+  const float kOvSqr6 = 1.f/std::sqrt(float(6.f));
   const float kCLight = 0.000299792458f;
 
   //in XY plane
@@ -1913,8 +1913,8 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
   const float& bq1 = Bz*fQ*kCLight;
   const float& bq2 = Bz*p.fQ*kCLight;
 
-  const bool& isStraight1 = fabs(bq1) < 1.e-8f;
-  const bool& isStraight2 = fabs(bq2) < 1.e-8f;
+  const bool& isStraight1 = std::fabs(bq1) < 1.e-8f;
+  const bool& isStraight2 = std::fabs(bq2) < 1.e-8f;
   
   if( isStraight1 && isStraight2 )
   {
@@ -1966,11 +1966,11 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
   float d1 = pt12*pt22 - kd*kd;
   if(d1<0.f)
     d1 = float(0.f);
-  d1 = sqrt( d1 );
+  d1 = std::sqrt( d1 );
   float d2 = pt12*pt22 - kd*kd;
   if(d2<0.f)
     d2 = float(0.f);
-  d2 = sqrt( d2 );
+  d2 = std::sqrt( d2 );
   
   // find two points of closest approach in XY plane
   
@@ -2013,8 +2013,8 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
 
   if(!isStraight1)
   {    
-    dS1[0] = atan2( bq1*(k11*c1 + k21*d1), (bq1*k11*d1*bq1 - k21*c1) )/bq1;
-    dS1[1] = atan2( bq1*(k11*c1 - k21*d1), (-bq1*k11*d1*bq1 - k21*c1) )/bq1;
+    dS1[0] = std::atan2( bq1*(k11*c1 + k21*d1), (bq1*k11*d1*bq1 - k21*c1) )/bq1;
+    dS1[1] = std::atan2( bq1*(k11*c1 - k21*d1), (-bq1*k11*d1*bq1 - k21*c1) )/bq1;
     
     float a = bq1*(k11*c1 + k21*d1);
     float b = bq1*k11*d1*bq1 - k21*c1;
@@ -2060,8 +2060,8 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
   }
   if(!isStraight2)
   {
-    dS2[0] = atan2( (bq2*k12*c2 + k22*d2*bq2), (bq2*k12*d2*bq2 - k22*c2) )/bq2;
-    dS2[1] = atan2( (bq2*k12*c2 - k22*d2*bq2), (-bq2*k12*d2*bq2 - k22*c2) )/bq2;
+    dS2[0] = std::atan2( (bq2*k12*c2 + k22*d2*bq2), (bq2*k12*d2*bq2 - k22*c2) )/bq2;
+    dS2[1] = std::atan2( (bq2*k12*c2 - k22*d2*bq2), (-bq2*k12*d2*bq2 - k22*c2) )/bq2;
     
     float a = bq2*(k12*c2 + k22*d2);
     float b = bq2*k12*d2*bq2 - k22*c2;
@@ -2207,10 +2207,10 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
   {
     const float& bs1 = bq1*dS1[iP];
     const float& bs2 = bq2*dS2[iP];
-    float sss = sin(bs1), ccc = cos(bs1);
+    float sss = std::sin(bs1), ccc = std::cos(bs1);
     
-    const bool& bs1Big = fabs(bs1) > 1.e-8f;
-    const bool& bs2Big = fabs(bs2) > 1.e-8f;
+    const bool& bs1Big = std::fabs(bs1) > 1.e-8f;
+    const bool& bs2Big = std::fabs(bs2) > 1.e-8f;
     
     float sB(0.f), cB(0.f);
     if(bs1Big)
@@ -2228,7 +2228,7 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
     const float& y1 = param1[1] - cB*px1 + sB*py1;
     const float& z1 = param1[2] + dS1[iP]*param1[5];
 
-    sss = sin(bs2), ccc = cos(bs2);
+    sss = std::sin(bs2), ccc = std::cos(bs2);
 
     if(bs2Big)
     {
@@ -2323,10 +2323,10 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
   {
     const float& bs1 = bq1*dS[0];
     const float& bs2 = bq2*dS[1];
-    float sss = sin(bs1), ccc = cos(bs1);
+    float sss = std::sin(bs1), ccc = std::cos(bs1);
     
-    const bool& bs1Big = fabs(bs1) > 1.e-8f;
-    const bool& bs2Big = fabs(bs2) > 1.e-8f;
+    const bool& bs1Big = std::fabs(bs1) > 1.e-8f;
+    const bool& bs2Big = std::fabs(bs2) > 1.e-8f;
     
     float sB(0.f), cB(0.f);
     if(bs1Big)
@@ -2347,7 +2347,7 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
     const float& ppy1 = -sss*px1 + ccc*py1;
     const float& ppz1 = pz1;
     
-    float sss1 = sin(bs2), ccc1 = cos(bs2);
+    float sss1 = std::sin(bs2), ccc1 = std::cos(bs2);
 
     float sB1(0.f), cB1(0.f);
     if(bs2Big)
@@ -2380,7 +2380,7 @@ void KFParticleBase::GetDStoParticleBz( float Bz, const KFParticleBase &p, float
     const float& ldrp2 = ppx2*dx + ppy2*dy + ppz2*dz;
 
     float detp =  lp1p2*lp1p2 - p12*p22;
-    if( fabs(detp)<1.e-4 ) detp = 1; //TODO correct!!!
+    if( std::fabs(detp)<1.e-4 ) detp = 1; //TODO correct!!!
     
     //dsdr calculation
     const float a1 = ldrp2*lp1p2 - ldrp1*p22;
@@ -2516,7 +2516,7 @@ void KFParticleBase::GetDStoParticleLine( const KFParticleBase &p, float dS[2], 
   float drp2 = p.fP[3]*(p.fP[0]-fP[0]) + p.fP[4]*(p.fP[1]-fP[1]) + p.fP[5]*(p.fP[2]-fP[2]);
 
   float detp =  p1p2*p1p2 - p12*p22;
-  if( fabs(detp)<1.e-4 ) detp = 1; //TODO correct!!!
+  if( std::fabs(detp)<1.e-4 ) detp = 1; //TODO correct!!!
 
   dS[0]  = (drp2*p1p2 - drp1*p22) /detp;
   dS[1] = (drp2*p12  - drp1*p1p2)/detp;
@@ -2597,8 +2597,8 @@ void KFParticleBase::GetDStoParticleCBM( const KFParticleBase &p, float dS[2], f
   
   const float& bq1 = fld[1]*fQ;
   const float& bq2 = fld[1]*p.fQ;
-  const bool& isStraight1 = fabs(bq1) < 1.e-8f;
-  const bool& isStraight2 = fabs(bq2) < 1.e-8f;
+  const bool& isStraight1 = std::fabs(bq1) < 1.e-8f;
+  const bool& isStraight2 = std::fabs(bq2) < 1.e-8f;
   
   if( isStraight1 && isStraight2 )
     GetDStoParticleLine(p, dS, dsdr);
@@ -2634,8 +2634,8 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
     return;
   }
 
-  if( fabs(dS*fP[5]) > 1000.f ) dS = 0;
-  
+  if( std::fabs(dS*fP[5]) > 1000.f ) dS = 0;
+
   const float kCLight = 0.000299792458;
 
   float c = fQ*kCLight;
@@ -2664,9 +2664,9 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
     p2[1] = fP[1] + py*dS;
     p2[2] = fP[2] + pz*dS;
   
-    p1[0] = 0.5*(p0[0]+p2[0]);
-    p1[1] = 0.5*(p0[1]+p2[1]);
-    p1[2] = 0.5*(p0[2]+p2[2]);
+    p1[0] = 0.5f*(p0[0]+p2[0]);
+    p1[1] = 0.5f*(p0[1]+p2[1]);
+    p1[2] = 0.5f*(p0[2]+p2[2]);
 
     // first order track approximation
     {
@@ -2674,8 +2674,8 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
       GetFieldValue( p1, fld[1] );
       GetFieldValue( p2, fld[2] );
 
-      float ssy1 = ( 7*fld[0][1] + 6*fld[1][1]-fld[2][1] )*c*dS*dS/96.;
-      float ssy2 = (   fld[0][1] + 2*fld[1][1]         )*c*dS*dS/6.;
+      float ssy1 = ( 7.f*fld[0][1] + 6.f*fld[1][1]-fld[2][1] )*c*dS*dS/96.f;
+      float ssy2 = (   fld[0][1] + 2.f*fld[1][1]         )*c*dS*dS/6.f;
 
       p1[0] -= ssy1*pz;
       p1[2] += ssy1*px;
@@ -2751,7 +2751,7 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
   float mJds[6][6];
   for( Int_t i=0; i<6; i++ ) for( Int_t j=0; j<6; j++) mJds[i][j]=0;
 
-  if(fabs(dS)>0)
+  if(std::fabs(dS)>0)
   {
     mJds[0][3]= 1 - 3*ssyy/dS;          mJds[0][4]= 2*ssx/dS; mJds[0][5]= (4.f*ssyyy-2*ssy)/dS;
     mJds[1][3]= -2.f*ssz/dS;            mJds[1][4]= 1;        mJds[1][5]= (2.f*ssx + 3.*ssyz)/dS;
@@ -2781,7 +2781,7 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
 }
 
 
-void KFParticleBase::TransportBz( float Bz, float dS, const float* dsdr, float P[], float C[], float* dsdr1, float* F, float* F1 ) const 
+void KFParticleBase::TransportBz( float Bz, float dS, const float* dsdr, float P[], float C[], const float* dsdr1, float* F, float* F1 ) const
 { 
   /** Transports the parameters and their covariance matrix of the current particle assuming constant homogeneous 
    ** magnetic field Bz on the length defined by the transport parameter dS = l/p, where l is the signed distance and p is 
@@ -2808,9 +2808,9 @@ void KFParticleBase::TransportBz( float Bz, float dS, const float* dsdr, float P
   const float kCLight = 0.000299792458;
   Bz = Bz*fQ*kCLight;
   float bs= Bz*dS;
-  float s = sin(bs), c = cos(bs);
+  float s = std::sin(bs), c = std::cos(bs);
   float sB, cB;
-  if( fabs(bs)>1.e-10){
+  if( std::fabs(bs)>1.e-10){
     sB= s/Bz;
     cB= (1-c)/Bz;
   }else{
@@ -2892,7 +2892,7 @@ float KFParticleBase::GetDistanceFromVertex( const float vtx[] ) const
   
   Transport( dS, dsdr, mP, mC );
   float d[3]={ vtx[0]-mP[0], vtx[1]-mP[1], vtx[2]-mP[2]};
-  return sqrt( d[0]*d[0]+d[1]*d[1]+d[2]*d[2] );
+  return std::sqrt( d[0]*d[0]+d[1]*d[1]+d[2]*d[2] );
 }
 
 float KFParticleBase::GetDistanceFromParticle( const KFParticleBase &p ) 
@@ -2911,7 +2911,7 @@ float KFParticleBase::GetDistanceFromParticle( const KFParticleBase &p )
   float dx = mP[0]-mP1[0]; 
   float dy = mP[1]-mP1[1]; 
   float dz = mP[2]-mP1[2]; 
-  return sqrt(dx*dx+dy*dy+dz*dz);
+  return std::sqrt(dx*dx+dy*dy+dz*dz);
 }
 
 float KFParticleBase::GetDeviationFromVertex( const KFParticleBase &Vtx ) const
@@ -3183,7 +3183,7 @@ void KFParticleBase::SubtractFromParticle(  KFParticleBase &Vtx ) const
              +  (mS[3]*zeta[0] + mS[4]*zeta[1] + mS[5]*zeta[2])*zeta[2]);     
 }
 
-void KFParticleBase::TransportLine( float dS, const float* dsdr, float P[], float C[], float* dsdr1, float* F, float* F1 ) const 
+void KFParticleBase::TransportLine( float dS, const float* dsdr, float P[], float C[], const float* dsdr1, float* F, float* F1 ) const
 {
   /** Transports the parameters and their covariance matrix of the current particle assuming the straight line trajectory
    ** on the length defined by the transport parameter dS = l/p, where l is the signed distance and p is 
@@ -3276,25 +3276,25 @@ void KFParticleBase::GetArmenterosPodolanski(KFParticleBase& positive, KFParticl
   float spx = positive.GetPx() + negative.GetPx();
   float spy = positive.GetPy() + negative.GetPy();
   float spz = positive.GetPz() + negative.GetPz();
-  float sp  = sqrt(spx*spx + spy*spy + spz*spz);
+  float sp  = std::sqrt(spx*spx + spy*spy + spz*spz);
   if( sp == 0.0) return;
   float pn, pln, plp;
 
-  pn = sqrt(negative.GetPx()*negative.GetPx() + negative.GetPy()*negative.GetPy() + negative.GetPz()*negative.GetPz());
+  pn = std::sqrt(negative.GetPx()*negative.GetPx() + negative.GetPy()*negative.GetPy() + negative.GetPz()*negative.GetPz());
 //   pp = sqrt(positive.GetPx()*positive.GetPx() + positive.GetPy()*positive.GetPy() + positive.GetPz()*positive.GetPz());
   pln  = (negative.GetPx()*spx+negative.GetPy()*spy+negative.GetPz()*spz)/sp;
   plp  = (positive.GetPx()*spx+positive.GetPy()*spy+positive.GetPz()*spz)/sp;
 
   if( pn == 0.0) return;
   float ptm  = (1.-((pln/pn)*(pln/pn)));
-  qt= (ptm>=0.)?  pn*sqrt(ptm) :0;
+  qt= (ptm>=0.)?  pn*std::sqrt(ptm) :0;
   alpha = (plp-pln)/(plp+pln);
 
   QtAlfa[0] = qt;
   QtAlfa[1] = alpha;
 }
 
-void KFParticleBase::RotateXY(float angle, float Vtx[3])
+void KFParticleBase::RotateXY(float angle, const float Vtx[3])
 {
   /** Rotates the KFParticle object around OZ axis, OZ axis is set by the vertex position.
    ** \param[in] angle - angle of rotation in XY plane in [rad]
@@ -3307,8 +3307,8 @@ void KFParticleBase::RotateXY(float angle, float Vtx[3])
   Z() = Z() - Vtx[2];
 
   // Rotate the kf particle
-  float c = cos(angle);
-  float s = sin(angle);
+  float c = std::cos(angle);
+  float s = std::sin(angle);
 
   float mA[8][ 8];
   for( Int_t i=0; i<8; i++ ){
@@ -3383,10 +3383,10 @@ void KFParticleBase::InvertCholetsky3(float a[6])
       uud += u[j][i]*u[j][i]*d[j];
     uud = a[i*(i+3)/2] - uud;
 
-    if(fabs(uud)<1.e-12f) uud = 1.e-12f;
+    if(std::fabs(uud)<1.e-12f) uud = 1.e-12f;
 
-    d[i] = uud/fabs(uud);
-    u[i][i] = sqrt(fabs(uud));
+    d[i] = uud/std::fabs(uud);
+    u[i][i] = sqrt(std::fabs(uud));
 
     for(int j=i+1; j<3; j++) 
     {

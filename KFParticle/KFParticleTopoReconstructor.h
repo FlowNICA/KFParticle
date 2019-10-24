@@ -53,7 +53,7 @@ class AliHLTTPCCAGBTracker;
 
 class KFParticleTopoReconstructor{
  public:
-  KFParticleTopoReconstructor():fKFParticlePVReconstructor(0),fKFParticleFinder(0),fTracks(0), fParticles(0), fPV(0), fNThreads(1)
+  KFParticleTopoReconstructor():fKFParticlePVReconstructor(nullptr),fKFParticleFinder(nullptr),fTracks(nullptr), fParticles(0), fPV(0), fNThreads(1)
 #ifdef USE_TIMERS
   ,fTime(0.),timer()
 #endif
@@ -91,7 +91,7 @@ class KFParticleTopoReconstructor{
    ** "-1" is set as the pdg hypothesis for all tracks
    ** \param[in] nPixelHits - pointer to the vector with number of precise measurement in each track
    **/  
-  void Init(std::vector<KFParticle> &particles, std::vector<int>* pdg=0, std::vector<int>* nPixelHits=0);
+  void Init(std::vector<KFParticle> &particles, std::vector<int>* pdg=nullptr, std::vector<int>* nPixelHits=nullptr);
   /** Initialises the pointer KFParticleTopoReconstructor::fTracks with the external pointer "particles".
    ** Primary vertices are assumed to be found and are also provided externally. Only reconstruction
    ** of short-lived particles should be run if this initialisation method is used.
@@ -114,11 +114,11 @@ class KFParticleTopoReconstructor{
   void SetEmcClusters(KFPEmcCluster* clusters) { fKFParticleFinder->SetEmcClusters(clusters); }
   void SetMixedEventAnalysis() { fKFParticleFinder->SetMixedEventAnalysis(); } ///< KFParticleFinder is forced to be run in the mixed event analysis mode.
   
-  void DeInit() { fTracks = NULL; } ///< Sets a pointer to the input tracks KFParticleTopoReconstructor::fTracks to NULL.
+  void DeInit() { fTracks = nullptr; } ///< Sets a pointer to the input tracks KFParticleTopoReconstructor::fTracks to NULL.
   /** \brief Cleans all candidates for primary vertices and short-lived particles. */
   void Clear() { fParticles.clear(); fPV.clear(); fKFParticlePVReconstructor->CleanPV(); }
   
-  void ReconstructPrimVertex(bool isHeavySystem = 1); // find primary vertex
+  void ReconstructPrimVertex(bool isHeavySystem = true); // find primary vertex
   void SortTracks(); //sort tracks according to the pdg hypothesis and pv index
   void ReconstructParticles(); //find short-lived particles 
   void SelectParticleCandidates(); //clean particle candidates: track can belong to only one particle
@@ -197,7 +197,7 @@ class KFParticleTopoReconstructor{
   int NTimers() const { return fNTimers; } ///< returns number of the timers to measure performance of different parts of the procedure.
 #endif
 
-  void SaveInputParticles(const std::string prefix = "KFPData", bool onlySecondary = 0);
+  void SaveInputParticles(std::string prefix = "KFPData", bool onlySecondary = false);
   void SetNThreads(short int n) { fNThreads=n; } ///< Sets the number of threads to be run in KFParticleFinder. Currently is not used.
   
   void SetChi2PrimaryCut(float chi) {
@@ -212,9 +212,9 @@ class KFParticleTopoReconstructor{
   const KFParticleTopoReconstructor &operator=(const KFParticleTopoReconstructor& a)
   {
     /** Copy operator. All pointers are set to zero, other members are copied. Returns the current object after copying is finished. **/
-    fKFParticlePVReconstructor = 0;
-    fKFParticleFinder = 0;
-    fTracks = 0;
+    fKFParticlePVReconstructor = nullptr;
+    fKFParticleFinder = nullptr;
+    fTracks = nullptr;
     
     fNThreads = a.fNThreads;
     
@@ -222,7 +222,7 @@ class KFParticleTopoReconstructor{
   }
   
   /** \brief A copy constructor. All pointers are set to zero, other members are copied. **/
-  KFParticleTopoReconstructor(const KFParticleTopoReconstructor& a):fKFParticlePVReconstructor(0),fKFParticleFinder(0),fTracks(0), fParticles(), fPV(), fNThreads(a.fNThreads)
+  KFParticleTopoReconstructor(const KFParticleTopoReconstructor& a):fKFParticlePVReconstructor(nullptr),fKFParticleFinder(nullptr),fTracks(nullptr), fParticles(), fPV(), fNThreads(a.fNThreads)
 #ifdef USE_TIMERS
   ,fTime(0.),timer()
 #endif
@@ -233,7 +233,7 @@ class KFParticleTopoReconstructor{
   void CopyCuts(const KFParticleTopoReconstructor* topo) { fKFParticleFinder->CopyCuts(topo->fKFParticleFinder); }
  private:
 
-  void GetChiToPrimVertex(KFParticleSIMD* pv, const int nPV);
+  void GetChiToPrimVertex(KFParticleSIMD* pv, int nPV);
   void TransportPVTracksToPrimVertex();
   
   KFParticlePVReconstructor* fKFParticlePVReconstructor; ///< Pointer to the KFParticlePVReconstructor. Allocated in the constructor.

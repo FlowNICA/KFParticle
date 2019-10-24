@@ -38,9 +38,9 @@ class KFPEmcCluster
   /**Returns size of the vectors. All data vectors have the same size. */
   int Size() const { return fP[0].size(); }
   
-  void Resize(const int n);
+  void Resize(int n);
   void Set(KFPEmcCluster& v, int vSize, int offset);
-  void SetTracks(const KFPEmcCluster& track, const kfvector_uint& trackIndex, const int nIndexes);
+  void SetTracks(const KFPEmcCluster& track, const kfvector_uint& trackIndex, int nIndexes);
   
   const kfvector_float& X()  const { return fP[0]; } ///< Returns constant reference to the vector with X coordinates.
   const kfvector_float& Y()  const { return fP[1]; } ///< Returns constant reference to the vector with Y coordinates.

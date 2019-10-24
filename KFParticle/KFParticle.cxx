@@ -16,6 +16,9 @@
 //____________________________________________________________________________
 
 
+#include <cmath>
+
+
 #include "KFParticle.h"
 #include "KFParticleDatabase.h"
 
@@ -124,7 +127,7 @@ KFParticle::KFParticle( const KFPVertex &vertex ): KFParticleBase()
   fChi2 = vertex.GetChi2();
   fNDF = 2*vertex.GetNContributors() - 3;
   fQ = 0;
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   fSFromDecay = 0;
 }
 
@@ -138,7 +141,7 @@ Bool_t KFParticle::GetDistanceFromVertexXY( const float vtx[], const float Cv[],
    ** \param[out] err - the error of the calculated distance, takes into account errors of the particle and vertex
    **/
 
-  Bool_t ret = 0;
+  Bool_t ret = false;
   
   float mP[8];
   float mC[36];
@@ -150,10 +153,10 @@ Bool_t KFParticle::GetDistanceFromVertexXY( const float vtx[], const float Cv[],
   float dy = mP[1] - vtx[1];
   float px = mP[3];
   float py = mP[4];
-  float pt = sqrt(px*px + py*py);
+  float pt = std::sqrt(px*px + py*py);
   float ex=0, ey=0;
   if( pt<1.e-4 ){
-    ret = 1;
+    ret = true;
     pt = 1.;
     val = 1.e4;
   } else{
@@ -177,7 +180,7 @@ Bool_t KFParticle::GetDistanceFromVertexXY( const float vtx[], const float Cv[],
     err+= h0*(h0*Cv[0] + h1*Cv[1] ) + h1*(h0*Cv[1] + h1*Cv[2] ); 
   }
 
-  err = sqrt(fabs(err));
+  err = std::sqrt(std::fabs(err));
 
   return ret;
 }
@@ -190,7 +193,7 @@ Bool_t KFParticle::GetDistanceFromVertexXY( const float vtx[], float &val, float
    ** \param[out] val - the distance in the XY plane to the vertex
    ** \param[out] err - the error of the calculated distance, takes into account errors of the particle only
    **/
-  return GetDistanceFromVertexXY( vtx, 0, val, err );
+  return GetDistanceFromVertexXY( vtx, nullptr, val, err );
 }
 
 
@@ -227,7 +230,7 @@ float KFParticle::GetDistanceFromVertexXY( const float vtx[] ) const
    **/
 
   float val, err;
-  GetDistanceFromVertexXY( vtx, 0, val, err );
+  GetDistanceFromVertexXY( vtx, nullptr, val, err );
   return val;
 }
 
@@ -265,7 +268,7 @@ float KFParticle::GetDistanceFromParticleXY( const KFParticle &p ) const
   p.Transport( dS[1], dsdr[3], mP1, mC1 ); 
   float dx = mP[0]-mP1[0]; 
   float dy = mP[1]-mP1[1]; 
-  return sqrt(dx*dx+dy*dy);
+  return std::sqrt(dx*dx+dy*dy);
 }
 
 float KFParticle::GetDeviationFromParticleXY( const KFParticle &p ) const 
@@ -283,7 +286,7 @@ float KFParticle::GetDeviationFromParticleXY( const KFParticle &p ) const
 
   float d[2]={ mP[0]-mP1[0], mP[1]-mP1[1] };
 
-  float sigmaS = .1+10.*sqrt( (d[0]*d[0]+d[1]*d[1] )/
+  float sigmaS = .1+10.*std::sqrt( (d[0]*d[0]+d[1]*d[1] )/
 					(mP1[3]*mP1[3]+mP1[4]*mP1[4] )  );
 
   float h[2] = { mP1[3]*sigmaS, mP1[4]*sigmaS };       
@@ -353,8 +356,8 @@ void KFParticle::GetParametersAtPoint(const float* point, const float* pointCov,
   Transport(dS, dsdr, m, mV, dsdp, F, F1);
     
   float V1Tmp[36];
-  for(int i=0; i<36; i++)
-    V1Tmp[i] = 0.f;
+  for(float & i : V1Tmp)
+    i = 0.f;
   KFParticle::MultQSQt(F1, pointCov, V1Tmp, 6);
     
   for(int iC=0; iC<21; iC++)
@@ -373,12 +376,12 @@ float KFParticle::GetAngle  ( const KFParticle &p ) const
   float mP[8], mC[36], mP1[8], mC1[36];
   Transport( dS[0], dsdr[0], mP, mC ); 
   p.Transport( dS[1], dsdr[3], mP1, mC1 ); 
-  float n = sqrt( mP[3]*mP[3] + mP[4]*mP[4] + mP[5]*mP[5] );
-  float n1= sqrt( mP1[3]*mP1[3] + mP1[4]*mP1[4] + mP1[5]*mP1[5] );
+  float n = std::sqrt( mP[3]*mP[3] + mP[4]*mP[4] + mP[5]*mP[5] );
+  float n1= std::sqrt( mP1[3]*mP1[3] + mP1[4]*mP1[4] + mP1[5]*mP1[5] );
   n*=n1;
   float a = 0;
   if( n>1.e-8 ) a = ( mP[3]*mP1[3] + mP[4]*mP1[4] + mP[5]*mP1[5] )/n;
-  if (fabs(a)<1.) a = acos(a);
+  if (std::fabs(a)<1.) a = std::acos(a);
   else a = (a>=0) ?0 :3.14;
   return a;
 }
@@ -395,12 +398,12 @@ float KFParticle::GetAngleXY( const KFParticle &p ) const
   float mP[8], mC[36], mP1[8], mC1[36];
   Transport( dS[0], dsdr[0], mP, mC ); 
   p.Transport( dS[1], dsdr[3], mP1, mC1 ); 
-  float n = sqrt( mP[3]*mP[3] + mP[4]*mP[4] );
-  float n1= sqrt( mP1[3]*mP1[3] + mP1[4]*mP1[4] );
+  float n = std::sqrt( mP[3]*mP[3] + mP[4]*mP[4] );
+  float n1= std::sqrt( mP1[3]*mP1[3] + mP1[4]*mP1[4] );
   n*=n1;
   float a = 0;
   if( n>1.e-8 ) a = ( mP[3]*mP1[3] + mP[4]*mP1[4] )/n;
-  if (fabs(a)<1.) a = acos(a);
+  if (std::fabs(a)<1.) a = std::acos(a);
   else a = (a>=0) ?0 :3.14;
   return a;
 }
@@ -417,14 +420,14 @@ float KFParticle::GetAngleRZ( const KFParticle &p ) const
   float mP[8], mC[36], mP1[8], mC1[36];
   Transport( dS[0], dsdr[0], mP, mC ); 
   p.Transport( dS[1], dsdr[3], mP1, mC1 );  
-  float nr = sqrt( mP[3]*mP[3] + mP[4]*mP[4] );
-  float n1r= sqrt( mP1[3]*mP1[3] + mP1[4]*mP1[4]  );
-  float n = sqrt( nr*nr + mP[5]*mP[5] );
-  float n1= sqrt( n1r*n1r + mP1[5]*mP1[5] );
+  float nr = std::sqrt( mP[3]*mP[3] + mP[4]*mP[4] );
+  float n1r= std::sqrt( mP1[3]*mP1[3] + mP1[4]*mP1[4]  );
+  float n = std::sqrt( nr*nr + mP[5]*mP[5] );
+  float n1= std::sqrt( n1r*n1r + mP1[5]*mP1[5] );
   n*=n1;
   float a = 0;
   if( n>1.e-8 ) a = ( nr*n1r +mP[5]*mP1[5])/n; 
-  if (fabs(a)<1.) a = acos(a);
+  if (std::fabs(a)<1.) a = std::acos(a);
   else a = (a>=0) ?0 :3.14;
   return a;
 }

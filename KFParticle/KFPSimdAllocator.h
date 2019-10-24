@@ -68,7 +68,7 @@ class KFPSimdAllocator {
   }
 
   /** Allocate but don't initialize num elements of type T. */
-  pointer allocate (size_type num, const void* = 0) {
+  pointer allocate (size_type num, const void* = nullptr) {
 //               print message and allocate memory with global new
     pointer ret = reinterpret_cast<pointer>( /*T::*/operator new(num*sizeof(T)) );
     return ret;

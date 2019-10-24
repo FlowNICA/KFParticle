@@ -84,8 +84,8 @@ class KFPInputData
      ** \param[in] prefix - string with the name of the input file
      **/ 
     std::ifstream ifile(prefix.data());
-    if ( !ifile.is_open() ) return 0;
-    int nSets;
+    if ( !ifile.is_open() ) return false;
+    int nSets{0};
     ifile >> fBz;
     ifile >> nSets;
     for(int iSet=0; iSet<nSets; iSet++)
@@ -164,7 +164,7 @@ class KFPInputData
     }
     
     ifile.close();
-    return 1;
+    return true;
   }
   
   void SetDataToVector(int* data, int& dataSize)
@@ -332,7 +332,7 @@ class KFPInputData
  **/
 
 struct KFPInputDataArray{
-  KFPInputDataArray():fInput(0){};
+  KFPInputDataArray():fInput(nullptr){};
   ~KFPInputDataArray() { if(fInput) delete [] fInput; }
 
   KFPInputData *fInput; ///< Pointer to the array of the input data objects.

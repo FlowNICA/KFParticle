@@ -59,11 +59,11 @@ class KFParticle :public KFParticleBase
 #endif
   //* Constructor (empty)
 
-  KFParticle():KFParticleBase(){ ; }
+  KFParticle():KFParticleBase(){ }
 
   //* Destructor (empty)
 
-  ~KFParticle(){ ; }
+  ~KFParticle(){ }
 
   //* Construction of mother particle by its 2-3-4 daughters
 
@@ -83,34 +83,18 @@ class KFParticle :public KFParticleBase
 
  //* Initialisation from ALICE track, PID hypothesis shoould be provided 
 
-  KFParticle( const KFPTrack &track, const int PID );
+  KFParticle( const KFPTrack &track, int PID );
 
 
   //* Initialisation from VVertex 
 
-  KFParticle( const KFPVertex &vertex );
-
-  //* Initialise covariance matrix and set current parameters to 0.0 
-
-  void Initialize();
+  explicit KFParticle( const KFPVertex &vertex );
 
   //*
   //*  ACCESSORS
   //*
 
-  //* Simple accessors 
-
-  float GetX    () const ; ///< Retruns X coordinate of the particle, fP[0].
-  float GetY    () const ; ///< Retruns Y coordinate of the particle, fP[1].
-  float GetZ    () const ; ///< Retruns Z coordinate of the particle, fP[2].
-  float GetPx   () const ; ///< Retruns X component of the momentum, fP[3].
-  float GetPy   () const ; ///< Retruns Y component of the momentum, fP[4].
-  float GetPz   () const ; ///< Retruns Z component of the momentum, fP[5].
-  float GetE    () const ; ///< Returns energy of the particle, fP[6].
-  float GetS    () const ; ///< Returns dS=l/p, l - decay length, fP[7], defined if production vertex is set.
-  char  GetQ    () const ; ///< Returns charge of the particle.
-  float GetChi2 () const ; ///< Returns Chi2 of the fit.
-  Int_t GetNDF  () const ; ///< Returns number of decrease of freedom.
+  //* Simple accessors
 
   Bool_t GetAtProductionVertex() const { return fAtProductionVertex; } ///< Returns a flag which shows if the particle is located at the production point
   void SetAtProductionVertex(Bool_t b) { fAtProductionVertex = b; } ///< Set a flag that particle is at the production point
@@ -119,22 +103,6 @@ class KFParticle :public KFParticleBase
   const float* GetFieldCoeff() const { return fieldRegion; } ///< Returns the field approximation for the current particle
   void SetFieldCoeff(float c, int i) { fieldRegion[i] = c; } ///< Sets the field coefficient with index i.
 #endif
-
-  const float& X    () const { return fP[0]; } ///< Retruns X coordinate of the particle, fP[0].
-  const float& Y    () const { return fP[1]; } ///< Retruns Y coordinate of the particle, fP[1].
-  const float& Z    () const { return fP[2]; } ///< Retruns Z coordinate of the particle, fP[2].
-  const float& Px   () const { return fP[3]; } ///< Retruns X component of the momentum, fP[3].
-  const float& Py   () const { return fP[4]; } ///< Retruns Y component of the momentum, fP[4].
-  const float& Pz   () const { return fP[5]; } ///< Retruns Z component of the momentum, fP[5].
-  const float& E    () const { return fP[6]; } ///< Returns energy of the particle, fP[6].
-  const float& S    () const { return fP[7]; } ///< Returns dS=l/p, l - decay length, fP[7], defined if production vertex is set.
-  const char&  Q    () const { return fQ;    } ///< Returns charge of the particle.
-  const float& Chi2 () const { return fChi2; } ///< Returns Chi2 of the fit.
-  const Int_t& NDF  () const { return fNDF;  } ///< Returns number of decrease of freedom.
-  
-  float GetParameter ( int i ) const ;        ///< Returns P[i] parameter.
-  float GetCovariance( int i ) const ;        ///< Returns C[i] element of the covariance matrix in the lower triangular form.
-  float GetCovariance( int i, int j ) const ; ///< Returns C[i,j] element of the covariance matrix.
 
   //* Accessors with calculations, value returned w/o error flag
   
@@ -183,29 +151,14 @@ class KFParticle :public KFParticleBase
   int GetDecayLengthXY ( float &L, float &SigmaL ) const ;     //* decay length in XY
   int GetLifeTime      ( float &T, float &SigmaT ) const ;     //* life time
   int GetR             ( float &R, float &SigmaR ) const ;     //* R
-  float GetRapidity() const { return 0.5*log((fP[6] + fP[5])/(fP[6] - fP[5])); } ///< Returns rapidity of the particle
-  float GetTheta()    const { return atan2(GetPt(),fP[5]); } ///< Returns the polar angle in RZ
+  float GetRapidity() const { return 0.5f*std::log((fP[6] + fP[5])/(fP[6] - fP[5])); } ///< Returns rapidity of the particle
+  float GetTheta()    const { return std::atan2(GetPt(),fP[5]); } ///< Returns the polar angle in RZ
 
 
   //*
   //*  MODIFIERS
   //*
   
-  float & X    () ; ///< Modifier of X coordinate of the particle, fP[0].
-  float & Y    () ; ///< Modifier of Y coordinate of the particle, fP[1].
-  float & Z    () ; ///< Modifier of Z coordinate of the particle, fP[2].
-  float & Px   () ; ///< Modifier of X component of the momentum, fP[3].
-  float & Py   () ; ///< Modifier of Y component of the momentum, fP[4].
-  float & Pz   () ; ///< Modifier of Z component of the momentum, fP[5].
-  float & E    () ; ///< Modifier of energy of the particle, fP[6].
-  float & S    () ; ///< Modifier of dS=l/p, l - decay length, fP[7], defined if production vertex is set.
-  char  & Q    () ; ///< Modifier of charge of the particle.
-  float & Chi2 () ; ///< Modifier of Chi2 of the fit.
-  Int_t & NDF  () ; ///< Modifier of number of decrease of freedom.
-
-  float & Parameter ( int i ) ;        ///< Modifier of P[i] parameter.
-  float & Covariance( int i ) ;        ///< Modifier of C[i] element of the covariance matrix in the lower triangular form.
-  float & Covariance( int i, int j ) ; ///< Modifier of C[i,j] element of the covariance matrix.
   float * Parameters () ;              ///< Returns pointer to the parameters fP
   float * CovarianceMatrix() ;         ///< Returns pointer to the covariance matrix fC
 
@@ -226,7 +179,7 @@ class KFParticle :public KFParticleBase
   //* Everything in one go  
 
   void Construct( const KFParticle *vDaughters[], int nDaughters, 
-		  const KFParticle *ProdVtx=0,   float Mass=-1 );
+		  const KFParticle *ProdVtx=nullptr,   float Mass=-1 );
 
   //*
   //*                   TRANSPORT
@@ -276,7 +229,7 @@ class KFParticle :public KFParticleBase
   //* Calculate sqrt(Chi2/ndf) deviation from another object in XY plane
   //* ( v = [xyz]-vertex, Cv=[Cxx,Cxy,Cyy,Cxz,Cyz,Czz]-covariance matrix )
 
-  float GetDeviationFromVertexXY( const float v[], const float Cv[]=0 ) const ;
+  float GetDeviationFromVertexXY( const float v[], const float Cv[]=nullptr ) const ;
   float GetDeviationFromVertexXY( const KFParticle &Vtx ) const ;
 #ifdef HomogeneousField
   float GetDeviationFromVertexXY( const KFPVertex &Vtx ) const ;
@@ -292,11 +245,11 @@ class KFParticle :public KFParticleBase
   float GetAngleXY( const KFParticle &p ) const ;
   float GetAngleRZ( const KFParticle &p ) const ;
 
-  float GetPseudoProperDecayTime( const KFParticle &primVertex, const float& mass, float* timeErr2 = 0 ) const;
+  float GetPseudoProperDecayTime( const KFParticle &primVertex, const float& mass, float* timeErr2 = nullptr ) const;
 
   void GetFieldValue( const float xyz[], float B[] ) const ;
 
-  void Transport( float dS, const float* dsdr, float P[], float C[], float* dsdr1=0, float* F=0, float* F1=0 ) const ;
+  void Transport( float dS, const float* dsdr, float P[], float C[], float* dsdr1=nullptr, float* F=nullptr, float* F1=nullptr ) const ;
 
  protected: 
   
@@ -378,84 +331,6 @@ inline KFParticle::KFParticle( const KFParticle &d1,
   *this = mother;
 }
 
-
-inline void KFParticle::Initialize()
-{ 
-  /** Calls KFParticleBase::Initialize()*/
-  KFParticleBase::Initialize(); 
-}
-
-inline float KFParticle::GetX    () const 
-{ 
-  return KFParticleBase::GetX();    
-}
-
-inline float KFParticle::GetY    () const 
-{ 
-  return KFParticleBase::GetY();    
-}
-
-inline float KFParticle::GetZ    () const 
-{ 
-  return KFParticleBase::GetZ();    
-}
-
-inline float KFParticle::GetPx   () const 
-{ 
-  return KFParticleBase::GetPx();   
-}
-
-inline float KFParticle::GetPy   () const 
-{ 
-  return KFParticleBase::GetPy();   
-}
-
-inline float KFParticle::GetPz   () const 
-{ 
-  return KFParticleBase::GetPz();   
-}
-
-inline float KFParticle::GetE    () const 
-{ 
-  return KFParticleBase::GetE();    
-}
-
-inline float KFParticle::GetS    () const 
-{ 
-  return KFParticleBase::GetS();    
-}
-
-inline char    KFParticle::GetQ    () const 
-{ 
-  return KFParticleBase::GetQ();    
-}
-
-inline float KFParticle::GetChi2 () const 
-{ 
-  return KFParticleBase::GetChi2(); 
-}
-
-inline Int_t    KFParticle::GetNDF  () const 
-{ 
-  return KFParticleBase::GetNDF();  
-}
-
-inline float KFParticle::GetParameter ( int i ) const 
-{ 
-  return KFParticleBase::GetParameter(i);  
-}
-
-inline float KFParticle::GetCovariance( int i ) const 
-{ 
-  return KFParticleBase::GetCovariance(i); 
-}
-
-inline float KFParticle::GetCovariance( int i, int j ) const 
-{ 
-  return KFParticleBase::GetCovariance(i,j);
-}
-
-
 inline float KFParticle::GetP    () const
 {
   float par, err;
@@ -528,42 +403,42 @@ inline float KFParticle::GetR   () const
 
 inline float KFParticle::GetErrX           () const 
 {
-  return sqrt(fabs( GetCovariance(0,0) ));
+  return std::sqrt(std::fabs( GetCovariance(0,0) ));
 }
 
 inline float KFParticle::GetErrY           () const 
 {
-  return sqrt(fabs( GetCovariance(1,1) ));
+  return std::sqrt(std::fabs( GetCovariance(1,1) ));
 }
 
 inline float KFParticle::GetErrZ           () const 
 {
-  return sqrt(fabs( GetCovariance(2,2) ));
+  return std::sqrt(std::fabs( GetCovariance(2,2) ));
 }
 
 inline float KFParticle::GetErrPx          () const 
 {
-  return sqrt(fabs( GetCovariance(3,3) ));
+  return std::sqrt(std::fabs( GetCovariance(3,3) ));
 }
 
 inline float KFParticle::GetErrPy          () const 
 {
-  return sqrt(fabs( GetCovariance(4,4) ));
+  return std::sqrt(std::fabs( GetCovariance(4,4) ));
 }
 
 inline float KFParticle::GetErrPz          () const 
 {
-  return sqrt(fabs( GetCovariance(5,5) ));
+  return std::sqrt(std::fabs( GetCovariance(5,5) ));
 }
 
 inline float KFParticle::GetErrE           () const 
 {
-  return sqrt(fabs( GetCovariance(6,6) ));
+  return std::sqrt(std::fabs( GetCovariance(6,6) ));
 }
 
 inline float KFParticle::GetErrS           () const 
 {
-  return sqrt(fabs( GetCovariance(7,7) ));
+  return std::sqrt(std::fabs( GetCovariance(7,7) ));
 }
 
 inline float KFParticle::GetErrP    () const
@@ -730,76 +605,6 @@ inline int KFParticle::GetR( float &R, float &SigmaR ) const
    ** \param[out] SigmaR - its error
    **/
   return KFParticleBase::GetR( R, SigmaR );
-}
-
-inline float & KFParticle::X() 
-{ 
-  return KFParticleBase::X();    
-}
-
-inline float & KFParticle::Y()
-{ 
-  return KFParticleBase::Y();    
-}
-
-inline float & KFParticle::Z() 
-{ 
-  return KFParticleBase::Z();    
-}
-
-inline float & KFParticle::Px() 
-{ 
-  return KFParticleBase::Px();   
-}
-
-inline float & KFParticle::Py() 
-{ 
-  return KFParticleBase::Py();   
-}
-
-inline float & KFParticle::Pz() 
-{ 
-  return KFParticleBase::Pz();   
-}
-
-inline float & KFParticle::E() 
-{ 
-  return KFParticleBase::E();    
-}
-
-inline float & KFParticle::S() 
-{ 
-  return KFParticleBase::S();    
-}
-
-inline char    & KFParticle::Q() 
-{ 
-  return KFParticleBase::Q();    
-}
-
-inline float & KFParticle::Chi2() 
-{ 
-  return KFParticleBase::Chi2(); 
-}
-
-inline Int_t    & KFParticle::NDF() 
-{ 
-  return KFParticleBase::NDF();  
-}
-
-inline float & KFParticle::Parameter ( int i )        
-{ 
-  return KFParticleBase::Parameter(i);
-}
-
-inline float & KFParticle::Covariance( int i )        
-{ 
-  return KFParticleBase::Covariance(i);
-}
-
-inline float & KFParticle::Covariance( int i, int j ) 
-{ 
-  return KFParticleBase::Covariance(i,j); 
 }
 
 inline float * KFParticle::Parameters ()

@@ -4,6 +4,7 @@
 #include "KFParticleSIMD.h"
 #include "KFParticleTest.h"
 
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -20,7 +21,7 @@ std::ostream&  operator<<(std::ostream& os, const KFParticleBase& particle) {
     if (i == 7 && particle.GetParameter(i) <= 0.0) continue; // S
     if (particle.GetParameter(i) == 0. && particle.GetCovariance(i,i) == 0) continue;
     if (particle.GetCovariance(i,i) > 0) 
-      os << " " << vn[i]<<": "<< std::setw(8) << particle.GetParameter(i)<< " +/- " << std::setw(6) << sqrt(particle.GetCovariance(i,i));
+      os << " " << vn[i]<<": "<< std::setw(8) << particle.GetParameter(i)<< " +/- " << std::setw(6) << std::sqrt(particle.GetCovariance(i,i));
     else 
       os << " " << vn[i] << ": " << std::setw(8) << particle.GetParameter(i);
   }
@@ -37,7 +38,7 @@ std::ostream&  operator<<(std::ostream& os, const KFParticleBase& particle) {
   return os;
 }
 
-KFParticleTest::KFParticleTest():fMotherSingle(0),fMotherSIMD(0)
+KFParticleTest::KFParticleTest():fMotherSingle(nullptr),fMotherSIMD(nullptr)
 {
   fMotherSingle = new KFParticle();
   fMotherSIMD = new KFParticleSIMD();
@@ -147,7 +148,7 @@ void KFParticleTest::RunTestSingle()
   std::cout << "4.1 Construction with constrained Mass, without vertex hypothesis " << std::endl<< std::endl;
 /// we assume Mass to be the mass of the constructed particle
   KFParticle K0;
-  K0.Construct(vDaughters,NDaughters,0,Mass);
+  K0.Construct(vDaughters,NDaughters,nullptr,Mass);
   std::cout << "Dauthers" << std::endl
 	    << "  " << *vDaughters[0] << std::endl
 	    << "  " << *vDaughters[1] << std::endl
@@ -181,7 +182,7 @@ void KFParticleTest::RunTestSingle()
   std::cout << std::endl << "4.4 Construction K0_3(p2,p3) without constrained Mass, without vertex hypothesis " << std::endl<< std::endl;
 ///we assume p1 to be the vertex of the constructed particle, Mass to be the mass of the constructed particle
   KFParticle K0_3;
-  K0_3.Construct(vDaughters,NDaughters,0,-1);
+  K0_3.Construct(vDaughters,NDaughters,nullptr,-1);
 
   std::cout << "Dauthers" << std::endl
        << "  " << *vDaughters[0] << std::endl

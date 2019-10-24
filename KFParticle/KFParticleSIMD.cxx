@@ -469,7 +469,7 @@ KFParticleSIMD::KFParticleSIMD( const KFPVertex &vertex ): KFParticleBaseSIMD()
   fChi2 = vertex.GetChi2();
   fNDF = 2*vertex.GetNContributors() - 3;
   fQ = int_v(Vc::Zero);
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   fSFromDecay = 0;
 }
 
@@ -520,7 +520,7 @@ KFParticleSIMD::KFParticleSIMD(KFParticle* parts[], const int nPart): KFParticle
    **/
   
   { // check
-    bool ok = 1;
+    bool ok = true;
 
     const int nD = (parts[0])->NDaughters();
     for ( int ie = 1; ie < nPart; ie++ ) {
@@ -650,7 +650,7 @@ float_m KFParticleSIMD::GetDistanceFromVertexXY( const float_v vtx[], float_v &v
    ** \param[out] val - the distance in the XY plane to the vertex
    ** \param[out] err - the error of the calculated distance, takes into account errors of the particle only
    **/
-  return GetDistanceFromVertexXY( vtx, 0, val, err );
+  return GetDistanceFromVertexXY( vtx, nullptr, val, err );
 }
 
 
@@ -687,7 +687,7 @@ float_v KFParticleSIMD::GetDistanceFromVertexXY( const float_v vtx[] ) const
    **/
 
   float_v val, err;
-  GetDistanceFromVertexXY( vtx, 0, val, err );
+  GetDistanceFromVertexXY( vtx, nullptr, val, err );
   return val;
 }
 

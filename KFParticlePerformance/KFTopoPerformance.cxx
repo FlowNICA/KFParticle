@@ -39,7 +39,7 @@
 using std::sort;
 using std::vector;
 
-KFTopoPerformance::KFTopoPerformance():KFParticlePerformanceBase(),fTopoReconstructor(0),fPrimVertices(0), fMCTrackToMCPVMatch(0), 
+KFTopoPerformance::KFTopoPerformance():KFParticlePerformanceBase(),fTopoReconstructor(nullptr),fPrimVertices(0), fMCTrackToMCPVMatch(0),
   fPVPurity(0), fNCorrectPVTracks(0), fTrackMatch(0), vMCTracks(0), vMCParticles(0), fNeutralIndex(0), MCtoRParticleId(0), RtoMCParticleId(0), 
   MCtoRPVId(0), RtoMCPVId(0), fPrintEffFrequency(1), fCentralityBin(-1), fCentralityWeight(0.f)
 {
@@ -85,7 +85,7 @@ void KFTopoPerformance::CheckMCTracks()
   fPrimVertices.clear();
 
     // find prim vertex
-  if (vMCTracks.size() <= 0) return;
+  if (vMCTracks.empty()) return;
   
   fMCTrackToMCPVMatch.resize(vMCTracks.size(),-1);
   
@@ -96,14 +96,14 @@ void KFTopoPerformance::CheckMCTracks()
     int motherID = mctr.MotherId();
     if(motherID <0 )
     {
-      bool newPV = 1;
+      bool newPV = true;
       for(unsigned int iPV=0; iPV<pvIndex.size(); iPV++)
       {
         if(motherID == pvIndex[iPV])
         {
           fPrimVertices[iPV].AddDaughterTrack(iTr);
           fMCTrackToMCPVMatch[iTr] = iPV;
-          newPV = 0;
+          newPV = false;
         }
       }
       if(newPV)
@@ -274,7 +274,7 @@ void KFTopoPerformance::GetMCParticles()
       {
         if(abs(vMCParticles[iMC].GetPDG()) == mmMotherPDG[iPDG])
         {
-          bool isDaughter[2] = {0,0};
+          bool isDaughter[2] = {false,false};
 
           vector<float> xDaughter;
           vector<float> yDaughter;
@@ -283,7 +283,7 @@ void KFTopoPerformance::GetMCParticles()
           
           for(int iMCDaughter=0; iMCDaughter<vMCParticles[iMC].NDaughters(); iMCDaughter++)
           {
-            bool isNewDecayPoint = 1;
+            bool isNewDecayPoint = true;
             
             for(unsigned int iPoint=0; iPoint<xDaughter.size(); iPoint++)
             {
@@ -318,12 +318,12 @@ void KFTopoPerformance::GetMCParticles()
                 int iMCDaughter = nDaughtersAtPoint[iPoint][iDaughter];
                 if(abs(vMCParticles[vMCParticles[iMC].GetDaughterIds()[iMCDaughter]].GetPDG()) == mmChargedDaughterPDG[iPDG])
                 {
-                  isDaughter[0] = 1;
+                  isDaughter[0] = true;
                   chargedDaughterId = vMCParticles[iMC].GetDaughterIds()[iMCDaughter];
                 }
                 if(abs(vMCParticles[vMCParticles[iMC].GetDaughterIds()[iMCDaughter]].GetPDG()) == mmNeutralDaughterPDG[iPDG])
                 {
-                  isDaughter[1] = 1;
+                  isDaughter[1] = true;
                   neutralDaughterId = vMCParticles[iMC].GetDaughterIds()[iMCDaughter];
                 }
               }
@@ -430,19 +430,19 @@ void KFTopoPerformance::GetMCParticles()
         vector<bool> isDaughterUsed(nDaughters);
         for(int iDMC=0; iDMC<nDaughters; iDMC++)
         {
-          isDaughterFound[iDMC] = 0;
-          isDaughterUsed[iDMC] = 0;
+          isDaughterFound[iDMC] = false;
+          isDaughterUsed[iDMC] = false;
         }
         
-        bool isCorrectPDG = 1;
+        bool isCorrectPDG = true;
         for(int iDMC=0; iDMC<nDaughters; iDMC++)
           for(int iD=0; iD<nDaughters; iD++)
           {
             if(isDaughterUsed[iD]) continue;
             if(vMCParticles[part.GetDaughterIds()[iD]].GetPDG() == fParteff.partDaughterPdg[iPDG][iDMC]) 
             {
-              isDaughterUsed[iD] = 1;
-              isDaughterFound[iDMC] = 1;
+              isDaughterUsed[iD] = true;
+              isDaughterFound[iDMC] = true;
               break;
             }
           }
@@ -525,8 +525,8 @@ void KFTopoPerformance::CheckMCParticleIsReconstructable(KFMCParticle &part)
     
     if(part.NDaughters() >= 2)
     {
-      bool isPositiveDaughter[5] = {0,0,0,0,0};
-      bool isNegativeDaughter[5] = {0,0,0,0,0};
+      bool isPositiveDaughter[5] = {false,false,false,false,false};
+      bool isNegativeDaughter[5] = {false,false,false,false,false};
       
       int nRecoDaughters[5] = {0,0,0,0,0};
       
@@ -571,12 +571,12 @@ void KFTopoPerformance::CheckMCParticleIsReconstructable(KFMCParticle &part)
 
         vector<bool> isDaughterFound(nDaughters);
         for(unsigned int iDMC=0; iDMC<nDaughters; iDMC++)
-          isDaughterFound[iDMC] = 0;
+          isDaughterFound[iDMC] = false;
 
-        bool isReco = 1;
+        bool isReco = true;
         for(unsigned int iDMC=0; iDMC<nDaughters; iDMC++)
           for(unsigned int iD=0; iD<nDaughters; iD++)
-            if(pdg[iD] == fParteff.partDaughterPdg[iPart][iDMC]) isDaughterFound[iDMC] = 1;
+            if(pdg[iD] == fParteff.partDaughterPdg[iPart][iDMC]) isDaughterFound[iDMC] = true;
 
         for(unsigned int iDMC=0; iDMC<nDaughters; iDMC++)
           isReco = isReco && isDaughterFound[iDMC];
@@ -589,11 +589,11 @@ void KFTopoPerformance::CheckMCParticleIsReconstructable(KFMCParticle &part)
     const unsigned int nD = dIds.size();
     if(nD == 0) return; //TODO optimize for all species
     
-    bool reco1 = 1;
-    bool reco2 = 1;
-    bool reco3 = 1;
-    bool reco4 = 1;
-    bool reco5 = 1;
+    bool reco1 = true;
+    bool reco2 = true;
+    bool reco3 = true;
+    bool reco4 = true;
+    bool reco5 = true;
       
     for ( unsigned int iD = 0; iD < nD && (reco1 || reco2 || reco3 || reco4 || reco5); iD++ ) {
       KFMCParticle &dp = vMCParticles[dIds[iD]];
@@ -827,7 +827,7 @@ void KFTopoPerformance::MatchPV()
 
     vector<int> &tracks = fTopoReconstructor->GetPVTrackIndexArray(iPV);
     
-    int nPVTracks = tracks.size()>0 ? tracks.size() : -1;//tracks.size();
+    int nPVTracks = !tracks.empty() ? tracks.size() : -1;//tracks.size();
     
     vector<short int> nTracksFromMCPV(fPrimVertices.size() + vMCParticles.size(), 0);
     vector< vector<int> > mcIDs(fPrimVertices.size() + vMCParticles.size());
@@ -985,7 +985,7 @@ void KFTopoPerformance::CalculateEfficiency()
     const KFParticle &part = fTopoReconstructor->GetParticles()[iP];
     const int pdg = part.GetPDG();
 
-    const bool isBG = RtoMCParticleId[iP].idsMI.size() != 0;
+    const bool isBG = !RtoMCParticleId[iP].idsMI.empty();
     const bool isGhost = !RtoMCParticleId[iP].IsMatched();
 
     for(int iPart=0; iPart<fParteff.nParticles; iPart++)
@@ -998,7 +998,7 @@ void KFTopoPerformance::CalculateEfficiency()
        CAMath::Abs(pdg) == 421  ||
        CAMath::Abs(pdg) == 22 */)
     {
-      partEff.IncReco(isGhost, 0, fParteff.partName[fParteff.nParticles - 1].data());
+      partEff.IncReco(isGhost, false, fParteff.partName[fParteff.nParticles - 1].data());
     }
   }
 
@@ -1032,7 +1032,7 @@ void KFTopoPerformance::CalculateEfficiency()
         isRecPart.push_back(part.IsReconstructable(iEff));
     
     isReconstructable.push_back(isRecPart);
-    isReco.push_back( MCtoRParticleId[iP].ids.size() != 0 );
+    isReco.push_back( !MCtoRParticleId[iP].ids.empty() );
     nClones.push_back( MCtoRParticleId[iP].ids.size() - 1 );
     
     if(decays.empty() && (part.IsReconstructableV0(0) || part.IsReconstructableV0(1) || part.IsReconstructableV0(2)) )
@@ -1042,7 +1042,7 @@ void KFTopoPerformance::CalculateEfficiency()
       for(int iEff = 0; iEff < 3; iEff++)
         isRecV0.push_back(part.IsReconstructableV0(iEff));
       isReconstructable.push_back(isRecV0);
-      isReco.push_back( (MCtoRParticleId[iP].ids.size() != 0) || (MCtoRParticleId[iP].idsMI.size() != 0) );
+      isReco.push_back( (!MCtoRParticleId[iP].ids.empty()) || (!MCtoRParticleId[iP].idsMI.empty()) );
       
       int nClonesV0 = MCtoRParticleId[iP].ids.size() + MCtoRParticleId[iP].idsMI.size() - 1;
       nClones.push_back( nClonesV0 );
@@ -1088,8 +1088,8 @@ void KFTopoPerformance::CalculateEfficiency()
             {
               KFParticle motherKFParticle;
               float decayPoint[3] = { mcDaughter.X(), mcDaughter.Y(), mcDaughter.Z() };
-              for(int iP=0; iP<6; iP++)
-                motherKFParticle.Parameter(iP) = mcTrack.Par()[iP];
+              for(int i_P=0; i_P<6; i_P++)
+                motherKFParticle.Parameter(i_P) = mcTrack.Par()[i_P];
               
               float dsdr[6];
               double s = motherKFParticle.GetDStoPoint(decayPoint, dsdr);
@@ -1157,7 +1157,7 @@ void KFTopoPerformance::CalculatePVEfficiency()
   const int NRecoPV = fTopoReconstructor->NPrimaryVertices();
   for ( int iP = 0; iP < NRecoPV; ++iP ) {
       
-    const bool isBG = RtoMCPVId[iP].idsMI.size() != 0;
+    const bool isBG = !RtoMCPVId[iP].idsMI.empty();
     const bool isGhost = !RtoMCPVId[iP].IsMatched();
 
     pvEff.IncReco(isGhost, isBG, "PV");
@@ -1741,10 +1741,10 @@ void KFTopoPerformance::FillHistos()
         if(iParticle < 0) continue;
         
         const int id = TempPart.Id();
-        FillParticleParameters(TempPart, iParticle, id, 0, hPartParamSecondaryMass, hPartParam2DSecondaryMass, 0);
+        FillParticleParameters(TempPart, iParticle, id, 0, hPartParamSecondaryMass, hPartParam2DSecondaryMass, nullptr);
         
         TempPart = fTopoReconstructor->GetParticles()[id];
-        FillParticleParameters(TempPart, iParticle, id, 0, hPartParamSecondary, hPartParam2DSecondary, 0);
+        FillParticleParameters(TempPart, iParticle, id, 0, hPartParamSecondary, hPartParam2DSecondary, nullptr);
       }
     }
     
@@ -1760,10 +1760,10 @@ void KFTopoPerformance::FillHistos()
           if(iParticle < 0) continue;
           
           const int id = TempPart.Id();
-          FillParticleParameters(TempPart,iParticle, id, iPV, hPartParamPrimaryMass, hPartParam2DPrimaryMass, 0, hFitQAMassConstraint);
+          FillParticleParameters(TempPart,iParticle, id, iPV, hPartParamPrimaryMass, hPartParam2DPrimaryMass, nullptr, hFitQAMassConstraint);
           
           TempPart = fTopoReconstructor->GetParticles()[id];
-          FillParticleParameters(TempPart,iParticle, id, iPV, hPartParamPrimary, hPartParam2DPrimary, 0, hFitQANoConstraint);
+          FillParticleParameters(TempPart,iParticle, id, iPV, hPartParamPrimary, hPartParam2DPrimary, nullptr, hFitQANoConstraint);
         }
         
         const std::vector<KFParticle>& PrimaryCandidatesTopo = fTopoReconstructor->GetKFParticleFinder()->GetPrimaryTopoCandidates()[iSet][iPV];
@@ -1773,7 +1773,7 @@ void KFTopoPerformance::FillHistos()
           int iParticle = fParteff.GetParticleIndex(TempPart.GetPDG());
           if(iParticle < 0) continue;
           
-          FillParticleParameters(TempPart,iParticle, TempPart.Id(), iPV, hPartParamPrimaryTopo, hPartParam2DPrimaryTopo, 0, hFitQATopoConstraint);
+          FillParticleParameters(TempPart,iParticle, TempPart.Id(), iPV, hPartParamPrimaryTopo, hPartParam2DPrimaryTopo, nullptr, hFitQATopoConstraint);
         }
         
         const std::vector<KFParticle>& PrimaryCandidatesTopoMass = fTopoReconstructor->GetKFParticleFinder()->GetPrimaryTopoMassCandidates()[iSet][iPV];
@@ -1783,7 +1783,7 @@ void KFTopoPerformance::FillHistos()
           int iParticle = fParteff.GetParticleIndex(TempPart.GetPDG());
           if(iParticle < 0) continue;
           
-          FillParticleParameters(TempPart,iParticle, TempPart.Id(), iPV, hPartParamPrimaryTopoMass, hPartParam2DPrimaryTopoMass, 0, hFitQATopoMassConstraint);
+          FillParticleParameters(TempPart,iParticle, TempPart.Id(), iPV, hPartParamPrimaryTopoMass, hPartParam2DPrimaryTopoMass, nullptr, hFitQATopoMassConstraint);
         }
       }
     }

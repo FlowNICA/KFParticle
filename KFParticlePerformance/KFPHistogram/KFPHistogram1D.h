@@ -35,9 +35,9 @@ class KFPHistogram1D
 {
  public:
    
-  KFPHistogram1D(): fHistogram(0), fSize(0), fName(""), fMinBin(0), fMaxBin(0) {}
+  KFPHistogram1D(): fHistogram(nullptr), fSize(0), fName(""), fMinBin(0), fMaxBin(0) {}
   KFPHistogram1D(std::string name, int nBins, float minX, float maxX):
-    fHistogram(0), fSize(nBins+2), fName(name), fMinBin(minX), fMaxBin(maxX) {} ///< Constructor with user-defined parameters.
+    fHistogram(nullptr), fSize(nBins+2), fName(name), fMinBin(minX), fMaxBin(maxX) {} ///< Constructor with user-defined parameters.
   ~KFPHistogram1D() {}
   
   int* GetHistogram() const { return fHistogram; } ///< Returns a pointer to the histogram data.
@@ -60,10 +60,8 @@ class KFPHistogram1D
       iBin = fSize-1;
     if(iBin < 1)
       iBin = 0;
-    
-    if( !(iBin==iBin) || !(std::isfinite(iBin)) ) iBin = 0;
-    
-    fHistogram[iBin]++;    
+
+    fHistogram[iBin]++;
   }
   
   /** Adds histogram "h" to the current histogram bin-by-bin. */

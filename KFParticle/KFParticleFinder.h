@@ -39,7 +39,7 @@ class KFParticleFinder
  public:
 
   KFParticleFinder();
-  ~KFParticleFinder() {};
+  ~KFParticleFinder() = default;;
   
   void Init(int nPV);
   void SetNThreads(short int n) { fNThreads = n;} ///< Sets the number of threads to by run in parallel. Currently not used.
@@ -47,7 +47,7 @@ class KFParticleFinder
   void FindParticles(KFPTrackVector* vRTracks, kfvector_float* ChiToPrimVtx,
                      std::vector<KFParticle>& Particles, std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx, int nPV);
 
-  void ExtrapolateToPV(std::vector<KFParticle>& vParticles, KFParticleSIMD& PrimVtx);
+  static void ExtrapolateToPV(std::vector<KFParticle>& vParticles, KFParticleSIMD& PrimVtx);
      
   inline void ConstructV0(KFPTrackVector* vTracks,
                     int iTrTypePos,
@@ -58,7 +58,7 @@ class KFParticleFinder
                     int_v& daughterNegPDG,
                     KFParticleSIMD& mother,
                     KFParticle& mother_temp,
-                    const unsigned short NTracks,
+                    unsigned short NTracks,
                     kfvector_floatv& l,
                     kfvector_floatv& dl,
                     std::vector<KFParticle>& Particles,
@@ -70,8 +70,8 @@ class KFParticleFinder
                     const float_v& massMotherPDGSigma,
                     KFParticleSIMD& motherPrimSecCand,
                     int& nPrimSecCand,
-                    std::vector< std::vector<KFParticle> >* vMotherPrim = 0,
-                    std::vector<KFParticle>* vMotherSec = 0
+                    std::vector< std::vector<KFParticle> >* vMotherPrim = nullptr,
+                    std::vector<KFParticle>* vMotherSec = nullptr
                   ) __attribute__((always_inline));
   
   void SaveV0PrimSecCand(KFParticleSIMD& mother,
@@ -89,7 +89,7 @@ class KFParticleFinder
                               KFParticleSIMD& mother,
                               std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& motherTopo,
                               KFParticle& mother_temp,
-                              const unsigned short nElements,
+                              unsigned short nElements,
                               kfvector_floatv& l,
                               kfvector_floatv& dl,
                               std::vector<KFParticle>& Particles,
@@ -120,17 +120,17 @@ class KFParticleFinder
   void NeutralDaughterDecay(KFPTrackVector* vTracks, std::vector<KFParticle>& Particles);
 
   void FindTrackV0Decay(std::vector<KFParticle>& vV0,
-                        const int V0PDG,
+                        int V0PDG,
                         KFPTrackVector& vTracks,
-                        const int q,
-                        const int firstTrack,
-                        const int lastTrack,
+                        int q,
+                        int firstTrack,
+                        int lastTrack,
                         std::vector<KFParticle>& Particles,    
                         std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                         int v0PVIndex = -1,
-                        kfvector_float* ChiToPrimVtx = 0,
-                        std::vector< std::vector<KFParticle> >* vMotherPrim = 0,
-                        std::vector<KFParticle>* vMotherSec = 0);
+                        kfvector_float* ChiToPrimVtx = nullptr,
+                        std::vector< std::vector<KFParticle> >* vMotherPrim = nullptr,
+                        std::vector<KFParticle>* vMotherSec = nullptr);
 
   void SelectParticles(std::vector<KFParticle>& Particles,
                        std::vector<KFParticle>& vCandidates,
@@ -147,11 +147,11 @@ class KFParticleFinder
                        std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx,
                        const float* cuts,
                        int iPV,
-                       const int MotherPDG,
-                       bool isSameInputPart = 0,
-                       bool saveOnlyPrimary = 1,
-                       std::vector< std::vector<KFParticle> >* vMotherPrim = 0,
-                       std::vector<KFParticle>* vMotherSec = 0,
+                       int MotherPDG,
+                       bool isSameInputPart = false,
+                       bool saveOnlyPrimary = true,
+                       std::vector< std::vector<KFParticle> >* vMotherPrim = nullptr,
+                       std::vector<KFParticle>* vMotherSec = nullptr,
                        float massMotherPDG = 0.f,
                        float massMotherPDGSigma = 0.f);
 
@@ -159,7 +159,7 @@ class KFParticleFinder
   void SetEmcClusters(KFPEmcCluster* clusters) { fEmcClusters = clusters; } ///< Set a pointer to the gamma-clusters from the electromagnetic calorimeter.
   
   // Mixed Event Analysis
-  void SetMixedEventAnalysis() { fMixedEventAnalysis = 1; } ///< Switch KFParticleFinder to the mixed event mode.
+  void SetMixedEventAnalysis() { fMixedEventAnalysis = true; } ///< Switch KFParticleFinder to the mixed event mode.
   
   //Get secondary particles with the mass constraint
   /** Returns number of sets of vectors with secondary candidates for different decays. */
@@ -366,7 +366,7 @@ class KFParticleFinder
    ** \param[in] pdg - PDG code of the decay which should be reconstructed
    **/
   void AddDecayToReconstructionList(int pdg) { fDecayReconstructionList[pdg] = true; }
-  const std::map<int,bool> GetReconstructionList() const { return fDecayReconstructionList; } ///< Returns list of decays to be reconstructed.
+  std::map<int,bool> GetReconstructionList() const { return fDecayReconstructionList; } ///< Returns list of decays to be reconstructed.
   void SetReconstructionList(const std::map<int,bool>& decays) { fDecayReconstructionList = decays; } ///< Set enitre reconstruction list
 
  private:

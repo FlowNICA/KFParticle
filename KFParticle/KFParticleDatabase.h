@@ -32,7 +32,7 @@ class KFParticleDatabase
  public:
   KFParticleDatabase();
 
-  ~KFParticleDatabase() {};
+  ~KFParticleDatabase() = default;
 
   float GetMass(const int pdg) const
   {
@@ -40,7 +40,7 @@ class KFParticleDatabase
      ** If the given PDG code is not the list of the current database mass of the pion is returned.
      ** \param[in] pdg - the input PDG code
      **/
-    int pdgIndex = 2;
+    int pdgIndex;
     switch ( abs(pdg) )
     {
       case         11: pdgIndex = 0; break;
@@ -122,7 +122,7 @@ class KFParticleDatabase
      ** \param[out] massMotherPDGSigma - expected width of the corresponding peak
      **/
         
-    int pdgIndex = 2;
+    int pdgIndex;
     switch ( abs(pdg) )
     {
       case  310: pdgIndex = 0; break;

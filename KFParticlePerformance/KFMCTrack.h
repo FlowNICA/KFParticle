@@ -31,7 +31,7 @@
 class KFMCTrack
 {
  public:
-  KFMCTrack():fMotherId(-1),fPDG(0),fNMCPoints(0), fNMCPixelPoints(0), fIsReconstructed(0),fIsOutOfDetector(0) {};
+  KFMCTrack():fMotherId(-1),fPDG(0),fNMCPoints(0), fNMCPixelPoints(0), fIsReconstructed(false),fIsOutOfDetector(false) {};
 
   int   MotherId()        const { return fMotherId; } ///< Returns a uniqueue Id of the mother track or primary vertex KFMCTrack::fMotherId.
   int   PDG()             const { return fPDG;}       ///< Returns PDG code of the track KFMCTrack::fPDG.
@@ -39,12 +39,12 @@ class KFMCTrack
   float X()               const { return fPar[0]; }   ///< Returns X coordinate of the track at the origin position.
   float Y()               const { return fPar[1]; }   ///< Returns Y coordinate of the track at the origin position.
   float Z()               const { return fPar[2]; }   ///< Returns Y coordinate of the track at the origin position.
-  float L()               const { return sqrt(X()*X() + Y()*Y() + Z()*Z()); } ///< Returns distance from the origin of the track to a point {0,0,0}.
+  float L()               const { return std::sqrt(X()*X() + Y()*Y() + Z()*Z()); } ///< Returns distance from the origin of the track to a point {0,0,0}.
   float Px()              const { return fPar[3]; }   ///< Returns Px momentum component of the track at the origin position.
   float Py()              const { return fPar[4]; }   ///< Returns Py momentum component of the track at the origin position.
   float Pz()              const { return fPar[5]; }   ///< Returns Pz momentum component of the track at the origin position.
-  float P()               const { return sqrt(fPar[3]*fPar[3] + fPar[4]*fPar[4] + fPar[5]*fPar[5]); } ///< Returns momentum of the track.
-  float Pt()              const { return sqrt(fPar[3]*fPar[3] + fPar[4]*fPar[4]); } ///< Returns transverse momentum of the track.
+  float P()               const { return std::sqrt(fPar[3]*fPar[3] + fPar[4]*fPar[4] + fPar[5]*fPar[5]); } ///< Returns momentum of the track.
+  float Pt()              const { return std::sqrt(fPar[3]*fPar[3] + fPar[4]*fPar[4]); } ///< Returns transverse momentum of the track.
   const float *Par()      const { return fPar; }             ///< Returns a pointer to the array with track parameters KFMCTrack::fPar.
   int   NMCPoints()       const { return fNMCPoints; }       ///< Returns number of MC points KFMCTrack::fNMCPoints.
   int   NMCPixelPoints()  const { return fNMCPixelPoints; }  ///< Returns number of MC points at the precise detectors KFMCTrack::fNMCPixelPoints.
@@ -63,9 +63,9 @@ class KFMCTrack
   void SetPDG( int v )           { fPDG = v; }             ///< Sets PDG code of the current track.
   void SetNMCPoints( int v )     { fNMCPoints = v; }       ///< Sets number of MC points produced at the detector planes.
   void SetNMCPixelPoints( int v ){ fNMCPixelPoints = v; }  ///< Sets number of the MC points produced at the precise detectors.
-  void SetReconstructed()        { fIsReconstructed = 1; } ///< Defines the track as reconstructed.
-  void SetNotReconstructed()     { fIsReconstructed = 0; } ///< Defines the track as not reconstructed.
-  void SetOutOfDetector()        { fIsOutOfDetector = 1; } ///< Defines the track out of acceptance.
+  void SetReconstructed()        { fIsReconstructed = true; } ///< Defines the track as reconstructed.
+  void SetNotReconstructed()     { fIsReconstructed = false; } ///< Defines the track as not reconstructed.
+  void SetOutOfDetector()        { fIsOutOfDetector = true; } ///< Defines the track out of acceptance.
   
  protected:
 
