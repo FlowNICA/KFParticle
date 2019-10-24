@@ -188,7 +188,7 @@ class KFParticlePerformanceBase
                                 TH2F* histoParameters2D[nParametersSet][KFPartEfficiencies::nParticles][nHistoPartParam2D],
                                 TH1F* histoFit[KFPartEfficiencies::nParticles][nFitQA], int iPart, bool withWrongPVHypothesis = 0);
   
-  TString GetDirectoryPath();
+  static TString GetDirectoryPath();
 };
 
 #endif

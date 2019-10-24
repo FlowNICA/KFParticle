@@ -19,7 +19,6 @@
 #include "KFParticleSIMD.h"
 #include "KFParticleDatabase.h"
 
-#include <fstream>
 #include <iostream>
 #include "string"
 using std::string;
@@ -813,7 +812,7 @@ void KFParticleTopoReconstructor::SelectParticleCandidates()
   for(unsigned int iParticle=0; iParticle<fParticles.size(); iParticle++)
   {
     if(deleteCandidate[iParticle]) continue;
-    if(!(abs(fParticles[iParticle].GetPDG()) == 22)) continue;
+    if(abs(fParticles[iParticle].GetPDG()) != 22) continue;
     
 //     bool bothDaughtersElectrons = 1;
 //     for(int iDaughter=0; iDaughter<fParticles[iParticle].NDaughters(); iDaughter++)
@@ -856,7 +855,7 @@ void KFParticleTopoReconstructor::SelectParticleCandidates()
   for(unsigned int iParticle=0; iParticle<fParticles.size(); iParticle++)
   {
     if(deleteCandidate[iParticle]) continue;
-    if(!(abs(fParticles[iParticle].GetPDG()) == 22)) continue;
+    if(abs(fParticles[iParticle].GetPDG()) != 22) continue;
     
     bool bothDaughtersElectrons = 1;
     for(int iDaughter=0; iDaughter<fParticles[iParticle].NDaughters(); iDaughter++)

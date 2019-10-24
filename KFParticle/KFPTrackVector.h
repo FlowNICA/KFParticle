@@ -129,6 +129,7 @@ class KFPTrackVector
         case 1000010030: fNT++; break;
         case 1000020030: fNHe3++; break;
         case 1000020040: fNHe4++; break;
+        default : std::cout << "WARNING! KFPTrackVector::RecalculateLastIndex() - Particle " << fPDG[i] << " is not found!" << std::endl;
       }
     }
     

@@ -17,7 +17,6 @@
 
 
 #include "KFParticleBaseSIMD.h"
-#include <iostream>
 
 static const float_v small = 1.e-20f;
 

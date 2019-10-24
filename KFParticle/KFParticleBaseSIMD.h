@@ -109,7 +109,7 @@ class KFParticleBaseSIMD {
 
   //* Destructor 
 
-  virtual ~KFParticleBaseSIMD() { ; } ///< The default destructor.
+  virtual ~KFParticleBaseSIMD() { } ///< The default destructor.
 
   void Initialize( const float_v Param[], const float_v Cov[], int_v Charge, float_v Mass );
   void Initialize();
@@ -312,7 +312,7 @@ class KFParticleBaseSIMD {
   void GetMeasurement( const KFParticleBaseSIMD& daughter, float_v m[], float_v V[], float_v D[3][3] ) ;
 
   //* Mass constraint function. is needed for the nonlinear mass constraint and a fit with mass constraint
-  void SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], float_v mass, float_m mask );
+  static void SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], float_v mass, float_m mask );
 
   float_v fP[8];              ///< Particle parameters { X, Y, Z, Px, Py, Pz, E, S[=DecayLength/P]}.
   float_v fC[36];             ///< Low-triangle covariance matrix of fP.

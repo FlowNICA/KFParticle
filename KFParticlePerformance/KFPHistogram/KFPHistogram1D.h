@@ -60,10 +60,8 @@ class KFPHistogram1D
       iBin = fSize-1;
     if(iBin < 1)
       iBin = 0;
-    
-    if( !(iBin==iBin) || !(std::isfinite(iBin)) ) iBin = 0;
-    
-    fHistogram[iBin]++;    
+
+    fHistogram[iBin]++;
   }
   
   /** Adds histogram "h" to the current histogram bin-by-bin. */

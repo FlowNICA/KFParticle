@@ -59,11 +59,11 @@ class KFParticle :public KFParticleBase
 #endif
   //* Constructor (empty)
 
-  KFParticle():KFParticleBase(){ ; }
+  KFParticle():KFParticleBase(){ }
 
   //* Destructor (empty)
 
-  ~KFParticle(){ ; }
+  ~KFParticle(){ }
 
   //* Construction of mother particle by its 2-3-4 daughters
 

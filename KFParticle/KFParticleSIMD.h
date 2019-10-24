@@ -80,11 +80,11 @@ class KFParticleSIMD :public KFParticleBaseSIMD
 #ifdef NonhomogeneousField
   , fField() 
 #endif
-  { ; }
+  { }
 
   //* Destructor (empty)
 
-  ~KFParticleSIMD(){ ; }
+  ~KFParticleSIMD(){ }
 
   //* Construction of mother particle by its 2-3-4 daughters
 

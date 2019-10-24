@@ -73,7 +73,7 @@ class KFParticleBase :public TObject {
 
 
   KFParticleBase();
-  virtual ~KFParticleBase() { ; } ///< The default destructor.
+  virtual ~KFParticleBase() { } ///< The default destructor.
 
   void Initialize( const float Param[], const float Cov[], Int_t Charge, float Mass );
   void Initialize();
@@ -253,7 +253,7 @@ class KFParticleBase :public TObject {
   float & Cij( Int_t i, Int_t j ){ return fC[IJ(i,j)]; }
   void TransportLine( float S, const float* dsdr, float P[], float C[], const float* dsdr1, float* F, float* F1 ) const ;
   bool GetMeasurement( const KFParticleBase& daughter, float m[], float V[], float D[3][3] ) ;
-  void SetMassConstraint( float *mP, float *mC, float mJ[7][7], float mass );
+  static  void SetMassConstraint( float *mP, float *mC, float mJ[7][7], float mass );
 
   float fP[8];           ///< Particle parameters { X, Y, Z, Px, Py, Pz, E, S[=DecayLength/P]}.
   float fC[36];          ///< Low-triangle covariance matrix of fP.

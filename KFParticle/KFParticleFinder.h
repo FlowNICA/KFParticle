@@ -47,7 +47,7 @@ class KFParticleFinder
   void FindParticles(KFPTrackVector* vRTracks, kfvector_float* ChiToPrimVtx,
                      std::vector<KFParticle>& Particles, std::vector<KFParticleSIMD, KFPSimdAllocator<KFParticleSIMD> >& PrimVtx, int nPV);
 
-  void ExtrapolateToPV(std::vector<KFParticle>& vParticles, KFParticleSIMD& PrimVtx);
+  static void ExtrapolateToPV(std::vector<KFParticle>& vParticles, KFParticleSIMD& PrimVtx);
      
   inline void ConstructV0(KFPTrackVector* vTracks,
                     int iTrTypePos,
