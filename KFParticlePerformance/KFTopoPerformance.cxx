@@ -1088,8 +1088,8 @@ void KFTopoPerformance::CalculateEfficiency()
             {
               KFParticle motherKFParticle;
               float decayPoint[3] = { mcDaughter.X(), mcDaughter.Y(), mcDaughter.Z() };
-              for(int iP=0; iP<6; iP++)
-                motherKFParticle.Parameter(iP) = mcTrack.Par()[iP];
+              for(int i_P=0; i_P<6; i_P++)
+                motherKFParticle.Parameter(i_P) = mcTrack.Par()[i_P];
               
               float dsdr[6];
               double s = motherKFParticle.GetDStoPoint(decayPoint, dsdr);
