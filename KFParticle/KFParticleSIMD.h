@@ -100,16 +100,16 @@ class KFParticleSIMD :public KFParticleBaseSIMD
   void SetOneEntry(int iEntry, KFParticleSIMD& part, int iEntryPart);
 
   KFParticleSIMD( const KFPTrack *track, Int_t PID );
-  KFParticleSIMD( KFPTrack* Track[], int NTracks, const Int_t *pdg=0 );
+  KFParticleSIMD( KFPTrack* Track[], int NTracks, const Int_t *pdg=nullptr );
   KFParticleSIMD( KFPTrackVector &track, uint_v& index, const int_v& pdg );
 
-  void Create(KFPTrack* Track[], int NTracks, const Int_t *pdg=0);
+  void Create(KFPTrack* Track[], int NTracks, const Int_t *pdg=nullptr);
   void Create(KFPTrackVector &track, uint_v& index, const int_v& pdg);
   void Load(KFPTrackVector &track, int index, const int_v& pdg);
   void Rotate();
 
-  KFParticleSIMD(KFPTrack &Track, const Int_t *pdg=0);
-  KFParticleSIMD(KFPTrackVector &track, int n, const Int_t *pdg=0);
+  KFParticleSIMD(KFPTrack &Track, const Int_t *pdg=nullptr);
+  KFParticleSIMD(KFPTrackVector &track, int n, const Int_t *pdg=nullptr);
 
   KFParticleSIMD( KFPEmcCluster &track, uint_v& index, const KFParticleSIMD& vertexGuess );
   KFParticleSIMD( KFPEmcCluster &track, int index, const KFParticleSIMD& vertexGuess );
@@ -120,7 +120,7 @@ class KFParticleSIMD :public KFParticleBaseSIMD
   //* Initialisation from VVertex 
 
   KFParticleSIMD( const KFPVertex &vertex );
-  KFParticleSIMD( KFParticle* part[], const int nPart = 0 );
+  KFParticleSIMD( KFParticle* part[], int nPart = 0 );
   KFParticleSIMD( KFParticle &part );
 
   //*
@@ -193,7 +193,7 @@ class KFParticleSIMD :public KFParticleBaseSIMD
   //* Everything in one go  
 
   void Construct( const KFParticleSIMD *vDaughters[], int nDaughters, 
-                  const KFParticleSIMD *ProdVtx=0,   Float_t Mass=-1 );
+                  const KFParticleSIMD *ProdVtx=nullptr,   Float_t Mass=-1 );
 
   //*
   //*                   TRANSPORT
@@ -245,7 +245,7 @@ class KFParticleSIMD :public KFParticleBaseSIMD
   //* Calculate sqrt(Chi2/ndf) deviation from another object in XY plane
   //* ( v = [xyz]-vertex, Cv=[Cxx,Cxy,Cyy,Cxz,Cyz,Czz]-covariance matrix )
 
-  float_v GetDeviationFromVertexXY( const float_v v[], const float_v Cv[]=0 ) const ;
+  float_v GetDeviationFromVertexXY( const float_v v[], const float_v Cv[]=nullptr ) const ;
   float_v GetDeviationFromVertexXY( const KFParticleSIMD &Vtx ) const ;
 #ifdef HomogeneousField
   float_v GetDeviationFromVertexXY( const KFPVertex &Vtx ) const ;
@@ -262,11 +262,11 @@ class KFParticleSIMD :public KFParticleBaseSIMD
     // @primVertex - primary vertex
     // @mass - mass of the mother particle (in the case of "Hb -> JPsi" it would be JPsi mass)
     // @*timeErr2 - squared error of the decay time. If timeErr2 = 0 it isn't calculated
-  float_v GetPseudoProperDecayTime( const KFParticleSIMD &primVertex, const float_v& mass, float_v* timeErr2 = 0 ) const;
+  float_v GetPseudoProperDecayTime( const KFParticleSIMD &primVertex, const float_v& mass, float_v* timeErr2 = nullptr ) const;
 
   void GetFieldValue( const float_v xyz[], float_v B[] ) const ;
   
-  void Transport( float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=0, float_v* F=0, float_v* F1=0  ) const ;
+  void Transport( float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=nullptr, float_v* F=nullptr, float_v* F1=nullptr  ) const ;
   void TransportFast( float_v dS, float_v P[] ) const ;
   
  protected: 

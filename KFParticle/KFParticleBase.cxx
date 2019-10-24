@@ -141,7 +141,7 @@ void KFParticleBase::Initialize( const float Param[], const float Cov[], Int_t C
   fAtProductionVertex = false;
   fSFromDecay = 0;
 
-  float energyInv = 1./energy;
+  float energyInv = 1.f/energy;
   float 
     h0 = fP[3]*energyInv,
     h1 = fP[4]*energyInv,
@@ -172,8 +172,8 @@ void KFParticleBase::Initialize()
    ** 5) NDF = -3, since 3 parameters should be fitted: X, Y, Z. 
    **/
 
-  for( Int_t i=0; i<8; i++) fP[i] = 0;
-  for(Int_t i=0;i<36;++i) fC[i]=0.;
+  for(float & i : fP) i = 0;
+  for(float & i : fC) i=0.;
   fC[0] = fC[2] = fC[5] = 100.;
   fC[35] = 1.;
   fNDF  = -3;
@@ -249,7 +249,7 @@ Int_t KFParticleBase::GetEta( float &eta, float &error )  const
   eta = 1.e10;
   if( b > 1.e-8 ){
     float c = a/b;
-    if( c>1.e-8 ) eta = 0.5*std::log(c);
+    if( c>1.e-8 ) eta = 0.5f*std::log(c);
   }
   float h3 = -px*pz;
   float h4 = -py*pz;  
@@ -371,7 +371,7 @@ Int_t KFParticleBase::GetDecayLength( float &l, float &error ) const
     error = p2*fC[35] + t*t/p2*(x2*fC[9]+y2*fC[14]+z2*fC[20]
 				+ 2*(x*y*fC[13]+x*z*fC[18]+y*z*fC[19]) )
       + 2*t*(x*fC[31]+y*fC[32]+z*fC[33]);
-    error = sqrt(std::fabs(error));
+    error = std::sqrt(std::fabs(error));
     return 0;
   }
   error = 1.e20;
@@ -397,7 +397,7 @@ Int_t KFParticleBase::GetDecayLengthXY( float &l, float &error ) const
   if( pt2>1.e-4){
     error = pt2*fC[35] + t*t/pt2*(x2*fC[9]+y2*fC[14] + 2*x*y*fC[13] )
       + 2*t*(x*fC[31]+y*fC[32]);
-    error = sqrt(std::fabs(error));
+    error = std::sqrt(std::fabs(error));
     return 0;
   }
   error = 1.e20;
@@ -1566,7 +1566,7 @@ void KFParticleBase::Construct( const KFParticleBase* vDaughters[], Int_t nDaugh
     fSFromDecay = 0;
     SumDaughterMass = 0;
 
-    for(Int_t i=0;i<36;++i) fC[i]=0.;
+    for(float & i : fC) i=0.;
     fC[35] = 1.;
     
     fNDF  = -3;
@@ -2635,7 +2635,7 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
   }
 
   if( std::fabs(dS*fP[5]) > 1000.f ) dS = 0;
-  
+
   const float kCLight = 0.000299792458;
 
   float c = fQ*kCLight;
@@ -2664,9 +2664,9 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
     p2[1] = fP[1] + py*dS;
     p2[2] = fP[2] + pz*dS;
   
-    p1[0] = 0.5*(p0[0]+p2[0]);
-    p1[1] = 0.5*(p0[1]+p2[1]);
-    p1[2] = 0.5*(p0[2]+p2[2]);
+    p1[0] = 0.5f*(p0[0]+p2[0]);
+    p1[1] = 0.5f*(p0[1]+p2[1]);
+    p1[2] = 0.5f*(p0[2]+p2[2]);
 
     // first order track approximation
     {
@@ -2674,8 +2674,8 @@ void KFParticleBase::TransportCBM( float dS, const float* dsdr, float P[], float
       GetFieldValue( p1, fld[1] );
       GetFieldValue( p2, fld[2] );
 
-      float ssy1 = ( 7*fld[0][1] + 6*fld[1][1]-fld[2][1] )*c*dS*dS/96.;
-      float ssy2 = (   fld[0][1] + 2*fld[1][1]         )*c*dS*dS/6.;
+      float ssy1 = ( 7.f*fld[0][1] + 6.f*fld[1][1]-fld[2][1] )*c*dS*dS/96.f;
+      float ssy2 = (   fld[0][1] + 2.f*fld[1][1]         )*c*dS*dS/6.f;
 
       p1[0] -= ssy1*pz;
       p1[2] += ssy1*px;

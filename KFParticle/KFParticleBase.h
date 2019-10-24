@@ -55,7 +55,7 @@ class KFParticleBase :public TObject {
   virtual float GetDStoPoint( const float xyz[3], float dsdr[6] ) const = 0;
   
   float GetDStoPointLine( const float xyz[3], float dsdr[6] ) const;
-  float GetDStoPointBz( float B, const float xyz[3], float dsdr[6], const float* param=0) const;
+  float GetDStoPointBz( float B, const float xyz[3], float dsdr[6], const float* param=nullptr) const;
   float GetDStoPointBy( float By, const float xyz[3], float dsdr[6] ) const;
   float GetDStoPointB( const float* B, const float xyz[3], float dsdr[6] ) const;
   float GetDStoPointCBM( const float xyz[3], float dsdr[6] ) const;
@@ -64,12 +64,12 @@ class KFParticleBase :public TObject {
   virtual void GetDStoParticle( const KFParticleBase &p, float dS[2], float dsdr[4][6] ) const = 0;
   
   void GetDStoParticleLine( const KFParticleBase &p, float dS[2], float dsdr[4][6] ) const ;
-  void GetDStoParticleBz( float Bz, const KFParticleBase &p, float dS[2], float dsdr[4][6], const float* param1=0, const float* param2=0 ) const ;
+  void GetDStoParticleBz( float Bz, const KFParticleBase &p, float dS[2], float dsdr[4][6], const float* param1=nullptr, const float* param2=nullptr ) const ;
   void GetDStoParticleBy( float B,  const KFParticleBase &p, float dS[2], float dsdr[4][6] ) const ;
   void GetDStoParticleCBM( const KFParticleBase &p, float dS[2], float dsdr[4][6] ) const ;
   
   /** Virtual method to transport a particle on a certain distance along the trajectory. Is defined in KFParticle.**/
-  virtual void Transport( float dS, const float dsdr[6], float P[], float C[], float* dsdr1=0, float* F=0, float* F1=0 ) const = 0;
+  virtual void Transport( float dS, const float dsdr[6], float P[], float C[], float* dsdr1=nullptr, float* F=nullptr, float* F1=nullptr ) const = 0;
 
 
   KFParticleBase();
@@ -185,14 +185,14 @@ class KFParticleBase :public TObject {
 
   //* Everything in one go  
 
-  void Construct( const KFParticleBase *vDaughters[], Int_t nDaughters, const KFParticleBase *ProdVtx=0,   float Mass=-1 );
+  void Construct( const KFParticleBase *vDaughters[], Int_t nDaughters, const KFParticleBase *ProdVtx=nullptr,   float Mass=-1 );
 
   //Transport functions
   void TransportToDecayVertex();
   void TransportToProductionVertex();
   void TransportToDS( float dS, const float* dsdr );
-  void TransportBz( float Bz, float dS, const float* dsdr, float P[], float C[], const float* dsdr1=0, float* F=0, float* F1=0 ) const;
-  void TransportCBM( float dS, const float* dsdr, float P[], float C[], float* dsdr1=0, float* F=0, float* F1=0 ) const;  
+  void TransportBz( float Bz, float dS, const float* dsdr, float P[], float C[], const float* dsdr1=nullptr, float* F=nullptr, float* F1=nullptr ) const;
+  void TransportCBM( float dS, const float* dsdr, float P[], float C[], float* dsdr1=nullptr, float* F=0, float* F1=nullptr ) const;
 
   //* 
   //* OTHER UTILITIES
@@ -207,7 +207,7 @@ class KFParticleBase :public TObject {
   //* Calculate sqrt(Chi2/ndf) deviation from vertex
   //* v = [xyz], Cv=[Cxx,Cxy,Cyy,Cxz,Cyz,Czz]-covariance matrix
 
-  float GetDeviationFromVertex( const float v[], const float Cv[]=0 ) const;
+  float GetDeviationFromVertex( const float v[], const float Cv[]=nullptr ) const;
   float GetDeviationFromVertex( const KFParticleBase &Vtx ) const;
   float GetDeviationFromParticle( const KFParticleBase &p ) const;  
 
@@ -242,7 +242,7 @@ class KFParticleBase :public TObject {
 #endif
 
   static void InvertCholetsky3(float a[6]);
-  static void MultQSQt( const float Q[], const float S[], float SOut[], const int kN );
+  static void MultQSQt( const float Q[], const float S[], float SOut[], int kN );
 
  protected:
   /** Converts a pair of indices {i,j} of the covariance matrix to one index corresponding to the triangular form. */

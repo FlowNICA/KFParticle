@@ -32,7 +32,7 @@ class KFParticleDatabase
  public:
   KFParticleDatabase();
 
-  ~KFParticleDatabase() {};
+  ~KFParticleDatabase() = default;
 
   float GetMass(const int pdg) const
   {

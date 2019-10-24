@@ -45,7 +45,7 @@ public:
      **/
     for(int i=0; i<6; i++)
       p[i] = fP[i];
-    return 1;
+    return true;
   }
   bool   GetCovarianceXYZPxPyPz(float cv[21]) const
   {
@@ -54,7 +54,7 @@ public:
      **/
     for (int i=0; i<21; i++)
       cv[i] = fC[i];
-    return 1;
+    return true;
   }
   bool   GetCovarianceXYZPxPyPz(double cv[21]) const
   {
@@ -63,7 +63,7 @@ public:
      **/
     for (int i=0; i<21; i++)
       cv[i] = fC[i];
-    return 1;
+    return true;
   }
 
   /** Copies position of the track to the output array of floats. \param[out] position - the output array with the position of the track **/

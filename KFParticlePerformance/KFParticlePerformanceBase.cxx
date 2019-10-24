@@ -22,8 +22,8 @@
 
 
 KFParticlePerformanceBase::KFParticlePerformanceBase():
-  fParteff(), fPVeff(), fPVeffMCReconstructable(), outfileName(), histodir(0), fNEvents(0), fStoreMCHistograms(1), 
-  fStorePrimSecHistograms(1), fStoreZRHistograms(1),fHistoDir(0)
+  fParteff(), fPVeff(), fPVeffMCReconstructable(), outfileName(), histodir(nullptr), fNEvents(0), fStoreMCHistograms(true),
+  fStorePrimSecHistograms(true), fStoreZRHistograms(true),fHistoDir(nullptr)
 {
   /** The default constructor. Initialises all pointers to nullptr.  **/
   for(int iParticle=0; iParticle<KFPartEfficiencies::nParticles; iParticle++)
@@ -136,7 +136,7 @@ void KFParticlePerformanceBase::CreateHistos(std::string histoDir, TDirectory* o
   if (outFile) {
     outFile->cd();
     fHistoDir = outFile;
-    if (histoDir != "") {
+    if (!histoDir.empty()) {
       fHistoDir = outFile->mkdir( TString(histoDir) );
       fHistoDir->cd();
     }
@@ -215,13 +215,13 @@ void KFParticlePerformanceBase::CreateHistos(std::string histoDir, TDirectory* o
             gDirectory->mkdir("SignalReco");
             gDirectory->cd("SignalReco");
             {
-              CreateParameterHistograms(hPartParam[4], hPartParam2D[4], 0, iPart, drawZR);
+              CreateParameterHistograms(hPartParam[4], hPartParam2D[4], nullptr, iPart, drawZR);
             }
             gDirectory->cd(".."); // Parameters
             gDirectory->mkdir("BGReco");
             gDirectory->cd("BGReco");
             {
-              CreateParameterHistograms(hPartParam[5], hPartParam2D[5], 0, iPart, drawZR);
+              CreateParameterHistograms(hPartParam[5], hPartParam2D[5], nullptr, iPart, drawZR);
             }
             gDirectory->cd(".."); // Parameters
           }
@@ -231,25 +231,25 @@ void KFParticlePerformanceBase::CreateHistos(std::string histoDir, TDirectory* o
             gDirectory->mkdir("Signal");
             gDirectory->cd("Signal");
             {
-              CreateParameterHistograms(hPartParam[1], hPartParam2D[1], 0, iPart, drawZR);
+              CreateParameterHistograms(hPartParam[1], hPartParam2D[1], nullptr, iPart, drawZR);
             }
             gDirectory->cd(".."); // particle directory / Parameters
             gDirectory->mkdir("Background");
             gDirectory->cd("Background");
             {
-              CreateParameterHistograms(hPartParam[2], hPartParam2D[2], 0, iPart, drawZR);
+              CreateParameterHistograms(hPartParam[2], hPartParam2D[2], nullptr, iPart, drawZR);
             }
             gDirectory->cd(".."); // particle directory
             gDirectory->mkdir("Ghost");
             gDirectory->cd("Ghost");
             {
-              CreateParameterHistograms(hPartParam[3], hPartParam2D[3], 0, iPart, drawZR);
+              CreateParameterHistograms(hPartParam[3], hPartParam2D[3], nullptr, iPart, drawZR);
             }
             gDirectory->cd(".."); // Parameters
             gDirectory->mkdir("MCSignal");
             gDirectory->cd("MCSignal");
             {
-              CreateParameterHistograms(hPartParam[6], hPartParam2D[6], 0, iPart, drawZR);
+              CreateParameterHistograms(hPartParam[6], hPartParam2D[6], nullptr, iPart, drawZR);
             }
             gDirectory->cd(".."); // Parameters
             
@@ -284,8 +284,8 @@ void KFParticlePerformanceBase::CreateHistos(std::string histoDir, TDirectory* o
               gDirectory->mkdir("Secondary");
               gDirectory->cd("Secondary");
               {
-                CreateParameterSubfolder("NoConstraint (1C-Fit)", hPartParamSecondary, hPartParam2DSecondary, 0, iPart, true);
-                CreateParameterSubfolder("MassConstraint (2C-Fit)", hPartParamSecondaryMass, hPartParam2DSecondaryMass, 0, iPart, true);
+                CreateParameterSubfolder("NoConstraint (1C-Fit)", hPartParamSecondary, hPartParam2DSecondary, nullptr, iPart, true);
+                CreateParameterSubfolder("MassConstraint (2C-Fit)", hPartParamSecondaryMass, hPartParam2DSecondaryMass, nullptr, iPart, true);
               }
               gDirectory->cd(".."); // particle directory / Parameters
             }
@@ -866,7 +866,7 @@ void KFParticlePerformanceBase::CreateParameterHistograms(TH1F* histoParameters[
     histoParameters2D[iPart][1]->GetYaxis()->SetTitleOffset(1.0);
   }
   else
-    histoParameters2D[iPart][1] = NULL;
+    histoParameters2D[iPart][1] = nullptr;
   
   //create armenteros plot
   if(IsCollectArmenteros(iPart))
@@ -879,7 +879,7 @@ void KFParticlePerformanceBase::CreateParameterHistograms(TH1F* histoParameters[
     histoParameters2D[iPart][2]->GetYaxis()->SetTitleOffset(1.0);
   }
   else
-    histoParameters2D[iPart][2] = NULL;
+    histoParameters2D[iPart][2] = nullptr;
   //create y-mt plot
   histoParameters2D[iPart][3] = new TH2F(parName2D[3].Data(),parTitle2D[3].Data(),
                                          nBins[3],xMin[3], xMax[3],     //y
@@ -933,11 +933,11 @@ void KFParticlePerformanceBase::CreateParameterHistograms(TH1F* histoParameters[
   }
   else if(histoParameters3D)
   {
-    histoParameters3D[iPart][0] = NULL;
-    histoParameters3D[iPart][1] = NULL;
+    histoParameters3D[iPart][0] = nullptr;
+    histoParameters3D[iPart][1] = nullptr;
     for(int iCH = 0; iCH<3; iCH++)
-      histoParameters3D[iPart][2+iCH] = NULL;
-    histoParameters3D[iPart][5] = NULL;
+      histoParameters3D[iPart][2+iCH] = nullptr;
+    histoParameters3D[iPart][5] = nullptr;
   }
 }
 
@@ -1012,7 +1012,7 @@ bool KFParticlePerformanceBase::IsCollectArmenteros(int iParticle) const
 #endif
 }
 
-void KFParticlePerformanceBase::CreateParameterSubfolder(TString folderName, 
+void KFParticlePerformanceBase::CreateParameterSubfolder(const TString& folderName,
                                                          TH1F* histoParameters[nParametersSet][KFPartEfficiencies::nParticles][nHistoPartParam],
                                                          TH2F* histoParameters2D[nParametersSet][KFPartEfficiencies::nParticles][nHistoPartParam2D],
                                                          TH1F* histoFit[KFPartEfficiencies::nParticles][nFitQA], int iPart, bool withWrongPVHypothesis)
@@ -1024,7 +1024,7 @@ void KFParticlePerformanceBase::CreateParameterSubfolder(TString folderName,
     gDirectory->mkdir("Signal");
     gDirectory->cd("Signal");
     {
-      CreateParameterHistograms(histoParameters[1], histoParameters2D[1], 0, iPart);
+      CreateParameterHistograms(histoParameters[1], histoParameters2D[1], nullptr, iPart);
     }
     gDirectory->cd("..");
     if(withWrongPVHypothesis)
@@ -1032,25 +1032,25 @@ void KFParticlePerformanceBase::CreateParameterSubfolder(TString folderName,
       gDirectory->mkdir("WrongPVHypothesis");
       gDirectory->cd("WrongPVHypothesis");
       {
-        CreateParameterHistograms(histoParameters[4], histoParameters2D[4], 0, iPart);
+        CreateParameterHistograms(histoParameters[4], histoParameters2D[4], nullptr, iPart);
       }
       gDirectory->cd("..");
     }
     gDirectory->mkdir("Background");
     gDirectory->cd("Background");
     {
-      CreateParameterHistograms(histoParameters[2], histoParameters2D[2], 0, iPart);
+      CreateParameterHistograms(histoParameters[2], histoParameters2D[2], nullptr, iPart);
     }
     gDirectory->cd("..");
     gDirectory->mkdir("Ghost");
     gDirectory->cd("Ghost");
     {
-      CreateParameterHistograms(histoParameters[3], histoParameters2D[3], 0, iPart);
+      CreateParameterHistograms(histoParameters[3], histoParameters2D[3], nullptr, iPart);
     }
     gDirectory->cd("..");
     
-    CreateParameterHistograms(histoParameters[0], histoParameters2D[0], 0, iPart);
-    if(histoFit!=0)
+    CreateParameterHistograms(histoParameters[0], histoParameters2D[0], nullptr, iPart);
+    if(histoFit!=nullptr)
       CreateFitHistograms(histoFit[iPart], iPart);
   }
   gDirectory->cd("..");

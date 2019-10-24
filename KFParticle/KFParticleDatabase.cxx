@@ -11,7 +11,7 @@
 
 #include "KFParticleDatabase.h"
 
-KFParticleDatabase* KFParticleDatabase::fDatabase = 0;
+KFParticleDatabase* KFParticleDatabase::fDatabase = nullptr;
 
 KFParticleDatabase::KFParticleDatabase():
   fMassPi0PDG(0.13498),

@@ -151,7 +151,7 @@ class KFParticle :public KFParticleBase
   int GetDecayLengthXY ( float &L, float &SigmaL ) const ;     //* decay length in XY
   int GetLifeTime      ( float &T, float &SigmaT ) const ;     //* life time
   int GetR             ( float &R, float &SigmaR ) const ;     //* R
-  float GetRapidity() const { return 0.5*std::log((fP[6] + fP[5])/(fP[6] - fP[5])); } ///< Returns rapidity of the particle
+  float GetRapidity() const { return 0.5f*std::log((fP[6] + fP[5])/(fP[6] - fP[5])); } ///< Returns rapidity of the particle
   float GetTheta()    const { return std::atan2(GetPt(),fP[5]); } ///< Returns the polar angle in RZ
 
 
@@ -179,7 +179,7 @@ class KFParticle :public KFParticleBase
   //* Everything in one go  
 
   void Construct( const KFParticle *vDaughters[], int nDaughters, 
-		  const KFParticle *ProdVtx=0,   float Mass=-1 );
+		  const KFParticle *ProdVtx=nullptr,   float Mass=-1 );
 
   //*
   //*                   TRANSPORT
@@ -229,7 +229,7 @@ class KFParticle :public KFParticleBase
   //* Calculate sqrt(Chi2/ndf) deviation from another object in XY plane
   //* ( v = [xyz]-vertex, Cv=[Cxx,Cxy,Cyy,Cxz,Cyz,Czz]-covariance matrix )
 
-  float GetDeviationFromVertexXY( const float v[], const float Cv[]=0 ) const ;
+  float GetDeviationFromVertexXY( const float v[], const float Cv[]=nullptr ) const ;
   float GetDeviationFromVertexXY( const KFParticle &Vtx ) const ;
 #ifdef HomogeneousField
   float GetDeviationFromVertexXY( const KFPVertex &Vtx ) const ;
@@ -245,11 +245,11 @@ class KFParticle :public KFParticleBase
   float GetAngleXY( const KFParticle &p ) const ;
   float GetAngleRZ( const KFParticle &p ) const ;
 
-  float GetPseudoProperDecayTime( const KFParticle &primVertex, const float& mass, float* timeErr2 = 0 ) const;
+  float GetPseudoProperDecayTime( const KFParticle &primVertex, const float& mass, float* timeErr2 = nullptr ) const;
 
   void GetFieldValue( const float xyz[], float B[] ) const ;
 
-  void Transport( float dS, const float* dsdr, float P[], float C[], float* dsdr1=0, float* F=0, float* F1=0 ) const ;
+  void Transport( float dS, const float* dsdr, float P[], float C[], float* dsdr1=nullptr, float* F=nullptr, float* F1=nullptr ) const ;
 
  protected: 
   

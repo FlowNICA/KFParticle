@@ -180,7 +180,7 @@ Bool_t KFParticle::GetDistanceFromVertexXY( const float vtx[], const float Cv[],
     err+= h0*(h0*Cv[0] + h1*Cv[1] ) + h1*(h0*Cv[1] + h1*Cv[2] ); 
   }
 
-  err = sqrt(std::fabs(err));
+  err = std::sqrt(std::fabs(err));
 
   return ret;
 }
@@ -193,7 +193,7 @@ Bool_t KFParticle::GetDistanceFromVertexXY( const float vtx[], float &val, float
    ** \param[out] val - the distance in the XY plane to the vertex
    ** \param[out] err - the error of the calculated distance, takes into account errors of the particle only
    **/
-  return GetDistanceFromVertexXY( vtx, 0, val, err );
+  return GetDistanceFromVertexXY( vtx, nullptr, val, err );
 }
 
 
@@ -230,7 +230,7 @@ float KFParticle::GetDistanceFromVertexXY( const float vtx[] ) const
    **/
 
   float val, err;
-  GetDistanceFromVertexXY( vtx, 0, val, err );
+  GetDistanceFromVertexXY( vtx, nullptr, val, err );
   return val;
 }
 

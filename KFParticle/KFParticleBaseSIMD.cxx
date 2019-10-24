@@ -59,7 +59,7 @@ void KFParticleBaseSIMD::Initialize( const float_v Param[], const float_v Cov[],
   fQ = Charge;
   fNDF = 0;
   fChi2 = 0;
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   fSFromDecay = 0;
 
   float_v energyInv = 1.f/energy;
@@ -101,7 +101,7 @@ void KFParticleBaseSIMD::Initialize()
   fChi2 =  0.f;
   fQ = 0;
   fSFromDecay = 0.f;
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   SumDaughterMass = 0.f;
   fMassHypo = -1;
 }
@@ -1225,7 +1225,7 @@ void KFParticleBaseSIMD::SetProductionVertex( const KFParticleBaseSIMD &Vtx )
     fSFromDecay = -fP[7];
   }
   
-  fAtProductionVertex = 1;
+  fAtProductionVertex = true;
 }
 
 void KFParticleBaseSIMD::SetMassConstraint( float_v *mP, float_v *mC, float_v mJ[7][7], float_v mass, float_m mask )
@@ -1453,7 +1453,7 @@ void KFParticleBaseSIMD::Construct( const KFParticleBaseSIMD* vDaughters[], Int_
     CleanDaughtersId();
     SetNDaughters(nDaughters);
     
-    fAtProductionVertex = 0;
+    fAtProductionVertex = false;
     fSFromDecay = float_v(Vc::Zero);
     SumDaughterMass = float_v(Vc::Zero);
 
@@ -1478,7 +1478,7 @@ void KFParticleBaseSIMD::TransportToDecayVertex()
   /** Transports the particle to its decay vertex */ 
   float_v dsdr[6] = {float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero)};
   if( !( (abs(fSFromDecay) < float_v(1.e-6f)).isFull() ) ) TransportToDS( -fSFromDecay, dsdr );
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
 }
 
 void KFParticleBaseSIMD::TransportToProductionVertex()
@@ -1486,7 +1486,7 @@ void KFParticleBaseSIMD::TransportToProductionVertex()
   /** Transports the particle to its production vertex */
   float_v dsdr[6] = {float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero),float_v(Vc::Zero)}; 
   if( !( (abs(fSFromDecay + fP[7]) < float_v(1.e-6f)).isFull() )  ) TransportToDS( -fSFromDecay-fP[7], dsdr );
-  fAtProductionVertex = 1;
+  fAtProductionVertex = true;
 }
 
 

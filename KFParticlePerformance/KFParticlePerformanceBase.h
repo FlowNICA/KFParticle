@@ -63,21 +63,21 @@ class KFParticlePerformanceBase
  public:
 
   KFParticlePerformanceBase();
-  virtual ~KFParticlePerformanceBase(){};
+  virtual ~KFParticlePerformanceBase()= default;;
     
     /// Histograms
-  virtual void CreateHistos(std::string histoDir = "", TDirectory* outFile = 0, std::map<int,bool> decays = std::map<int,bool>());
+  virtual void CreateHistos(std::string histoDir = "", TDirectory* outFile = nullptr, std::map<int,bool> decays = std::map<int,bool>());
   TDirectory* GetHistosDirectory() { return fHistoDir; } ///< Returns pointer to the ROOT directory with created histograms.
 
   /** Switch off collection of histograms requiring Monte Carlo information. Not to allocate memory should be called 
    ** before KFParticlePerformanceBase::CreateHistos(). **/
-  void DoNotStoreMCHistograms()      { fStoreMCHistograms = 0; } 
+  void DoNotStoreMCHistograms()      { fStoreMCHistograms = false; }
   /** Switch off collection of histograms for primary and secondary candidates. Not to allocate memory should be called 
    ** before KFParticlePerformanceBase::CreateHistos(). **/
-  void DoNotStorePrimSecHistograms() { fStorePrimSecHistograms = 0; }
+  void DoNotStorePrimSecHistograms() { fStorePrimSecHistograms = false; }
   /** Switch off collection of Z-R histograms. Not to allocate memory should be called 
    ** before KFParticlePerformanceBase::CreateHistos(). **/
-  void DoNotStoreZRHistograms()      { fStoreZRHistograms = 0; }
+  void DoNotStoreZRHistograms()      { fStoreZRHistograms = false; }
   
   /** Returns residual histogram with "iParameter" parameter for decay with "iDecay" number. */
   const TH1F* GetDecayResidual(const int iDecay, const int iParameter) const { return hFitQA[iDecay][iParameter];          }
@@ -182,11 +182,11 @@ class KFParticlePerformanceBase
   void CreateParameterHistograms(TH1F* histoParameters[KFPartEfficiencies::nParticles][nHistoPartParam],
                                  TH2F *histoParameters2D[KFPartEfficiencies::nParticles][nHistoPartParam2D],
                                  TH3F *histoParameters3D[KFPartEfficiencies::nParticles][nHistoPartParam3D],
-                                 int iPart, bool drawZR = 0);
-  void CreateParameterSubfolder(TString folderName, 
+                                 int iPart, bool drawZR = false);
+  void CreateParameterSubfolder(const TString& folderName,
                                 TH1F* histoParameters[nParametersSet][KFPartEfficiencies::nParticles][nHistoPartParam],
                                 TH2F* histoParameters2D[nParametersSet][KFPartEfficiencies::nParticles][nHistoPartParam2D],
-                                TH1F* histoFit[KFPartEfficiencies::nParticles][nFitQA], int iPart, bool withWrongPVHypothesis = 0);
+                                TH1F* histoFit[KFPartEfficiencies::nParticles][nFitQA], int iPart, bool withWrongPVHypothesis = false);
   
   static TString GetDirectoryPath();
 };

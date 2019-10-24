@@ -14,7 +14,7 @@
 #define KFParticlePVReconstructor_H
 
 #include "KFVertex.h"
-#include "assert.h"
+#include <cassert>
 
 #include <vector>
 
@@ -34,8 +34,8 @@ class KFPTrackVector;
 
 class KFParticlePVReconstructor{
  public:
-  KFParticlePVReconstructor():fParticles(0), fNParticles(0), fWeight(0.f), fBeamLine(), fIsBeamLine(0), fClusters(0), fPrimVertices(0), fChi2CutPreparation(100), fChi2Cut(16) {};
-  ~KFParticlePVReconstructor(){};
+  KFParticlePVReconstructor():fParticles(0), fNParticles(0), fWeight(0.f), fBeamLine(), fIsBeamLine(false), fClusters(0), fPrimVertices(0), fChi2CutPreparation(100), fChi2Cut(16) {};
+  ~KFParticlePVReconstructor()= default;;
   
   void Init(KFPTrackVector *tracks, int nParticles);
   
@@ -47,7 +47,7 @@ class KFParticlePVReconstructor{
   std::vector<int>& GetPVTrackIndexArray(int iPV=0) { return fClusters[iPV].fTracks; } ///< Returns vector with track indices from a cluster with index "iPV".
   KFParticle &GetParticle(int i){ assert( i < fNParticles ); return fParticles[i]; } ///< Returns input particle with index "i".
   
-  void SetBeamLine(KFParticle& p) { fBeamLine = p; fIsBeamLine = 1; } ///< Sets the beam line position and direction, sets corresponding flag to "true".
+  void SetBeamLine(KFParticle& p) { fBeamLine = p; fIsBeamLine = true; } ///< Sets the beam line position and direction, sets corresponding flag to "true".
   bool IsBeamLine() const { return fIsBeamLine; } ///< Check if the beam line is set.
   
   /** Adds externally found primary vertex to the list together with the cluster of

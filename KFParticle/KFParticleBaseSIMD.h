@@ -72,7 +72,7 @@ class KFParticleBaseSIMD {
   virtual float_v GetDStoPoint( const float_v xyz[3], float_v dsdr[6] ) const = 0;
   
   float_v GetDStoPointLine( const float_v xyz[3], float_v dsdr[6] ) const;
-  float_v GetDStoPointBz( float_v Bz, const float_v xyz[3], float_v dsdr[6], const float_v* param = 0 ) const;
+  float_v GetDStoPointBz( float_v Bz, const float_v xyz[3], float_v dsdr[6], const float_v* param = nullptr ) const;
   float_v GetDStoPointBy( float_v By, const float_v xyz[3], float_v dsdr[6] ) const;
   float_v GetDStoPointCBM( const float_v xyz[3], float_v dsdr[6] ) const;
 
@@ -83,8 +83,8 @@ class KFParticleBaseSIMD {
   
   void GetDStoParticleLine( const KFParticleBaseSIMD &p, float_v dS[2], float_v dsdr[4][6] ) const ;
   void GetDStoParticleLine( const KFParticleBaseSIMD &p, float_v dS[2]  ) const ;
-  void GetDStoParticleBz( float_v Bz, const KFParticleBaseSIMD &p, float_v dS[2], float_v dsdr[4][6], const float_v* param1 =0, const float_v* param2 =0  ) const ;
-  void GetDStoParticleBz( float_v Bz, const KFParticleBaseSIMD &p, float_v dS[2], const float_v* param1 =0, const float_v* param2 =0  ) const ;
+  void GetDStoParticleBz( float_v Bz, const KFParticleBaseSIMD &p, float_v dS[2], float_v dsdr[4][6], const float_v* param1 =nullptr, const float_v* param2 =nullptr  ) const ;
+  void GetDStoParticleBz( float_v Bz, const KFParticleBaseSIMD &p, float_v dS[2], const float_v* param1 =nullptr, const float_v* param2 =nullptr  ) const ;
   void GetDStoParticleBy( float_v B, const KFParticleBaseSIMD &p, float_v dS[2], float_v dsdr[4][6] ) const ;
   void GetDStoParticleBy( float_v B, const KFParticleBaseSIMD &p, float_v dS[2] ) const ;
   void GetDStoParticleB( float_v B[3], const KFParticleBaseSIMD &p, float_v dS[2], float_v dsdr[4][6] ) const;
@@ -93,7 +93,7 @@ class KFParticleBaseSIMD {
   void GetDStoParticleCBM( const KFParticleBaseSIMD &p, float_v dS[2] ) const ;
   
   /** Virtual method to transport a particle parameters and covariance matrix on a certain distance along the trajectory. Is defined in KFParticleSIMD.**/
-  virtual void Transport( float_v dS, const float_v dsdr[6], float_v P[], float_v C[], float_v* dsdr1=0, float_v* F=0, float_v* F1=0 ) const = 0;
+  virtual void Transport( float_v dS, const float_v dsdr[6], float_v P[], float_v C[], float_v* dsdr1=nullptr, float_v* F=nullptr, float_v* F1=nullptr ) const = 0;
   /** Virtual method to transport a particle parameters on a certain distance along the trajectory. Is defined in KFParticleSIMD.**/
   virtual void TransportFast( float_v dS, float_v P[] ) const = 0;
 
@@ -222,7 +222,7 @@ class KFParticleBaseSIMD {
 
   //* Everything in one go  
 
-  void Construct( const KFParticleBaseSIMD *vDaughters[], Int_t nDaughters, const KFParticleBaseSIMD *ProdVtx=0,   Float_t Mass=-1 );
+  void Construct( const KFParticleBaseSIMD *vDaughters[], Int_t nDaughters, const KFParticleBaseSIMD *ProdVtx=nullptr,   Float_t Mass=-1 );
 
 
   //*
@@ -246,9 +246,9 @@ class KFParticleBaseSIMD {
   void TransportToDS( float_v dS, const float_v* dsdr );
   void TransportToDSLine( float_v dS, const float_v* dsdr );
   //* Particular extrapolators one can use 
-  void TransportBz( float_v Bz, float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=0, float_v* F=0, float_v* F1=0 ) const;
+  void TransportBz( float_v Bz, float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=nullptr, float_v* F=nullptr, float_v* F1=nullptr ) const;
   void TransportBz( float_v Bz, float_v dS, float_v P[] ) const;
-  void TransportCBM( float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=0, float_v* F=0, float_v* F1=0 ) const;
+  void TransportCBM( float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=nullptr, float_v* F=nullptr, float_v* F1=nullptr ) const;
   void TransportCBM( float_v dS, float_v P[] ) const;    
 
   //* 
@@ -265,7 +265,7 @@ class KFParticleBaseSIMD {
   //* v = [xyz], Cv=[Cxx,Cxy,Cyy,Cxz,Cyz,Czz]-covariance matrix
 
   float_v GetDeviationFromVertex( const float_v v[], 
-                                   const float_v Cv[]=0 ) const;
+                                   const float_v Cv[]=nullptr ) const;
   float_v GetDeviationFromVertex( const KFParticleBaseSIMD &Vtx ) const;
   float_v GetDeviationFromParticle( const KFParticleBaseSIMD &p ) const;  
 
@@ -292,7 +292,7 @@ class KFParticleBaseSIMD {
   const int_v& GetPDG () const { return fPDG; } ///< Returns the PDG hypothesis.
   const int_v& PDG () const { return fPDG; } ///< Returns the PDG hypothesis.
 
-  void GetDistanceToVertexLine( const KFParticleBaseSIMD &Vertex, float_v &l, float_v &dl, float_m *isParticleFromVertex = 0 ) const;
+  void GetDistanceToVertexLine( const KFParticleBaseSIMD &Vertex, float_v &l, float_v &dl, float_m *isParticleFromVertex = nullptr ) const;
 
   static void MultQSQt( const float_v Q[], const float_v S[], float_v SOut[], int kN  );
 
@@ -304,7 +304,7 @@ class KFParticleBaseSIMD {
   /** Return an element of the covariance matrix with {i,j} indices. */
   float_v & Cij( Int_t i, Int_t j ){ return fC[IJ(i,j)]; }
 
-  void TransportLine( float_v S, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=0, float_v* F=0, float_v* F1=0 ) const ;
+  void TransportLine( float_v S, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=nullptr, float_v* F=nullptr, float_v* F1=nullptr ) const ;
   void TransportLine( float_v S, float_v P[] ) const ;
 
   static void InvertCholetsky3(float_v a[6]);

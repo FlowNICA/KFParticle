@@ -58,7 +58,7 @@ class KFTopoPerformance: public KFParticlePerformanceBase
     AliHLTResizableArray<AliHLTTPCCAMCTrack> *mcTracks,
     AliHLTResizableArray<AliHLTTPCCALocalMCPoint> *localMCPoints);
 #endif  
-  void SetTopoReconstructor( const KFParticleTopoReconstructor * const TopoReconstructor );
+  void SetTopoReconstructor( const KFParticleTopoReconstructor * TopoReconstructor );
   const KFParticleTopoReconstructor * GetTopoReconstructor() const { return fTopoReconstructor; } ///< Returns pointer to the KFParticleTopoReconstructor object.
     
     // Check if MC track is reconstructable. Calculate set of MC track. Etc.
@@ -77,10 +77,10 @@ class KFTopoPerformance: public KFParticlePerformanceBase
   void SetTrackMatch(const std::vector<int>& trackMatch) { fTrackMatch = trackMatch;} ///< Fill matching between Monte Carlo and reconstructed tracks.
   void SetMCTracks(const std::vector<KFMCTrack>& mcTracks) { vMCTracks = mcTracks; } ///< Fill Monte Carlo tracks.
   
-  const KFPartEfficiencies GetEfficiency() const { return fParteff; } ///< Returns KFPartEfficiencies object with calculated efficiency.
+  KFPartEfficiencies GetEfficiency() const { return fParteff; } ///< Returns KFPartEfficiencies object with calculated efficiency.
   void SetPrintEffFrequency(int n) { fPrintEffFrequency = n;} ///< Sets frequency in events for efficiency table to be printed on the screen.
 
-  const std::vector<KFMCVertex> GetPrimVertices() { return fPrimVertices; } ///< Returns Monte Carlo primary vertices in the current event.
+  std::vector<KFMCVertex> GetPrimVertices() { return fPrimVertices; } ///< Returns Monte Carlo primary vertices in the current event.
   const std::vector<KFMCParticle>& MCParticles() { return vMCParticles; } ///< Returns Monte Carlo particles in the current event.
   const std::vector<KFPartMatch>& ParticlesMatch() { return RtoMCParticleId; } ///< Returns matching between reconstructed and Monte Carlo particles.
   const std::vector<KFPartMatch>& GetMCtoRPVId() { return MCtoRPVId; } ///< Returns matching between Monte Carlo and reconstructed primary vertices.
@@ -117,10 +117,10 @@ class KFTopoPerformance: public KFParticlePerformanceBase
                               TH1F* histoParameters[4][KFPartEfficiencies::nParticles][nHistoPartParam],
                               TH2F* histoParameters2D[4][KFPartEfficiencies::nParticles][nHistoPartParam2D],
                               TH3F* histoParameters3D[1][KFPartEfficiencies::nParticles][nHistoPartParam3D],
-                              TH1F* histoFit[KFPartEfficiencies::nParticles][nFitQA] = 0,
-                              TH1F* histoFitDaughtersQA[KFPartEfficiencies::nParticles][nFitQA] = 0,
-                              TH1F* histoDSToParticleQA[KFPartEfficiencies::nParticles][nDSToParticleQA] = 0,
-                              std::vector<int>* multiplicities = 0);
+                              TH1F* histoFit[KFPartEfficiencies::nParticles][nFitQA] = nullptr,
+                              TH1F* histoFitDaughtersQA[KFPartEfficiencies::nParticles][nFitQA] = nullptr,
+                              TH1F* histoDSToParticleQA[KFPartEfficiencies::nParticles][nDSToParticleQA] = nullptr,
+                              std::vector<int>* multiplicities = nullptr);
   
   const KFParticleTopoReconstructor *fTopoReconstructor; ///< Pointer to the KFParticleTopoReconstructor object with particles and vertices to be analysed.
 

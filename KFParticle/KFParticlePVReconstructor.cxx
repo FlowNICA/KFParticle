@@ -9,6 +9,9 @@
 //  -= Copyright &copy ALICE HLT and CBM L1 Groups =-
 //____________________________________________________________________________
 
+#include <cmath>
+
+
 #include "KFParticlePVReconstructor.h"
 #include "KFPTrackVector.h"
 #include "KFParticle.h"
@@ -98,7 +101,7 @@ void KFParticlePVReconstructor::Init(KFPTrackVector *tracks, int nParticles)
       for(int iComp=0; iComp<3; iComp++)
       {
         float K = C[iComp]/(C[iComp]+V[iComp]);
-        if (fabs(V[iComp]) < 1.e-8) continue;
+        if (std::fabs(V[iComp]) < 1.e-8) continue;
         if(C[iComp] > 16*V[iComp])
           K = 1.f - V[iComp]/C[iComp];
         const float dzeta = parTmp[iComp]-pvEstimation[iComp];
@@ -326,7 +329,7 @@ void KFParticlePVReconstructor::ReconstructPrimVertex()
   
   FindPrimaryClusters();
 
-  if ( fPrimVertices.size() == 0 )
+  if ( fPrimVertices.empty() )
   {
     float X=0,Y=0,Z=0;
 

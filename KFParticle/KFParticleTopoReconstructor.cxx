@@ -19,6 +19,7 @@
 #include "KFParticleSIMD.h"
 #include "KFParticleDatabase.h"
 
+#include <cmath>
 #include <iostream>
 #include "string"
 using std::string;
@@ -676,13 +677,13 @@ void KFParticleTopoReconstructor::SelectParticleCandidates()
   {
     if(!UseParticleInCompetition(fParticles[iParticle].GetPDG())) continue;
     
-    bool isSecondary = 1;
+    bool isSecondary = true;
     for(int iPV=0; iPV<NPrimaryVertices(); iPV++)
     {
       KFParticle tmp = fParticles[iParticle];
       tmp.SetProductionVertex(GetPrimVertex(iPV));
       if(tmp.Chi2()/tmp.NDF()<5)
-        isSecondary=0;
+        isSecondary=false;
     }
     if(isSecondary)
       deleteCandidate[iParticle] = true;
@@ -739,7 +740,7 @@ void KFParticleTopoReconstructor::SelectParticleCandidates()
     float massPDG, massPDGSigma;
     KFParticleDatabase::Instance()->GetMotherMass(fParticles[iParticle].GetPDG(), massPDG, massPDGSigma);
     
-    float dm1 = fabs(mass - massPDG)/massPDGSigma;
+    float dm1 = std::fabs(mass - massPDG)/massPDGSigma;
 //     if(dm1 > 3.f)  continue;
       
     for(unsigned int jParticle=iParticle+1; jParticle<fParticles.size(); jParticle++)
@@ -857,7 +858,7 @@ void KFParticleTopoReconstructor::SelectParticleCandidates()
     if(deleteCandidate[iParticle]) continue;
     if(abs(fParticles[iParticle].GetPDG()) != 22) continue;
     
-    bool bothDaughtersElectrons = 1;
+    bool bothDaughtersElectrons = true;
     for(int iDaughter=0; iDaughter<fParticles[iParticle].NDaughters(); iDaughter++)
     {
       const int daughterIndex = fParticles[iParticle].DaughterIds()[iDaughter];
@@ -888,7 +889,7 @@ void KFParticleTopoReconstructor::SelectParticleCandidates()
   {
     if(!(abs(fParticles[iParticle].GetPDG()) == 100113 || abs(fParticles[iParticle].GetPDG()) == 443)) continue;
     
-    bool bothDaughtersElectrons = 1;
+    bool bothDaughtersElectrons = true;
     for(int iDaughter=0; iDaughter<fParticles[iParticle].NDaughters(); iDaughter++)
     {
       const int daughterIndex = fParticles[iParticle].DaughterIds()[iDaughter];
@@ -971,17 +972,17 @@ bool KFParticleTopoReconstructor::ParticleHasRepeatingDaughters(const KFParticle
    ** with the same index including tracks from the daughter particles in the decay
    ** chains. Such candidates should be rejected.
    **/
-  if(particle.NDaughters() < 2) return 0;
+  if(particle.NDaughters() < 2) return false;
   
   vector<int> daughters;
   GetListOfDaughterTracks(particle, daughters);
   std::sort(daughters.begin(), daughters.end());
-  bool sameDaughter=0;
+  bool sameDaughter=false;
   for(unsigned int iDaughter=1; iDaughter<daughters.size(); iDaughter++)
   {
     if(daughters[iDaughter] == daughters[iDaughter-1])
     {
-      sameDaughter = 1;
+      sameDaughter = true;
       break;
     }
   }
@@ -1017,7 +1018,7 @@ void KFParticleTopoReconstructor::ReconstructParticles()
 
   fParticles.clear();
 
-  if(fPV.size() < 1) return;
+  if(fPV.empty()) return;
 
   TransportPVTracksToPrimVertex();
   //calculate chi to primary vertex, chi = sqrt(dr C-1 dr)

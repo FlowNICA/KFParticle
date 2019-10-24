@@ -16,7 +16,7 @@
 ClassImp(KFVertex);
 #endif
 
-KFVertex::KFVertex( const KFPVertex &vertex ): fIsConstrained(0)
+KFVertex::KFVertex( const KFPVertex &vertex ): fIsConstrained(false)
 {
   /** Constructor from KFPVertex. **/
 
@@ -25,7 +25,7 @@ KFVertex::KFVertex( const KFPVertex &vertex ): fIsConstrained(0)
   fChi2 = vertex.GetChi2();  
   fNDF = 2*vertex.GetNContributors() - 3;
   fQ = 0;
-  fAtProductionVertex = 0;
+  fAtProductionVertex = false;
   fSFromDecay = 0;
 }
 
@@ -45,13 +45,13 @@ void KFVertex::SetBeamConstraint( float x, float y, float z,
   fC[3] = 0;
   fC[4] = 0;
   fC[5] = errZ*errZ;
-  fIsConstrained = 1;
+  fIsConstrained = true;
 }
 
 void KFVertex::SetBeamConstraintOff()
 {
   /** Switches off the constraint. Should be called before KFVertex::ConstructPrimaryVertex() **/
-  fIsConstrained = 0;
+  fIsConstrained = false;
 }
 
 void KFVertex::ConstructPrimaryVertex( const KFParticle *vDaughters[], 
@@ -76,11 +76,11 @@ void KFVertex::ConstructPrimaryVertex( const KFParticle *vDaughters[],
   float constrP[3]={fP[0], fP[1], fP[2]};
   float constrC[6]={fC[0], fC[1], fC[2], fC[3], fC[4], fC[5]};
 
-  Construct( vDaughters, nDaughters, 0, -1 );
+  Construct( vDaughters, nDaughters, nullptr, -1 );
 
 //   SetVtxGuess( fVtxGuess[0], fVtxGuess[1], fVtxGuess[2] );
 
-  for( int i=0; i<nDaughters; i++ ) vtxFlag[i] = 1;
+  for( int i=0; i<nDaughters; i++ ) vtxFlag[i] = true;
 
   Int_t nRest = nDaughters;
 //   while( nRest>2 )
@@ -109,7 +109,7 @@ void KFVertex::ConstructPrimaryVertex( const KFParticle *vDaughters[],
     const KFParticle &p = *(vDaughters[it]);
     float chi = p.GetDeviationFromVertex( *this );      
     if( chi >= ChiCut ){
-      vtxFlag[it] = 0;    
+      vtxFlag[it] = false;
       nRest--;
     }
   }
@@ -127,12 +127,12 @@ void KFVertex::ConstructPrimaryVertex( const KFParticle *vDaughters[],
     for( int i=0; i<nDaughters; i++ ){
       if( vtxFlag[i] )  vDaughtersNew[nDaughtersNew++] = vDaughters[i];
     }
-    Construct( vDaughtersNew, nDaughtersNew, 0, -1 );
+    Construct( vDaughtersNew, nDaughtersNew, nullptr, -1 );
     if (vDaughtersNew) delete[] vDaughtersNew;
   }
 
   if( nRest<=2 && GetChi2() > ChiCut*ChiCut*GetNDF() ) {
-    for( int i=0; i<nDaughters; i++ ) vtxFlag[i] = 0;
+    for( int i=0; i<nDaughters; i++ ) vtxFlag[i] = false;
     fNDF = -3;
     fChi2 = 0;
   }

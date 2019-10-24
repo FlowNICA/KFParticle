@@ -57,10 +57,10 @@ class KFPTrackVector
     return dataSize; 
   }
   
-  void Resize(const int n);
+  void Resize(int n);
   void Set(KFPTrackVector& v, int vSize, int offset);
-  void SetTracks(const KFPTrackVector& track, const kfvector_uint& trackIndex, const int nIndexes);
-  void GetTrack(KFPTrack& track, const int n);
+  void SetTracks(const KFPTrackVector& track, const kfvector_uint& trackIndex, int nIndexes);
+  void GetTrack(KFPTrack& track, int n);
   
   const kfvector_float& X()  const { return fP[0]; } ///< Returns constant reference to the vector with X coordinates.
   const kfvector_float& Y()  const { return fP[1]; } ///< Returns constant reference to the vector with Y coordinates.

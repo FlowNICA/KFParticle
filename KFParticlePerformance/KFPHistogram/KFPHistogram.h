@@ -37,7 +37,7 @@
 class KFPHistogram
 {  
  public:
-  KFPHistogram(): fPdgToIndex(), fOutFileName("KFPHistograms.txt"), fMemory(0)
+  KFPHistogram(): fPdgToIndex(), fOutFileName("KFPHistograms.txt"), fMemory(nullptr)
   {
     KFPartEfficiencies partEff;
     fPdgToIndex = partEff.GetPdgToIndexMap();
@@ -110,7 +110,7 @@ class KFPHistogram
   bool FillFromFile( std::string prefix )
   {
     std::fstream ifile(prefix.data(),std::fstream::in);
-    if ( !ifile.is_open() ) return 0;
+    if ( !ifile.is_open() ) return false;
 
     int iSet = 0;
     
@@ -142,7 +142,7 @@ class KFPHistogram
     }
     
     ifile.close();
-    return 1;
+    return true;
   } ///< Reads object from the file with the name defined by "prefix".
   
   inline void operator += ( const KFPHistogram &h )
