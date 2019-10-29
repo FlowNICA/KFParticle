@@ -52,35 +52,9 @@ set(LINK_DIRECTORIES
  
 link_directories( ${LINK_DIRECTORIES})
 
-set (SOURCES
-  KFParticle/KFParticleTopoReconstructor.cxx
-  KFParticle/KFVertex.cxx
-  KFParticle/KFPTrack.cxx
-  KFParticle/KFPTrackVector.cxx
-  KFParticle/KFPVertex.cxx
-  KFParticle/KFParticlePVReconstructor.cxx
-  KFParticle/KFParticleDatabase.cxx
-  KFParticle/KFParticleBase.cxx
-  KFParticle/KFParticleBaseSIMD.cxx
-  KFParticle/KFParticle.cxx
-  KFParticle/KFParticleSIMD.cxx
-  KFParticle/KFParticleFinder.cxx
-  KFParticle/KFPEmcCluster.cxx
-  KFParticlePerformance/KFMCVertex.cxx
-  KFParticlePerformance/KFParticlePerformanceBase.cxx
-  KFParticlePerformance/KFTopoPerformance.cxx
-  KFParticlePerformance/KFMCParticle.cxx
-  KFParticleTest/KFParticleTest.cxx
-)
-
-set (HEADERS
-  KFParticle/KFParticleBase.h
-  KFParticle/KFParticle.h
-  KFParticle/KFVertex.h
-  KFParticlePerformance/KFPartEfficiencies.h
-  KFParticlePerformance/KFMCParticle.h
-  KFParticleTest/KFParticleTest.h
-)
+add_subdirectory(KFParticle)
+add_subdirectory(KFParticlePerformance)
+add_subdirectory(KFParticleTest)
 
 if(FIXTARGET)
   ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DNonhomogeneousField" "-DCBM" "-DUSE_TIMERS")
@@ -98,31 +72,26 @@ if (ROOT_VERSION_MAJOR LESS 6)
     add_custom_target(libKFParticle.rootmap ALL DEPENDS KFParticle COMMAND rlibmap -o libKFParticle.rootmap -l libKFParticle.so -c ${PROJECT_SOURCE_DIR}/KFLinkDef.h)
 endif (ROOT_VERSION_MAJOR LESS 6)
 
-Set(NODICT_HEADERS
-  KFParticle/KFParticleTopoReconstructor.h
-  KFParticle/KFParticlePVReconstructor.h
-  KFParticle/KFPVertex.h
-  KFParticle/KFPTrack.h
-  KFParticle/KFParticleFinder.h
-  KFParticle/KFParticleSIMD.h
-  KFParticle/KFParticleBaseSIMD.h
-  KFParticle/KFParticleDef.h
-  KFParticle/KFPSimdAllocator.h
-  KFParticle/KFPTrackVector.h
-  KFParticle/KFPEmcCluster.h
-  KFParticle/KFParticleField.h
-  KFParticle/KFPTrackVector.h
-  KFParticle/KFParticleDatabase.h
-  KFParticlePerformance/KFTopoPerformance.h
-  KFParticlePerformance/KFParticlePerformanceBase.h
-  KFParticlePerformance/KFMCCounter.h
-  KFParticlePerformance/KFPVEfficiencies.h
-  KFParticlePerformance/KFMCVertex.h
-  KFParticlePerformance/KFMCTrack.h
-  KFParticlePerformance/KFPartMatch.h
+
+
+configure_package_config_file(
+        KFPFConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/KFPF/KFPFConfig.cmake
+        INSTALL_DESTINATION ${ConfigPackageLocation}
+        PATH_VARS KFPF_INCLUDE_DIR KFPF_LIBRARY_DIR
 )
 
-install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
-install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle_rdict.pcm DESTINATION lib OPTIONAL)
-install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
-install(TARGETS KFParticle DESTINATION lib)
+install(EXPORT KFPFTargets
+        FILE
+        KFPFTargets.cmake
+        DESTINATION
+        ${ConfigPackageLocation}
+        )
+
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/KFPF/KFPFConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/KFPF/KFPFConfigVersion.cmake"
+        DESTINATION
+        ${ConfigPackageLocation}
+        COMPONENT
+        Devel
+        )
