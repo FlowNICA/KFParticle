@@ -166,22 +166,13 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Compile for fix target geometry.
-FIXTARGET:BOOL=FALSE
+FIXTARGET:BOOL=TRUE
 
 //Value Computed by CMake
 KFParticleLibrary_BINARY_DIR:STATIC=/home/user/cbmdir/kfpf/KFParticle/build
 
 //Value Computed by CMake
 KFParticleLibrary_SOURCE_DIR:STATIC=/home/user/cbmdir/kfpf/KFParticle
-
-//Dependencies for the target
-KFParticleMain_LIB_DEPENDS:STATIC=general;/home/user/Root6/build/lib/libCore.so;general;/home/user/Root6/build/lib/libImt.so;general;/home/user/Root6/build/lib/libRIO.so;general;/home/user/Root6/build/lib/libNet.so;general;/home/user/Root6/build/lib/libHist.so;general;/home/user/Root6/build/lib/libGraf.so;general;/home/user/Root6/build/lib/libGraf3d.so;general;/home/user/Root6/build/lib/libGpad.so;general;/home/user/Root6/build/lib/libTree.so;general;/home/user/Root6/build/lib/libTreePlayer.so;general;/home/user/Root6/build/lib/libRint.so;general;/home/user/Root6/build/lib/libPostscript.so;general;/home/user/Root6/build/lib/libMatrix.so;general;/home/user/Root6/build/lib/libPhysics.so;general;/home/user/Root6/build/lib/libMathCore.so;general;/home/user/Root6/build/lib/libThread.so;general;/home/user/Root6/build/lib/libMultiProc.so;general;/home/user/Root6/build/lib/libEG.so;
-
-//Dependencies for the target
-KFParticlePerformance_LIB_DEPENDS:STATIC=general;/home/user/Root6/build/lib/libCore.so;general;/home/user/Root6/build/lib/libImt.so;general;/home/user/Root6/build/lib/libRIO.so;general;/home/user/Root6/build/lib/libNet.so;general;/home/user/Root6/build/lib/libHist.so;general;/home/user/Root6/build/lib/libGraf.so;general;/home/user/Root6/build/lib/libGraf3d.so;general;/home/user/Root6/build/lib/libGpad.so;general;/home/user/Root6/build/lib/libTree.so;general;/home/user/Root6/build/lib/libTreePlayer.so;general;/home/user/Root6/build/lib/libRint.so;general;/home/user/Root6/build/lib/libPostscript.so;general;/home/user/Root6/build/lib/libMatrix.so;general;/home/user/Root6/build/lib/libPhysics.so;general;/home/user/Root6/build/lib/libMathCore.so;general;/home/user/Root6/build/lib/libThread.so;general;/home/user/Root6/build/lib/libMultiProc.so;general;/home/user/Root6/build/lib/libEG.so;general;KFParticleMain;
-
-//Dependencies for the target
-KFParticleTest_LIB_DEPENDS:STATIC=general;/home/user/Root6/build/lib/libCore.so;general;/home/user/Root6/build/lib/libImt.so;general;/home/user/Root6/build/lib/libRIO.so;general;/home/user/Root6/build/lib/libNet.so;general;/home/user/Root6/build/lib/libHist.so;general;/home/user/Root6/build/lib/libGraf.so;general;/home/user/Root6/build/lib/libGraf3d.so;general;/home/user/Root6/build/lib/libGpad.so;general;/home/user/Root6/build/lib/libTree.so;general;/home/user/Root6/build/lib/libTreePlayer.so;general;/home/user/Root6/build/lib/libRint.so;general;/home/user/Root6/build/lib/libPostscript.so;general;/home/user/Root6/build/lib/libMatrix.so;general;/home/user/Root6/build/lib/libPhysics.so;general;/home/user/Root6/build/lib/libMathCore.so;general;/home/user/Root6/build/lib/libThread.so;general;/home/user/Root6/build/lib/libMultiProc.so;general;/home/user/Root6/build/lib/libEG.so;general;KFParticleMain;
 
 //Dependencies for the target
 KFParticle_LIB_DEPENDS:STATIC=general;/home/user/Root6/build/lib/libCore.so;general;/home/user/Root6/build/lib/libImt.so;general;/home/user/Root6/build/lib/libRIO.so;general;/home/user/Root6/build/lib/libNet.so;general;/home/user/Root6/build/lib/libHist.so;general;/home/user/Root6/build/lib/libGraf.so;general;/home/user/Root6/build/lib/libGraf3d.so;general;/home/user/Root6/build/lib/libGpad.so;general;/home/user/Root6/build/lib/libTree.so;general;/home/user/Root6/build/lib/libTreePlayer.so;general;/home/user/Root6/build/lib/libRint.so;general;/home/user/Root6/build/lib/libPostscript.so;general;/home/user/Root6/build/lib/libMatrix.so;general;/home/user/Root6/build/lib/libPhysics.so;general;/home/user/Root6/build/lib/libMathCore.so;general;/home/user/Root6/build/lib/libThread.so;general;/home/user/Root6/build/lib/libMultiProc.so;general;/home/user/Root6/build/lib/libEG.so;general;/home/user/cbmdir/Vc/install/lib/libVc.a;
@@ -452,7 +443,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

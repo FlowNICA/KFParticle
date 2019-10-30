@@ -1,9 +1,8 @@
-
 set(SOURCES
   KFParticle.cxx
   KFParticleBase.cxx
   KFParticleBaseSIMD.cxx
-  KFParticleDataBase.cxx
+  KFParticleDatabase.cxx
   KFParticleFinder.cxx
   KFParticlePVReconstructor.cxx
   KFParticleSIMD.cxx
