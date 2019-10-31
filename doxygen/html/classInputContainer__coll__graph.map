@@ -1,6 +1,0 @@
-<map id="InputContainer" name="InputContainer">
-<area shape="rect" id="node2" href="$classKFVertex.html" title="Mathematics for reconstruction of primary vertices based on KFParticle. " alt="" coords="23,233,101,260"/>
-<area shape="rect" id="node3" href="$classKFParticle.html" title="The main scalar class of KF Particle package, describes particle objects. " alt="" coords="21,157,103,184"/>
-<area shape="rect" id="node4" href="$classKFParticleBase.html" title="The base of KFParticle class, describes particle objects. " alt="" coords="5,81,119,108"/>
-<area shape="rect" id="node6" href="$classCutsContainer.html" title="Container with values of cuts. " alt="" coords="125,233,231,260"/>
-</map>
