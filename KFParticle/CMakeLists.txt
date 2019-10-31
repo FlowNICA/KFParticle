@@ -1,51 +1,62 @@
 set(SOURCES
-  KFParticle.cxx
-  KFParticleBase.cxx
-  KFParticleBaseSIMD.cxx
-  KFParticleDatabase.cxx
-  KFParticleFinder.cxx
-  KFParticlePVReconstructor.cxx
-  KFParticleSIMD.cxx
   KFParticleTopoReconstructor.cxx
-  KFPEmcCluster.cxx
+  KFVertex.cxx
   KFPTrack.cxx
   KFPTrackVector.cxx
   KFPVertex.cxx
-  KFVertex.cxx
+  KFParticlePVReconstructor.cxx
+  KFParticleDatabase.cxx
+  KFParticleBase.cxx
+  KFParticleBaseSIMD.cxx
+  KFParticle.cxx
+  KFParticleSIMD.cxx
+  KFParticleFinder.cxx
+  KFPEmcCluster.cxx
   )
 
-string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
-list(APPEND HEADERS "KFParticleDef.h" "KFParticleField.h" "KFPInputData.h" "KFPSimdAllocator")
+set (HEADERS
+  KFParticleBase.h
+  KFParticle.h
+  KFVertex.h
+  )
 
-add_library(KFParticleMain SHARED ${SOURCES} G__KFParticleMain.cxx)
+add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
         
 if(ROOT_FOUND)
-  ROOT_GENERATE_DICTIONARY(G__KFParticleMain ${HEADERS} LINKDEF KFParticleMainLinkDef.h)        
-  target_link_libraries(KFParticleMain ${ROOT_LIBRARIES})
-endif(ROOT_FOUND)  
+  ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFParticleLinkDef.h)
+  target_link_libraries(KFParticle ${ROOT_LIBRARIES})
+endif(ROOT_FOUND)
 
 
+Set(NODICT_HEADERS
+  KFParticleTopoReconstructor.h
+  KFParticlePVReconstructor.h
+  KFPVertex.h
+  KFPTrack.h
+  KFParticleFinder.h
+  KFParticleSIMD.h
+  KFParticleBaseSIMD.h
+  KFParticleDef.h
+  KFPSimdAllocator.h
+  KFPTrackVector.h
+  KFPEmcCluster.h
+  KFParticleField.h
+  KFPTrackVector.h
+  KFParticleDatabase.h
+  )
 
-install(TARGETS KFParticleMain EXPORT KFParticleTargets
+set(PCM_FILE_NAME libKFParticle)
+install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
+#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
+
+install(TARGETS KFParticle EXPORT KFParticleTargets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
         RUNTIME DESTINATION bin
-        INCLUDES DESTINATION include/KFPF
+        INCLUDES DESTINATION include
         )
 
-install(
-        FILES
-        ${HEADERS}
-        DESTINATION
-        include/KFPF
-        COMPONENT
-        Devel
-)
-
-set(PCM_FILE_NAME libKFParticleMain)
-
-install(
-        FILES
+install(FILES
         "${CMAKE_CURRENT_BINARY_DIR}/${PCM_FILE_NAME}_rdict.pcm"
         DESTINATION
         lib
