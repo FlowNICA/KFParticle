@@ -1,0 +1,1114 @@
+\hypertarget{classKFParticleFinder}{}\section{K\+F\+Particle\+Finder Class Reference}
+\label{classKFParticleFinder}\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+
+
+Class for reconstruction short-\/lived particles.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+Particle\+Finder.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFParticleFinder_a843c0b2e44c18b632c04a9fa1ff9ae49}{K\+F\+Particle\+Finder} ()
+\item 
+void \hyperlink{classKFParticleFinder_abe90e8047fc0a6c45dfbfb05fdb5ddcc}{Init} (int n\+PV)
+\item 
+void \hyperlink{classKFParticleFinder_abf400bd4463a8b7214ff4cd5cfc23f4a}{Set\+N\+Threads} (short int n)\hypertarget{classKFParticleFinder_abf400bd4463a8b7214ff4cd5cfc23f4a}{}\label{classKFParticleFinder_abf400bd4463a8b7214ff4cd5cfc23f4a}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of threads to by run in parallel. Currently not used. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a3ad831d1b28cce4689501e369f561926}{Find\+Particles} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$v\+R\+Tracks, kfvector\+\_\+float $\ast$Chi\+To\+Prim\+Vtx, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, int n\+PV)
+\item 
+void \hyperlink{classKFParticleFinder_a2346e637d92eae212091abd37919403e}{Construct\+V0} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$v\+Tracks, int i\+Tr\+Type\+Pos, int i\+Tr\+Type\+Neg, uint\+\_\+v \&id\+Pos\+Daughters, uint\+\_\+v \&id\+Neg\+Daughters, int\+\_\+v \&daughter\+Pos\+P\+DG, int\+\_\+v \&daughter\+Neg\+P\+DG, \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \&mother, \hyperlink{classKFParticle}{K\+F\+Particle} \&mother\+\_\+temp, unsigned short N\+Tracks, kfvector\+\_\+floatv \&l, kfvector\+\_\+floatv \&dl, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float $\ast$cuts, const int\+\_\+v \&pv\+Index, const float $\ast$sec\+Cuts, const float\+\_\+v \&mass\+Mother\+P\+DG, const float\+\_\+v \&mass\+Mother\+P\+D\+G\+Sigma, \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \&mother\+Prim\+Sec\+Cand, int \&n\+Prim\+Sec\+Cand, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim=nullptr, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec=nullptr) \+\_\+\+\_\+attribute\+\_\+\+\_\+((always\+\_\+inline))
+\item 
+void \hyperlink{classKFParticleFinder_ad5a61416f528be9d0b397352f7619953}{Save\+V0\+Prim\+Sec\+Cand} (\hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \&mother, int \&N\+Particles, \hyperlink{classKFParticle}{K\+F\+Particle} \&mother\+\_\+temp, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float $\ast$sec\+Cuts, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec)
+\item 
+void \hyperlink{classKFParticleFinder_a9d0040c76e7e04dc0abdafb82612d791}{Construct\+Track\+V0\+Cand} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&v\+Tracks, uint\+\_\+v \&id\+Tracks, int\+\_\+v \&track\+P\+DG, \hyperlink{classKFParticle}{K\+F\+Particle} $\ast$v\+V0\mbox{[}$\,$\mbox{]}, \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \&mother, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&mother\+Topo, \hyperlink{classKFParticle}{K\+F\+Particle} \&mother\+\_\+temp, unsigned short n\+Elements, kfvector\+\_\+floatv \&l, kfvector\+\_\+floatv \&dl, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float\+\_\+v $\ast$cuts, const int\+\_\+v \&pv\+Index, const float\+\_\+v \&mass\+Mother\+P\+DG, const float\+\_\+v \&mass\+Mother\+P\+D\+G\+Sigma, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec)
+\item 
+void \hyperlink{classKFParticleFinder_a3f6967ae8b6839bc7de48991eaa812ef}{Find2\+Daughter\+Decay} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$v\+Tracks, kfvector\+\_\+float $\ast$Chi\+To\+Prim\+Vtx, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float $\ast$cuts, const float $\ast$sec\+Cuts, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec)
+\item 
+void \hyperlink{classKFParticleFinder_ae68561ffcd9f3bf3e8230604678105c5}{Construct\+Primary\+BG} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$v\+Tracks, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float $\ast$cuts, const float $\ast$sec\+Cuts, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec)
+\item 
+void \hyperlink{classKFParticleFinder_a76e093479fb04d0360e1cca0e6aa5d01}{Neutral\+Daughter\+Decay} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$v\+Tracks, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles)
+\item 
+void \hyperlink{classKFParticleFinder_a5b475263eee7da03e48fb1c506cd8eeb}{Find\+Track\+V0\+Decay} (std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&v\+V0, int V0\+P\+DG, \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&v\+Tracks, int q, int first\+Track, int last\+Track, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, int v0\+P\+V\+Index=-\/1, kfvector\+\_\+float $\ast$Chi\+To\+Prim\+Vtx=nullptr, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim=nullptr, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec=nullptr)
+\item 
+void \hyperlink{classKFParticleFinder_a179059d24166483347104b74e9ad6b48}{Select\+Particles} (std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&v\+Candidates, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float \&cut\+Chi2\+Topo, const float \&cut\+LdL, const float \&mass, const float \&mass\+Err, const float \&mass\+Cut)
+\item 
+void \hyperlink{classKFParticleFinder_aafc7f2af67337b5434599250e898886f}{Combine\+Part\+Part} (std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&particles1, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&particles2, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&Particles, std\+::vector$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD}, \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&Prim\+Vtx, const float $\ast$cuts, int i\+PV, int Mother\+P\+DG, bool is\+Same\+Input\+Part=false, bool save\+Only\+Primary=true, std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$v\+Mother\+Prim=nullptr, std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$v\+Mother\+Sec=nullptr, float mass\+Mother\+P\+DG=0.f, float mass\+Mother\+P\+D\+G\+Sigma=0.f)
+\item 
+void \hyperlink{classKFParticleFinder_a81022e8eb9992d9b4ab4ba2687ea2b6c}{Set\+Emc\+Clusters} (\hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} $\ast$clusters)\hypertarget{classKFParticleFinder_a81022e8eb9992d9b4ab4ba2687ea2b6c}{}\label{classKFParticleFinder_a81022e8eb9992d9b4ab4ba2687ea2b6c}
+
+\begin{DoxyCompactList}\small\item\em Set a pointer to the gamma-\/clusters from the electromagnetic calorimeter. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a96545145ce1a922677fc9426d6b51c9e}{Set\+Mixed\+Event\+Analysis} ()\hypertarget{classKFParticleFinder_a96545145ce1a922677fc9426d6b51c9e}{}\label{classKFParticleFinder_a96545145ce1a922677fc9426d6b51c9e}
+
+\begin{DoxyCompactList}\small\item\em Switch \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} to the mixed event mode. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $\ast$ \hyperlink{classKFParticleFinder_a163cb839b90abc125f5526727724394c}{Get\+Secondary\+Candidates} () const 
+\item 
+const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \& \hyperlink{classKFParticleFinder_a6705d9f606d37159162fb7704650fe37}{Get\+Secondary\+K0} () const 
+\item 
+const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \& \hyperlink{classKFParticleFinder_a24decce5fe475853e057a0c8b5700ed4}{Get\+Secondary\+Lambda} () const 
+\item 
+const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \& \hyperlink{classKFParticleFinder_a35dd944121fa5e85bfd8e44cc2c24377}{Get\+Secondary\+Anti\+Lambda} () const 
+\item 
+const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \& \hyperlink{classKFParticleFinder_a737fcb30161664ef618f8ac2ba60244f}{Get\+Secondary\+Gamma} () const 
+\item 
+const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \& \hyperlink{classKFParticleFinder_aea096829eb0af2d898726c3275275327}{Get\+Secondary\+Pi0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$ \hyperlink{classKFParticleFinder_a09deaf59aac03e8a98fd690b4168e3f8}{Get\+Primary\+Candidates} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a273e44f0f353de890951e1e9227f9dda}{Get\+Primary\+K0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_adea6f4bfdea7059a7ece5a886c8920f1}{Get\+Primary\+Lambda} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a03f9278028b47b85427d1219e3ef9727}{Get\+Primary\+Anti\+Lambda} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_add1911bda416bc4a5b247b5e354e618d}{Get\+Primary\+Gamma} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ace0e71897c83d40b91f8e2e7d9c9af0b}{Get\+Primary\+Pi0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ad9d11ee270d1863a546fe848f2ac2fff}{Get\+Primary\+Xi} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ae8ea794d79008840cf4d1e27d3ecefe5}{Get\+Primary\+Anti\+Xi} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a439ea502fca535c8bb3e39fe3cc073b9}{Get\+Primary\+Omega} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a1e1e9b86ac20223f8b74b17838256fca}{Get\+Primary\+Anti\+Omega} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$ \hyperlink{classKFParticleFinder_af7b9f52ba3457bcf85dabd902e96fac1}{Get\+Primary\+Topo\+Candidates} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a462d3be8c69d7cad6976c5c7cbe43d85}{Get\+Primary\+Topo\+K0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a4dc4d7b47e1db7dca24c4c8347f93e81}{Get\+Primary\+Topo\+Lambda} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_adad5f640ac64b9dec1b72b469ec05226}{Get\+Primary\+Topo\+Anti\+Lambda} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ae507e0b555d4f3c9084d3a4188c41653}{Get\+Primary\+Topo\+Gamma} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ac2e4c62f46b33f201d9d8531ce4950da}{Get\+Primary\+Topo\+Pi0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ad60a81262c8d69a5a179766e220621fd}{Get\+Primary\+Topo\+Xi} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ada105af26be7f6f9448cf9e954b89276}{Get\+Primary\+Topo\+Anti\+Xi} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a6e4b12b80efebed377ea6757e2eec098}{Get\+Primary\+Topo\+Omega} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_aea76ff429d88e037ad25d806ae34530d}{Get\+Primary\+Topo\+Anti\+Omega} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ $\ast$ \hyperlink{classKFParticleFinder_afe2cf855e5660059795ef32caa3ace23}{Get\+Primary\+Topo\+Mass\+Candidates} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ae674d079ab4800c12874ceba16bf7b7b}{Get\+Primary\+Topo\+Mass\+K0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a7286e2c28c0e5d1350125ff5004094a3}{Get\+Primary\+Topo\+Mass\+Lambda} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_aa2b604b08a599d4008c33491314bff66}{Get\+Primary\+Topo\+Mass\+Anti\+Lambda} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ae0584f1027f7eaea6e0b2dd01c4d28dc}{Get\+Primary\+Topo\+Mass\+Gamma} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_ad628e43af43e4f535267831a92dc7eec}{Get\+Primary\+Topo\+Mass\+Pi0} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a2e4897510c71ca2a73be9b5f9a734a9e}{Get\+Primary\+Topo\+Mass\+Xi} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a311f55676ac79505b5a4e965d1869e3b}{Get\+Primary\+Topo\+Mass\+Anti\+Xi} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a3cdf08e30f5a5ea65ac46e5d34f1ebee}{Get\+Primary\+Topo\+Mass\+Omega} () const 
+\item 
+const std\+::vector$<$ std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ $>$ \& \hyperlink{classKFParticleFinder_a02002e69766b313a73dab1c7485563a7}{Get\+Primary\+Topo\+Mass\+Anti\+Omega} () const 
+\item 
+void \hyperlink{classKFParticleFinder_ae9f91e17b13fc0308e91ec759b44aa1f}{Add\+Candidate} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&candidate, int i\+PV=-\/1)
+\item 
+void \hyperlink{classKFParticleFinder_a043ff4f3c29d55030686e4614aa241b9}{Set\+N\+PV} (int n\+PV)
+\item 
+void \hyperlink{classKFParticleFinder_a6a4e25b5304d7cfa15125df8e176dbb4}{Set\+Max\+Distance\+Between\+Particles\+Cut} (float cut)\hypertarget{classKFParticleFinder_a6a4e25b5304d7cfa15125df8e176dbb4}{}\label{classKFParticleFinder_a6a4e25b5304d7cfa15125df8e176dbb4}
+
+\begin{DoxyCompactList}\small\item\em Sets cut on the distance between secondary tracks at the D\+CA point. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a008880a3eae2081ef00d8358c40c59ba}{Set\+L\+Cut} (float cut)\hypertarget{classKFParticleFinder_a008880a3eae2081ef00d8358c40c59ba}{}\label{classKFParticleFinder_a008880a3eae2081ef00d8358c40c59ba}
+
+\begin{DoxyCompactList}\small\item\em Sets cut on the distance to the primary vertex from the decay vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_ab040f949a192af333a7677f6fd838985}{Set\+Chi\+Primary\+Cut2D} (float cut)\hypertarget{classKFParticleFinder_ab040f949a192af333a7677f6fd838985}{}\label{classKFParticleFinder_ab040f949a192af333a7677f6fd838985}
+
+\begin{DoxyCompactList}\small\item\em Sets cut on $\chi^2_{prim}$ of each track for 2-\/daughter decays. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a6dfd01104eac45afa1c8f737e147d799}{Set\+Chi2\+Cut2D} (float cut)\hypertarget{classKFParticleFinder_a6dfd01104eac45afa1c8f737e147d799}{}\label{classKFParticleFinder_a6dfd01104eac45afa1c8f737e147d799}
+
+\begin{DoxyCompactList}\small\item\em Sets cut on $\chi^2_{geo}$ for 2-\/daughter decays. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a696e16a5e722adacbf6f301152ac1915}{Set\+Ld\+L\+Cut2D} (float cut)\hypertarget{classKFParticleFinder_a696e16a5e722adacbf6f301152ac1915}{}\label{classKFParticleFinder_a696e16a5e722adacbf6f301152ac1915}
+
+\begin{DoxyCompactList}\small\item\em Sets cut on $l/\Delta l$ for 2-\/daughter decays. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a0e9185d0f203bf3fc5d945502d23feba}{Set\+Secondary\+Cuts} (const float sigma\+Mass=3.f, const float chi2\+Topo=5.f, const float ldl=10.f)\hypertarget{classKFParticleFinder_a0e9185d0f203bf3fc5d945502d23feba}{}\label{classKFParticleFinder_a0e9185d0f203bf3fc5d945502d23feba}
+
+\begin{DoxyCompactList}\small\item\em Sets cuts on selection of secondary and primary candidates\+: $\sigma_{M}$, $\chi^2_{topo}$, $l/\Delta l$. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a494638210c408af2f4f6b272d766510a}{Set\+Ld\+L\+Cut\+Xi\+Omega} (float cut)\hypertarget{classKFParticleFinder_a494638210c408af2f4f6b272d766510a}{}\label{classKFParticleFinder_a494638210c408af2f4f6b272d766510a}
+
+\begin{DoxyCompactList}\small\item\em Sets $l/\Delta l$ cut for $\Xi$ and $\Omega$. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_abc001f02cf7e019fde933926deb47af4}{Set\+Chi2\+Topo\+Cut\+Xi\+Omega} (float cut)\hypertarget{classKFParticleFinder_abc001f02cf7e019fde933926deb47af4}{}\label{classKFParticleFinder_abc001f02cf7e019fde933926deb47af4}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{topo}$ cut for $\Xi$ and $\Omega$. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a1dac1e6944f049221c09d1aec232d580}{Set\+Chi2\+Cut\+Xi\+Omega} (float cut)\hypertarget{classKFParticleFinder_a1dac1e6944f049221c09d1aec232d580}{}\label{classKFParticleFinder_a1dac1e6944f049221c09d1aec232d580}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{geo}$ cut for $\Xi$ and $\Omega$. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a6124ff25f4485ba381c8d41c5898bdc2}{Set\+Chi2\+Topo\+Cut\+Resonances} (float cut)\hypertarget{classKFParticleFinder_a6124ff25f4485ba381c8d41c5898bdc2}{}\label{classKFParticleFinder_a6124ff25f4485ba381c8d41c5898bdc2}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{topo}$ cut for resonances. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a2501a7c09b98feb34d029544351d4ae9}{Set\+Chi2\+Cut\+Resonances} (float cut)\hypertarget{classKFParticleFinder_a2501a7c09b98feb34d029544351d4ae9}{}\label{classKFParticleFinder_a2501a7c09b98feb34d029544351d4ae9}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{geo}$ cut for resonances. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_ac7e7f1066610e45f2d105712a8e61dd9}{Set\+Pt\+Cut\+L\+M\+VM} (float cut)\hypertarget{classKFParticleFinder_ac7e7f1066610e45f2d105712a8e61dd9}{}\label{classKFParticleFinder_ac7e7f1066610e45f2d105712a8e61dd9}
+
+\begin{DoxyCompactList}\small\item\em Sets the cut on transverse momentum of each daughter track of low mass vector mesons. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a4f63777d15d4481cff4d2323aa7b17c6}{Set\+P\+Cut\+L\+M\+VM} (float cut)\hypertarget{classKFParticleFinder_a4f63777d15d4481cff4d2323aa7b17c6}{}\label{classKFParticleFinder_a4f63777d15d4481cff4d2323aa7b17c6}
+
+\begin{DoxyCompactList}\small\item\em Sets the cut on momentum of each daughter track of low mass vector mesons in dimuon channel. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_ac3ae89d59b8d562ec3125ac2fa5c8700}{Set\+Pt\+Cut\+J\+Psi} (float cut)\hypertarget{classKFParticleFinder_ac3ae89d59b8d562ec3125ac2fa5c8700}{}\label{classKFParticleFinder_ac3ae89d59b8d562ec3125ac2fa5c8700}
+
+\begin{DoxyCompactList}\small\item\em Sets the cut on transverse momentum of each daughter track of $J/\psi$. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a2795e4064aa48a9891f0db3752d806e2}{Set\+Pt\+Cut\+Charm} (float cut)\hypertarget{classKFParticleFinder_a2795e4064aa48a9891f0db3752d806e2}{}\label{classKFParticleFinder_a2795e4064aa48a9891f0db3752d806e2}
+
+\begin{DoxyCompactList}\small\item\em Sets the cut on transverse momentum of each daughter track of open charm particles. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a1bd49aabbff88131fffa721a79e56b6d}{Set\+Chi\+Primary\+Cut\+Charm} (float cut)\hypertarget{classKFParticleFinder_a1bd49aabbff88131fffa721a79e56b6d}{}\label{classKFParticleFinder_a1bd49aabbff88131fffa721a79e56b6d}
+
+\begin{DoxyCompactList}\small\item\em Sets cut on $\chi^2_{prim}$ of each track for open charm particles. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a5afbb1d578d9615d611c6008264b46fe}{Set\+Ld\+L\+Cut\+Charm\+Manybody\+Decays} (float cut)\hypertarget{classKFParticleFinder_a5afbb1d578d9615d611c6008264b46fe}{}\label{classKFParticleFinder_a5afbb1d578d9615d611c6008264b46fe}
+
+\begin{DoxyCompactList}\small\item\em Sets $l/\Delta l$ cut for open charm with $>$=3 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_aaa65a45d9919b7e96796905fc4f0241d}{Set\+Chi2\+Topo\+Cut\+Charm\+Manybody\+Decays} (float cut)\hypertarget{classKFParticleFinder_aaa65a45d9919b7e96796905fc4f0241d}{}\label{classKFParticleFinder_aaa65a45d9919b7e96796905fc4f0241d}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{topo}$ cut for open charm with $>$=3 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a788a96a3d03c7398d82cd35552a742c9}{Set\+Chi2\+Cut\+Charm\+Manybody\+Decays} (float cut)\hypertarget{classKFParticleFinder_a788a96a3d03c7398d82cd35552a742c9}{}\label{classKFParticleFinder_a788a96a3d03c7398d82cd35552a742c9}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{geo}$ cut for open charm with $>$=3 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a3e5b8b5bb090df8a8be456801d86aec9}{Set\+Ld\+L\+Cut\+Charm2D} (float cut)\hypertarget{classKFParticleFinder_a3e5b8b5bb090df8a8be456801d86aec9}{}\label{classKFParticleFinder_a3e5b8b5bb090df8a8be456801d86aec9}
+
+\begin{DoxyCompactList}\small\item\em Sets $l/\Delta l$ cut for open charm with 2 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_ac5e988b4db8036532c087405422ffabd}{Set\+Chi2\+Topo\+Cut\+Charm2D} (float cut)\hypertarget{classKFParticleFinder_ac5e988b4db8036532c087405422ffabd}{}\label{classKFParticleFinder_ac5e988b4db8036532c087405422ffabd}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{topo}$ cut for open charm with 2 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_abb1e95ce14a97ab7693128fe20bbd541}{Set\+Chi2\+Cut\+Charm2D} (float cut)\hypertarget{classKFParticleFinder_abb1e95ce14a97ab7693128fe20bbd541}{}\label{classKFParticleFinder_abb1e95ce14a97ab7693128fe20bbd541}
+
+\begin{DoxyCompactList}\small\item\em Sets $\chi^2_{geo}$ cut for open charm with 2 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a1b38034cef5265388c31a57664bd10db}{Copy\+Cuts} (const \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} $\ast$finder)
+\item 
+float \hyperlink{classKFParticleFinder_a4d64b5ad2217e309115cc18b2690d69d}{Get\+Max\+Distance\+Between\+Particles\+Cut} () const \hypertarget{classKFParticleFinder_a4d64b5ad2217e309115cc18b2690d69d}{}\label{classKFParticleFinder_a4d64b5ad2217e309115cc18b2690d69d}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on the distance between secondary tracks at the D\+CA point. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_ab82d952f5853ebc2abb65f7107026f47}{Get\+L\+Cut} () const \hypertarget{classKFParticleFinder_ab82d952f5853ebc2abb65f7107026f47}{}\label{classKFParticleFinder_ab82d952f5853ebc2abb65f7107026f47}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on the distance to the primary vertex from the decay vertex. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_ab56fca07eaa71d8bf3769954d32875ce}{Get\+Chi\+Primary\+Cut2D} () const \hypertarget{classKFParticleFinder_ab56fca07eaa71d8bf3769954d32875ce}{}\label{classKFParticleFinder_ab56fca07eaa71d8bf3769954d32875ce}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on $\chi^2_{prim}$ of each track for 2-\/daughter decays. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a7291796e94721d1e40e03ae857ac0660}{Get\+Chi2\+Cut2D} () const \hypertarget{classKFParticleFinder_a7291796e94721d1e40e03ae857ac0660}{}\label{classKFParticleFinder_a7291796e94721d1e40e03ae857ac0660}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on $\chi^2_{geo}$ for 2-\/daughter decays. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_ac0e935ba7d17dd432458d81a84c747a3}{Get\+Ld\+L\+Cut2D} () const \hypertarget{classKFParticleFinder_ac0e935ba7d17dd432458d81a84c747a3}{}\label{classKFParticleFinder_ac0e935ba7d17dd432458d81a84c747a3}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on $l/\Delta l$ for 2-\/daughter decays. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a8fab5001542c89602ae9ebfc61837676}{Get\+Secondary\+Sigma\+Mass\+Cut} () const \hypertarget{classKFParticleFinder_a8fab5001542c89602ae9ebfc61837676}{}\label{classKFParticleFinder_a8fab5001542c89602ae9ebfc61837676}
+
+\begin{DoxyCompactList}\small\item\em Returns $\sigma_{M}$ cut for selection of primary and secondary candidates. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a6f62d506a6f6e1efa0e2db846d7c4440}{Get\+Secondary\+Chi2\+Topo\+Cut} () const \hypertarget{classKFParticleFinder_a6f62d506a6f6e1efa0e2db846d7c4440}{}\label{classKFParticleFinder_a6f62d506a6f6e1efa0e2db846d7c4440}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{topo}$ cut for selection of primary and secondary candidates. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_ad9ad8be085e5f6730ea1cd48511187f8}{Get\+Secondary\+Ld\+L\+Cut} () const \hypertarget{classKFParticleFinder_ad9ad8be085e5f6730ea1cd48511187f8}{}\label{classKFParticleFinder_ad9ad8be085e5f6730ea1cd48511187f8}
+
+\begin{DoxyCompactList}\small\item\em Returns $l/\Delta l$ cut for selection of primary and secondary candidates. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a62739992a0aac4616a05a3461a82db08}{Get\+Ld\+L\+Cut\+Xi\+Omega} () const \hypertarget{classKFParticleFinder_a62739992a0aac4616a05a3461a82db08}{}\label{classKFParticleFinder_a62739992a0aac4616a05a3461a82db08}
+
+\begin{DoxyCompactList}\small\item\em Returns $l/\Delta l$ cut for $\Xi$ and $\Omega$. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_afaa4caf4f1319d4988e15250519ab9b0}{Get\+Chi2\+Topo\+Cut\+Xi\+Omega} () const \hypertarget{classKFParticleFinder_afaa4caf4f1319d4988e15250519ab9b0}{}\label{classKFParticleFinder_afaa4caf4f1319d4988e15250519ab9b0}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{topo}$ cut for $\Xi$ and $\Omega$. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a8a45c6e073cfc540cc88838e9327e8ce}{Get\+Chi2\+Cut\+Xi\+Omega} () const \hypertarget{classKFParticleFinder_a8a45c6e073cfc540cc88838e9327e8ce}{}\label{classKFParticleFinder_a8a45c6e073cfc540cc88838e9327e8ce}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{geo}$ cut for $\Xi$ and $\Omega$. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a4b412f9b016eee588083abbc0e237aa8}{Get\+Chi2\+Topo\+Cut\+Resonances} () const \hypertarget{classKFParticleFinder_a4b412f9b016eee588083abbc0e237aa8}{}\label{classKFParticleFinder_a4b412f9b016eee588083abbc0e237aa8}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{topo}$ cut for resonances. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_adfdd904be39794180b5c2b6b9b77b59a}{Get\+Chi2\+Cut\+Resonances} () const \hypertarget{classKFParticleFinder_adfdd904be39794180b5c2b6b9b77b59a}{}\label{classKFParticleFinder_adfdd904be39794180b5c2b6b9b77b59a}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{geo}$ cut for resonances. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a4d2c8ff910323e596c61b66e2260220d}{Get\+Pt\+Cut\+L\+M\+VM} () const \hypertarget{classKFParticleFinder_a4d2c8ff910323e596c61b66e2260220d}{}\label{classKFParticleFinder_a4d2c8ff910323e596c61b66e2260220d}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on transverse momentum of each daughter track of low mass vector mesons. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a512248319f207c1ae825403cbc15202c}{Get\+P\+Cut\+L\+M\+VM} () const \hypertarget{classKFParticleFinder_a512248319f207c1ae825403cbc15202c}{}\label{classKFParticleFinder_a512248319f207c1ae825403cbc15202c}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on momentum of each daughter track of low mass vector mesons in dimuon channel. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a7785aa7b862584afa9d86abdb8d7d291}{Get\+Pt\+Cut\+J\+Psi} () const \hypertarget{classKFParticleFinder_a7785aa7b862584afa9d86abdb8d7d291}{}\label{classKFParticleFinder_a7785aa7b862584afa9d86abdb8d7d291}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on transverse momentum of each daughter track of $J/\psi$. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a0b9e1d2cf17d0fa91725d632963be39d}{Get\+Pt\+Cut\+Charm} () const \hypertarget{classKFParticleFinder_a0b9e1d2cf17d0fa91725d632963be39d}{}\label{classKFParticleFinder_a0b9e1d2cf17d0fa91725d632963be39d}
+
+\begin{DoxyCompactList}\small\item\em Returns the cut on transverse momentum of each daughter track of open charm particles. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a5b53d58daa9aae6146c8ef34753f31dd}{Get\+Chi\+Primary\+Cut\+Charm} () const \hypertarget{classKFParticleFinder_a5b53d58daa9aae6146c8ef34753f31dd}{}\label{classKFParticleFinder_a5b53d58daa9aae6146c8ef34753f31dd}
+
+\begin{DoxyCompactList}\small\item\em Returns cut on $\chi^2_{prim}$ of each track for open charm particles. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a91ffea6f886afaa17b87d2b16b737392}{Get\+Ld\+L\+Cut\+Charm\+Manybody\+Decays} () const \hypertarget{classKFParticleFinder_a91ffea6f886afaa17b87d2b16b737392}{}\label{classKFParticleFinder_a91ffea6f886afaa17b87d2b16b737392}
+
+\begin{DoxyCompactList}\small\item\em Returns $l/\Delta l$ cut for open charm with $>$=3 daughters. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a141dcccc0e44572925145c906d0b5d5b}{Get\+Chi2\+Topo\+Cut\+Charm\+Manybody\+Decays} () const \hypertarget{classKFParticleFinder_a141dcccc0e44572925145c906d0b5d5b}{}\label{classKFParticleFinder_a141dcccc0e44572925145c906d0b5d5b}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{topo}$ cut for open charm with $>$=3 daughters. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a48f952f9760fd14f8c79817474e9ee35}{Get\+Chi2\+Cut\+Charm\+Manybody\+Decays} () const \hypertarget{classKFParticleFinder_a48f952f9760fd14f8c79817474e9ee35}{}\label{classKFParticleFinder_a48f952f9760fd14f8c79817474e9ee35}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{geo}$ cut for open charm with $>$=3 daughters. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a2de92dab28740c91b512c0dab9686fdb}{Get\+Ld\+L\+Cut\+Charm2D} () const \hypertarget{classKFParticleFinder_a2de92dab28740c91b512c0dab9686fdb}{}\label{classKFParticleFinder_a2de92dab28740c91b512c0dab9686fdb}
+
+\begin{DoxyCompactList}\small\item\em Returns $l/\Delta l$ cut for open charm with 2 daughters. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_a0f0dfc41131224cb31f516b77747db7d}{Get\+Chi2\+Topo\+Cut\+Charm2D} () const \hypertarget{classKFParticleFinder_a0f0dfc41131224cb31f516b77747db7d}{}\label{classKFParticleFinder_a0f0dfc41131224cb31f516b77747db7d}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{topo}$ cut for open charm with 2 daughters. \end{DoxyCompactList}\item 
+float \hyperlink{classKFParticleFinder_acd2bb16a15cf086fb0d331c3bf3996cf}{Get\+Chi2\+Cut\+Charm2D} () const \hypertarget{classKFParticleFinder_acd2bb16a15cf086fb0d331c3bf3996cf}{}\label{classKFParticleFinder_acd2bb16a15cf086fb0d331c3bf3996cf}
+
+\begin{DoxyCompactList}\small\item\em Returns $\chi^2_{geo}$ cut for open charm with 2 daughters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a14bd3ba6fe98d83134aa731f258c595b}{Add\+Decay\+To\+Reconstruction\+List} (int pdg)
+\item 
+std\+::map$<$ int, bool $>$ \hyperlink{classKFParticleFinder_adef990eed2497bb1abb22df699e67dbe}{Get\+Reconstruction\+List} () const \hypertarget{classKFParticleFinder_adef990eed2497bb1abb22df699e67dbe}{}\label{classKFParticleFinder_adef990eed2497bb1abb22df699e67dbe}
+
+\begin{DoxyCompactList}\small\item\em Returns list of decays to be reconstructed. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleFinder_a2b8ec392a4b35151c51978791bc0164e}{Set\+Reconstruction\+List} (const std\+::map$<$ int, bool $>$ \&decays)\hypertarget{classKFParticleFinder_a2b8ec392a4b35151c51978791bc0164e}{}\label{classKFParticleFinder_a2b8ec392a4b35151c51978791bc0164e}
+
+\begin{DoxyCompactList}\small\item\em Set enitre reconstruction list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classKFParticleFinder_a370264d09a6bfbb50da1113abd0db15a}{Extrapolate\+To\+PV} (std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&v\+Particles, \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \&Prim\+Vtx)
+\item 
+static int \hyperlink{classKFParticleFinder_a429efd147794ece6aff40e07a4ffbbb3}{Get\+N\+Secondary\+Sets} ()
+\item 
+static int \hyperlink{classKFParticleFinder_af697419ca53253eba616174aecb7cb01}{Get\+N\+Primary\+Sets} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for reconstruction short-\/lived particles. 
+
+\begin{DoxyAuthor}{Author}
+I.\+Kisel, M.\+Zyzak 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class reconstructs short-\/lived particles by combining long-\/lived and already reconstructed short-\/lived particles. As an input it requires tracks and primary vertices. All short-\/lived particles are stored to one array. The default values of cuts are initialised in the constructor. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{K\+F\+Particle\+Finder()}{KFParticleFinder()}}]{\setlength{\rightskip}{0pt plus 5cm}K\+F\+Particle\+Finder\+::\+K\+F\+Particle\+Finder (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a843c0b2e44c18b632c04a9fa1ff9ae49}{}\label{classKFParticleFinder_a843c0b2e44c18b632c04a9fa1ff9ae49}
+The default constructor. Initialises all cuts to the default values. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Add\+Candidate@{Add\+Candidate}}
+\index{Add\+Candidate@{Add\+Candidate}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Add\+Candidate(const K\+F\+Particle \&candidate, int i\+P\+V=-\/1)}{AddCandidate(const KFParticle &candidate, int iPV=-1)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Add\+Candidate (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle} \&}]{candidate, }
+\item[{int}]{i\+PV = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_ae9f91e17b13fc0308e91ec759b44aa1f}{}\label{classKFParticleFinder_ae9f91e17b13fc0308e91ec759b44aa1f}
+Adds an externally found particle to either set of secondary or primary candidates\+:~\newline
+1) if i\+PV is negative the candidate is stored to K\+F\+Particle\+Finder\+::f\+Sec\+Candidates;~\newline
+2) if i\+PV is not negative and smaller then the set number of primary vertices and N\+DF=2 the candidate is stored to K\+F\+Particle\+Finder\+::f\+Prim\+Candidates;~\newline
+3) if i\+PV is not negative and smaller then the set number of primary vertices and N\+DF=3 the candidate is stored to K\+F\+Particle\+Finder\+::f\+Prim\+Candidates\+Topo;~\newline
+4) if i\+PV is not negative and smaller then the set number of primary vertices and N\+DF=4 the candidate is stored to K\+F\+Particle\+Finder\+::f\+Prim\+Candidates\+Topo\+Mass.~\newline
+Only those particles will be stored which have accepted P\+DG. Please check the documentation of the corresponding vectors for the list of particles. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em candidate} & -\/ candidate to be added \\
+\hline
+\mbox{\tt in}  & {\em i\+PV} & -\/ index of the associated PV\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Add\+Decay\+To\+Reconstruction\+List@{Add\+Decay\+To\+Reconstruction\+List}}
+\index{Add\+Decay\+To\+Reconstruction\+List@{Add\+Decay\+To\+Reconstruction\+List}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Add\+Decay\+To\+Reconstruction\+List(int pdg)}{AddDecayToReconstructionList(int pdg)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Add\+Decay\+To\+Reconstruction\+List (
+\begin{DoxyParamCaption}
+\item[{int}]{pdg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a14bd3ba6fe98d83134aa731f258c595b}{}\label{classKFParticleFinder_a14bd3ba6fe98d83134aa731f258c595b}
+Add decay to the reconstruction list. If at least one is added -\/ only those channels are considered which are in the list. Otherwise all decays are reconstructed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pdg} & -\/ P\+DG code of the decay which should be reconstructed \\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Combine\+Part\+Part@{Combine\+Part\+Part}}
+\index{Combine\+Part\+Part@{Combine\+Part\+Part}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Combine\+Part\+Part(std\+::vector$<$ K\+F\+Particle $>$ \&particles1, std\+::vector$<$ K\+F\+Particle $>$ \&particles2, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float $\ast$cuts, int i\+P\+V, int Mother\+P\+D\+G, bool is\+Same\+Input\+Part=false, bool save\+Only\+Primary=true, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim=nullptr, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec=nullptr, float mass\+Mother\+P\+D\+G=0.\+f, float mass\+Mother\+P\+D\+G\+Sigma=0.\+f)}{CombinePartPart(std::vector< KFParticle > &particles1, std::vector< KFParticle > &particles2, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float *cuts, int iPV, int MotherPDG, bool isSameInputPart=false, bool saveOnlyPrimary=true, std::vector< std::vector< KFParticle > > *vMotherPrim=nullptr, std::vector< KFParticle > *vMotherSec=nullptr, float massMotherPDG=0.f, float massMotherPDGSigma=0.f)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Combine\+Part\+Part (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{particles1, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{particles2, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float $\ast$}]{cuts, }
+\item[{int}]{i\+PV, }
+\item[{int}]{Mother\+P\+DG, }
+\item[{bool}]{is\+Same\+Input\+Part = {\ttfamily false}, }
+\item[{bool}]{save\+Only\+Primary = {\ttfamily true}, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim = {\ttfamily nullptr}, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec = {\ttfamily nullptr}, }
+\item[{float}]{mass\+Mother\+P\+DG = {\ttfamily 0.f}, }
+\item[{float}]{mass\+Mother\+P\+D\+G\+Sigma = {\ttfamily 0.f}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_aafc7f2af67337b5434599250e898886f}{}\label{classKFParticleFinder_aafc7f2af67337b5434599250e898886f}
+Combines two already constructed candidates into a new particle. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em particles1} & -\/ vector with the first set of particles. \\
+\hline
+\mbox{\tt in}  & {\em particles2} & -\/ vector with the second set of particles. \\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ output vector with particles. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ vector with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em cuts} & -\/ set of cuts\+: $l/\Delta l$, $\chi^2_{topo}$, $\chi^2_{geo}$. \\
+\hline
+\mbox{\tt in}  & {\em i\+PV} & -\/ index of the primary vertex for reconstruction of resonances. Tracks should come from the same vertex. \\
+\hline
+\mbox{\tt in}  & {\em Mother\+P\+DG} & -\/ P\+DG hypothesis of the constructed mother particles. \\
+\hline
+\mbox{\tt in}  & {\em is\+Same\+Input\+Part} & -\/ shows if vectors of input particles are the same to avoid double reconstruction of the same candidate. \\
+\hline
+\mbox{\tt in}  & {\em save\+Only\+Primary} & -\/ defines if only primary particles should be searched and $\chi^2_{topo}$ should be applied. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates if any. If pointer is set to N\+U\+LL -\/ not filled. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates if any. If pointer is set to N\+U\+LL -\/ not filled. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Mother\+P\+DG} & -\/ P\+DG table mass for the mother particle, is used for selection of primary and secondary candidates. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Mother\+P\+D\+G\+Sigma} & -\/ sigma of the peak width, is used for selection of primary and secondary candidates.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Construct\+Primary\+BG@{Construct\+Primary\+BG}}
+\index{Construct\+Primary\+BG@{Construct\+Primary\+BG}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Construct\+Primary\+B\+G(\+K\+F\+P\+Track\+Vector $\ast$v\+Tracks, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float $\ast$cuts, const float $\ast$sec\+Cuts, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec)}{ConstructPrimaryBG(KFPTrackVector *vTracks, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float *cuts, const float *secCuts, std::vector< std::vector< KFParticle > > *vMotherPrim, std::vector< KFParticle > *vMotherSec)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Construct\+Primary\+BG (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} $\ast$}]{v\+Tracks, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float $\ast$}]{cuts, }
+\item[{const float $\ast$}]{sec\+Cuts, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_ae68561ffcd9f3bf3e8230604678105c5}{}\label{classKFParticleFinder_ae68561ffcd9f3bf3e8230604678105c5}
+Constructs same-\/sign background candidates for 2-\/daughter resonances. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+R\+Tracks} & -\/ pointer to the array with vectors of tracks\+:~\newline
+0) secondary positive at the first hit position; ~\newline
+1) secondary negative at the first hit position; ~\newline
+2) primary positive at the first hit position; ~\newline
+3) primary negative at the first hit position; ~\newline
+4) secondary positive at the last hit position; ~\newline
+5) secondary negative at the last hit position; ~\newline
+6) primary positive at the last hit position; ~\newline
+7) primary negative at the last hit position. ~\newline
+\\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ the output array with the reconstructed particle-\/candidates. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ vector with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em cuts} & -\/ set of cuts\+: $\chi^2_{prim}$, $\chi^2_{geo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt in}  & {\em sec\+Cuts} & -\/ cuts to select primary and secondary candidates from the reconstructed set\+: $\sigma_{M}$, $\chi^2_{topo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates. Is provided for consistency with \hyperlink{classKFParticleFinder_a2346e637d92eae212091abd37919403e}{K\+F\+Particle\+Finder\+::\+Construct\+V0()}. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates. Is provided for consistency with \hyperlink{classKFParticleFinder_a2346e637d92eae212091abd37919403e}{K\+F\+Particle\+Finder\+::\+Construct\+V0()}.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Construct\+Track\+V0\+Cand@{Construct\+Track\+V0\+Cand}}
+\index{Construct\+Track\+V0\+Cand@{Construct\+Track\+V0\+Cand}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Construct\+Track\+V0\+Cand(\+K\+F\+P\+Track\+Vector \&v\+Tracks, uint\+\_\+v \&id\+Tracks, int\+\_\+v \&track\+P\+D\+G, K\+F\+Particle $\ast$v\+V0[], K\+F\+Particle\+S\+I\+M\+D \&mother, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&mother\+Topo, K\+F\+Particle \&mother\+\_\+temp, unsigned short n\+Elements, kfvector\+\_\+floatv \&l, kfvector\+\_\+floatv \&dl, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float\+\_\+v $\ast$cuts, const int\+\_\+v \&pv\+Index, const float\+\_\+v \&mass\+Mother\+P\+D\+G, const float\+\_\+v \&mass\+Mother\+P\+D\+G\+Sigma, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec)}{ConstructTrackV0Cand(KFPTrackVector &vTracks, uint_v &idTracks, int_v &trackPDG, KFParticle *vV0[], KFParticleSIMD &mother, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &motherTopo, KFParticle &mother_temp, unsigned short nElements, kfvector_floatv &l, kfvector_floatv &dl, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float_v *cuts, const int_v &pvIndex, const float_v &massMotherPDG, const float_v &massMotherPDGSigma, std::vector< std::vector< KFParticle > > *vMotherPrim, std::vector< KFParticle > *vMotherSec)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Construct\+Track\+V0\+Cand (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} \&}]{v\+Tracks, }
+\item[{uint\+\_\+v \&}]{id\+Tracks, }
+\item[{int\+\_\+v \&}]{track\+P\+DG, }
+\item[{{\bf K\+F\+Particle} $\ast$}]{v\+V0\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf K\+F\+Particle\+S\+I\+MD} \&}]{mother, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{mother\+Topo, }
+\item[{{\bf K\+F\+Particle} \&}]{mother\+\_\+temp, }
+\item[{unsigned short}]{n\+Elements, }
+\item[{kfvector\+\_\+floatv \&}]{l, }
+\item[{kfvector\+\_\+floatv \&}]{dl, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float\+\_\+v $\ast$}]{cuts, }
+\item[{const int\+\_\+v \&}]{pv\+Index, }
+\item[{const float\+\_\+v \&}]{mass\+Mother\+P\+DG, }
+\item[{const float\+\_\+v \&}]{mass\+Mother\+P\+D\+G\+Sigma, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a9d0040c76e7e04dc0abdafb82612d791}{}\label{classKFParticleFinder_a9d0040c76e7e04dc0abdafb82612d791}
+Constructs a candidate from a track and already reconstructed particle candidate. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+Tracks} & -\/ vector with tracks. \\
+\hline
+\mbox{\tt in}  & {\em id\+Tracks} & -\/ indices of particles from the vector of tracks. \\
+\hline
+\mbox{\tt in}  & {\em track\+P\+DG} & -\/ P\+DG hypothesis of the S\+I\+MD vector of tracks. \\
+\hline
+\mbox{\tt in}  & {\em v\+V0} & -\/ array with already reconstructed particle candidate with the size of S\+I\+MD vector. \\
+\hline
+\mbox{\tt out}  & {\em mother} & -\/ constructed 2-\/daughter S\+I\+M\+D-\/candidate. \\
+\hline
+\mbox{\tt in}  & {\em mother\+Topo} & -\/ preallocated S\+I\+MD vector for topological constraint for better performance. \\
+\hline
+\mbox{\tt in}  & {\em mother\+\_\+temp} & -\/ temporary object to extract \hyperlink{classKFParticle}{K\+F\+Particle} from constructed \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother. Preallocated for better performance. \\
+\hline
+\mbox{\tt in}  & {\em n\+Elements} & -\/ number of elements in each S\+I\+MD vector. \\
+\hline
+\mbox{\tt in}  & {\em l} & -\/ S\+I\+M\+D-\/vector with extracted distance to the primary vertex. Is preallocated for better performance. \\
+\hline
+\mbox{\tt in}  & {\em dl} & -\/ S\+I\+M\+D-\/vector with extracted error of distance to the primary vertex. Is preallocated for better performance. \\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ the output array with the reconstructed particle-\/candidates. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ array with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em cuts} & -\/ set of cuts\+: $l/\Delta l$, $\chi^2_{topo}$, $\chi^2_{geo}$. \\
+\hline
+\mbox{\tt in}  & {\em pv\+Index} & -\/ index of the primary vertex for reconstruction of resonances. Tracks should come from the same vertex. in case of other particles the value should be \char`\"{}-\/1\char`\"{}. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Mother\+P\+DG} & -\/ P\+DG table mass for the mother particle, is used for selection of primary and secondary candidates. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Mother\+P\+D\+G\+Sigma} & -\/ sigma of the peak width, is used for selection of primary and secondary candidates. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates if any. If pointer is set to N\+U\+LL -\/ not filled. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates if any. If pointer is set to N\+U\+LL -\/ not filled.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Construct\+V0@{Construct\+V0}}
+\index{Construct\+V0@{Construct\+V0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Construct\+V0(\+K\+F\+P\+Track\+Vector $\ast$v\+Tracks, int i\+Tr\+Type\+Pos, int i\+Tr\+Type\+Neg, uint\+\_\+v \&id\+Pos\+Daughters, uint\+\_\+v \&id\+Neg\+Daughters, int\+\_\+v \&daughter\+Pos\+P\+D\+G, int\+\_\+v \&daughter\+Neg\+P\+D\+G, K\+F\+Particle\+S\+I\+M\+D \&mother, K\+F\+Particle \&mother\+\_\+temp, unsigned short N\+Tracks, kfvector\+\_\+floatv \&l, kfvector\+\_\+floatv \&dl, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float $\ast$cuts, const int\+\_\+v \&pv\+Index, const float $\ast$sec\+Cuts, const float\+\_\+v \&mass\+Mother\+P\+D\+G, const float\+\_\+v \&mass\+Mother\+P\+D\+G\+Sigma, K\+F\+Particle\+S\+I\+M\+D \&mother\+Prim\+Sec\+Cand, int \&n\+Prim\+Sec\+Cand, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim=nullptr, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec=nullptr) \+\_\+\+\_\+attribute\+\_\+\+\_\+((always\+\_\+inline))}{ConstructV0(KFPTrackVector *vTracks, int iTrTypePos, int iTrTypeNeg, uint_v &idPosDaughters, uint_v &idNegDaughters, int_v &daughterPosPDG, int_v &daughterNegPDG, KFParticleSIMD &mother, KFParticle &mother_temp, unsigned short NTracks, kfvector_floatv &l, kfvector_floatv &dl, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float *cuts, const int_v &pvIndex, const float *secCuts, const float_v &massMotherPDG, const float_v &massMotherPDGSigma, KFParticleSIMD &motherPrimSecCand, int &nPrimSecCand, std::vector< std::vector< KFParticle > > *vMotherPrim=nullptr, std::vector< KFParticle > *vMotherSec=nullptr) __attribute__((always_inline))}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Construct\+V0 (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} $\ast$}]{v\+Tracks, }
+\item[{int}]{i\+Tr\+Type\+Pos, }
+\item[{int}]{i\+Tr\+Type\+Neg, }
+\item[{uint\+\_\+v \&}]{id\+Pos\+Daughters, }
+\item[{uint\+\_\+v \&}]{id\+Neg\+Daughters, }
+\item[{int\+\_\+v \&}]{daughter\+Pos\+P\+DG, }
+\item[{int\+\_\+v \&}]{daughter\+Neg\+P\+DG, }
+\item[{{\bf K\+F\+Particle\+S\+I\+MD} \&}]{mother, }
+\item[{{\bf K\+F\+Particle} \&}]{mother\+\_\+temp, }
+\item[{unsigned short}]{N\+Tracks, }
+\item[{kfvector\+\_\+floatv \&}]{l, }
+\item[{kfvector\+\_\+floatv \&}]{dl, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float $\ast$}]{cuts, }
+\item[{const int\+\_\+v \&}]{pv\+Index, }
+\item[{const float $\ast$}]{sec\+Cuts, }
+\item[{const float\+\_\+v \&}]{mass\+Mother\+P\+DG, }
+\item[{const float\+\_\+v \&}]{mass\+Mother\+P\+D\+G\+Sigma, }
+\item[{{\bf K\+F\+Particle\+S\+I\+MD} \&}]{mother\+Prim\+Sec\+Cand, }
+\item[{int \&}]{n\+Prim\+Sec\+Cand, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim = {\ttfamily nullptr}, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a2346e637d92eae212091abd37919403e}{}\label{classKFParticleFinder_a2346e637d92eae212091abd37919403e}
+Combines two S\+I\+MD vectors of particles into 2-\/daughter candidate. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+R\+Tracks} & -\/ pointer to the array with vectors of tracks\+:~\newline
+0) secondary positive at the first hit position; ~\newline
+1) secondary negative at the first hit position; ~\newline
+2) primary positive at the first hit position; ~\newline
+3) primary negative at the first hit position; ~\newline
+4) secondary positive at the last hit position; ~\newline
+5) secondary negative at the last hit position; ~\newline
+6) primary positive at the last hit position; ~\newline
+7) primary negative at the last hit position. ~\newline
+\\
+\hline
+\mbox{\tt in}  & {\em i\+Tr\+Type\+Pos} & -\/ index of the first vector with tracks in the v\+Tracks array. \\
+\hline
+\mbox{\tt in}  & {\em i\+Tr\+Type\+Neg} & -\/ index of the second vector with tracks in the v\+Tracks array. \\
+\hline
+\mbox{\tt in}  & {\em id\+Pos\+Daughters} & -\/ indices of particles from the first vector of tracks. \\
+\hline
+\mbox{\tt in}  & {\em id\+Neg\+Daughters} & -\/ indices of particles from the second vector of tracks. \\
+\hline
+\mbox{\tt in}  & {\em daughter\+Pos\+P\+DG} & -\/ P\+DG hypothesis of the first S\+I\+MD vector of tracks. \\
+\hline
+\mbox{\tt in}  & {\em daughter\+Neg\+P\+DG} & -\/ P\+DG hypothesis of the second S\+I\+MD vector of tracks. \\
+\hline
+\mbox{\tt out}  & {\em mother} & -\/ constructed 2-\/daughter S\+I\+M\+D-\/candidate. \\
+\hline
+\mbox{\tt in}  & {\em mother\+\_\+temp} & -\/ temporary object to extract \hyperlink{classKFParticle}{K\+F\+Particle} from constructed \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother. Preallocated for better performance. \\
+\hline
+\mbox{\tt in}  & {\em N\+Tracks} & -\/ number of tracks in each S\+I\+MD vector. \\
+\hline
+\mbox{\tt in}  & {\em l} & -\/ S\+I\+M\+D-\/vector with extracted distance to the primary vertex. Is preallocated for better performance. \\
+\hline
+\mbox{\tt in}  & {\em dl} & -\/ S\+I\+M\+D-\/vector with extracted error of distance to the primary vertex. Is preallocated for better performance. \\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ the output array with the reconstructed particle-\/candidates. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ array with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em cuts} & -\/ set of cuts\+: $\chi^2_{prim}$, $\chi^2_{geo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt in}  & {\em pv\+Index} & -\/ index of the primary vertex for reconstruction of resonances. Tracks should come from the same vertex. in case of other particles the value should be \char`\"{}-\/1\char`\"{}. \\
+\hline
+\mbox{\tt in}  & {\em sec\+Cuts} & -\/ cuts to select primary and secondary candidates from the reconstructed set\+: $\sigma_{M}$, $\chi^2_{topo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Mother\+P\+DG} & -\/ P\+DG table mass for the mother particle, is used for selection of primary and secondary candidates. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Mother\+P\+D\+G\+Sigma} & -\/ sigma of the peak width, is used for selection of primary and secondary candidates. \\
+\hline
+\mbox{\tt out}  & {\em mother\+Prim\+Sec\+Cand} & -\/ a S\+I\+M\+D-\/particle with possible primary and secondary candidates. \\
+\hline
+\mbox{\tt out}  & {\em n\+Prim\+Sec\+Cand} & -\/ number of possible primary and secondary candidates. Can be \char`\"{}0\char`\"{} if no of them are found. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates if any. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates if any.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Copy\+Cuts@{Copy\+Cuts}}
+\index{Copy\+Cuts@{Copy\+Cuts}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Copy\+Cuts(const K\+F\+Particle\+Finder $\ast$finder)}{CopyCuts(const KFParticleFinder *finder)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Copy\+Cuts (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle\+Finder} $\ast$}]{finder}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a1b38034cef5265388c31a57664bd10db}{}\label{classKFParticleFinder_a1b38034cef5265388c31a57664bd10db}
+Copies all cuts from the external \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} \char`\"{}finder\char`\"{} to the current object. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em finder} & -\/ constant pointer to the external \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} object\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Extrapolate\+To\+PV@{Extrapolate\+To\+PV}}
+\index{Extrapolate\+To\+PV@{Extrapolate\+To\+PV}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Extrapolate\+To\+P\+V(std\+::vector$<$ K\+F\+Particle $>$ \&v\+Particles, K\+F\+Particle\+S\+I\+M\+D \&\+Prim\+Vtx)}{ExtrapolateToPV(std::vector< KFParticle > &vParticles, KFParticleSIMD &PrimVtx)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Extrapolate\+To\+PV (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{v\+Particles, }
+\item[{{\bf K\+F\+Particle\+S\+I\+MD} \&}]{Prim\+Vtx}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classKFParticleFinder_a370264d09a6bfbb50da1113abd0db15a}{}\label{classKFParticleFinder_a370264d09a6bfbb50da1113abd0db15a}
+Extrapolates all particles from the input vector to the D\+CA point with the primary vertex. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em v\+Particles} & -\/ array of particles to be transported. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ the primary vertex, where particles should be transported.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Find2\+Daughter\+Decay@{Find2\+Daughter\+Decay}}
+\index{Find2\+Daughter\+Decay@{Find2\+Daughter\+Decay}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Find2\+Daughter\+Decay(\+K\+F\+P\+Track\+Vector $\ast$v\+Tracks, kfvector\+\_\+float $\ast$\+Chi\+To\+Prim\+Vtx, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float $\ast$cuts, const float $\ast$sec\+Cuts, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec)}{Find2DaughterDecay(KFPTrackVector *vTracks, kfvector_float *ChiToPrimVtx, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float *cuts, const float *secCuts, std::vector< std::vector< KFParticle > > *vMotherPrim, std::vector< KFParticle > *vMotherSec)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Find2\+Daughter\+Decay (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} $\ast$}]{v\+Tracks, }
+\item[{kfvector\+\_\+float $\ast$}]{Chi\+To\+Prim\+Vtx, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float $\ast$}]{cuts, }
+\item[{const float $\ast$}]{sec\+Cuts, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a3f6967ae8b6839bc7de48991eaa812ef}{}\label{classKFParticleFinder_a3f6967ae8b6839bc7de48991eaa812ef}
+Reconstructs all 2-\/daughter decays. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+R\+Tracks} & -\/ pointer to the array with vectors of tracks\+:~\newline
+0) secondary positive at the first hit position; ~\newline
+1) secondary negative at the first hit position; ~\newline
+2) primary positive at the first hit position; ~\newline
+3) primary negative at the first hit position; ~\newline
+4) secondary positive at the last hit position; ~\newline
+5) secondary negative at the last hit position; ~\newline
+6) primary positive at the last hit position; ~\newline
+7) primary negative at the last hit position. ~\newline
+\\
+\hline
+\mbox{\tt in}  & {\em Chi\+To\+Prim\+Vtx} & -\/ arrays with vectors of the $\chi^2_{prim}$ deviations for track vectors 1) and 2). \\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ output vector with particles. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ vector with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em cuts} & -\/ set of cuts\+: $\chi^2_{prim}$, $\chi^2_{geo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt in}  & {\em sec\+Cuts} & -\/ cuts to select primary and secondary candidates from the reconstructed set\+: $\sigma_{M}$, $\chi^2_{topo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Find\+Particles@{Find\+Particles}}
+\index{Find\+Particles@{Find\+Particles}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Find\+Particles(\+K\+F\+P\+Track\+Vector $\ast$v\+R\+Tracks, kfvector\+\_\+float $\ast$\+Chi\+To\+Prim\+Vtx, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, int n\+P\+V)}{FindParticles(KFPTrackVector *vRTracks, kfvector_float *ChiToPrimVtx, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, int nPV)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Find\+Particles (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} $\ast$}]{v\+R\+Tracks, }
+\item[{kfvector\+\_\+float $\ast$}]{Chi\+To\+Prim\+Vtx, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{int}]{n\+PV}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a3ad831d1b28cce4689501e369f561926}{}\label{classKFParticleFinder_a3ad831d1b28cce4689501e369f561926}
+The main interface which runs reconstruction of short-\/lived particles\+:~\newline
+1) a new event is initialised; ~\newline
+2) long-\/lived particles formed from tracks are stored to the output array \char`\"{}\+Particles\char`\"{}; ~\newline
+3) 2-\/daughter channels are reconstructed (\hyperlink{classKFParticleFinder_a3f6967ae8b6839bc7de48991eaa812ef}{K\+F\+Particle\+Finder\+::\+Find2\+Daughter\+Decay()}); ~\newline
+4) the 2-\/daughter same-\/signed background is collected for resonances (\hyperlink{classKFParticleFinder_ae68561ffcd9f3bf3e8230604678105c5}{K\+F\+Particle\+Finder\+::\+Construct\+Primary\+B\+G()}); ~\newline
+5) found primary candidates of $K_s^0$, $\Lambda$, $\overline{\Lambda}$ and $\gamma$ are transported to the point of the closest approach with the corresponding primary vertex (\hyperlink{classKFParticleFinder_a370264d09a6bfbb50da1113abd0db15a}{K\+F\+Particle\+Finder\+::\+Extrapolate\+To\+P\+V()}); ~\newline
+6) reconstruction with the missing mass method (\hyperlink{classKFParticleFinder_a76e093479fb04d0360e1cca0e6aa5d01}{K\+F\+Particle\+Finder\+::\+Neutral\+Daughter\+Decay()}); ~\newline
+7) all other decays are reconstructed one after another. ~\newline
+If analysis is run in the mixed event mode only steps 1) and 2) are performed. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+R\+Tracks} & -\/ pointer to the array with vectors of tracks\+:~\newline
+0) secondary positive at the first hit position; ~\newline
+1) secondary negative at the first hit position; ~\newline
+2) primary positive at the first hit position; ~\newline
+3) primary negative at the first hit position; ~\newline
+4) secondary positive at the last hit position; ~\newline
+5) secondary negative at the last hit position; ~\newline
+6) primary positive at the last hit position; ~\newline
+7) primary negative at the last hit position. ~\newline
+\\
+\hline
+\mbox{\tt in}  & {\em Chi\+To\+Prim\+Vtx} & -\/ arrays with vectors of the $\chi^2_{prim}$ deviations for track vectors 1) and 2). \\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ output vector with particles. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ vector with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em n\+PV} & -\/ number of the input primary vertices.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Find\+Track\+V0\+Decay@{Find\+Track\+V0\+Decay}}
+\index{Find\+Track\+V0\+Decay@{Find\+Track\+V0\+Decay}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Find\+Track\+V0\+Decay(std\+::vector$<$ K\+F\+Particle $>$ \&v\+V0, int V0\+P\+D\+G, K\+F\+P\+Track\+Vector \&v\+Tracks, int q, int first\+Track, int last\+Track, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, int v0\+P\+V\+Index=-\/1, kfvector\+\_\+float $\ast$\+Chi\+To\+Prim\+Vtx=nullptr, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim=nullptr, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec=nullptr)}{FindTrackV0Decay(std::vector< KFParticle > &vV0, int V0PDG, KFPTrackVector &vTracks, int q, int firstTrack, int lastTrack, std::vector< KFParticle > &Particles, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, int v0PVIndex=-1, kfvector_float *ChiToPrimVtx=nullptr, std::vector< std::vector< KFParticle > > *vMotherPrim=nullptr, std::vector< KFParticle > *vMotherSec=nullptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Find\+Track\+V0\+Decay (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{v\+V0, }
+\item[{int}]{V0\+P\+DG, }
+\item[{{\bf K\+F\+P\+Track\+Vector} \&}]{v\+Tracks, }
+\item[{int}]{q, }
+\item[{int}]{first\+Track, }
+\item[{int}]{last\+Track, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{int}]{v0\+P\+V\+Index = {\ttfamily -\/1}, }
+\item[{kfvector\+\_\+float $\ast$}]{Chi\+To\+Prim\+Vtx = {\ttfamily nullptr}, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim = {\ttfamily nullptr}, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a5b475263eee7da03e48fb1c506cd8eeb}{}\label{classKFParticleFinder_a5b475263eee7da03e48fb1c506cd8eeb}
+Combines tracks and already reconstructed particle candidate of certain type in the next candidate. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+V0} & -\/ the input vector with already reconstructed particle candidate. \\
+\hline
+\mbox{\tt in}  & {\em V0\+P\+DG} & -\/ P\+DG code of the provided particle candidates. \\
+\hline
+\mbox{\tt in}  & {\em v\+Tracks} & -\/ vector with input tracks. \\
+\hline
+\mbox{\tt in}  & {\em q} & -\/ charge of the provided tracks. \\
+\hline
+\mbox{\tt in}  & {\em first\+Track} & -\/ index of the first track to be used. \\
+\hline
+\mbox{\tt in}  & {\em last\+Track} & -\/ index of the last track to be used. \\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ the output array with the reconstructed particle-\/candidates. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ array with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em v0\+P\+V\+Index} & -\/ index of the corresponding primary vertex if the tracks are primary. If not \char`\"{}-\/1\char`\"{} should be set. \\
+\hline
+\mbox{\tt in}  & {\em Chi\+To\+Prim\+Vtx} & -\/ vector with the $\chi^2_{prim}$ deviations for provided tracks. If tracks are primary N\+U\+LL pointer is provided. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+N\+Primary\+Sets@{Get\+N\+Primary\+Sets}}
+\index{Get\+N\+Primary\+Sets@{Get\+N\+Primary\+Sets}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+N\+Primary\+Sets()}{GetNPrimarySets()}}]{\setlength{\rightskip}{0pt plus 5cm}static int K\+F\+Particle\+Finder\+::\+Get\+N\+Primary\+Sets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classKFParticleFinder_af697419ca53253eba616174aecb7cb01}{}\label{classKFParticleFinder_af697419ca53253eba616174aecb7cb01}
+Returns number of sets of vectors with primary candidates for different decays. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+N\+Secondary\+Sets@{Get\+N\+Secondary\+Sets}}
+\index{Get\+N\+Secondary\+Sets@{Get\+N\+Secondary\+Sets}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+N\+Secondary\+Sets()}{GetNSecondarySets()}}]{\setlength{\rightskip}{0pt plus 5cm}static int K\+F\+Particle\+Finder\+::\+Get\+N\+Secondary\+Sets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classKFParticleFinder_a429efd147794ece6aff40e07a4ffbbb3}{}\label{classKFParticleFinder_a429efd147794ece6aff40e07a4ffbbb3}
+Returns number of sets of vectors with secondary candidates for different decays. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Anti\+Lambda@{Get\+Primary\+Anti\+Lambda}}
+\index{Get\+Primary\+Anti\+Lambda@{Get\+Primary\+Anti\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Anti\+Lambda() const }{GetPrimaryAntiLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Anti\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a03f9278028b47b85427d1219e3ef9727}{}\label{classKFParticleFinder_a03f9278028b47b85427d1219e3ef9727}
+Returns a constant reference to the vector with primary candidates for $\overline{\Lambda}\rightarrow \overline{p}\pi^+$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Anti\+Omega@{Get\+Primary\+Anti\+Omega}}
+\index{Get\+Primary\+Anti\+Omega@{Get\+Primary\+Anti\+Omega}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Anti\+Omega() const }{GetPrimaryAntiOmega() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Anti\+Omega (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a1e1e9b86ac20223f8b74b17838256fca}{}\label{classKFParticleFinder_a1e1e9b86ac20223f8b74b17838256fca}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Omega}^-\rightarrow \overline{\Lambda} K^+$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Anti\+Xi@{Get\+Primary\+Anti\+Xi}}
+\index{Get\+Primary\+Anti\+Xi@{Get\+Primary\+Anti\+Xi}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Anti\+Xi() const }{GetPrimaryAntiXi() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Anti\+Xi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ae8ea794d79008840cf4d1e27d3ecefe5}{}\label{classKFParticleFinder_ae8ea794d79008840cf4d1e27d3ecefe5}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Xi}^-\rightarrow \overline{\Lambda}\pi^+$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Candidates@{Get\+Primary\+Candidates}}
+\index{Get\+Primary\+Candidates@{Get\+Primary\+Candidates}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Candidates() const }{GetPrimaryCandidates() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$$\ast$ K\+F\+Particle\+Finder\+::\+Get\+Primary\+Candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a09deaf59aac03e8a98fd690b4168e3f8}{}\label{classKFParticleFinder_a09deaf59aac03e8a98fd690b4168e3f8}
+Returns a pointer to array with sets of vectors with primary candidates for different decays. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Gamma@{Get\+Primary\+Gamma}}
+\index{Get\+Primary\+Gamma@{Get\+Primary\+Gamma}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Gamma() const }{GetPrimaryGamma() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Gamma (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_add1911bda416bc4a5b247b5e354e618d}{}\label{classKFParticleFinder_add1911bda416bc4a5b247b5e354e618d}
+Returns a constant reference to the vector with primary candidates for $\gamma\rightarrow e^+e^-$ conversion. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+K0@{Get\+Primary\+K0}}
+\index{Get\+Primary\+K0@{Get\+Primary\+K0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+K0() const }{GetPrimaryK0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+K0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a273e44f0f353de890951e1e9227f9dda}{}\label{classKFParticleFinder_a273e44f0f353de890951e1e9227f9dda}
+Returns a constant reference to the vector with primary candidates for $K_s^0\rightarrow\pi^+\pi^-$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Lambda@{Get\+Primary\+Lambda}}
+\index{Get\+Primary\+Lambda@{Get\+Primary\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Lambda() const }{GetPrimaryLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_adea6f4bfdea7059a7ece5a886c8920f1}{}\label{classKFParticleFinder_adea6f4bfdea7059a7ece5a886c8920f1}
+Returns a constant reference to the vector with primary candidates for $\Lambda\rightarrow p\pi^-$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Omega@{Get\+Primary\+Omega}}
+\index{Get\+Primary\+Omega@{Get\+Primary\+Omega}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Omega() const }{GetPrimaryOmega() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Omega (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a439ea502fca535c8bb3e39fe3cc073b9}{}\label{classKFParticleFinder_a439ea502fca535c8bb3e39fe3cc073b9}
+Returns a constant reference to the vector with secondary candidates for $\Omega^-\rightarrow \Lambda K^-$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Pi0@{Get\+Primary\+Pi0}}
+\index{Get\+Primary\+Pi0@{Get\+Primary\+Pi0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Pi0() const }{GetPrimaryPi0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Pi0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ace0e71897c83d40b91f8e2e7d9c9af0b}{}\label{classKFParticleFinder_ace0e71897c83d40b91f8e2e7d9c9af0b}
+Returns a constant reference to the vector with primary candidates for $\pi^0\rightarrow \gamma\gamma$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Anti\+Lambda@{Get\+Primary\+Topo\+Anti\+Lambda}}
+\index{Get\+Primary\+Topo\+Anti\+Lambda@{Get\+Primary\+Topo\+Anti\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Anti\+Lambda() const }{GetPrimaryTopoAntiLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Anti\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_adad5f640ac64b9dec1b72b469ec05226}{}\label{classKFParticleFinder_adad5f640ac64b9dec1b72b469ec05226}
+Returns a constant reference to the vector with primary candidates for $\overline{\Lambda}\rightarrow \overline{p}\pi^+$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Anti\+Omega@{Get\+Primary\+Topo\+Anti\+Omega}}
+\index{Get\+Primary\+Topo\+Anti\+Omega@{Get\+Primary\+Topo\+Anti\+Omega}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Anti\+Omega() const }{GetPrimaryTopoAntiOmega() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Anti\+Omega (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_aea76ff429d88e037ad25d806ae34530d}{}\label{classKFParticleFinder_aea76ff429d88e037ad25d806ae34530d}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Omega}^-\rightarrow \overline{\Lambda} K^+$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Anti\+Xi@{Get\+Primary\+Topo\+Anti\+Xi}}
+\index{Get\+Primary\+Topo\+Anti\+Xi@{Get\+Primary\+Topo\+Anti\+Xi}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Anti\+Xi() const }{GetPrimaryTopoAntiXi() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Anti\+Xi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ada105af26be7f6f9448cf9e954b89276}{}\label{classKFParticleFinder_ada105af26be7f6f9448cf9e954b89276}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Xi}^-\rightarrow \overline{\Lambda}\pi^+$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Candidates@{Get\+Primary\+Topo\+Candidates}}
+\index{Get\+Primary\+Topo\+Candidates@{Get\+Primary\+Topo\+Candidates}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Candidates() const }{GetPrimaryTopoCandidates() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$$\ast$ K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_af7b9f52ba3457bcf85dabd902e96fac1}{}\label{classKFParticleFinder_af7b9f52ba3457bcf85dabd902e96fac1}
+Returns a pointer to array with sets of vectors with primary candidates for different decays with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Gamma@{Get\+Primary\+Topo\+Gamma}}
+\index{Get\+Primary\+Topo\+Gamma@{Get\+Primary\+Topo\+Gamma}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Gamma() const }{GetPrimaryTopoGamma() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Gamma (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ae507e0b555d4f3c9084d3a4188c41653}{}\label{classKFParticleFinder_ae507e0b555d4f3c9084d3a4188c41653}
+Returns a constant reference to the vector with primary candidates for $\gamma\rightarrow e^+e^-$ conversion with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+K0@{Get\+Primary\+Topo\+K0}}
+\index{Get\+Primary\+Topo\+K0@{Get\+Primary\+Topo\+K0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+K0() const }{GetPrimaryTopoK0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+K0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a462d3be8c69d7cad6976c5c7cbe43d85}{}\label{classKFParticleFinder_a462d3be8c69d7cad6976c5c7cbe43d85}
+Returns a constant reference to the vector with primary candidates for $K_s^0\rightarrow\pi^+\pi^-$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Lambda@{Get\+Primary\+Topo\+Lambda}}
+\index{Get\+Primary\+Topo\+Lambda@{Get\+Primary\+Topo\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Lambda() const }{GetPrimaryTopoLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a4dc4d7b47e1db7dca24c4c8347f93e81}{}\label{classKFParticleFinder_a4dc4d7b47e1db7dca24c4c8347f93e81}
+Returns a constant reference to the vector with primary candidates for $\Lambda\rightarrow p\pi^-$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Anti\+Lambda@{Get\+Primary\+Topo\+Mass\+Anti\+Lambda}}
+\index{Get\+Primary\+Topo\+Mass\+Anti\+Lambda@{Get\+Primary\+Topo\+Mass\+Anti\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Anti\+Lambda() const }{GetPrimaryTopoMassAntiLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Anti\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_aa2b604b08a599d4008c33491314bff66}{}\label{classKFParticleFinder_aa2b604b08a599d4008c33491314bff66}
+Returns a constant reference to the vector with primary candidates for $\overline{\Lambda}\rightarrow \overline{p}\pi^+$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Anti\+Omega@{Get\+Primary\+Topo\+Mass\+Anti\+Omega}}
+\index{Get\+Primary\+Topo\+Mass\+Anti\+Omega@{Get\+Primary\+Topo\+Mass\+Anti\+Omega}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Anti\+Omega() const }{GetPrimaryTopoMassAntiOmega() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Anti\+Omega (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a02002e69766b313a73dab1c7485563a7}{}\label{classKFParticleFinder_a02002e69766b313a73dab1c7485563a7}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Omega}^-\rightarrow \overline{\Lambda} K^+$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Anti\+Xi@{Get\+Primary\+Topo\+Mass\+Anti\+Xi}}
+\index{Get\+Primary\+Topo\+Mass\+Anti\+Xi@{Get\+Primary\+Topo\+Mass\+Anti\+Xi}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Anti\+Xi() const }{GetPrimaryTopoMassAntiXi() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Anti\+Xi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a311f55676ac79505b5a4e965d1869e3b}{}\label{classKFParticleFinder_a311f55676ac79505b5a4e965d1869e3b}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Xi}^-\rightarrow \overline{\Lambda}\pi^+$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Candidates@{Get\+Primary\+Topo\+Mass\+Candidates}}
+\index{Get\+Primary\+Topo\+Mass\+Candidates@{Get\+Primary\+Topo\+Mass\+Candidates}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Candidates() const }{GetPrimaryTopoMassCandidates() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$$\ast$ K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_afe2cf855e5660059795ef32caa3ace23}{}\label{classKFParticleFinder_afe2cf855e5660059795ef32caa3ace23}
+Returns a pointer to array with sets of vectors with primary candidates for different decays with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Gamma@{Get\+Primary\+Topo\+Mass\+Gamma}}
+\index{Get\+Primary\+Topo\+Mass\+Gamma@{Get\+Primary\+Topo\+Mass\+Gamma}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Gamma() const }{GetPrimaryTopoMassGamma() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Gamma (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ae0584f1027f7eaea6e0b2dd01c4d28dc}{}\label{classKFParticleFinder_ae0584f1027f7eaea6e0b2dd01c4d28dc}
+Returns a constant reference to the vector with primary candidates for $\gamma\rightarrow e^+e^-$ conversion with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+K0@{Get\+Primary\+Topo\+Mass\+K0}}
+\index{Get\+Primary\+Topo\+Mass\+K0@{Get\+Primary\+Topo\+Mass\+K0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+K0() const }{GetPrimaryTopoMassK0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+K0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ae674d079ab4800c12874ceba16bf7b7b}{}\label{classKFParticleFinder_ae674d079ab4800c12874ceba16bf7b7b}
+Returns a constant reference to the vector with primary candidates for $K_s^0\rightarrow\pi^+\pi^-$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Lambda@{Get\+Primary\+Topo\+Mass\+Lambda}}
+\index{Get\+Primary\+Topo\+Mass\+Lambda@{Get\+Primary\+Topo\+Mass\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Lambda() const }{GetPrimaryTopoMassLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a7286e2c28c0e5d1350125ff5004094a3}{}\label{classKFParticleFinder_a7286e2c28c0e5d1350125ff5004094a3}
+Returns a constant reference to the vector with primary candidates for $\Lambda\rightarrow p\pi^-$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Omega@{Get\+Primary\+Topo\+Mass\+Omega}}
+\index{Get\+Primary\+Topo\+Mass\+Omega@{Get\+Primary\+Topo\+Mass\+Omega}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Omega() const }{GetPrimaryTopoMassOmega() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Omega (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a3cdf08e30f5a5ea65ac46e5d34f1ebee}{}\label{classKFParticleFinder_a3cdf08e30f5a5ea65ac46e5d34f1ebee}
+Returns a constant reference to the vector with secondary candidates for $\Omega^-\rightarrow \Lambda K^-$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Pi0@{Get\+Primary\+Topo\+Mass\+Pi0}}
+\index{Get\+Primary\+Topo\+Mass\+Pi0@{Get\+Primary\+Topo\+Mass\+Pi0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Pi0() const }{GetPrimaryTopoMassPi0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Pi0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ad628e43af43e4f535267831a92dc7eec}{}\label{classKFParticleFinder_ad628e43af43e4f535267831a92dc7eec}
+Returns a constant reference to the vector with primary candidates for $\pi^0\rightarrow \gamma\gamma$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Mass\+Xi@{Get\+Primary\+Topo\+Mass\+Xi}}
+\index{Get\+Primary\+Topo\+Mass\+Xi@{Get\+Primary\+Topo\+Mass\+Xi}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Mass\+Xi() const }{GetPrimaryTopoMassXi() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Mass\+Xi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a2e4897510c71ca2a73be9b5f9a734a9e}{}\label{classKFParticleFinder_a2e4897510c71ca2a73be9b5f9a734a9e}
+Returns a constant reference to the vector with secondary candidates for $\Xi^-\rightarrow \Lambda\pi^-$ with topological and mass constraints set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Omega@{Get\+Primary\+Topo\+Omega}}
+\index{Get\+Primary\+Topo\+Omega@{Get\+Primary\+Topo\+Omega}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Omega() const }{GetPrimaryTopoOmega() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Omega (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a6e4b12b80efebed377ea6757e2eec098}{}\label{classKFParticleFinder_a6e4b12b80efebed377ea6757e2eec098}
+Returns a constant reference to the vector with secondary candidates for $\Omega^-\rightarrow \Lambda K^-$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Pi0@{Get\+Primary\+Topo\+Pi0}}
+\index{Get\+Primary\+Topo\+Pi0@{Get\+Primary\+Topo\+Pi0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Pi0() const }{GetPrimaryTopoPi0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Pi0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ac2e4c62f46b33f201d9d8531ce4950da}{}\label{classKFParticleFinder_ac2e4c62f46b33f201d9d8531ce4950da}
+Returns a constant reference to the vector with primary candidates for $\pi^0\rightarrow \gamma\gamma$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Topo\+Xi@{Get\+Primary\+Topo\+Xi}}
+\index{Get\+Primary\+Topo\+Xi@{Get\+Primary\+Topo\+Xi}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Topo\+Xi() const }{GetPrimaryTopoXi() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Topo\+Xi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ad60a81262c8d69a5a179766e220621fd}{}\label{classKFParticleFinder_ad60a81262c8d69a5a179766e220621fd}
+Returns a constant reference to the vector with secondary candidates for $\Xi^-\rightarrow \Lambda\pi^-$ with topological constraint set on. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Primary\+Xi@{Get\+Primary\+Xi}}
+\index{Get\+Primary\+Xi@{Get\+Primary\+Xi}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Primary\+Xi() const }{GetPrimaryXi() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ std\+::vector$<${\bf K\+F\+Particle}$>$ $>$\& K\+F\+Particle\+Finder\+::\+Get\+Primary\+Xi (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ad9d11ee270d1863a546fe848f2ac2fff}{}\label{classKFParticleFinder_ad9d11ee270d1863a546fe848f2ac2fff}
+Returns a constant reference to the vector with secondary candidates for $\Xi^-\rightarrow \Lambda\pi^-$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Secondary\+Anti\+Lambda@{Get\+Secondary\+Anti\+Lambda}}
+\index{Get\+Secondary\+Anti\+Lambda@{Get\+Secondary\+Anti\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Secondary\+Anti\+Lambda() const }{GetSecondaryAntiLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<${\bf K\+F\+Particle}$>$\& K\+F\+Particle\+Finder\+::\+Get\+Secondary\+Anti\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a35dd944121fa5e85bfd8e44cc2c24377}{}\label{classKFParticleFinder_a35dd944121fa5e85bfd8e44cc2c24377}
+Returns a constant reference to the vector with secondary candidates for $\overline{\Lambda}\rightarrow \overline{p}\pi^+$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Secondary\+Candidates@{Get\+Secondary\+Candidates}}
+\index{Get\+Secondary\+Candidates@{Get\+Secondary\+Candidates}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Secondary\+Candidates() const }{GetSecondaryCandidates() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<${\bf K\+F\+Particle}$>$$\ast$ K\+F\+Particle\+Finder\+::\+Get\+Secondary\+Candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a163cb839b90abc125f5526727724394c}{}\label{classKFParticleFinder_a163cb839b90abc125f5526727724394c}
+Returns a pointer to array with sets of vectors with secondary candidates for different decays. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Secondary\+Gamma@{Get\+Secondary\+Gamma}}
+\index{Get\+Secondary\+Gamma@{Get\+Secondary\+Gamma}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Secondary\+Gamma() const }{GetSecondaryGamma() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<${\bf K\+F\+Particle}$>$\& K\+F\+Particle\+Finder\+::\+Get\+Secondary\+Gamma (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a737fcb30161664ef618f8ac2ba60244f}{}\label{classKFParticleFinder_a737fcb30161664ef618f8ac2ba60244f}
+Returns a constant reference to the vector with secondary candidates for $\gamma\rightarrow e^+e^-$ conversion. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Secondary\+K0@{Get\+Secondary\+K0}}
+\index{Get\+Secondary\+K0@{Get\+Secondary\+K0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Secondary\+K0() const }{GetSecondaryK0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<${\bf K\+F\+Particle}$>$\& K\+F\+Particle\+Finder\+::\+Get\+Secondary\+K0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a6705d9f606d37159162fb7704650fe37}{}\label{classKFParticleFinder_a6705d9f606d37159162fb7704650fe37}
+Returns a constant reference to the vector with secondary candidates for $K_s^0\rightarrow\pi^+\pi^-$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Secondary\+Lambda@{Get\+Secondary\+Lambda}}
+\index{Get\+Secondary\+Lambda@{Get\+Secondary\+Lambda}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Secondary\+Lambda() const }{GetSecondaryLambda() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<${\bf K\+F\+Particle}$>$\& K\+F\+Particle\+Finder\+::\+Get\+Secondary\+Lambda (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_a24decce5fe475853e057a0c8b5700ed4}{}\label{classKFParticleFinder_a24decce5fe475853e057a0c8b5700ed4}
+Returns a constant reference to the vector with secondary candidates for $\Lambda\rightarrow p\pi^-$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Get\+Secondary\+Pi0@{Get\+Secondary\+Pi0}}
+\index{Get\+Secondary\+Pi0@{Get\+Secondary\+Pi0}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Get\+Secondary\+Pi0() const }{GetSecondaryPi0() const }}]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<${\bf K\+F\+Particle}$>$\& K\+F\+Particle\+Finder\+::\+Get\+Secondary\+Pi0 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_aea096829eb0af2d898726c3275275327}{}\label{classKFParticleFinder_aea096829eb0af2d898726c3275275327}
+Returns a constant reference to the vector with secondary candidates for $\pi^0\rightarrow \gamma\gamma$. \index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Init@{Init}}
+\index{Init@{Init}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Init(int n\+P\+V)}{Init(int nPV)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Init (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+PV}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_abe90e8047fc0a6c45dfbfb05fdb5ddcc}{}\label{classKFParticleFinder_abe90e8047fc0a6c45dfbfb05fdb5ddcc}
+Initialises the new event\+: all vectors with temporary candidates are cleaned, the number of primary vertices is set to \char`\"{}n\+P\+V\char`\"{}, vectors with primary candidates are resized correspondingly. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+PV} & -\/ number of primary vertices in the event which will be processed\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Neutral\+Daughter\+Decay@{Neutral\+Daughter\+Decay}}
+\index{Neutral\+Daughter\+Decay@{Neutral\+Daughter\+Decay}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Neutral\+Daughter\+Decay(\+K\+F\+P\+Track\+Vector $\ast$v\+Tracks, std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles)}{NeutralDaughterDecay(KFPTrackVector *vTracks, std::vector< KFParticle > &Particles)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Neutral\+Daughter\+Decay (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} $\ast$}]{v\+Tracks, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a76e093479fb04d0360e1cca0e6aa5d01}{}\label{classKFParticleFinder_a76e093479fb04d0360e1cca0e6aa5d01}
+Reconstructs particles by the missing mass method. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+R\+Tracks} & -\/ pointer to the array with vectors of tracks\+:~\newline
+0) secondary positive at the first hit position; ~\newline
+1) secondary negative at the first hit position; ~\newline
+2) primary positive at the first hit position; ~\newline
+3) primary negative at the first hit position; ~\newline
+4) secondary positive at the last hit position; ~\newline
+5) secondary negative at the last hit position; ~\newline
+6) primary positive at the last hit position; ~\newline
+7) primary negative at the last hit position. ~\newline
+\\
+\hline
+\mbox{\tt out}  & {\em Particles} & -\/ the output array with the reconstructed particle-\/candidates.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Save\+V0\+Prim\+Sec\+Cand@{Save\+V0\+Prim\+Sec\+Cand}}
+\index{Save\+V0\+Prim\+Sec\+Cand@{Save\+V0\+Prim\+Sec\+Cand}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Save\+V0\+Prim\+Sec\+Cand(\+K\+F\+Particle\+S\+I\+M\+D \&mother, int \&\+N\+Particles, K\+F\+Particle \&mother\+\_\+temp, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float $\ast$sec\+Cuts, std\+::vector$<$ std\+::vector$<$ K\+F\+Particle $>$ $>$ $\ast$v\+Mother\+Prim, std\+::vector$<$ K\+F\+Particle $>$ $\ast$v\+Mother\+Sec)}{SaveV0PrimSecCand(KFParticleSIMD &mother, int &NParticles, KFParticle &mother_temp, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float *secCuts, std::vector< std::vector< KFParticle > > *vMotherPrim, std::vector< KFParticle > *vMotherSec)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Save\+V0\+Prim\+Sec\+Cand (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+Particle\+S\+I\+MD} \&}]{mother, }
+\item[{int \&}]{N\+Particles, }
+\item[{{\bf K\+F\+Particle} \&}]{mother\+\_\+temp, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float $\ast$}]{sec\+Cuts, }
+\item[{std\+::vector$<$ std\+::vector$<$ {\bf K\+F\+Particle} $>$ $>$ $\ast$}]{v\+Mother\+Prim, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ $\ast$}]{v\+Mother\+Sec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFinder_ad5a61416f528be9d0b397352f7619953}{}\label{classKFParticleFinder_ad5a61416f528be9d0b397352f7619953}
+The function which decides if primary and secondary candidates found by \hyperlink{classKFParticleFinder_a2346e637d92eae212091abd37919403e}{K\+F\+Particle\+Finder\+::\+Construct\+V0()} should be stored and stores them to the provided arrays. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mother} & -\/ constructed S\+I\+MD vector of particle candidates. \\
+\hline
+\mbox{\tt in}  & {\em N\+Particles} & -\/ number of particles in the S\+I\+MD vector. \\
+\hline
+\mbox{\tt in}  & {\em mother\+\_\+temp} & -\/ temporary object to extract \hyperlink{classKFParticle}{K\+F\+Particle} from constructed \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother. Preallocated for better performance. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ array with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em sec\+Cuts} & -\/ cuts to select primary and secondary candidates from the reconstructed set\+: $\sigma_{M}$, $\chi^2_{topo}$, $l/\Delta l$. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Prim} & -\/ array with output primary candidates if any. \\
+\hline
+\mbox{\tt out}  & {\em v\+Mother\+Sec} & -\/ array with output secondary candidates if any.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Select\+Particles@{Select\+Particles}}
+\index{Select\+Particles@{Select\+Particles}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Select\+Particles(std\+::vector$<$ K\+F\+Particle $>$ \&\+Particles, std\+::vector$<$ K\+F\+Particle $>$ \&v\+Candidates, std\+::vector$<$ K\+F\+Particle\+S\+I\+M\+D, K\+F\+P\+Simd\+Allocator$<$ K\+F\+Particle\+S\+I\+M\+D $>$ $>$ \&\+Prim\+Vtx, const float \&cut\+Chi2\+Topo, const float \&cut\+Ld\+L, const float \&mass, const float \&mass\+Err, const float \&mass\+Cut)}{SelectParticles(std::vector< KFParticle > &Particles, std::vector< KFParticle > &vCandidates, std::vector< KFParticleSIMD, KFPSimdAllocator< KFParticleSIMD > > &PrimVtx, const float &cutChi2Topo, const float &cutLdL, const float &mass, const float &massErr, const float &massCut)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Select\+Particles (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{Particles, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{v\+Candidates, }
+\item[{std\+::vector$<$ {\bf K\+F\+Particle\+S\+I\+MD}, {\bf K\+F\+P\+Simd\+Allocator}$<$ {\bf K\+F\+Particle\+S\+I\+MD} $>$ $>$ \&}]{Prim\+Vtx, }
+\item[{const float \&}]{cut\+Chi2\+Topo, }
+\item[{const float \&}]{cut\+LdL, }
+\item[{const float \&}]{mass, }
+\item[{const float \&}]{mass\+Err, }
+\item[{const float \&}]{mass\+Cut}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a179059d24166483347104b74e9ad6b48}{}\label{classKFParticleFinder_a179059d24166483347104b74e9ad6b48}
+Selects particles from a set of candidates \char`\"{}v\+Candidates\char`\"{} according to the provided cuts on $\chi^2_{topo}$ and $l/\Delta l$ and stores them to the output array \char`\"{}\+Particles\char`\"{}. Also, \char`\"{}v\+Candidates\char`\"{} is cleaned, only selected particles with additional cut on $\sigma_{M}$ are left there. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em Particles} & -\/ output vector with particles. \\
+\hline
+\mbox{\tt in,out}  & {\em v\+Candidates} & -\/ vector with the input candidates. \\
+\hline
+\mbox{\tt in}  & {\em Prim\+Vtx} & -\/ vector with primary vertices. \\
+\hline
+\mbox{\tt in}  & {\em cut\+Chi2\+Topo} & -\/ $\chi^2_{topo}$ cut. \\
+\hline
+\mbox{\tt in}  & {\em cut\+LdL} & -\/ $l/\Delta l$ cut. \\
+\hline
+\mbox{\tt in}  & {\em mass} & -\/ table mass for the given P\+DG hypothesis. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Err} & -\/ sigma of the peak width for the given P\+DG hypothesis. \\
+\hline
+\mbox{\tt in}  & {\em mass\+Cut} & -\/ $\sigma_{M}$ cut.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}!Set\+N\+PV@{Set\+N\+PV}}
+\index{Set\+N\+PV@{Set\+N\+PV}!K\+F\+Particle\+Finder@{K\+F\+Particle\+Finder}}
+\subsubsection[{\texorpdfstring{Set\+N\+P\+V(int n\+P\+V)}{SetNPV(int nPV)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Finder\+::\+Set\+N\+PV (
+\begin{DoxyParamCaption}
+\item[{int}]{n\+PV}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleFinder_a043ff4f3c29d55030686e4614aa241b9}{}\label{classKFParticleFinder_a043ff4f3c29d55030686e4614aa241b9}
+Sets the number of primary vertices to \char`\"{}n\+P\+V\char`\"{}, resizes all vectors with primary candidates correspondingly. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+PV} & -\/ number of the primary vertices in the event to be set.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Finder.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Finder.\+cxx\end{DoxyCompactItemize}

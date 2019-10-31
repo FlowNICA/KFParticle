@@ -1,0 +1,167 @@
+\hypertarget{classKFPSimdAllocator}{}\section{K\+F\+P\+Simd\+Allocator$<$ T $>$ Class Template Reference}
+\label{classKFPSimdAllocator}\index{K\+F\+P\+Simd\+Allocator$<$ T $>$@{K\+F\+P\+Simd\+Allocator$<$ T $>$}}
+
+
+Allocator which is needed to allocate memory in std\+::vector aligned by the size of S\+I\+MD vectors.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+P\+Simd\+Allocator.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{structKFPSimdAllocator_1_1rebind}{rebind}
+\begin{DoxyCompactList}\small\item\em Rebind allocator to type U of the S\+I\+MD allocator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef T {\bfseries value\+\_\+type}\hypertarget{classKFPSimdAllocator_a2220f8e8df85a28528c3b638d6d3326e}{}\label{classKFPSimdAllocator_a2220f8e8df85a28528c3b638d6d3326e}
+
+\item 
+typedef T $\ast$ {\bfseries pointer}\hypertarget{classKFPSimdAllocator_a3be67dc1570711f43bffb59df7a101fb}{}\label{classKFPSimdAllocator_a3be67dc1570711f43bffb59df7a101fb}
+
+\item 
+typedef const T $\ast$ {\bfseries const\+\_\+pointer}\hypertarget{classKFPSimdAllocator_a9838e96bfdcbad5ea6a8f6634b0efec0}{}\label{classKFPSimdAllocator_a9838e96bfdcbad5ea6a8f6634b0efec0}
+
+\item 
+typedef T \& {\bfseries reference}\hypertarget{classKFPSimdAllocator_af718c8189940e57744a409091aa768b1}{}\label{classKFPSimdAllocator_af718c8189940e57744a409091aa768b1}
+
+\item 
+typedef const T \& {\bfseries const\+\_\+reference}\hypertarget{classKFPSimdAllocator_a545bff14e608d6a5d405f75cd9d7b3ec}{}\label{classKFPSimdAllocator_a545bff14e608d6a5d405f75cd9d7b3ec}
+
+\item 
+typedef std\+::size\+\_\+t {\bfseries size\+\_\+type}\hypertarget{classKFPSimdAllocator_a693ced984b2b34276785ff5bc27b5814}{}\label{classKFPSimdAllocator_a693ced984b2b34276785ff5bc27b5814}
+
+\item 
+typedef std\+::ptrdiff\+\_\+t {\bfseries difference\+\_\+type}\hypertarget{classKFPSimdAllocator_ab2c1ad95cf013d9239f090a5e695c38b}{}\label{classKFPSimdAllocator_ab2c1ad95cf013d9239f090a5e695c38b}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+pointer \hyperlink{classKFPSimdAllocator_a940fe6fc661958ebd72c192b3cfd9732}{address} (reference value) const 
+\item 
+const\+\_\+pointer \hyperlink{classKFPSimdAllocator_a2b6cce7e6d21f8f61e6d9eb577f03176}{address} (const\+\_\+reference value) const 
+\item 
+{\bfseries K\+F\+P\+Simd\+Allocator} (const \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator} \&)  throw ()\hypertarget{classKFPSimdAllocator_ae3c869f7146830e3aa51609aaa469a1b}{}\label{classKFPSimdAllocator_ae3c869f7146830e3aa51609aaa469a1b}
+
+\item 
+{\footnotesize template$<$class U $>$ }\\{\bfseries K\+F\+P\+Simd\+Allocator} (const \hyperlink{classKFPSimdAllocator}{K\+F\+P\+Simd\+Allocator}$<$ U $>$ \&)  throw ()\hypertarget{classKFPSimdAllocator_a519e1267b4c04f9d3c2edcbab9026f81}{}\label{classKFPSimdAllocator_a519e1267b4c04f9d3c2edcbab9026f81}
+
+\item 
+size\+\_\+type \hyperlink{classKFPSimdAllocator_a5cb432db266d47facaa932576c899602}{max\+\_\+size} () const   throw ()
+\item 
+pointer \hyperlink{classKFPSimdAllocator_a6112376bd53f74b5c360c5d9ee7d1867}{allocate} (size\+\_\+type num, const void $\ast$=nullptr)
+\item 
+void \hyperlink{classKFPSimdAllocator_a4e7732dacbbea0ed92224c9295d14f56}{construct} (pointer p)
+\item 
+void \hyperlink{classKFPSimdAllocator_a206aeadc9db52a9918be232606710eea}{construct} (pointer p, const T \&value)
+\item 
+void \hyperlink{classKFPSimdAllocator_a654bc8b82b27fe73c14e87d9f3a73b9e}{destroy} (pointer p)
+\item 
+void \hyperlink{classKFPSimdAllocator_a09742f45872a8568926482ba76f49762}{deallocate} (pointer p, size\+\_\+type num)
+\item 
+void $\ast$ \hyperlink{classKFPSimdAllocator_a04f7288a8003d7c446d194174faa9d85}{operator new} (size\+\_\+t size, void $\ast$ptr)\hypertarget{classKFPSimdAllocator_a04f7288a8003d7c446d194174faa9d85}{}\label{classKFPSimdAllocator_a04f7288a8003d7c446d194174faa9d85}
+
+\begin{DoxyCompactList}\small\item\em new operator for allocation of the S\+I\+M\+D-\/alligned dynamic memory allocation \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classKFPSimdAllocator_a45c0c288c2790a41ab7e1eb30a974747}{operator new\mbox{[}$\,$\mbox{]}} (size\+\_\+t size, void $\ast$ptr)\hypertarget{classKFPSimdAllocator_a45c0c288c2790a41ab7e1eb30a974747}{}\label{classKFPSimdAllocator_a45c0c288c2790a41ab7e1eb30a974747}
+
+\begin{DoxyCompactList}\small\item\em new operator for allocation of the S\+I\+M\+D-\/alligned dynamic memory allocation \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classKFPSimdAllocator_aecd37d22a3328bc3ab45af85280d683f}{operator new} (size\+\_\+t size)\hypertarget{classKFPSimdAllocator_aecd37d22a3328bc3ab45af85280d683f}{}\label{classKFPSimdAllocator_aecd37d22a3328bc3ab45af85280d683f}
+
+\begin{DoxyCompactList}\small\item\em new operator for allocation of the S\+I\+M\+D-\/alligned dynamic memory allocation \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classKFPSimdAllocator_a52963f32ee363d10045d0c99cb4bf404}{operator new\mbox{[}$\,$\mbox{]}} (size\+\_\+t size)\hypertarget{classKFPSimdAllocator_a52963f32ee363d10045d0c99cb4bf404}{}\label{classKFPSimdAllocator_a52963f32ee363d10045d0c99cb4bf404}
+
+\begin{DoxyCompactList}\small\item\em new operator for allocation of the S\+I\+M\+D-\/alligned dynamic memory allocation \end{DoxyCompactList}\item 
+void \hyperlink{classKFPSimdAllocator_ab8878f29f6745fbf3dae25598fb7fe01}{operator delete} (void $\ast$ptr, size\+\_\+t)\hypertarget{classKFPSimdAllocator_ab8878f29f6745fbf3dae25598fb7fe01}{}\label{classKFPSimdAllocator_ab8878f29f6745fbf3dae25598fb7fe01}
+
+\begin{DoxyCompactList}\small\item\em delete operator for the S\+I\+M\+D-\/alligned dynamic memory release \end{DoxyCompactList}\item 
+void \hyperlink{classKFPSimdAllocator_acb81e29329e6a990cbcd4c82a8c72491}{operator delete\mbox{[}$\,$\mbox{]}} (void $\ast$ptr, size\+\_\+t)\hypertarget{classKFPSimdAllocator_acb81e29329e6a990cbcd4c82a8c72491}{}\label{classKFPSimdAllocator_acb81e29329e6a990cbcd4c82a8c72491}
+
+\begin{DoxyCompactList}\small\item\em delete operator for the S\+I\+M\+D-\/alligned dynamic memory release \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\\*
+class K\+F\+P\+Simd\+Allocator$<$ T $>$}
+
+Allocator which is needed to allocate memory in std\+::vector aligned by the size of S\+I\+MD vectors. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+
+
+\subsection{Member Function Documentation}
+\index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!address@{address}}
+\index{address@{address}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{address(reference value) const }{address(reference value) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ pointer {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::address (
+\begin{DoxyParamCaption}
+\item[{reference}]{value}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a940fe6fc661958ebd72c192b3cfd9732}{}\label{classKFPSimdAllocator_a940fe6fc661958ebd72c192b3cfd9732}
+Return address of \char`\"{}value\char`\"{}. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!address@{address}}
+\index{address@{address}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{address(const\+\_\+reference value) const }{address(const_reference value) const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ const\+\_\+pointer {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::address (
+\begin{DoxyParamCaption}
+\item[{const\+\_\+reference}]{value}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a2b6cce7e6d21f8f61e6d9eb577f03176}{}\label{classKFPSimdAllocator_a2b6cce7e6d21f8f61e6d9eb577f03176}
+Return address of \char`\"{}value\char`\"{}. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!allocate@{allocate}}
+\index{allocate@{allocate}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{allocate(size\+\_\+type num, const void $\ast$=nullptr)}{allocate(size_type num, const void *=nullptr)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ pointer {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::allocate (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+type}]{num, }
+\item[{const void $\ast$}]{ = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a6112376bd53f74b5c360c5d9ee7d1867}{}\label{classKFPSimdAllocator_a6112376bd53f74b5c360c5d9ee7d1867}
+Allocate but don\textquotesingle{}t initialize num elements of type T. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!construct@{construct}}
+\index{construct@{construct}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{construct(pointer p)}{construct(pointer p)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::construct (
+\begin{DoxyParamCaption}
+\item[{pointer}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a4e7732dacbbea0ed92224c9295d14f56}{}\label{classKFPSimdAllocator_a4e7732dacbbea0ed92224c9295d14f56}
+Initialize elements of allocated storage \char`\"{}p\char`\"{} with an empty element. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!construct@{construct}}
+\index{construct@{construct}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{construct(pointer p, const T \&value)}{construct(pointer p, const T &value)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::construct (
+\begin{DoxyParamCaption}
+\item[{pointer}]{p, }
+\item[{const T \&}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a206aeadc9db52a9918be232606710eea}{}\label{classKFPSimdAllocator_a206aeadc9db52a9918be232606710eea}
+Initialize elements of allocated storage \char`\"{}p\char`\"{} with value \char`\"{}value\char`\"{}. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!deallocate@{deallocate}}
+\index{deallocate@{deallocate}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{deallocate(pointer p, size\+\_\+type num)}{deallocate(pointer p, size_type num)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::deallocate (
+\begin{DoxyParamCaption}
+\item[{pointer}]{p, }
+\item[{size\+\_\+type}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a09742f45872a8568926482ba76f49762}{}\label{classKFPSimdAllocator_a09742f45872a8568926482ba76f49762}
+Deallocate storage p of deleted elements. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!destroy@{destroy}}
+\index{destroy@{destroy}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{destroy(pointer p)}{destroy(pointer p)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::destroy (
+\begin{DoxyParamCaption}
+\item[{pointer}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a654bc8b82b27fe73c14e87d9f3a73b9e}{}\label{classKFPSimdAllocator_a654bc8b82b27fe73c14e87d9f3a73b9e}
+Destroy elements of initialized storage \char`\"{}p\char`\"{}. \index{K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}!max\+\_\+size@{max\+\_\+size}}
+\index{max\+\_\+size@{max\+\_\+size}!K\+F\+P\+Simd\+Allocator@{K\+F\+P\+Simd\+Allocator}}
+\subsubsection[{\texorpdfstring{max\+\_\+size() const }{max_size() const }}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ size\+\_\+type {\bf K\+F\+P\+Simd\+Allocator}$<$ T $>$\+::max\+\_\+size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const throw  ) \hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPSimdAllocator_a5cb432db266d47facaa932576c899602}{}\label{classKFPSimdAllocator_a5cb432db266d47facaa932576c899602}
+Return maximum number of elements that can be allocated. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+P\+Simd\+Allocator.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,214 @@
+\hypertarget{classKFPEmcCluster}{}\section{K\+F\+P\+Emc\+Cluster Class Reference}
+\label{classKFPEmcCluster}\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+
+
+A class to store vectors of input cluster from the electro-\/magnetic calorimeter.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+P\+Emc\+Cluster.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classKFPEmcCluster_aefa8add381cb8b80e2aca1cc992cea26}{Size} () const 
+\item 
+void \hyperlink{classKFPEmcCluster_a59b598288491ced8766349d369985753}{Resize} (int n)
+\item 
+void \hyperlink{classKFPEmcCluster_af3970b53d2a0b8dac24f12f5f97c5a4e}{Set} (\hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} \&v, int v\+Size, int offset)
+\item 
+void \hyperlink{classKFPEmcCluster_adbd8dfe4382876ce6daf737322ebad55}{Set\+Tracks} (const \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} \&track, const kfvector\+\_\+uint \&track\+Index, int n\+Indexes)
+\item 
+const kfvector\+\_\+float \& \hyperlink{classKFPEmcCluster_aba85b653e25271e97ba5d9a6c6aa8f06}{X} () const \hypertarget{classKFPEmcCluster_aba85b653e25271e97ba5d9a6c6aa8f06}{}\label{classKFPEmcCluster_aba85b653e25271e97ba5d9a6c6aa8f06}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector with X coordinates. \end{DoxyCompactList}\item 
+const kfvector\+\_\+float \& \hyperlink{classKFPEmcCluster_aa0f8d5edc8c556ae89690684cdfb5fe6}{Y} () const \hypertarget{classKFPEmcCluster_aa0f8d5edc8c556ae89690684cdfb5fe6}{}\label{classKFPEmcCluster_aa0f8d5edc8c556ae89690684cdfb5fe6}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector with Y coordinates. \end{DoxyCompactList}\item 
+const kfvector\+\_\+float \& \hyperlink{classKFPEmcCluster_ac64bb7a7ec0e75c09b7cb61779391562}{Z} () const \hypertarget{classKFPEmcCluster_ac64bb7a7ec0e75c09b7cb61779391562}{}\label{classKFPEmcCluster_ac64bb7a7ec0e75c09b7cb61779391562}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector with Z coordinates. \end{DoxyCompactList}\item 
+const kfvector\+\_\+float \& \hyperlink{classKFPEmcCluster_aecd3a4a6be16f549415d55c22163239c}{E} () const \hypertarget{classKFPEmcCluster_aecd3a4a6be16f549415d55c22163239c}{}\label{classKFPEmcCluster_aecd3a4a6be16f549415d55c22163239c}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector with energy of the cluster. \end{DoxyCompactList}\item 
+const kfvector\+\_\+float \& \hyperlink{classKFPEmcCluster_a092b784c79ab49296837494e20c60fc0}{Parameter} (const int i) const \hypertarget{classKFPEmcCluster_a092b784c79ab49296837494e20c60fc0}{}\label{classKFPEmcCluster_a092b784c79ab49296837494e20c60fc0}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the parameter vector with index \char`\"{}i\char`\"{}. \end{DoxyCompactList}\item 
+const kfvector\+\_\+float \& \hyperlink{classKFPEmcCluster_aaf46ecf1ebe6e400e758df799780c6f2}{Covariance} (const int i) const \hypertarget{classKFPEmcCluster_aaf46ecf1ebe6e400e758df799780c6f2}{}\label{classKFPEmcCluster_aaf46ecf1ebe6e400e758df799780c6f2}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector of the covariance matrix elements with index \char`\"{}i\char`\"{}. \end{DoxyCompactList}\item 
+const kfvector\+\_\+int \& \hyperlink{classKFPEmcCluster_aa9356363659ef5dbae4dc75e108f685f}{Id} () const \hypertarget{classKFPEmcCluster_aa9356363659ef5dbae4dc75e108f685f}{}\label{classKFPEmcCluster_aa9356363659ef5dbae4dc75e108f685f}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector with unique id of the clusters. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPEmcCluster_ae29a45ef988a32825804dcdbad554ff1}{Set\+Parameter} (float value, int iP, int i\+Tr)\hypertarget{classKFPEmcCluster_ae29a45ef988a32825804dcdbad554ff1}{}\label{classKFPEmcCluster_ae29a45ef988a32825804dcdbad554ff1}
+
+\begin{DoxyCompactList}\small\item\em Sets the \char`\"{}value\char`\"{} of the parameter \char`\"{}i\+P\char`\"{} of the cluster with index \char`\"{}i\+Tr\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPEmcCluster_acc64537b2d9ab1300025861ee0148b52}{Set\+Covariance} (float value, int iC, int i\+Tr)\hypertarget{classKFPEmcCluster_acc64537b2d9ab1300025861ee0148b52}{}\label{classKFPEmcCluster_acc64537b2d9ab1300025861ee0148b52}
+
+\begin{DoxyCompactList}\small\item\em Sets the \char`\"{}value\char`\"{} of the element of covariance matrix \char`\"{}i\+C\char`\"{} of the cluster with index \char`\"{}i\+Tr\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPEmcCluster_acd797b0c7415f51cfa0f6f9ccf7f4dde}{Set\+Parameter} (const float\+\_\+v \&value, int iP, int i\+Tr)
+\item 
+void \hyperlink{classKFPEmcCluster_a5981994b54f8b0db7c8a08795569046b}{Set\+Covariance} (const float\+\_\+v \&value, int iC, int i\+Tr)
+\item 
+void \hyperlink{classKFPEmcCluster_a416634c336c40aaa27789e949cc60c89}{Set\+Id} (int value, int i\+Tr)\hypertarget{classKFPEmcCluster_a416634c336c40aaa27789e949cc60c89}{}\label{classKFPEmcCluster_a416634c336c40aaa27789e949cc60c89}
+
+\begin{DoxyCompactList}\small\item\em Sets the \char`\"{}value\char`\"{} of the id of the cluster with index \char`\"{}i\+Tr\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPEmcCluster_aeb95144438a4c90c67078deb23295cb8}{Print\+Track} (int n)
+\item 
+void \hyperlink{classKFPEmcCluster_a1dad0ca2ab0a842910d277b6c0866299}{Print\+Tracks} ()
+\item 
+\hyperlink{classKFPEmcCluster_abd234dbbe0dc96f5fec4c2a9c1967b4c}{K\+F\+P\+Emc\+Cluster} (const \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} \&clusters)
+\item 
+const \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} \& \hyperlink{classKFPEmcCluster_a747c671d0c63cbf5f864956e7064b59a}{operator=} (const \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} \&clusters)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to store vectors of input cluster from the electro-\/magnetic calorimeter. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+A cluster is described with the state vector \{ X, Y, Z, E \} and the corresponding covariance matrix. Also contains a unique id. The data model implemented in the class is \char`\"{}\+Structure Of Arrays\char`\"{}\+: each parameter is stroed in a separate vector. Such data structure allows fast vectorised access to the aligned data providing the maximum possible speed for data reading, and at the same time easy random access to the data members. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{K\+F\+P\+Emc\+Cluster(const K\+F\+P\+Emc\+Cluster \&clusters)}{KFPEmcCluster(const KFPEmcCluster &clusters)}}]{\setlength{\rightskip}{0pt plus 5cm}K\+F\+P\+Emc\+Cluster\+::\+K\+F\+P\+Emc\+Cluster (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+P\+Emc\+Cluster} \&}]{clusters}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPEmcCluster_abd234dbbe0dc96f5fec4c2a9c1967b4c}{}\label{classKFPEmcCluster_abd234dbbe0dc96f5fec4c2a9c1967b4c}
+Copy-\/constructor. Makes one-\/to-\/one copy. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!operator=@{operator=}}
+\index{operator=@{operator=}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{operator=(const K\+F\+P\+Emc\+Cluster \&clusters)}{operator=(const KFPEmcCluster &clusters)}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf K\+F\+P\+Emc\+Cluster}\& K\+F\+P\+Emc\+Cluster\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+P\+Emc\+Cluster} \&}]{clusters}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPEmcCluster_a747c671d0c63cbf5f864956e7064b59a}{}\label{classKFPEmcCluster_a747c671d0c63cbf5f864956e7064b59a}
+Operator to copy one \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} object to another. Makes one-\/to-\/one copy. \index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Print\+Track@{Print\+Track}}
+\index{Print\+Track@{Print\+Track}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Print\+Track(int n)}{PrintTrack(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Print\+Track (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_aeb95144438a4c90c67078deb23295cb8}{}\label{classKFPEmcCluster_aeb95144438a4c90c67078deb23295cb8}
+Prints parameters of the cluster with index \char`\"{}n\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n} & -\/ index of cluster to be printed\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Print\+Tracks@{Print\+Tracks}}
+\index{Print\+Tracks@{Print\+Tracks}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Print\+Tracks()}{PrintTracks()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Print\+Tracks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_a1dad0ca2ab0a842910d277b6c0866299}{}\label{classKFPEmcCluster_a1dad0ca2ab0a842910d277b6c0866299}
+Prints all field of the current object. \index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Resize@{Resize}}
+\index{Resize@{Resize}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Resize(int n)}{Resize(int n)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Resize (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_a59b598288491ced8766349d369985753}{}\label{classKFPEmcCluster_a59b598288491ced8766349d369985753}
+Resizes all vectors in the class to a given value. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n} & -\/ new size of the vector\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Set@{Set}}
+\index{Set@{Set}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Set(\+K\+F\+P\+Emc\+Cluster \&v, int v\+Size, int offset)}{Set(KFPEmcCluster &v, int vSize, int offset)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Set (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Emc\+Cluster} \&}]{v, }
+\item[{int}]{v\+Size, }
+\item[{int}]{offset}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_af3970b53d2a0b8dac24f12f5f97c5a4e}{}\label{classKFPEmcCluster_af3970b53d2a0b8dac24f12f5f97c5a4e}
+Copies \char`\"{}v\+Size\char`\"{} clusters from the \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} \char`\"{}v\char`\"{} to the current object. Tracks are put starting from the \char`\"{}offset\char`\"{} position. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v} & -\/ external \hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} with input clusters to be copied \\
+\hline
+\mbox{\tt in}  & {\em v\+Size} & -\/ number of clusters to be copied from \char`\"{}v\char`\"{} \\
+\hline
+\mbox{\tt in}  & {\em offset} & -\/ offset position in the current object, starting from which input clusters will be stored\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Set\+Covariance@{Set\+Covariance}}
+\index{Set\+Covariance@{Set\+Covariance}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Set\+Covariance(const float\+\_\+v \&value, int i\+C, int i\+Tr)}{SetCovariance(const float_v &value, int iC, int iTr)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Set\+Covariance (
+\begin{DoxyParamCaption}
+\item[{const float\+\_\+v \&}]{value, }
+\item[{int}]{iC, }
+\item[{int}]{i\+Tr}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_a5981994b54f8b0db7c8a08795569046b}{}\label{classKFPEmcCluster_a5981994b54f8b0db7c8a08795569046b}
+Copies the S\+I\+MD vector \char`\"{}value\char`\"{} to the element of the covariance matrix vector K\+F\+P\+Emc\+Cluster\+::fC\mbox{[}iC\mbox{]} starting at the position \char`\"{}i\+Tr\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & -\/ S\+I\+MD vector with the values to be stored \\
+\hline
+\mbox{\tt in}  & {\em iC} & -\/ number of the element of the covariance matrix \\
+\hline
+\mbox{\tt in}  & {\em i\+Tr} & -\/ starting position in the parameter vector where the values should be stored\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Set\+Parameter@{Set\+Parameter}}
+\index{Set\+Parameter@{Set\+Parameter}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Set\+Parameter(const float\+\_\+v \&value, int i\+P, int i\+Tr)}{SetParameter(const float_v &value, int iP, int iTr)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Set\+Parameter (
+\begin{DoxyParamCaption}
+\item[{const float\+\_\+v \&}]{value, }
+\item[{int}]{iP, }
+\item[{int}]{i\+Tr}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_acd797b0c7415f51cfa0f6f9ccf7f4dde}{}\label{classKFPEmcCluster_acd797b0c7415f51cfa0f6f9ccf7f4dde}
+Copies the S\+I\+MD vector \char`\"{}value\char`\"{} to the parameter vector K\+F\+P\+Emc\+Cluster\+::fP\mbox{[}iP\mbox{]} starting at the position \char`\"{}i\+Tr\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & -\/ S\+I\+MD vector with the values to be stored \\
+\hline
+\mbox{\tt in}  & {\em iP} & -\/ number of the parameter vector \\
+\hline
+\mbox{\tt in}  & {\em i\+Tr} & -\/ starting position in the parameter vector where the values should be stored\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Set\+Tracks@{Set\+Tracks}}
+\index{Set\+Tracks@{Set\+Tracks}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Set\+Tracks(const K\+F\+P\+Emc\+Cluster \&track, const kfvector\+\_\+uint \&track\+Index, int n\+Indexes)}{SetTracks(const KFPEmcCluster &track, const kfvector_uint &trackIndex, int nIndexes)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+P\+Emc\+Cluster\+::\+Set\+Tracks (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+P\+Emc\+Cluster} \&}]{track, }
+\item[{const kfvector\+\_\+uint \&}]{track\+Index, }
+\item[{int}]{n\+Indexes}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFPEmcCluster_adbd8dfe4382876ce6daf737322ebad55}{}\label{classKFPEmcCluster_adbd8dfe4382876ce6daf737322ebad55}
+The current object is resised to \char`\"{}n\+Indexes\char`\"{}, clusters with indices \char`\"{}track\+Index\char`\"{} are copied to the current object. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em track} & -\/ input vector of clusters \\
+\hline
+\mbox{\tt in}  & {\em track\+Index} & -\/ indices of clusters in a vector \char`\"{}track\char`\"{}, which should be stored to the current object \\
+\hline
+\mbox{\tt in}  & {\em n\+Indexes} & -\/ number of clusters to be copied, defines the new size of the current object\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}!Size@{Size}}
+\index{Size@{Size}!K\+F\+P\+Emc\+Cluster@{K\+F\+P\+Emc\+Cluster}}
+\subsubsection[{\texorpdfstring{Size() const }{Size() const }}]{\setlength{\rightskip}{0pt plus 5cm}int K\+F\+P\+Emc\+Cluster\+::\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPEmcCluster_aefa8add381cb8b80e2aca1cc992cea26}{}\label{classKFPEmcCluster_aefa8add381cb8b80e2aca1cc992cea26}
+Returns size of the vectors. All data vectors have the same size. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+P\+Emc\+Cluster.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+P\+Emc\+Cluster.\+cxx\end{DoxyCompactItemize}

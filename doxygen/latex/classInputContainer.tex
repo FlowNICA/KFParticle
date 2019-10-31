@@ -1,0 +1,90 @@
+\hypertarget{classInputContainer}{}\section{Input\+Container Class Reference}
+\label{classInputContainer}\index{Input\+Container@{Input\+Container}}
+
+
+Container with input information about event (vertex and tracks) and cuts used in the certain event.  
+
+
+
+
+{\ttfamily \#include $<$Input\+Container.\+h$>$}
+
+
+
+Collaboration diagram for Input\+Container\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classInputContainer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Set\+PV} (float x, float y, float z)\hypertarget{classInputContainer_ad06aaffdb0b096eb2ed9c6cfa3250d42}{}\label{classInputContainer_ad06aaffdb0b096eb2ed9c6cfa3250d42}
+
+\item 
+void {\bfseries Set\+PV} (\hyperlink{classKFVertex}{K\+F\+Vertex} vertex)\hypertarget{classInputContainer_a40505cae1ae3a2217a59b772fa44a6df}{}\label{classInputContainer_a40505cae1ae3a2217a59b772fa44a6df}
+
+\item 
+void {\bfseries Set\+PV} (\hyperlink{classKFPVertex}{K\+F\+P\+Vertex} vertex)\hypertarget{classInputContainer_a7de3b46343227047f6dbd70e36e72ccf}{}\label{classInputContainer_a7de3b46343227047f6dbd70e36e72ccf}
+
+\item 
+void {\bfseries Add\+Track} (float x, float y, float z, float px, float py, float pz, std\+::vector$<$ float $>$ cov, float field\mbox{[}10\mbox{]}, int charge, int pdg, int id, int nhits=4, int passcuts=1)\hypertarget{classInputContainer_a53342c390b742ea13123c792007b8ca3}{}\label{classInputContainer_a53342c390b742ea13123c792007b8ca3}
+
+\item 
+\hyperlink{classKFParticleTopoReconstructor}{K\+F\+Particle\+Topo\+Reconstructor} $\ast$ {\bfseries Create\+Topo\+Reconstructor} ()\hypertarget{classInputContainer_aedadbb7d4f78e927027aa4acb7793f8f}{}\label{classInputContainer_aedadbb7d4f78e927027aa4acb7793f8f}
+
+\item 
+\hyperlink{classSimpleFinder}{Simple\+Finder} {\bfseries Create\+Simple\+Finder} ()\hypertarget{classInputContainer_a3aa4cca1fc8ec2cf0b124c78e01b6658}{}\label{classInputContainer_a3aa4cca1fc8ec2cf0b124c78e01b6658}
+
+\item 
+void {\bfseries Set\+Cuts} (const \hyperlink{classCutsContainer}{Cuts\+Container} \&cuts)\hypertarget{classInputContainer_a1f085ead392f5b6e79236514dfdba9b5}{}\label{classInputContainer_a1f085ead392f5b6e79236514dfdba9b5}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries Inversed\+Chi2\+Prob} (double p, int ndf) const \hypertarget{classInputContainer_a73bcf36b0263f16c334b97661fae0eea}{}\label{classInputContainer_a73bcf36b0263f16c334b97661fae0eea}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFVertex}{K\+F\+Vertex} {\bfseries vtx\+\_\+}\hypertarget{classInputContainer_a66b98870925df549191771baa3f7a789}{}\label{classInputContainer_a66b98870925df549191771baa3f7a789}
+
+\item 
+std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ {\bfseries tracks\+\_\+}\hypertarget{classInputContainer_a87ee73c56e8c5bf1d77483864881e473}{}\label{classInputContainer_a87ee73c56e8c5bf1d77483864881e473}
+
+\item 
+\hyperlink{classCutsContainer}{Cuts\+Container} {\bfseries cuts\+\_\+}\hypertarget{classInputContainer_af65fc096dd7c157dac46a3ed88432a64}{}\label{classInputContainer_af65fc096dd7c157dac46a3ed88432a64}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Container with input information about event (vertex and tracks) and cuts used in the certain event. 
+
+\begin{DoxyAuthor}{Authors}
+Oleksii Lubynets, Viktor Klochkov, Ilya Selyuzhenkov
+\end{DoxyAuthor}
+Each event is characterized with primary vertex, set of tracks and set of cuts (in general case cuts for different events can be different).~\newline
+Primary vertex is characterized with its coordinates \{x, y, z\} and optionally with corresponding covariation matrix.~\newline
+In order to store primary vertex the \hyperlink{classKFVertex}{K\+F\+Vertex} object is used. Each track is characterized with\+:~\newline
+x, y, z -\/ three coordinates of point where it is defined;~\newline
+px, py, pz -\/ three components of its momentum in this point;~\newline
+cov -\/ covariation matrix of parameters mentioned above;~\newline
+field\mbox{[}0\mbox{]} -\/ field\mbox{[}8\mbox{]} -\/ magnetic field approximation coefficients along the track\textquotesingle{}s trajectory field\mbox{[}9\mbox{]} -\/ reference point for MF coefficients;~\newline
+charge -\/ its charge;~\newline
+pdg -\/ P\+ID hypothesis for the track;~\newline
+id -\/ its unique number (conserves through all the algorithm);~\newline
+nhits -\/ number of hits in the tracking system which belong to the track. Is not used in the current version of K\+F\+P\+Simple, so default value 4 can be used;~\newline
+passcuts -\/ flag variable which shows whether track satisfies pre-\/selection criteria. By default passcuts=1 should be used. ~\newline
+In order to store tracks the vector of \hyperlink{classKFParticle}{K\+F\+Particle} objects is used.~\newline
+In order to store cut values used for current event the \hyperlink{classCutsContainer}{Cuts\+Container} object is used. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+Interface/Input\+Container.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+Interface/Input\+Container.\+cxx\end{DoxyCompactItemize}

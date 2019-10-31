@@ -1,0 +1,102 @@
+\hypertarget{classKFMCParticle}{}\section{K\+F\+M\+C\+Particle Class Reference}
+\label{classKFMCParticle}\index{K\+F\+M\+C\+Particle@{K\+F\+M\+C\+Particle}}
+
+
+A class to store relations between mother and daughter Monte Carlo simulated particles.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+M\+C\+Particle.\+h$>$}
+
+
+
+Inheritance diagram for K\+F\+M\+C\+Particle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classKFMCParticle__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+F\+M\+C\+Particle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classKFMCParticle__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classKFMCParticle_afbccaab44cbd883748b589baf180bf8e}{Add\+Daughter} (int i)\hypertarget{classKFMCParticle_afbccaab44cbd883748b589baf180bf8e}{}\label{classKFMCParticle_afbccaab44cbd883748b589baf180bf8e}
+
+\begin{DoxyCompactList}\small\item\em Adds an Id of the new particle to the list with Ids of daughter particles. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCParticle_ae14cc6f58e668c7d3feb6bedbae57625}{N\+Daughters} () const \hypertarget{classKFMCParticle_ae14cc6f58e668c7d3feb6bedbae57625}{}\label{classKFMCParticle_ae14cc6f58e668c7d3feb6bedbae57625}
+
+\begin{DoxyCompactList}\small\item\em Returns number of daughter particles. \end{DoxyCompactList}\item 
+const std\+::vector$<$ int $>$ \& \hyperlink{classKFMCParticle_aa57d249e258adf12f022b58d8ad90d50}{Get\+Daughter\+Ids} () const \hypertarget{classKFMCParticle_aa57d249e258adf12f022b58d8ad90d50}{}\label{classKFMCParticle_aa57d249e258adf12f022b58d8ad90d50}
+
+\begin{DoxyCompactList}\small\item\em Returns a reference to the vector with Id of daughter particle K\+F\+M\+C\+Particle\+::f\+Daughter\+Ids. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_a57b4d9705f854d3a1717064aad0008fd}{Clean\+Daughters} ()\hypertarget{classKFMCParticle_a57b4d9705f854d3a1717064aad0008fd}{}\label{classKFMCParticle_a57b4d9705f854d3a1717064aad0008fd}
+
+\begin{DoxyCompactList}\small\item\em Remove Ids of all daughter particles from the current object. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_adb2ccad0b4b39acdf548b943b7a0ab91}{Set\+P\+DG} (int pdg)\hypertarget{classKFMCParticle_adb2ccad0b4b39acdf548b943b7a0ab91}{}\label{classKFMCParticle_adb2ccad0b4b39acdf548b943b7a0ab91}
+
+\begin{DoxyCompactList}\small\item\em Set the P\+DG code of the current particle K\+F\+M\+C\+Particle\+::f\+P\+DG. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_a4fe74ad782d04824601179c61085d82e}{Set\+M\+C\+Track\+ID} (int id)\hypertarget{classKFMCParticle_a4fe74ad782d04824601179c61085d82e}{}\label{classKFMCParticle_a4fe74ad782d04824601179c61085d82e}
+
+\begin{DoxyCompactList}\small\item\em Sets the Id of the corresponding Monte Carlo track K\+F\+M\+C\+Particle\+::f\+M\+C\+Track\+ID. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_aefeec3e0848ea6e94dfd48ba7dae077e}{Set\+Mother\+Id} (int id)\hypertarget{classKFMCParticle_aefeec3e0848ea6e94dfd48ba7dae077e}{}\label{classKFMCParticle_aefeec3e0848ea6e94dfd48ba7dae077e}
+
+\begin{DoxyCompactList}\small\item\em Sets the Id of the mother particle or primary vertex K\+F\+M\+C\+Particle\+::f\+Mother\+Id. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCParticle_adbf6a0b3aa66d2488e0dd35cd39e5307}{Get\+M\+C\+Track\+ID} () const \hypertarget{classKFMCParticle_adbf6a0b3aa66d2488e0dd35cd39e5307}{}\label{classKFMCParticle_adbf6a0b3aa66d2488e0dd35cd39e5307}
+
+\begin{DoxyCompactList}\small\item\em Returns Id of the corresponding MC track K\+F\+M\+C\+Particle\+::f\+M\+C\+Track\+ID. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCParticle_a1cd7e3ef51e4e2bb2ea3558feb5ab869}{Get\+Mother\+Id} () const \hypertarget{classKFMCParticle_a1cd7e3ef51e4e2bb2ea3558feb5ab869}{}\label{classKFMCParticle_a1cd7e3ef51e4e2bb2ea3558feb5ab869}
+
+\begin{DoxyCompactList}\small\item\em Returns Id of the mother particle or primary vertex K\+F\+M\+C\+Particle\+::f\+Mother\+Id. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCParticle_a9a26385ba40065086b9d6c0d0bbf4377}{Get\+P\+DG} () const \hypertarget{classKFMCParticle_a9a26385ba40065086b9d6c0d0bbf4377}{}\label{classKFMCParticle_a9a26385ba40065086b9d6c0d0bbf4377}
+
+\begin{DoxyCompactList}\small\item\em Returns P\+DG code of the current particle K\+F\+M\+C\+Particle\+::f\+P\+DG. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCParticle_a6b354cb8e1e6e0cc1a93afd0be776838}{Is\+Reconstructable} (int i) const \hypertarget{classKFMCParticle_a6b354cb8e1e6e0cc1a93afd0be776838}{}\label{classKFMCParticle_a6b354cb8e1e6e0cc1a93afd0be776838}
+
+\begin{DoxyCompactList}\small\item\em Returns a flag showing if particle can be reconstructed with K\+F\+M\+C\+Particle\+::f\+Is\+Reconstructable index \char`\"{}i\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_a144383bd4e948e2cf1d854ee500618a8}{Set\+As\+Reconstructable} (int i)\hypertarget{classKFMCParticle_a144383bd4e948e2cf1d854ee500618a8}{}\label{classKFMCParticle_a144383bd4e948e2cf1d854ee500618a8}
+
+\begin{DoxyCompactList}\small\item\em Defines the particle as those which should be reconstructed for the efficiency set \char`\"{}i\char`\"{}. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCParticle_a4e2f37ec9add6707e73f43882c4d10ff}{Is\+Reconstructable\+V0} (int i) const \hypertarget{classKFMCParticle_a4e2f37ec9add6707e73f43882c4d10ff}{}\label{classKFMCParticle_a4e2f37ec9add6707e73f43882c4d10ff}
+
+\begin{DoxyCompactList}\small\item\em Returns a flag showing if particle is a reconstructable V0. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_a8e889b928a3f842141a6a78d267dcf79}{Set\+As\+Reconstructable\+V0} (int i)\hypertarget{classKFMCParticle_a8e889b928a3f842141a6a78d267dcf79}{}\label{classKFMCParticle_a8e889b928a3f842141a6a78d267dcf79}
+
+\begin{DoxyCompactList}\small\item\em Defines the particle as V0 which should be reconstructed for the efficiency set \char`\"{}i\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCParticle_a6b6eb0cf8d1dda247509a3a2900268e7}{Set\+Initial\+Particle\+Id} (int i)\hypertarget{classKFMCParticle_a6b6eb0cf8d1dda247509a3a2900268e7}{}\label{classKFMCParticle_a6b6eb0cf8d1dda247509a3a2900268e7}
+
+\begin{DoxyCompactList}\small\item\em Sets Id of the Monte Carlo particle, from which the current particle was copied. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCParticle_af86d0b3cd56d0bef0aa9cbc651ee2e1a}{Initial\+Particle\+Id} () const \hypertarget{classKFMCParticle_af86d0b3cd56d0bef0aa9cbc651ee2e1a}{}\label{classKFMCParticle_af86d0b3cd56d0bef0aa9cbc651ee2e1a}
+
+\begin{DoxyCompactList}\small\item\em Returns the Id of the Monte Carlo particle, from which the current particle was copied. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to store relations between mother and daughter Monte Carlo simulated particles. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class is used to calculate reconstruction efficiency of all Monte Carlo particles. It is simplifies the procedure for short-\/lived particles. Contains a vector with unique Ids of all MC daughters, a unique Id of the corresponding MC track, a unique Id of the MC mother particle, the P\+DG code of the MC particle, flags showing if particle can be reconstructed according to several different definitions, flags showing if particle creates a secondary vertex with two or more daughters, an index of the initial particle Id in case of the K-\/$>$mu+nu and pi-\/$>$ mu+nu decays, since G\+E\+A\+NT engines do not store neutrinos. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle\+Performance/K\+F\+M\+C\+Particle.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle\+Performance/K\+F\+M\+C\+Particle.\+cxx\end{DoxyCompactItemize}

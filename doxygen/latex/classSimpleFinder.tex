@@ -1,0 +1,102 @@
+\hypertarget{classSimpleFinder}{}\section{Simple\+Finder Class Reference}
+\label{classSimpleFinder}\index{Simple\+Finder@{Simple\+Finder}}
+
+
+Collaboration diagram for Simple\+Finder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSimpleFinder__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries Init} (const \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&tracks, const \hyperlink{classKFVertex}{K\+F\+Vertex} \&pv)\hypertarget{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}{}\label{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}
+
+\item 
+void {\bfseries Sort\+Tracks} ()\hypertarget{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}{}\label{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}
+
+\item 
+void {\bfseries Find\+Particles} ()\hypertarget{classSimpleFinder_a319d1c4da78badd59a538b9839bb2632}{}\label{classSimpleFinder_a319d1c4da78badd59a538b9839bb2632}
+
+\item 
+const \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$ {\bfseries Get\+Tracks} () const \hypertarget{classSimpleFinder_aa1974407925dcb83efad1c68f40fe888}{}\label{classSimpleFinder_aa1974407925dcb83efad1c68f40fe888}
+
+\item 
+const std\+::vector$<$ float $>$ \& {\bfseries Get\+Mass} () const \hypertarget{classSimpleFinder_a381a4edacf6f8196a7298846f2f6f0ce}{}\label{classSimpleFinder_a381a4edacf6f8196a7298846f2f6f0ce}
+
+\item 
+const std\+::vector$<$ \hyperlink{classOutputContainer}{Output\+Container} $>$ \& {\bfseries Get\+Lambdas} () const \hypertarget{classSimpleFinder_afad8fd09c999b7aea6097fb0797c860b}{}\label{classSimpleFinder_afad8fd09c999b7aea6097fb0797c860b}
+
+\item 
+void {\bfseries Set\+Cuts} (const \hyperlink{classCutsContainer}{Cuts\+Container} \&cuts)\hypertarget{classSimpleFinder_a48534300d76d38ae2aa9f1f70dc92d4e}{}\label{classSimpleFinder_a48534300d76d38ae2aa9f1f70dc92d4e}
+
+\item 
+const \hyperlink{classCutsContainer}{Cuts\+Container} \& {\bfseries Get\+Cuts} () const \hypertarget{classSimpleFinder_aaedbd2a273aabbe3a45e00613a7d87d8}{}\label{classSimpleFinder_aaedbd2a273aabbe3a45e00613a7d87d8}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classSimpleFinder_aba9d34b1412abc495838a6c5c99b997b}{Calculate\+Chi\+To\+Primary\+Vertex} (const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track, const int pid) const \hypertarget{classSimpleFinder_aba9d34b1412abc495838a6c5c99b997b}{}\label{classSimpleFinder_aba9d34b1412abc495838a6c5c99b997b}
+
+\begin{DoxyCompactList}\small\item\em Calculates $\chi^2$ of the track to the primary vertex (PV) \end{DoxyCompactList}\item 
+void \hyperlink{classSimpleFinder_a6f67c15111fa7a4c19144acef48f7877}{Calculate\+Params\+In\+P\+CA} (const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track1, const int pid1, const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track2, const int pid2, std\+::array$<$ float, 8 $>$ \&pars1, std\+::array$<$ float, 8 $>$ \&pars2) const \hypertarget{classSimpleFinder_a6f67c15111fa7a4c19144acef48f7877}{}\label{classSimpleFinder_a6f67c15111fa7a4c19144acef48f7877}
+
+\begin{DoxyCompactList}\small\item\em Recalculates daughters tracks\textquotesingle{} parameters in the point of their closest approach. \end{DoxyCompactList}\item 
+float \hyperlink{classSimpleFinder_ab2ae6ae5184a0343e9256bf2a57fa3f4}{Calculate\+Distance\+Between\+Particles} (const std\+::array$<$ float, 8 $>$ \&pars1, const std\+::array$<$ float, 8 $>$ \&pars2) const \hypertarget{classSimpleFinder_ab2ae6ae5184a0343e9256bf2a57fa3f4}{}\label{classSimpleFinder_ab2ae6ae5184a0343e9256bf2a57fa3f4}
+
+\begin{DoxyCompactList}\small\item\em Calculates the distance between daughter tracks in their closest approach. \end{DoxyCompactList}\item 
+float \hyperlink{classSimpleFinder_adf804cbf61f06440529c38f703182030}{Calculate\+Cos\+Momentum\+Sum} (const std\+::array$<$ float, 8 $>$ \&pars1, const std\+::array$<$ float, 8 $>$ \&pars2) const \hypertarget{classSimpleFinder_adf804cbf61f06440529c38f703182030}{}\label{classSimpleFinder_adf804cbf61f06440529c38f703182030}
+
+\begin{DoxyCompactList}\small\item\em Calculates the cosine of the angle between daughter\textquotesingle{}s and mother\textquotesingle{}s momenta. \end{DoxyCompactList}\item 
+\hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \hyperlink{classSimpleFinder_a10ef8ed683c90625963c3185e5399771}{Construct\+Mother} (const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track1, const int pid1, const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track2, const int pid2) const \hypertarget{classSimpleFinder_a10ef8ed683c90625963c3185e5399771}{}\label{classSimpleFinder_a10ef8ed683c90625963c3185e5399771}
+
+\begin{DoxyCompactList}\small\item\em Creates mother particle as the \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} object. \end{DoxyCompactList}\item 
+float \hyperlink{classSimpleFinder_ab174fa409931711f1e2cc650b73922fb}{Calculate\+Chi2\+Geo} (const \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother) const \hypertarget{classSimpleFinder_ab174fa409931711f1e2cc650b73922fb}{}\label{classSimpleFinder_ab174fa409931711f1e2cc650b73922fb}
+
+\begin{DoxyCompactList}\small\item\em Calculates $\chi^2$ of daughters\textquotesingle{} tracks in their closest approach. \end{DoxyCompactList}\item 
+void \hyperlink{classSimpleFinder_a3cad4e43c94a2a57960ab867eb4207e0}{Calculate\+Mother\+Properties} (const \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother, float \&l, float \&ldl, int \&is\+From\+PV) const \hypertarget{classSimpleFinder_a3cad4e43c94a2a57960ab867eb4207e0}{}\label{classSimpleFinder_a3cad4e43c94a2a57960ab867eb4207e0}
+
+\begin{DoxyCompactList}\small\item\em Calculates distance between primary and secondary vertices with error and determines whether mother comes from the PV. \end{DoxyCompactList}\item 
+float \hyperlink{classSimpleFinder_a874a6c11539d459f53e86c364c0f2892}{Calculate\+Cos\+Topo} (const \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother) const \hypertarget{classSimpleFinder_a874a6c11539d459f53e86c364c0f2892}{}\label{classSimpleFinder_a874a6c11539d459f53e86c364c0f2892}
+
+\begin{DoxyCompactList}\small\item\em Calculates cosine of the angle between reconstructed mother\textquotesingle{}s momentum and mother\textquotesingle{}s radius vector beginning in the PV. \end{DoxyCompactList}\item 
+float \hyperlink{classSimpleFinder_a8f5b04879c31465d5ef061f43bc5a74a}{Calculate\+Chi2\+Topo} (const \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} mother) const \hypertarget{classSimpleFinder_a8f5b04879c31465d5ef061f43bc5a74a}{}\label{classSimpleFinder_a8f5b04879c31465d5ef061f43bc5a74a}
+
+\begin{DoxyCompactList}\small\item\em Calculates $\chi^2$ of the mother\textquotesingle{}s track to the PV. \end{DoxyCompactList}\item 
+void \hyperlink{classSimpleFinder_af48bcd80810a3c514379ebd68f88f83c}{Save\+Particle} (\hyperlink{classOutputContainer}{Output\+Container} Lambda)\hypertarget{classSimpleFinder_af48bcd80810a3c514379ebd68f88f83c}{}\label{classSimpleFinder_af48bcd80810a3c514379ebd68f88f83c}
+
+\begin{DoxyCompactList}\small\item\em Saves selected particle with set of geometrical decay parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} {\bfseries tracks\+\_\+}\hypertarget{classSimpleFinder_a224eaba7c5a7830b730d15ae29e44088}{}\label{classSimpleFinder_a224eaba7c5a7830b730d15ae29e44088}
+
+\item 
+\hyperlink{classKFVertex}{K\+F\+Vertex} {\bfseries prim\+\_\+vx\+\_\+}\hypertarget{classSimpleFinder_aac6ae91fb844a0f67ffc31fe4ad09993}{}\label{classSimpleFinder_aac6ae91fb844a0f67ffc31fe4ad09993}
+
+\item 
+std\+::array$<$ std\+::vector$<$ int $>$, k\+Number\+Of\+Track\+Types $>$ {\bfseries tr\+Index\+\_\+}\hypertarget{classSimpleFinder_a290194488ca3d915194d9e5cc7169863}{}\label{classSimpleFinder_a290194488ca3d915194d9e5cc7169863}
+
+\item 
+\hyperlink{classCutsContainer}{Cuts\+Container} {\bfseries cuts\+\_\+}\hypertarget{classSimpleFinder_a7c2a911d99f8e634e47a68593d57291c}{}\label{classSimpleFinder_a7c2a911d99f8e634e47a68593d57291c}
+
+\item 
+float {\bfseries mass\+\_\+}\hypertarget{classSimpleFinder_aaa7bb0079c554838652b89905f1f0684}{}\label{classSimpleFinder_aaa7bb0079c554838652b89905f1f0684}
+
+\item 
+std\+::vector$<$ float $>$ {\bfseries vec\+\_\+mass\+\_\+}\hypertarget{classSimpleFinder_a1a259ed53902aefa2616e122114f7ef0}{}\label{classSimpleFinder_a1a259ed53902aefa2616e122114f7ef0}
+
+\item 
+std\+::vector$<$ \hyperlink{classOutputContainer}{Output\+Container} $>$ {\bfseries vec\+\_\+lambda\+\_\+}\hypertarget{classSimpleFinder_a80c1c67985d99f3ff0f68b9773fb7aa9}{}\label{classSimpleFinder_a80c1c67985d99f3ff0f68b9773fb7aa9}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Simple/Simple\+Finder.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Simple/Simple\+Finder.\+cxx\end{DoxyCompactItemize}

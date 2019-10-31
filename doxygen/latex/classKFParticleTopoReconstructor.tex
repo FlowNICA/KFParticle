@@ -1,0 +1,343 @@
+\hypertarget{classKFParticleTopoReconstructor}{}\section{K\+F\+Particle\+Topo\+Reconstructor Class Reference}
+\label{classKFParticleTopoReconstructor}\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+
+
+Class for reconstruction of the full event topology including primary vertices and short-\/lived particles.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+Particle\+Topo\+Reconstructor.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFParticleTopoReconstructor_a24e402c39551910122f724f02cce51b1}{K\+F\+Particle\+Topo\+Reconstructor} ()
+\item 
+\hyperlink{classKFParticleTopoReconstructor_a2f973f554cc76d4d0ab53f21bfc8bd02}{$\sim$\+K\+F\+Particle\+Topo\+Reconstructor} ()
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_abc388e4cf29cea13f63745a82a875dfc}{Init} (std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&particles, std\+::vector$<$ int $>$ $\ast$pdg=nullptr, std\+::vector$<$ int $>$ $\ast$n\+Pixel\+Hits=nullptr)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_ac9ee99b3d846234ef05b11d018e88af4}{Init} (const \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$particles, const std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ \&pv)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a927089e1d033d468ed0c2136ca417881}{Init} (\hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&tracks, \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&tracks\+At\+Last\+Point)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a762e1fb5280b43ea11f904a05af54a8b}{Set\+Emc\+Clusters} (\hyperlink{classKFPEmcCluster}{K\+F\+P\+Emc\+Cluster} $\ast$clusters)\hypertarget{classKFParticleTopoReconstructor_a762e1fb5280b43ea11f904a05af54a8b}{}\label{classKFParticleTopoReconstructor_a762e1fb5280b43ea11f904a05af54a8b}
+
+\begin{DoxyCompactList}\small\item\em Sets input clusters of the electromagnetic calorimeter to \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_acff10c868bedc823cf84c28ad1264910}{Set\+Mixed\+Event\+Analysis} ()\hypertarget{classKFParticleTopoReconstructor_acff10c868bedc823cf84c28ad1264910}{}\label{classKFParticleTopoReconstructor_acff10c868bedc823cf84c28ad1264910}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} is forced to be run in the mixed event analysis mode. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_a91e48b54c89a67bf20127b1c1c067554}{De\+Init} ()\hypertarget{classKFParticleTopoReconstructor_a91e48b54c89a67bf20127b1c1c067554}{}\label{classKFParticleTopoReconstructor_a91e48b54c89a67bf20127b1c1c067554}
+
+\begin{DoxyCompactList}\small\item\em Sets a pointer to the input tracks K\+F\+Particle\+Topo\+Reconstructor\+::f\+Tracks to N\+U\+LL. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_a6b85e2a706f83088c422685b65a5291f}{Clear} ()\hypertarget{classKFParticleTopoReconstructor_a6b85e2a706f83088c422685b65a5291f}{}\label{classKFParticleTopoReconstructor_a6b85e2a706f83088c422685b65a5291f}
+
+\begin{DoxyCompactList}\small\item\em Cleans all candidates for primary vertices and short-\/lived particles. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_a7ea70e983164efab0ccbfca2c12c03af}{Reconstruct\+Prim\+Vertex} (bool is\+Heavy\+System=true)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a35f6755e97c39e1e00373272d1546f36}{Sort\+Tracks} ()
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a3013eefd4e16b74ae39c531678623d08}{Reconstruct\+Particles} ()
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_ab6e474eb923fc715a9bfba891436de48}{Select\+Particle\+Candidates} ()
+\item 
+int \hyperlink{classKFParticleTopoReconstructor_a871e14b076dfab861a09b150c71e3bca}{N\+Primary\+Vertices} () const \hypertarget{classKFParticleTopoReconstructor_a871e14b076dfab861a09b150c71e3bca}{}\label{classKFParticleTopoReconstructor_a871e14b076dfab861a09b150c71e3bca}
+
+\begin{DoxyCompactList}\small\item\em Returns number of the found primary vertex candidates. \end{DoxyCompactList}\item 
+\hyperlink{classKFParticle}{K\+F\+Particle} \& \hyperlink{classKFParticleTopoReconstructor_a0e776d559d48e57679c69fa248d3092c}{Get\+Prim\+Vertex} (int i\+PV=0) const \hypertarget{classKFParticleTopoReconstructor_a0e776d559d48e57679c69fa248d3092c}{}\label{classKFParticleTopoReconstructor_a0e776d559d48e57679c69fa248d3092c}
+
+\begin{DoxyCompactList}\small\item\em Return primary vertex candidate with index \char`\"{}i\+P\+V\char`\"{}. \end{DoxyCompactList}\item 
+\hyperlink{classKFVertex}{K\+F\+Vertex} \& \hyperlink{classKFParticleTopoReconstructor_a38a14f093d258640e1c6b736794c659e}{Get\+Prim\+K\+F\+Vertex} (int i\+PV=0) const \hypertarget{classKFParticleTopoReconstructor_a38a14f093d258640e1c6b736794c659e}{}\label{classKFParticleTopoReconstructor_a38a14f093d258640e1c6b736794c659e}
+
+\begin{DoxyCompactList}\small\item\em Return primary vertex candidate with index \char`\"{}i\+P\+V\char`\"{}. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \& \hyperlink{classKFParticleTopoReconstructor_a266245beee4e8992d8056fae20fb4614}{Get\+P\+V\+Track\+Index\+Array} (int i\+PV=0) const 
+\item 
+std\+::vector$<$ \hyperlink{classKFParticle}{K\+F\+Particle} $>$ const \& \hyperlink{classKFParticleTopoReconstructor_a0d4bb4c733848884708c59f9e5b3f054}{Get\+Particles} () const \hypertarget{classKFParticleTopoReconstructor_a0d4bb4c733848884708c59f9e5b3f054}{}\label{classKFParticleTopoReconstructor_a0d4bb4c733848884708c59f9e5b3f054}
+
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the vector with short-\/lived particle candidates. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_ade1dd3c36a9ff0c4b1ae350eac0d879c}{Remove\+Particle} (const int i\+Particle)\hypertarget{classKFParticleTopoReconstructor_ade1dd3c36a9ff0c4b1ae350eac0d879c}{}\label{classKFParticleTopoReconstructor_ade1dd3c36a9ff0c4b1ae350eac0d879c}
+
+\begin{DoxyCompactList}\small\item\em Logically kills the candidate for short-\/lived particle with index \char`\"{}i\+Particle\char`\"{} by setting its P\+DG hypothesis to \char`\"{}-\/1\char`\"{}. \end{DoxyCompactList}\item 
+const \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} $\ast$ \hyperlink{classKFParticleTopoReconstructor_a6d19ea0325148dbe0ee017cfce7bbbc8}{Get\+Tracks} () const \hypertarget{classKFParticleTopoReconstructor_a6d19ea0325148dbe0ee017cfce7bbbc8}{}\label{classKFParticleTopoReconstructor_a6d19ea0325148dbe0ee017cfce7bbbc8}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the arrays with tracks K\+F\+Particle\+Topo\+Reconstructor\+::f\+Tracks. \end{DoxyCompactList}\item 
+const kfvector\+\_\+float $\ast$ \hyperlink{classKFParticleTopoReconstructor_a1de8549a6166635697e4f9f9e2c3dac8}{Get\+Chi\+Prim} () const \hypertarget{classKFParticleTopoReconstructor_a1de8549a6166635697e4f9f9e2c3dac8}{}\label{classKFParticleTopoReconstructor_a1de8549a6166635697e4f9f9e2c3dac8}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the arrays with chi2-\/deviations K\+F\+Particle\+Topo\+Reconstructor\+::f\+Chi\+To\+Prim\+Vtx. \end{DoxyCompactList}\item 
+\hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} $\ast$ \hyperlink{classKFParticleTopoReconstructor_afdc38e3ac2b743b0ca27e68b8033cadc}{Get\+K\+F\+Particle\+Finder} ()\hypertarget{classKFParticleTopoReconstructor_afdc38e3ac2b743b0ca27e68b8033cadc}{}\label{classKFParticleTopoReconstructor_afdc38e3ac2b743b0ca27e68b8033cadc}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} object. \end{DoxyCompactList}\item 
+const \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} $\ast$ \hyperlink{classKFParticleTopoReconstructor_af24a8d9bf6b0ad4255ba821e3d0f3e69}{Get\+K\+F\+Particle\+Finder} () const \hypertarget{classKFParticleTopoReconstructor_af24a8d9bf6b0ad4255ba821e3d0f3e69}{}\label{classKFParticleTopoReconstructor_af24a8d9bf6b0ad4255ba821e3d0f3e69}
+
+\begin{DoxyCompactList}\small\item\em Returns a constant pointer to the \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} object. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_a9224eadff464879560bcef02432ff0fe}{Clean\+PV} ()
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a5a65991118f02da331aa69333075cbd1}{Add\+PV} (const \hyperlink{classKFVertex}{K\+F\+Vertex} \&pv, const std\+::vector$<$ int $>$ \&tracks)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_accb2af447b4a091da757e6ced058da70}{Add\+PV} (const \hyperlink{classKFVertex}{K\+F\+Vertex} \&pv)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_ac5407872313a3867ffcda0e460f706aa}{Fill\+P\+V\+Indices} ()
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a639b20e468c895fb6023eb5344582fe3}{Add\+Particle} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&particle)\hypertarget{classKFParticleTopoReconstructor_a639b20e468c895fb6023eb5344582fe3}{}\label{classKFParticleTopoReconstructor_a639b20e468c895fb6023eb5344582fe3}
+
+\begin{DoxyCompactList}\small\item\em Adds an external particle candidate to the vector. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_abe8d3eea41f265993c10b2d55748b7a4}{Add\+Candidate} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&candidate, int i\+PV=-\/1)\hypertarget{classKFParticleTopoReconstructor_abe8d3eea41f265993c10b2d55748b7a4}{}\label{classKFParticleTopoReconstructor_abe8d3eea41f265993c10b2d55748b7a4}
+
+\begin{DoxyCompactList}\small\item\em Adds an external particle candidate to the vector with primary or secondary candidates of K\+F\+Particle\+Finde. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_aa7d16732148104bc4e6fd8cb7a29908c}{Set\+Beam\+Line} (\hyperlink{classKFParticle}{K\+F\+Particle} \&p)\hypertarget{classKFParticleTopoReconstructor_aa7d16732148104bc4e6fd8cb7a29908c}{}\label{classKFParticleTopoReconstructor_aa7d16732148104bc4e6fd8cb7a29908c}
+
+\begin{DoxyCompactList}\small\item\em Sets the beam line for precise reconstruction of the primary vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_ae5019fcf167648df8c0c857bcb787253}{Save\+Input\+Particles} (std\+::string prefix=\char`\"{}K\+F\+P\+Data\char`\"{}, bool only\+Secondary=false)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a69da1d3a346d4772045d6cffe3ccc98e}{Set\+N\+Threads} (short int n)\hypertarget{classKFParticleTopoReconstructor_a69da1d3a346d4772045d6cffe3ccc98e}{}\label{classKFParticleTopoReconstructor_a69da1d3a346d4772045d6cffe3ccc98e}
+
+\begin{DoxyCompactList}\small\item\em Sets the number of threads to be run in \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder}. Currently is not used. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_a90d4aac41e9eb0c47ec0ff279a7275fb}{Set\+Chi2\+Primary\+Cut} (float chi)
+\item 
+void \hyperlink{classKFParticleTopoReconstructor_a20260f5cceb5f45a532d041f548c427c}{Get\+List\+Of\+Daughter\+Tracks} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&particle, std\+::vector$<$ int $>$ \&daughters)
+\item 
+bool \hyperlink{classKFParticleTopoReconstructor_a63af58bb4614ff7a1a72b24fd16f018d}{Particle\+Has\+Repeating\+Daughters} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&particle)
+\item 
+const \hyperlink{classKFParticleTopoReconstructor}{K\+F\+Particle\+Topo\+Reconstructor} \& \hyperlink{classKFParticleTopoReconstructor_a39b427b162c66c56ddbf0dd44b1b1cbd}{operator=} (const \hyperlink{classKFParticleTopoReconstructor}{K\+F\+Particle\+Topo\+Reconstructor} \&a)
+\item 
+\hyperlink{classKFParticleTopoReconstructor_acd1e5396b73c2dfa73a4520b806c1dd4}{K\+F\+Particle\+Topo\+Reconstructor} (const \hyperlink{classKFParticleTopoReconstructor}{K\+F\+Particle\+Topo\+Reconstructor} \&a)\hypertarget{classKFParticleTopoReconstructor_acd1e5396b73c2dfa73a4520b806c1dd4}{}\label{classKFParticleTopoReconstructor_acd1e5396b73c2dfa73a4520b806c1dd4}
+
+\begin{DoxyCompactList}\small\item\em A copy constructor. All pointers are set to zero, other members are copied. \end{DoxyCompactList}\item 
+void \hyperlink{classKFParticleTopoReconstructor_a56ffc1ca83e49eb29d8cfc67e1e79fda}{Copy\+Cuts} (const \hyperlink{classKFParticleTopoReconstructor}{K\+F\+Particle\+Topo\+Reconstructor} $\ast$topo)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for reconstruction of the full event topology including primary vertices and short-\/lived particles. 
+
+\begin{DoxyAuthor}{Author}
+I.\+Kisel, M.\+Zyzak 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class receives as an input tracks from the track finder (both at first and last hit positions) with the P\+DG hypothesis, reconstructs primary vertex candidates, divides tracks into secondary and primary, each of these groups are subdivided into positive and negative tracks, then they are sorted according to the P\+DG hypothesis, short-\/lived particles are constructed, optionally competition between different particle hypothesis is run for the constructed candidates. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{K\+F\+Particle\+Topo\+Reconstructor()}{KFParticleTopoReconstructor()}}]{\setlength{\rightskip}{0pt plus 5cm}K\+F\+Particle\+Topo\+Reconstructor\+::\+K\+F\+Particle\+Topo\+Reconstructor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a24e402c39551910122f724f02cce51b1}{}\label{classKFParticleTopoReconstructor_a24e402c39551910122f724f02cce51b1}
+The default constructor. Allocates memory for all pointers. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!````~K\+F\+Particle\+Topo\+Reconstructor@{$\sim$\+K\+F\+Particle\+Topo\+Reconstructor}}
+\index{````~K\+F\+Particle\+Topo\+Reconstructor@{$\sim$\+K\+F\+Particle\+Topo\+Reconstructor}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{$\sim$\+K\+F\+Particle\+Topo\+Reconstructor()}{~KFParticleTopoReconstructor()}}]{\setlength{\rightskip}{0pt plus 5cm}K\+F\+Particle\+Topo\+Reconstructor\+::$\sim$\+K\+F\+Particle\+Topo\+Reconstructor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a2f973f554cc76d4d0ab53f21bfc8bd02}{}\label{classKFParticleTopoReconstructor_a2f973f554cc76d4d0ab53f21bfc8bd02}
+The default destructor. Deallocates memory for all pointers if objects exist. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Add\+PV@{Add\+PV}}
+\index{Add\+PV@{Add\+PV}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Add\+P\+V(const K\+F\+Vertex \&pv, const std\+::vector$<$ int $>$ \&tracks)}{AddPV(const KFVertex &pv, const std::vector< int > &tracks)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Add\+PV (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Vertex} \&}]{pv, }
+\item[{const std\+::vector$<$ int $>$ \&}]{tracks}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a5a65991118f02da331aa69333075cbd1}{}\label{classKFParticleTopoReconstructor_a5a65991118f02da331aa69333075cbd1}
+Adds externally found primary vertex to the list together with the cluster of tracks from this vertex. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pv} & -\/ external primary vertex \\
+\hline
+\mbox{\tt in}  & {\em tracks} & -\/ vector with indices of tracks associated with the provided primary vertex.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Add\+PV@{Add\+PV}}
+\index{Add\+PV@{Add\+PV}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Add\+P\+V(const K\+F\+Vertex \&pv)}{AddPV(const KFVertex &pv)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Add\+PV (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Vertex} \&}]{pv}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_accb2af447b4a091da757e6ced058da70}{}\label{classKFParticleTopoReconstructor_accb2af447b4a091da757e6ced058da70}
+Adds externally found primary vertex to the list. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pv} & -\/ external primary vertex\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Clean\+PV@{Clean\+PV}}
+\index{Clean\+PV@{Clean\+PV}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Clean\+P\+V()}{CleanPV()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Clean\+PV (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a9224eadff464879560bcef02432ff0fe}{}\label{classKFParticleTopoReconstructor_a9224eadff464879560bcef02432ff0fe}
+Cleans vectors with primary vertex candidates and corresponding clusters by calling \hyperlink{classKFParticlePVReconstructor_a6da36a34efc1fc8eb3abb86280e52656}{K\+F\+Particle\+P\+V\+Reconstructor\+::\+Clean\+P\+V()}. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Copy\+Cuts@{Copy\+Cuts}}
+\index{Copy\+Cuts@{Copy\+Cuts}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Copy\+Cuts(const K\+F\+Particle\+Topo\+Reconstructor $\ast$topo)}{CopyCuts(const KFParticleTopoReconstructor *topo)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Copy\+Cuts (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle\+Topo\+Reconstructor} $\ast$}]{topo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a56ffc1ca83e49eb29d8cfc67e1e79fda}{}\label{classKFParticleTopoReconstructor_a56ffc1ca83e49eb29d8cfc67e1e79fda}
+Copy cuts from KF Particle Finder of another topology reconstructor object topo. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Fill\+P\+V\+Indices@{Fill\+P\+V\+Indices}}
+\index{Fill\+P\+V\+Indices@{Fill\+P\+V\+Indices}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Fill\+P\+V\+Indices()}{FillPVIndices()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Fill\+P\+V\+Indices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_ac5407872313a3867ffcda0e460f706aa}{}\label{classKFParticleTopoReconstructor_ac5407872313a3867ffcda0e460f706aa}
+Assigns index of the corresponding primary vertex to each input track according to the clusters reconstructed by \hyperlink{classKFParticlePVReconstructor}{K\+F\+Particle\+P\+V\+Reconstructor}. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Get\+List\+Of\+Daughter\+Tracks@{Get\+List\+Of\+Daughter\+Tracks}}
+\index{Get\+List\+Of\+Daughter\+Tracks@{Get\+List\+Of\+Daughter\+Tracks}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Get\+List\+Of\+Daughter\+Tracks(const K\+F\+Particle \&particle, std\+::vector$<$ int $>$ \&daughters)}{GetListOfDaughterTracks(const KFParticle &particle, std::vector< int > &daughters)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Get\+List\+Of\+Daughter\+Tracks (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle} \&}]{particle, }
+\item[{std\+::vector$<$ int $>$ \&}]{daughters}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a20260f5cceb5f45a532d041f548c427c}{}\label{classKFParticleTopoReconstructor_a20260f5cceb5f45a532d041f548c427c}
+Returns the list of indices of all tracks used for construction of the given particle including tracks from the short-\/lived daughter particles in the decay chain. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em particle} & -\/ the particle to be processed \\
+\hline
+\mbox{\tt out}  & {\em daughters} & -\/ a vector with indices of all daughter tracks\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Get\+P\+V\+Track\+Index\+Array@{Get\+P\+V\+Track\+Index\+Array}}
+\index{Get\+P\+V\+Track\+Index\+Array@{Get\+P\+V\+Track\+Index\+Array}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Get\+P\+V\+Track\+Index\+Array(int i\+P\+V=0) const }{GetPVTrackIndexArray(int iPV=0) const }}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$int$>$\& K\+F\+Particle\+Topo\+Reconstructor\+::\+Get\+P\+V\+Track\+Index\+Array (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+PV = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a266245beee4e8992d8056fae20fb4614}{}\label{classKFParticleTopoReconstructor_a266245beee4e8992d8056fae20fb4614}
+Returns vector with track indices from a cluster with index \char`\"{}i\+P\+V\char`\"{}. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Init@{Init}}
+\index{Init@{Init}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Init(std\+::vector$<$ K\+F\+Particle $>$ \&particles, std\+::vector$<$ int $>$ $\ast$pdg=nullptr, std\+::vector$<$ int $>$ $\ast$n\+Pixel\+Hits=nullptr)}{Init(std::vector< KFParticle > &particles, std::vector< int > *pdg=nullptr, std::vector< int > *nPixelHits=nullptr)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Init (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{particles, }
+\item[{std\+::vector$<$ int $>$ $\ast$}]{pdg = {\ttfamily nullptr}, }
+\item[{std\+::vector$<$ int $>$ $\ast$}]{n\+Pixel\+Hits = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_abc388e4cf29cea13f63745a82a875dfc}{}\label{classKFParticleTopoReconstructor_abc388e4cf29cea13f63745a82a875dfc}
+Copies provided particles to the vector K\+F\+Particle\+Topo\+Reconstructor\+::f\+Tracks assuming a given P\+DG hypothesis for each particle. If pointer to pdg-\/vector is not provided \char`\"{}-\/1\char`\"{} P\+DG is assigned to each input particle. If pointer to number of precise measurements is provided then this field of \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} is also initialised. Only tracks at the first hit position are initialised by this method. The K\+F\+Particle\+Topo\+Reconstructor\+::f\+K\+F\+Particle\+P\+V\+Reconstructor is initialised with the copied tracks. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em particles} & -\/ vector with input particles (tracks) \\
+\hline
+\mbox{\tt in}  & {\em pdg} & -\/ pointer to the vector with P\+DG hypothesis for each track, if pointer is not provided \char`\"{}-\/1\char`\"{} is set as the pdg hypothesis for all tracks \\
+\hline
+\mbox{\tt in}  & {\em n\+Pixel\+Hits} & -\/ pointer to the vector with number of precise measurement in each track \\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Init@{Init}}
+\index{Init@{Init}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Init(const K\+F\+P\+Track\+Vector $\ast$particles, const std\+::vector$<$ K\+F\+Particle $>$ \&pv)}{Init(const KFPTrackVector *particles, const std::vector< KFParticle > &pv)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Init (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+P\+Track\+Vector} $\ast$}]{particles, }
+\item[{const std\+::vector$<$ {\bf K\+F\+Particle} $>$ \&}]{pv}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_ac9ee99b3d846234ef05b11d018e88af4}{}\label{classKFParticleTopoReconstructor_ac9ee99b3d846234ef05b11d018e88af4}
+Initialises the pointer K\+F\+Particle\+Topo\+Reconstructor\+::f\+Tracks with the external pointer \char`\"{}particles\char`\"{}. Primary vertices are assumed to be found and are also provided externally. Only reconstruction of short-\/lived particles should be run if this initialisation method is used. After reconstruction of short-\/lived particles the \hyperlink{classKFParticleTopoReconstructor_a91e48b54c89a67bf20127b1c1c067554}{K\+F\+Particle\+Topo\+Reconstructor\+::\+De\+Init()} method should be called, otherwise an external memory will be released that can lead to the memory corruption and segmentation fault. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em particles} & -\/ pointer to the external vectors with input tracks \\
+\hline
+\mbox{\tt in}  & {\em pv} & -\/ vector with externally reconstructed primary vertex candidates \\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Init@{Init}}
+\index{Init@{Init}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Init(\+K\+F\+P\+Track\+Vector \&tracks, K\+F\+P\+Track\+Vector \&tracks\+At\+Last\+Point)}{Init(KFPTrackVector &tracks, KFPTrackVector &tracksAtLastPoint)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+P\+Track\+Vector} \&}]{tracks, }
+\item[{{\bf K\+F\+P\+Track\+Vector} \&}]{tracks\+At\+Last\+Point}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a927089e1d033d468ed0c2136ca417881}{}\label{classKFParticleTopoReconstructor_a927089e1d033d468ed0c2136ca417881}
+Initialises tracks at the first and last hit positions. The K\+F\+Particle\+Topo\+Reconstructor\+::f\+K\+F\+Particle\+P\+V\+Reconstructor is initialised with the copied tracks at the first hit position. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em tracks} & -\/ vector with the tracks at the first hit position \\
+\hline
+\mbox{\tt in}  & {\em tracks\+At\+Last\+Point} & -\/ vector with the tracks at the last hit position \\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!operator=@{operator=}}
+\index{operator=@{operator=}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{operator=(const K\+F\+Particle\+Topo\+Reconstructor \&a)}{operator=(const KFParticleTopoReconstructor &a)}}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf K\+F\+Particle\+Topo\+Reconstructor}\& K\+F\+Particle\+Topo\+Reconstructor\+::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle\+Topo\+Reconstructor} \&}]{a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a39b427b162c66c56ddbf0dd44b1b1cbd}{}\label{classKFParticleTopoReconstructor_a39b427b162c66c56ddbf0dd44b1b1cbd}
+Copy operator. All pointers are set to zero, other members are copied. Returns the current object after copying is finished. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Particle\+Has\+Repeating\+Daughters@{Particle\+Has\+Repeating\+Daughters}}
+\index{Particle\+Has\+Repeating\+Daughters@{Particle\+Has\+Repeating\+Daughters}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Particle\+Has\+Repeating\+Daughters(const K\+F\+Particle \&particle)}{ParticleHasRepeatingDaughters(const KFParticle &particle)}}]{\setlength{\rightskip}{0pt plus 5cm}bool K\+F\+Particle\+Topo\+Reconstructor\+::\+Particle\+Has\+Repeating\+Daughters (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle} \&}]{particle}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a63af58bb4614ff7a1a72b24fd16f018d}{}\label{classKFParticleTopoReconstructor_a63af58bb4614ff7a1a72b24fd16f018d}
+Checks if the provided particle candidate has two or more daughter tracks with the same index including tracks from the daughter particles in the decay chains. Such candidates should be rejected.\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Reconstruct\+Particles@{Reconstruct\+Particles}}
+\index{Reconstruct\+Particles@{Reconstruct\+Particles}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Reconstruct\+Particles()}{ReconstructParticles()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Reconstruct\+Particles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a3013eefd4e16b74ae39c531678623d08}{}\label{classKFParticleTopoReconstructor_a3013eefd4e16b74ae39c531678623d08}
+Runs reconstruction of the short-\/lived particles by \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder}. At first, primary tracks are transported to the D\+CA point with the corresponding primary vertices for better precision, chi2-\/deviation of the secondary tracks to the primary vertex is calculated, and than \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder} is run. Optionally cleanup of the output array of particle candidates can be run.\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Reconstruct\+Prim\+Vertex@{Reconstruct\+Prim\+Vertex}}
+\index{Reconstruct\+Prim\+Vertex@{Reconstruct\+Prim\+Vertex}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Reconstruct\+Prim\+Vertex(bool is\+Heavy\+System=true)}{ReconstructPrimVertex(bool isHeavySystem=true)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Reconstruct\+Prim\+Vertex (
+\begin{DoxyParamCaption}
+\item[{bool}]{is\+Heavy\+System = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a7ea70e983164efab0ccbfca2c12c03af}{}\label{classKFParticleTopoReconstructor_a7ea70e983164efab0ccbfca2c12c03af}
+Runs reconstruction of primary vertices. If \char`\"{}is\+Heavy\+System\char`\"{} is defined -\/ only the best vertex with the maximum number of tracks-\/contributors is stored.\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Save\+Input\+Particles@{Save\+Input\+Particles}}
+\index{Save\+Input\+Particles@{Save\+Input\+Particles}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Save\+Input\+Particles(std\+::string prefix=""K\+F\+P\+Data"", bool only\+Secondary=false)}{SaveInputParticles(std::string prefix="KFPData", bool onlySecondary=false)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Save\+Input\+Particles (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{prefix = {\ttfamily \char`\"{}KFPData\char`\"{}}, }
+\item[{bool}]{only\+Secondary = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_ae5019fcf167648df8c0c857bcb787253}{}\label{classKFParticleTopoReconstructor_ae5019fcf167648df8c0c857bcb787253}
+Stores input tracks to the output file. If the \char`\"{}only\+Secondary\char`\"{} flag is set, only secondary particles are stored. As an input function takes the full path to the folder, where output files should be stored. For each event a corresponding file will be created in the provided folder. The name of the file is \char`\"{}event\#\+\_\+\+K\+F\+P\+Tracks.\+data\char`\"{}, where \char`\"{}\#\char`\"{} is the number of the event. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em prefix} & -\/ path to the output folder \\
+\hline
+\mbox{\tt in}  & {\em only\+Secondary} & -\/ flag shows if only secondary tracks should be stored\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Select\+Particle\+Candidates@{Select\+Particle\+Candidates}}
+\index{Select\+Particle\+Candidates@{Select\+Particle\+Candidates}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Select\+Particle\+Candidates()}{SelectParticleCandidates()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Select\+Particle\+Candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_ab6e474eb923fc715a9bfba891436de48}{}\label{classKFParticleTopoReconstructor_ab6e474eb923fc715a9bfba891436de48}
+Cleans reconstructed short-\/lived particles\+: ~\newline
+1) primary K0, Lambda, anti-\/\+Lambda, gamma, hypernuclei are selected; ~\newline
+2) competition between candidates defined by the K\+F\+Particle\+Topo\+Reconstructor\+::\+Use\+Particle\+In\+Competition is run; ~\newline
+3) dielectron spectrum is cleaned from gamma-\/electrons; ~\newline
+4) in the dielectron spectrum for low mass vector mesons only those candidates are left, which have both daughters identified as electrons.\index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Set\+Chi2\+Primary\+Cut@{Set\+Chi2\+Primary\+Cut}}
+\index{Set\+Chi2\+Primary\+Cut@{Set\+Chi2\+Primary\+Cut}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Set\+Chi2\+Primary\+Cut(float chi)}{SetChi2PrimaryCut(float chi)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Set\+Chi2\+Primary\+Cut (
+\begin{DoxyParamCaption}
+\item[{float}]{chi}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleTopoReconstructor_a90d4aac41e9eb0c47ec0ff279a7275fb}{}\label{classKFParticleTopoReconstructor_a90d4aac41e9eb0c47ec0ff279a7275fb}
+Sets the same chi-\/primary cut to the primary vertex finder and KF Particle Finder. \index{K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}!Sort\+Tracks@{Sort\+Tracks}}
+\index{Sort\+Tracks@{Sort\+Tracks}!K\+F\+Particle\+Topo\+Reconstructor@{K\+F\+Particle\+Topo\+Reconstructor}}
+\subsubsection[{\texorpdfstring{Sort\+Tracks()}{SortTracks()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Topo\+Reconstructor\+::\+Sort\+Tracks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleTopoReconstructor_a35f6755e97c39e1e00373272d1546f36}{}\label{classKFParticleTopoReconstructor_a35f6755e97c39e1e00373272d1546f36}
+Sorts input tracks according to they charge, relation to the primary vertex candidates, P\+DG hypothesis. The tracks after sorting are divided into several groups\+: ~\newline
+0) secondary positive at the first hit position; ~\newline
+1) secondary negative at the first hit position; ~\newline
+2) primary positive at the first hit position; ~\newline
+3) primary negative at the first hit position; ~\newline
+4) secondary positive at the last hit position; ~\newline
+5) secondary negative at the last hit position; ~\newline
+6) primary positive at the last hit position; ~\newline
+7) primary negative at the last hit position. ~\newline
+In each group they are sorted according to P\+DG\+: electrons, muons, pions, tracks without P\+ID, kaons, protons, deuterons, tritons, He3, He4.
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Topo\+Reconstructor.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Topo\+Reconstructor.\+cxx\end{DoxyCompactItemize}

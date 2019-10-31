@@ -1,0 +1,149 @@
+\hypertarget{classKFParticleDatabase}{}\section{K\+F\+Particle\+Database Class Reference}
+\label{classKFParticleDatabase}\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+
+
+The class stores information about particle masses and expected width of the peacks.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+Particle\+Database.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFParticleDatabase_a8c1b936fcb4465f754423ebf556c6d65}{K\+F\+Particle\+Database} ()
+\item 
+float \hyperlink{classKFParticleDatabase_ad076360075bd9ca1005ffed61c21b965}{Get\+Mass} (const int pdg) const 
+\item 
+Vc\+::float\+\_\+v \hyperlink{classKFParticleDatabase_ac5e206b7ca000c6df19430e0b8b809f3}{Get\+Mass} (const Vc\+::int\+\_\+v \&pdg) const 
+\item 
+void \hyperlink{classKFParticleDatabase_a9e1214555186addad65e0ab8d375b848}{Get\+Mother\+Mass} (const Vc\+::int\+\_\+v \&pdg, Vc\+::float\+\_\+v \&mass\+Mother\+P\+DG, Vc\+::float\+\_\+v \&mass\+Mother\+P\+D\+G\+Sigma) const 
+\item 
+void \hyperlink{classKFParticleDatabase_a616e1c88309bdbf22a8f2aa741c0e46f}{Get\+Mother\+Mass} (const int pdg, float \&mass\+Mother\+P\+DG, float \&mass\+Mother\+P\+D\+G\+Sigma) const 
+\item 
+const float \& \hyperlink{classKFParticleDatabase_a37ea7921fc514b258434a0daee63db6b}{Get\+Pi0\+Mass} () const \hypertarget{classKFParticleDatabase_a37ea7921fc514b258434a0daee63db6b}{}\label{classKFParticleDatabase_a37ea7921fc514b258434a0daee63db6b}
+
+\begin{DoxyCompactList}\small\item\em Returns the table P\+DG pi0 mass. \end{DoxyCompactList}\item 
+const float \& \hyperlink{classKFParticleDatabase_aa30d84266753cc8c6d72c03f02633de3}{Get\+Pi0\+Mass\+Sigma} () const \hypertarget{classKFParticleDatabase_aa30d84266753cc8c6d72c03f02633de3}{}\label{classKFParticleDatabase_aa30d84266753cc8c6d72c03f02633de3}
+
+\begin{DoxyCompactList}\small\item\em Returns expected width of the pi0 peak. \end{DoxyCompactList}\item 
+const float \& \hyperlink{classKFParticleDatabase_ab4e7d6f4bab1e629227e941b2e7e699f}{Get\+D0\+Mass} () const \hypertarget{classKFParticleDatabase_ab4e7d6f4bab1e629227e941b2e7e699f}{}\label{classKFParticleDatabase_ab4e7d6f4bab1e629227e941b2e7e699f}
+
+\begin{DoxyCompactList}\small\item\em Returns the table P\+DG D0 mass. \end{DoxyCompactList}\item 
+const float \& \hyperlink{classKFParticleDatabase_a9fb81196912ba3fb09133cbdf9551e54}{Get\+D0\+Mass\+Sigma} () const \hypertarget{classKFParticleDatabase_a9fb81196912ba3fb09133cbdf9551e54}{}\label{classKFParticleDatabase_a9fb81196912ba3fb09133cbdf9551e54}
+
+\begin{DoxyCompactList}\small\item\em Returns expected width of the D0 peak. \end{DoxyCompactList}\item 
+const float \& \hyperlink{classKFParticleDatabase_a2d023c1352c0a06275416334fdc64ffa}{Get\+D\+Plus\+Mass} () const \hypertarget{classKFParticleDatabase_a2d023c1352c0a06275416334fdc64ffa}{}\label{classKFParticleDatabase_a2d023c1352c0a06275416334fdc64ffa}
+
+\begin{DoxyCompactList}\small\item\em Returns the table P\+DG D+ mass. \end{DoxyCompactList}\item 
+const float \& \hyperlink{classKFParticleDatabase_a00ae02168b1ab26073cae77db74cfeec}{Get\+D\+Plus\+Mass\+Sigma} () const \hypertarget{classKFParticleDatabase_a00ae02168b1ab26073cae77db74cfeec}{}\label{classKFParticleDatabase_a00ae02168b1ab26073cae77db74cfeec}
+
+\begin{DoxyCompactList}\small\item\em Returns expected width of the D+ peak. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const \hyperlink{classKFParticleDatabase}{K\+F\+Particle\+Database} $\ast$ \hyperlink{classKFParticleDatabase_aa87302fc83afb56bae497e764c65dd8c}{Instance} ()\hypertarget{classKFParticleDatabase_aa87302fc83afb56bae497e764c65dd8c}{}\label{classKFParticleDatabase_aa87302fc83afb56bae497e764c65dd8c}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the singleton object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class stores information about particle masses and expected width of the peacks. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class contains information required for the reconstruction of decay trees\+: ~\newline
+
+\begin{DoxyItemize}
+\item masses of the stable particles; ~\newline
+
+\item masses of the intermediate daughter particles (like Lambda, K0, Xi, D0, etc.);~\newline
+
+\item expected widths of the peaks. 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}!K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}!K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+\subsubsection[{\texorpdfstring{K\+F\+Particle\+Database()}{KFParticleDatabase()}}]{\setlength{\rightskip}{0pt plus 5cm}K\+F\+Particle\+Database\+::\+K\+F\+Particle\+Database (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFParticleDatabase_a8c1b936fcb4465f754423ebf556c6d65}{}\label{classKFParticleDatabase_a8c1b936fcb4465f754423ebf556c6d65}
+The default constructor. Initialises masses and widths of the peaks. Be aware, that widths of the peaks are experiment specific.
+
+\subsection{Member Function Documentation}
+\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}!Get\+Mass@{Get\+Mass}}
+\index{Get\+Mass@{Get\+Mass}!K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+\subsubsection[{\texorpdfstring{Get\+Mass(const int pdg) const }{GetMass(const int pdg) const }}]{\setlength{\rightskip}{0pt plus 5cm}float K\+F\+Particle\+Database\+::\+Get\+Mass (
+\begin{DoxyParamCaption}
+\item[{const int}]{pdg}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleDatabase_ad076360075bd9ca1005ffed61c21b965}{}\label{classKFParticleDatabase_ad076360075bd9ca1005ffed61c21b965}
+Returns scalar float variable with the mass of the stable particle with the given P\+DG code. If the given P\+DG code is not the list of the current database mass of the pion is returned. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pdg} & -\/ the input P\+DG code\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}!Get\+Mass@{Get\+Mass}}
+\index{Get\+Mass@{Get\+Mass}!K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+\subsubsection[{\texorpdfstring{Get\+Mass(const Vc\+::int\+\_\+v \&pdg) const }{GetMass(const Vc::int_v &pdg) const }}]{\setlength{\rightskip}{0pt plus 5cm}Vc\+::float\+\_\+v K\+F\+Particle\+Database\+::\+Get\+Mass (
+\begin{DoxyParamCaption}
+\item[{const Vc\+::int\+\_\+v \&}]{pdg}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleDatabase_ac5e206b7ca000c6df19430e0b8b809f3}{}\label{classKFParticleDatabase_ac5e206b7ca000c6df19430e0b8b809f3}
+Returns vector float variable with the mass of the stable particles with the given P\+DG codes. If the given P\+DG code is not in the list of the current database mass of the pion is returned. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pdg} & -\/ the input P\+DG codes of a set of particles in the S\+I\+M\+D-\/vector format\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}!Get\+Mother\+Mass@{Get\+Mother\+Mass}}
+\index{Get\+Mother\+Mass@{Get\+Mother\+Mass}!K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+\subsubsection[{\texorpdfstring{Get\+Mother\+Mass(const Vc\+::int\+\_\+v \&pdg, Vc\+::float\+\_\+v \&mass\+Mother\+P\+D\+G, Vc\+::float\+\_\+v \&mass\+Mother\+P\+D\+G\+Sigma) const }{GetMotherMass(const Vc::int_v &pdg, Vc::float_v &massMotherPDG, Vc::float_v &massMotherPDGSigma) const }}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Database\+::\+Get\+Mother\+Mass (
+\begin{DoxyParamCaption}
+\item[{const Vc\+::int\+\_\+v \&}]{pdg, }
+\item[{Vc\+::float\+\_\+v \&}]{mass\+Mother\+P\+DG, }
+\item[{Vc\+::float\+\_\+v \&}]{mass\+Mother\+P\+D\+G\+Sigma}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleDatabase_a9e1214555186addad65e0ab8d375b848}{}\label{classKFParticleDatabase_a9e1214555186addad65e0ab8d375b848}
+Returns vector float variable with the mass of the short-\/lived particles with the given P\+DG codes and the expected widths of the corresponding peaks. If the given P\+DG code is not in the list of the current database mass of K0s is returned. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pdg} & -\/ the input P\+DG code \\
+\hline
+\mbox{\tt out}  & {\em mass\+Mother\+P\+DG} & -\/ the output table mass for the given P\+DG code \\
+\hline
+\mbox{\tt out}  & {\em mass\+Mother\+P\+D\+G\+Sigma} & -\/ expected width of the corresponding peak\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Particle\+Database@{K\+F\+Particle\+Database}!Get\+Mother\+Mass@{Get\+Mother\+Mass}}
+\index{Get\+Mother\+Mass@{Get\+Mother\+Mass}!K\+F\+Particle\+Database@{K\+F\+Particle\+Database}}
+\subsubsection[{\texorpdfstring{Get\+Mother\+Mass(const int pdg, float \&mass\+Mother\+P\+D\+G, float \&mass\+Mother\+P\+D\+G\+Sigma) const }{GetMotherMass(const int pdg, float &massMotherPDG, float &massMotherPDGSigma) const }}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Database\+::\+Get\+Mother\+Mass (
+\begin{DoxyParamCaption}
+\item[{const int}]{pdg, }
+\item[{float \&}]{mass\+Mother\+P\+DG, }
+\item[{float \&}]{mass\+Mother\+P\+D\+G\+Sigma}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleDatabase_a616e1c88309bdbf22a8f2aa741c0e46f}{}\label{classKFParticleDatabase_a616e1c88309bdbf22a8f2aa741c0e46f}
+Returns scalar float variables with the mass of the short-\/lived particle with the given P\+DG code and the expected width of the corresponding peak. If the given P\+DG code is not in the list of the current database mass of K0s is returned. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em pdg} & -\/ the input P\+DG code \\
+\hline
+\mbox{\tt out}  & {\em mass\+Mother\+P\+DG} & -\/ the output table mass for the given P\+DG code \\
+\hline
+\mbox{\tt out}  & {\em mass\+Mother\+P\+D\+G\+Sigma} & -\/ expected width of the corresponding peak\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Database.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Database.\+cxx\end{DoxyCompactItemize}

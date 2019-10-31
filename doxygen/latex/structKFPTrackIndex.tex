@@ -1,0 +1,62 @@
+\hypertarget{structKFPTrackIndex}{}\section{K\+F\+P\+Track\+Index Class Reference}
+\label{structKFPTrackIndex}\index{K\+F\+P\+Track\+Index@{K\+F\+P\+Track\+Index}}
+
+
+Helper structure to sort tracks in the \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} object.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+P\+Input\+Data.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{structKFPTrackIndex_a27f641de5d6c9b447d79d32400896eb0}{Compare} (const \hyperlink{structKFPTrackIndex}{K\+F\+P\+Track\+Index} \&a, const \hyperlink{structKFPTrackIndex}{K\+F\+P\+Track\+Index} \&b)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structKFPTrackIndex_a3a3b345e3b879e7c9f243fd64022c0e5}{f\+Index}\hypertarget{structKFPTrackIndex_a3a3b345e3b879e7c9f243fd64022c0e5}{}\label{structKFPTrackIndex_a3a3b345e3b879e7c9f243fd64022c0e5}
+
+\begin{DoxyCompactList}\small\item\em index of the track in the \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} object. \end{DoxyCompactList}\item 
+int \hyperlink{structKFPTrackIndex_a8dd317da45950cafb4733d5fbacddb8f}{f\+Pdg}\hypertarget{structKFPTrackIndex_a8dd317da45950cafb4733d5fbacddb8f}{}\label{structKFPTrackIndex_a8dd317da45950cafb4733d5fbacddb8f}
+
+\begin{DoxyCompactList}\small\item\em P\+DG hypothesis of the track. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper structure to sort tracks in the \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} object. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The structure is used in the \hyperlink{classKFParticleTopoReconstructor_a35f6755e97c39e1e00373272d1546f36}{K\+F\+Particle\+Topo\+Reconstructor\+::\+Sort\+Tracks()} function. Tracks are sorted according to their pdg hypothesis\+: electrons, muons, pions, tracks without pdg (-\/1), kaons, protons, deuterons, tritons, He3, He4. Teh structure contains pdg hypothesis of the track and its index in the \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} object. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+P\+Track\+Index@{K\+F\+P\+Track\+Index}!Compare@{Compare}}
+\index{Compare@{Compare}!K\+F\+P\+Track\+Index@{K\+F\+P\+Track\+Index}}
+\subsubsection[{\texorpdfstring{Compare(const K\+F\+P\+Track\+Index \&a, const K\+F\+P\+Track\+Index \&b)}{Compare(const KFPTrackIndex &a, const KFPTrackIndex &b)}}]{\setlength{\rightskip}{0pt plus 5cm}static bool K\+F\+P\+Track\+Index\+::\+Compare (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+P\+Track\+Index} \&}]{a, }
+\item[{const {\bf K\+F\+P\+Track\+Index} \&}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{structKFPTrackIndex_a27f641de5d6c9b447d79d32400896eb0}{}\label{structKFPTrackIndex_a27f641de5d6c9b447d79d32400896eb0}
+Static sorting function for comparison of the two input objects of class \hyperlink{structKFPTrackIndex}{K\+F\+P\+Track\+Index}. Objects are sorted according to the P\+DG hypothesis\+: electrons, muons, pions, tracks without pdg (-\/1), kaons, protons, deuterons, tritons, He3, He4. Return \char`\"{}true\char`\"{} if a.\+f\+Pdg $<$ b.\+f\+Pdg, otherwise returns \char`\"{}false\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & -\/ first object \\
+\hline
+\mbox{\tt in}  & {\em b} & -\/ second object\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+P\+Input\+Data.\+h\end{DoxyCompactItemize}

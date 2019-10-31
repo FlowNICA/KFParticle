@@ -58,8 +58,19 @@ void InputContainer::AddTrack(float x, float y, float z,
 
 KFParticleTopoReconstructor* InputContainer::CreateTopoReconstructor()
 {
+  /*
+   * Creates the pointer on the KFParticleTopoReconstructor object
+   * with all necessary input information in order to perform particle selection using
+   * non-simplified "standard" KFParticle algorithm. 
+   */
   auto* TR = new KFParticleTopoReconstructor;
-  TR->SetChi2PrimaryCut( InversedChi2Prob(0.0001, 2) );
+  
+  // cuts setting
+  TR -> GetKFParticleFinder() -> SetChiPrimaryCut2D(cuts_.GetCutChi2PrimPos());
+  TR -> GetKFParticleFinder() -> SetMaxDistanceBetweenParticlesCut(cuts_.GetCutDistance());
+  TR -> GetKFParticleFinder() -> SetChi2Cut2D(cuts_.GetCutChi2Geo());
+  TR -> GetKFParticleFinder() -> SetLCut(cuts_.GetCutLDown());
+  TR -> GetKFParticleFinder() -> SetLdLCut2D(cuts_.GetCutLdL());
     
   KFPTrackVector track_tmp, track_empty;
   track_tmp.Resize(tracks_.size());
@@ -85,10 +96,14 @@ KFParticleTopoReconstructor* InputContainer::CreateTopoReconstructor()
 
 SimpleFinder InputContainer::CreateSimpleFinder()
 {
+  /*
+   * Creates the SimpleFinder object with all necessary input information in oreder to
+   * perform particle selection using KFSimple algorithm.
+   */
+    
   SimpleFinder FCF;
 
   KFPTrackVector track_tmp;
-  
   track_tmp.Resize(tracks_.size());
   
   for(int iTr=0; iTr<tracks_.size(); iTr++)

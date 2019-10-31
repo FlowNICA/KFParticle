@@ -36,19 +36,19 @@ class CutsContainer
   void  CancelCuts();     ///< Sets cuts very large (very small) in order to select all the candidates (reject none of them)
   
   //  lambda candidate parameters getters
-  const float GetCutChi2PrimPos() const {return cut_chi2_prim_pos_;};
-  const float GetCutChi2PrimNeg() const {return cut_chi2_prim_neg_;};
-  const float GetCutDistance() const {return cut_distance_;};
-  const float GetCutCosineDaughterPos() const {return cut_cosine_daughter_pos_;};
-  const float GetCutCosineDaughterNeg() const {return cut_cosine_daughter_neg_;};
-  const float GetCutChi2Geo() const {return cut_chi2_geo_;};
-  const float GetCutLUp() const {return cut_l_up_;};
-  const float GetCutLDown() const {return cut_l_down_;};
-  const float GetCutLdL() const {return cut_ldl_;};
-  const int   GetCutIsFromPV() const {return cut_is_from_pv_;};
-  const float GetCutCosineTopo() const {return cut_cosine_topo_;};
-  const float GetCutSigmaMassRatio() const {return cut_sigma_mass_ratio_;};
-  const float GetCutChi2Topo() const {return cut_chi2_topo_;};
+  float GetCutChi2PrimPos() const {return cut_chi2_prim_pos_;};
+  float GetCutChi2PrimNeg() const {return cut_chi2_prim_neg_;};
+  float GetCutDistance() const {return cut_distance_;};
+  float GetCutCosineDaughterPos() const {return cut_cosine_daughter_pos_;};
+  float GetCutCosineDaughterNeg() const {return cut_cosine_daughter_neg_;};
+  float GetCutChi2Geo() const {return cut_chi2_geo_;};
+  float GetCutLUp() const {return cut_l_up_;};
+  float GetCutLDown() const {return cut_l_down_;};
+  float GetCutLdL() const {return cut_ldl_;};
+  int   GetCutIsFromPV() const {return cut_is_from_pv_;};
+  float GetCutCosineTopo() const {return cut_cosine_topo_;};
+  float GetCutSigmaMassRatio() const {return cut_sigma_mass_ratio_;};
+  float GetCutChi2Topo() const {return cut_chi2_topo_;};
 
  protected:
    

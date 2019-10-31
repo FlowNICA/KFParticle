@@ -1,0 +1,47 @@
+\hypertarget{structParticleInfo}{}\section{Particle\+Info Class Reference}
+\label{structParticleInfo}\index{Particle\+Info@{Particle\+Info}}
+
+
+Helper structure to clean particle spectra by competition of P\+DG hypothesis.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structParticleInfo_a7cd2f8ebf8a81acf75abbb185542ca90}{Particle\+Info} (int index, float mass\+Distance)\hypertarget{structParticleInfo_a7cd2f8ebf8a81acf75abbb185542ca90}{}\label{structParticleInfo_a7cd2f8ebf8a81acf75abbb185542ca90}
+
+\begin{DoxyCompactList}\small\item\em Constructor with all parameters initialised by user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{structParticleInfo_ac6b16e53301a12af77466c927e13f703}{compare} (const \hyperlink{structParticleInfo}{Particle\+Info} \&a, const \hyperlink{structParticleInfo}{Particle\+Info} \&b)\hypertarget{structParticleInfo_ac6b16e53301a12af77466c927e13f703}{}\label{structParticleInfo_ac6b16e53301a12af77466c927e13f703}
+
+\begin{DoxyCompactList}\small\item\em Sorting function, returns true if the mass difference of \char`\"{}a\char`\"{} is smaller then of \char`\"{}b\char`\"{}. The array is sorted according to the smallest difference. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structParticleInfo_ad769e2f55c7c497f18006bd9789d66bd}{f\+Particle\+Index}\hypertarget{structParticleInfo_ad769e2f55c7c497f18006bd9789d66bd}{}\label{structParticleInfo_ad769e2f55c7c497f18006bd9789d66bd}
+
+\begin{DoxyCompactList}\small\item\em Index in the array of the particle candidates. \end{DoxyCompactList}\item 
+float \hyperlink{structParticleInfo_af54646ed2dd661f250c556d41769e3c9}{f\+Mass\+Distance}\hypertarget{structParticleInfo_af54646ed2dd661f250c556d41769e3c9}{}\label{structParticleInfo_af54646ed2dd661f250c556d41769e3c9}
+
+\begin{DoxyCompactList}\small\item\em difference between the mass of the candidate and the table mass normalised to the width of the peak. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Helper structure to clean particle spectra by competition of P\+DG hypothesis. 
+
+\begin{DoxyAuthor}{Author}
+I.\+Kisel, M.\+Zyzak 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The structure contains index of the particle and difference in sigmas between the mass of the particle candidate and the table mass of the corresponding P\+DG hypothesis. Is used to sort the array with particle candidates according to the smallest difference. Then only the best candidate is stored. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Topo\+Reconstructor.\+cxx\end{DoxyCompactItemize}

@@ -1,0 +1,148 @@
+\hypertarget{classKFVertex}{}\section{K\+F\+Vertex Class Reference}
+\label{classKFVertex}\index{K\+F\+Vertex@{K\+F\+Vertex}}
+
+
+Mathematics for reconstruction of primary vertices based on \hyperlink{classKFParticle}{K\+F\+Particle}.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+Vertex.\+h$>$}
+
+
+
+Inheritance diagram for K\+F\+Vertex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classKFVertex__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+F\+Vertex\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=165pt]{classKFVertex__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFVertex_ab591c46e3f20b9f4c1d39207d7127e59}{K\+F\+Vertex} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&particle)\hypertarget{classKFVertex_ab591c46e3f20b9f4c1d39207d7127e59}{}\label{classKFVertex_ab591c46e3f20b9f4c1d39207d7127e59}
+
+\begin{DoxyCompactList}\small\item\em Vertex is constructed from the current position of a given particle. \end{DoxyCompactList}\item 
+\hyperlink{classKFVertex_add291171f94e133f9a197659d395eb7b}{K\+F\+Vertex} (const \hyperlink{classKFPVertex}{K\+F\+P\+Vertex} \&vertex)
+\item 
+Int\+\_\+t \hyperlink{classKFVertex_a0a51761dbb09cf89357b1a19cf2df139}{Get\+N\+Contributors} () const \hypertarget{classKFVertex_a0a51761dbb09cf89357b1a19cf2df139}{}\label{classKFVertex_a0a51761dbb09cf89357b1a19cf2df139}
+
+\begin{DoxyCompactList}\small\item\em Returns number of particles used for construction of the vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classKFVertex_a33c09d3c2321086ff9564199425d0918}{operator+=} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&Daughter)\hypertarget{classKFVertex_a33c09d3c2321086ff9564199425d0918}{}\label{classKFVertex_a33c09d3c2321086ff9564199425d0918}
+
+\begin{DoxyCompactList}\small\item\em Adds particle to a vertex. \end{DoxyCompactList}\item 
+\hyperlink{classKFVertex}{K\+F\+Vertex} \hyperlink{classKFVertex_aa7bf314d94f6d9b5ba7a734bd0e7db1c}{operator-\/} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&Daughter) const \hypertarget{classKFVertex_aa7bf314d94f6d9b5ba7a734bd0e7db1c}{}\label{classKFVertex_aa7bf314d94f6d9b5ba7a734bd0e7db1c}
+
+\begin{DoxyCompactList}\small\item\em Subtracts particle from a vertex, returns temporary object. Initial vertex stays untouched. \end{DoxyCompactList}\item 
+void \hyperlink{classKFVertex_aa196e7fe7d77847e7684e26d158bc16c}{operator-\/=} (const \hyperlink{classKFParticle}{K\+F\+Particle} \&Daughter)\hypertarget{classKFVertex_aa196e7fe7d77847e7684e26d158bc16c}{}\label{classKFVertex_aa196e7fe7d77847e7684e26d158bc16c}
+
+\begin{DoxyCompactList}\small\item\em Subtracts particle from a current vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classKFVertex_a7b38221467e21270dd68cc3d7928393c}{Set\+Beam\+Constraint} (float \hyperlink{classKFParticleBase_af624ef17e57f675476a2a0e597ce2983}{X}, float \hyperlink{classKFParticleBase_ad7d7e1a209955c43efac37d6136ac406}{Y}, float \hyperlink{classKFParticleBase_a96e631c939d83ff67c82701ed8255200}{Z}, float ErrX, float ErrY, float ErrZ)
+\item 
+void \hyperlink{classKFVertex_a5e50ebe906e13c95e6bde55668a35565}{Set\+Beam\+Constraint\+Off} ()
+\item 
+void \hyperlink{classKFVertex_a0398208d64532d964a2c6c4c061c349c}{Construct\+Primary\+Vertex} (const \hyperlink{classKFParticle}{K\+F\+Particle} $\ast$v\+Daughters\mbox{[}$\,$\mbox{]}, int n\+Daughters, Bool\+\_\+t vtx\+Flag\mbox{[}$\,$\mbox{]}, float Chi\+Cut=3.\+5)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Bool\+\_\+t \hyperlink{classKFVertex_a5da11170d128a3adf9a0f2f672694b9e}{f\+Is\+Constrained}\hypertarget{classKFVertex_a5da11170d128a3adf9a0f2f672694b9e}{}\label{classKFVertex_a5da11170d128a3adf9a0f2f672694b9e}
+
+\begin{DoxyCompactList}\small\item\em Flag showing if the the beam constraint is set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Mathematics for reconstruction of primary vertices based on \hyperlink{classKFParticle}{K\+F\+Particle}. 
+
+\begin{DoxyAuthor}{Author}
+S.\+Gorbunov, I.\+Kisel, M.\+Zyzak 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class is inherited from \hyperlink{classKFParticle}{K\+F\+Particle}, adds functionality for reconstruction of primary vertices. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{K\+F\+Vertex@{K\+F\+Vertex}!K\+F\+Vertex@{K\+F\+Vertex}}
+\index{K\+F\+Vertex@{K\+F\+Vertex}!K\+F\+Vertex@{K\+F\+Vertex}}
+\subsubsection[{\texorpdfstring{K\+F\+Vertex(const K\+F\+P\+Vertex \&vertex)}{KFVertex(const KFPVertex &vertex)}}]{\setlength{\rightskip}{0pt plus 5cm}K\+F\+Vertex\+::\+K\+F\+Vertex (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+P\+Vertex} \&}]{vertex}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFVertex_add291171f94e133f9a197659d395eb7b}{}\label{classKFVertex_add291171f94e133f9a197659d395eb7b}
+Constructor from \hyperlink{classKFPVertex}{K\+F\+P\+Vertex}. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+Vertex@{K\+F\+Vertex}!Construct\+Primary\+Vertex@{Construct\+Primary\+Vertex}}
+\index{Construct\+Primary\+Vertex@{Construct\+Primary\+Vertex}!K\+F\+Vertex@{K\+F\+Vertex}}
+\subsubsection[{\texorpdfstring{Construct\+Primary\+Vertex(const K\+F\+Particle $\ast$v\+Daughters[], int n\+Daughters, Bool\+\_\+t vtx\+Flag[], float Chi\+Cut=3.\+5)}{ConstructPrimaryVertex(const KFParticle *vDaughters[], int nDaughters, Bool_t vtxFlag[], float ChiCut=3.5)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Vertex\+::\+Construct\+Primary\+Vertex (
+\begin{DoxyParamCaption}
+\item[{const {\bf K\+F\+Particle} $\ast$}]{v\+Daughters\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{n\+Daughters, }
+\item[{Bool\+\_\+t}]{vtx\+Flag\mbox{[}$\,$\mbox{]}, }
+\item[{float}]{Chi\+Cut = {\ttfamily 3.5}}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFVertex_a0398208d64532d964a2c6c4c061c349c}{}\label{classKFVertex_a0398208d64532d964a2c6c4c061c349c}
+Reconstructs the primary vertex from a set of particles. Reconstruction is parformed in three steps\+:~\newline
+1) vertex seed is constructed from all particles; ~\newline
+2) if particle deviates more then on the \char`\"{}\+Chi\+Cut\char`\"{} it is rejected; ~\newline
+3) the final vertex is constructed from the set of remaining particles.~\newline
+Rejected particles are marked with \char`\"{}false\char`\"{} in the output array of flags. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v\+Daughters} & -\/ input array of pointers to the particles \\
+\hline
+\mbox{\tt in}  & {\em n\+Daughters} & -\/ number of particles in the input array \\
+\hline
+\mbox{\tt out}  & {\em vtx\+Flag} & -\/ array of flags showing if particle was used in the vertex fit, if yes -\/ set to \char`\"{}true\char`\"{} \\
+\hline
+\mbox{\tt in}  & {\em Chi\+Cut} & -\/ cut on the chi2-\/deviation of the particle from the created seed, by default the cut is set to 3.\+5\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Vertex@{K\+F\+Vertex}!Set\+Beam\+Constraint@{Set\+Beam\+Constraint}}
+\index{Set\+Beam\+Constraint@{Set\+Beam\+Constraint}!K\+F\+Vertex@{K\+F\+Vertex}}
+\subsubsection[{\texorpdfstring{Set\+Beam\+Constraint(float X, float Y, float Z, float Err\+X, float Err\+Y, float Err\+Z)}{SetBeamConstraint(float X, float Y, float Z, float ErrX, float ErrY, float ErrZ)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Vertex\+::\+Set\+Beam\+Constraint (
+\begin{DoxyParamCaption}
+\item[{float}]{X, }
+\item[{float}]{Y, }
+\item[{float}]{Z, }
+\item[{float}]{ErrX, }
+\item[{float}]{ErrY, }
+\item[{float}]{ErrZ}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFVertex_a7b38221467e21270dd68cc3d7928393c}{}\label{classKFVertex_a7b38221467e21270dd68cc3d7928393c}
+Sets a soft beam constraint on the vertex position. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x,y,z} & -\/ coordinates of the constraint \\
+\hline
+\mbox{\tt in}  & {\em errX,errY,errZ} & -\/ corresponding errors\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Vertex@{K\+F\+Vertex}!Set\+Beam\+Constraint\+Off@{Set\+Beam\+Constraint\+Off}}
+\index{Set\+Beam\+Constraint\+Off@{Set\+Beam\+Constraint\+Off}!K\+F\+Vertex@{K\+F\+Vertex}}
+\subsubsection[{\texorpdfstring{Set\+Beam\+Constraint\+Off()}{SetBeamConstraintOff()}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Vertex\+::\+Set\+Beam\+Constraint\+Off (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classKFVertex_a5e50ebe906e13c95e6bde55668a35565}{}\label{classKFVertex_a5e50ebe906e13c95e6bde55668a35565}
+Switches off the constraint. Should be called before \hyperlink{classKFVertex_a0398208d64532d964a2c6c4c061c349c}{K\+F\+Vertex\+::\+Construct\+Primary\+Vertex()} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Vertex.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Vertex.\+cxx\end{DoxyCompactItemize}

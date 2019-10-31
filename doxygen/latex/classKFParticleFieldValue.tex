@@ -1,0 +1,88 @@
+\hypertarget{classKFParticleFieldValue}{}\section{K\+F\+Particle\+Field\+Value Class Reference}
+\label{classKFParticleFieldValue}\index{K\+F\+Particle\+Field\+Value@{K\+F\+Particle\+Field\+Value}}
+
+
+A class to store a vector with the magnetic field values \{Bx, By, Bz\} at the certain point.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+Particle\+Field.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classKFParticleFieldValue_ab297633c377ddca9d3f0560b1cf1b22b}{Combine} (\hyperlink{classKFParticleFieldValue}{K\+F\+Particle\+Field\+Value} \&B, float\+\_\+v w)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float\+\_\+v \hyperlink{classKFParticleFieldValue_aa826517f61e63113724b7b8361161415}{x}\hypertarget{classKFParticleFieldValue_aa826517f61e63113724b7b8361161415}{}\label{classKFParticleFieldValue_aa826517f61e63113724b7b8361161415}
+
+\begin{DoxyCompactList}\small\item\em Bx component of the magnetic field. \end{DoxyCompactList}\item 
+float\+\_\+v \hyperlink{classKFParticleFieldValue_aa4da996ece6ba721c4b46908c5923e52}{y}\hypertarget{classKFParticleFieldValue_aa4da996ece6ba721c4b46908c5923e52}{}\label{classKFParticleFieldValue_aa4da996ece6ba721c4b46908c5923e52}
+
+\begin{DoxyCompactList}\small\item\em By component of the magnetic field. \end{DoxyCompactList}\item 
+float\+\_\+v \hyperlink{classKFParticleFieldValue_a1d32fe48416b2955df3a8b58a1db1165}{z}\hypertarget{classKFParticleFieldValue_a1d32fe48416b2955df3a8b58a1db1165}{}\label{classKFParticleFieldValue_a1d32fe48416b2955df3a8b58a1db1165}
+
+\begin{DoxyCompactList}\small\item\em Bz component of the magnetic field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classKFParticleFieldValue_acef6a9757ec49d93f0750c100723f592}{operator$<$$<$} (std\+::ostream \&out, \hyperlink{classKFParticleFieldValue}{K\+F\+Particle\+Field\+Value} \&B)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to store a vector with the magnetic field values \{Bx, By, Bz\} at the certain point. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class is used to represent the vector of the magnetic field at the certain position of the track. It contains three components of the magnetic field\+: Bx, By and Bz. It allows to combine the current field measurement with another measurement using a weight. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+Particle\+Field\+Value@{K\+F\+Particle\+Field\+Value}!Combine@{Combine}}
+\index{Combine@{Combine}!K\+F\+Particle\+Field\+Value@{K\+F\+Particle\+Field\+Value}}
+\subsubsection[{\texorpdfstring{Combine(\+K\+F\+Particle\+Field\+Value \&\+B, float\+\_\+v w)}{Combine(KFParticleFieldValue &B, float_v w)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Particle\+Field\+Value\+::\+Combine (
+\begin{DoxyParamCaption}
+\item[{{\bf K\+F\+Particle\+Field\+Value} \&}]{B, }
+\item[{float\+\_\+v}]{w}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFParticleFieldValue_ab297633c377ddca9d3f0560b1cf1b22b}{}\label{classKFParticleFieldValue_ab297633c377ddca9d3f0560b1cf1b22b}
+Function allows to combine the current magntic field measurement with another measurement weighted by \char`\"{}w\char`\"{} 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em B} & -\/ another field measurement to be combined with the current value \\
+\hline
+\mbox{\tt in}  & {\em w} & -\/ weight of the measurement being added\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{K\+F\+Particle\+Field\+Value@{K\+F\+Particle\+Field\+Value}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!K\+F\+Particle\+Field\+Value@{K\+F\+Particle\+Field\+Value}}
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{out, }
+\item[{{\bf K\+F\+Particle\+Field\+Value} \&}]{B}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classKFParticleFieldValue_acef6a9757ec49d93f0750c100723f592}{}\label{classKFParticleFieldValue_acef6a9757ec49d93f0750c100723f592}
+Operator to print components of the magnetic field in order Bx, By, Bz. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em out} & -\/ output stream where the values will be printed \\
+\hline
+\mbox{\tt in}  & {\em B} & -\/ field vecrot to be printed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle/K\+F\+Particle\+Field.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,248 @@
+\hypertarget{classKFPartEfficiencies}{}\section{K\+F\+Part\+Efficiencies Class Reference}
+\label{classKFPartEfficiencies}\index{K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}}
+
+
+Class to calculate efficiency of KF Particle Finder.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+Part\+Efficiencies.\+h$>$}
+
+
+
+Inheritance diagram for K\+F\+Part\+Efficiencies\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classKFPartEfficiencies__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for K\+F\+Part\+Efficiencies\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{classKFPartEfficiencies__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classKFPartEfficiencies_a0559adf38115aa40fc8fa96a7d2b2abd}{K\+F\+Part\+Efficiencies} ()\hypertarget{classKFPartEfficiencies_a0559adf38115aa40fc8fa96a7d2b2abd}{}\label{classKFPartEfficiencies_a0559adf38115aa40fc8fa96a7d2b2abd}
+
+\begin{DoxyCompactList}\small\item\em The default constructor. Defines the list of decays to be analysed and their properties. Please, see the code for indexing scheme. \end{DoxyCompactList}\item 
+int \hyperlink{classKFPartEfficiencies_a604060167fb04565e2311cffbe680250}{Get\+Particle\+Index} (int pdg)\hypertarget{classKFPartEfficiencies_a604060167fb04565e2311cffbe680250}{}\label{classKFPartEfficiencies_a604060167fb04565e2311cffbe680250}
+
+\begin{DoxyCompactList}\small\item\em Returns index of the decay with a given P\+DG code in the scheme of the KF Particle Finder. If it is not present there -\/ returns \char`\"{}-\/1\char`\"{}. \end{DoxyCompactList}\item 
+std\+::map$<$ int, int $>$ \hyperlink{classKFPartEfficiencies_a282d31782b56c5f15e7e73b9c3409048}{Get\+Pdg\+To\+Index\+Map} () const \hypertarget{classKFPartEfficiencies_a282d31782b56c5f15e7e73b9c3409048}{}\label{classKFPartEfficiencies_a282d31782b56c5f15e7e73b9c3409048}
+
+\begin{DoxyCompactList}\small\item\em Returns the map between P\+DG codes and index of the decay in the scheme of the KF Particle Finder. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classKFPartEfficiencies_ad91a958383aeb2750786fc5c5c4c9d22}{Add\+Counter} (std\+::string shortname, std\+::string name)
+\item 
+\hyperlink{classKFPartEfficiencies}{K\+F\+Part\+Efficiencies} \& \hyperlink{classKFPartEfficiencies_a3659f3482cc8d1b25139740d3507690e}{operator+=} (\hyperlink{classKFPartEfficiencies}{K\+F\+Part\+Efficiencies} \&a)\hypertarget{classKFPartEfficiencies_a3659f3482cc8d1b25139740d3507690e}{}\label{classKFPartEfficiencies_a3659f3482cc8d1b25139740d3507690e}
+
+\begin{DoxyCompactList}\small\item\em Operator to add efficiency table from object \char`\"{}a\char`\"{} to the current object. Returns the current object after addition. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPartEfficiencies_a171017b3a8cc125461be0dea84d8d99a}{Calc\+Eff} ()\hypertarget{classKFPartEfficiencies_a171017b3a8cc125461be0dea84d8d99a}{}\label{classKFPartEfficiencies_a171017b3a8cc125461be0dea84d8d99a}
+
+\begin{DoxyCompactList}\small\item\em Function to calculate efficiency after all counters are set. If the counters are modified the function should be called again. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPartEfficiencies_ac5b13032d4d04564f696e0db9f544579}{Inc} (bool is\+Reco, int n\+Clones, bool is\+M\+C1, bool is\+M\+C2, bool is\+M\+C3, const std\+::string \&name)
+\item 
+void \hyperlink{classKFPartEfficiencies_a1ed4b9e456cafe92158ad43b9da1b816}{Inc\+Reco} (bool is\+Ghost, bool is\+Bg, const std\+::string \&name)
+\item 
+void \hyperlink{classKFPartEfficiencies_aae337f341af9595cd68f532e717e228a}{Print\+Eff} ()\hypertarget{classKFPartEfficiencies_aae337f341af9595cd68f532e717e228a}{}\label{classKFPartEfficiencies_aae337f341af9595cd68f532e717e228a}
+
+\begin{DoxyCompactList}\small\item\em Prints the efficiency table on the screen. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a6a48c0c6ded2a21062f73ba917229f6d}{Get\+Total4pi\+Efficiency} (int i\+Decay)\hypertarget{classKFPartEfficiencies_a6a48c0c6ded2a21062f73ba917229f6d}{}\label{classKFPartEfficiencies_a6a48c0c6ded2a21062f73ba917229f6d}
+
+\begin{DoxyCompactList}\small\item\em Returns efficiency in 4pi for decay \char`\"{}i\+Decay\char`\"{}. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_ae896d8f2622dc6405584da3d4002eb40}{Get\+Total\+K\+F\+P\+Efficiency} (int i\+Decay)\hypertarget{classKFPartEfficiencies_ae896d8f2622dc6405584da3d4002eb40}{}\label{classKFPartEfficiencies_ae896d8f2622dc6405584da3d4002eb40}
+
+\begin{DoxyCompactList}\small\item\em Returns efficiency of KF Particle Finder method (cuts) for decay \char`\"{}i\+Decay\char`\"{}. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a19d7eac2141c53c0488d7f6f74b77efe}{Get\+Primary4pi\+Efficiency} (int i\+Decay)\hypertarget{classKFPartEfficiencies_a19d7eac2141c53c0488d7f6f74b77efe}{}\label{classKFPartEfficiencies_a19d7eac2141c53c0488d7f6f74b77efe}
+
+\begin{DoxyCompactList}\small\item\em Returns efficiency in 4pi for decay \char`\"{}i\+Decay\char`\"{} for primary particles. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_afb1242e78db7e1132a850b3efc534c7f}{Get\+Primary\+K\+F\+P\+Efficiency} (int i\+Decay)\hypertarget{classKFPartEfficiencies_afb1242e78db7e1132a850b3efc534c7f}{}\label{classKFPartEfficiencies_afb1242e78db7e1132a850b3efc534c7f}
+
+\begin{DoxyCompactList}\small\item\em Returns efficiency of KF Particle Finder method (cuts) for decay \char`\"{}i\+Decay\char`\"{} for primary particles. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a3ae8747e495793f9af5c9e2365f09172}{Get\+Secondary4pi\+Efficiency} (int i\+Decay)\hypertarget{classKFPartEfficiencies_a3ae8747e495793f9af5c9e2365f09172}{}\label{classKFPartEfficiencies_a3ae8747e495793f9af5c9e2365f09172}
+
+\begin{DoxyCompactList}\small\item\em Returns efficiency in 4pi for decay \char`\"{}i\+Decay\char`\"{} for secondary particles. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a52c037d748cf6676c9c7d9aab71f9a0d}{Get\+Secondary\+K\+F\+P\+Efficiency} (int i\+Decay)\hypertarget{classKFPartEfficiencies_a52c037d748cf6676c9c7d9aab71f9a0d}{}\label{classKFPartEfficiencies_a52c037d748cf6676c9c7d9aab71f9a0d}
+
+\begin{DoxyCompactList}\small\item\em Returns efficiency of KF Particle Finder method (cuts) for decay \char`\"{}i\+Decay\char`\"{} for secondary particles. \end{DoxyCompactList}\item 
+void \hyperlink{classKFPartEfficiencies_ae4a38efd79dd905f6d0e82062ce4a966}{Add\+From\+File} (const std\+::string \&file\+Name)\hypertarget{classKFPartEfficiencies_ae4a38efd79dd905f6d0e82062ce4a966}{}\label{classKFPartEfficiencies_ae4a38efd79dd905f6d0e82062ce4a966}
+
+\begin{DoxyCompactList}\small\item\em Adds efficiency from the file with the name defined by \char`\"{}file\+Name\char`\"{} to the current objects. \end{DoxyCompactList}\item 
+int \hyperlink{classKFPartEfficiencies_a5119b5c564e1ccc597181711ba241ca7}{Get\+N\+Daughters} (int i\+Particle) const \hypertarget{classKFPartEfficiencies_a5119b5c564e1ccc597181711ba241ca7}{}\label{classKFPartEfficiencies_a5119b5c564e1ccc597181711ba241ca7}
+
+\begin{DoxyCompactList}\small\item\em Returns number of daughter particles for the decay with index \char`\"{}i\+Particle\char`\"{}. \end{DoxyCompactList}\item 
+int \hyperlink{classKFPartEfficiencies_a5865d2d8022ffe45914511992a0af079}{Get\+Daughter\+P\+DG} (int i\+Particle, int i\+Daughter) const \hypertarget{classKFPartEfficiencies_a5865d2d8022ffe45914511992a0af079}{}\label{classKFPartEfficiencies_a5865d2d8022ffe45914511992a0af079}
+
+\begin{DoxyCompactList}\small\item\em Returns the P\+DG code of the daughter \char`\"{}i\+Daughter\char`\"{} from the decay with index \char`\"{}i\+Particle\char`\"{}. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_ace9d9cf07aefb8e523ac1ec6b1bdcab0}{Get\+Mass} (int i\+Particle) const \hypertarget{classKFPartEfficiencies_ace9d9cf07aefb8e523ac1ec6b1bdcab0}{}\label{classKFPartEfficiencies_ace9d9cf07aefb8e523ac1ec6b1bdcab0}
+
+\begin{DoxyCompactList}\small\item\em Returns the table mass of the decay with index \char`\"{}i\+Particle\char`\"{}. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a9f6f8e28db6c1692b0ee9415c8e63c03}{Get\+Mass\+Sigma} (int i\+Particle) const \hypertarget{classKFPartEfficiencies_a9f6f8e28db6c1692b0ee9415c8e63c03}{}\label{classKFPartEfficiencies_a9f6f8e28db6c1692b0ee9415c8e63c03}
+
+\begin{DoxyCompactList}\small\item\em Returns expected width of the mass peak of the decay with index \char`\"{}i\+Particle\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classKFPartEfficiencies_a1e94d7125c8ee9f06cbfd81ff9cf3ffe}{part\+P\+DG} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a1e94d7125c8ee9f06cbfd81ff9cf3ffe}{}\label{classKFPartEfficiencies_a1e94d7125c8ee9f06cbfd81ff9cf3ffe}
+
+\begin{DoxyCompactList}\small\item\em Array of P\+DG codes assigned to the decays. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classKFPartEfficiencies_a93c53aece9a458b82f3a87a1b2dfc386}{part\+Name} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a93c53aece9a458b82f3a87a1b2dfc386}{}\label{classKFPartEfficiencies_a93c53aece9a458b82f3a87a1b2dfc386}
+
+\begin{DoxyCompactList}\small\item\em Array of names of the decay in the file with histograms. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classKFPartEfficiencies_ae325b82a6db6f38f7a37af090c9ffc09}{part\+Title} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_ae325b82a6db6f38f7a37af090c9ffc09}{}\label{classKFPartEfficiencies_ae325b82a6db6f38f7a37af090c9ffc09}
+
+\begin{DoxyCompactList}\small\item\em Array of names of the decay in the output table with efficiency. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \hyperlink{classKFPartEfficiencies_abd5490c443f3a36eeff06523e04a2e8b}{part\+Daughter\+Pdg}\hypertarget{classKFPartEfficiencies_abd5490c443f3a36eeff06523e04a2e8b}{}\label{classKFPartEfficiencies_abd5490c443f3a36eeff06523e04a2e8b}
+
+\begin{DoxyCompactList}\small\item\em Array with vectors of daughter particles for each decay. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a48950848b5b2c8990a30d4dc58f2f0ec}{part\+M\+Histo\+Min} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a48950848b5b2c8990a30d4dc58f2f0ec}{}\label{classKFPartEfficiencies_a48950848b5b2c8990a30d4dc58f2f0ec}
+
+\begin{DoxyCompactList}\small\item\em Array with lower boundary in the mass histograms for each decay. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_ad104f05f0cb7cf8cc6dd10e009a6bd65}{part\+M\+Histo\+Max} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_ad104f05f0cb7cf8cc6dd10e009a6bd65}{}\label{classKFPartEfficiencies_ad104f05f0cb7cf8cc6dd10e009a6bd65}
+
+\begin{DoxyCompactList}\small\item\em Array with upper boundary in the mass histograms for each decay. \end{DoxyCompactList}\item 
+int \hyperlink{classKFPartEfficiencies_a55765f5f102fffd399b162ed2ccad4d2}{part\+Max\+Mult} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a55765f5f102fffd399b162ed2ccad4d2}{}\label{classKFPartEfficiencies_a55765f5f102fffd399b162ed2ccad4d2}
+
+\begin{DoxyCompactList}\small\item\em Array with upper boundary in the multiplicity histograms of each decay. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a652a5223c14c9d8e4a32c5203ce32d34}{part\+Mass} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a652a5223c14c9d8e4a32c5203ce32d34}{}\label{classKFPartEfficiencies_a652a5223c14c9d8e4a32c5203ce32d34}
+
+\begin{DoxyCompactList}\small\item\em Array with table masses of each decay. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a8d3d967e6832115dc711c33d6207c579}{part\+Life\+Time} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a8d3d967e6832115dc711c33d6207c579}{}\label{classKFPartEfficiencies_a8d3d967e6832115dc711c33d6207c579}
+
+\begin{DoxyCompactList}\small\item\em Array with lifetimes in seconds of each decay. \end{DoxyCompactList}\item 
+int \hyperlink{classKFPartEfficiencies_a3a6fae7d079f71634024028f88f9f1d7}{part\+Charge} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a3a6fae7d079f71634024028f88f9f1d7}{}\label{classKFPartEfficiencies_a3a6fae7d079f71634024028f88f9f1d7}
+
+\begin{DoxyCompactList}\small\item\em Array with charge of each particle specie in units of the elementary charge. \end{DoxyCompactList}\item 
+float \hyperlink{classKFPartEfficiencies_a915b3919e4055c50ba1ef2a44a40cd5d}{part\+Mass\+Sigma} \mbox{[}\hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles}\mbox{]}\hypertarget{classKFPartEfficiencies_a915b3919e4055c50ba1ef2a44a40cd5d}{}\label{classKFPartEfficiencies_a915b3919e4055c50ba1ef2a44a40cd5d}
+
+\begin{DoxyCompactList}\small\item\em Array with expected width of mass peaks used for the side band method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \hyperlink{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{n\+Particles} = 194\hypertarget{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}{}\label{classKFPartEfficiencies_a229165eeecbc664b7723d3ce588783e8}
+
+\begin{DoxyCompactList}\small\item\em Number of particles. \end{DoxyCompactList}\item 
+static const int \hyperlink{classKFPartEfficiencies_a2c64f7d69d99fe6775db42741f55bbbe}{f\+First\+Hypernucleus\+Index} = 114\hypertarget{classKFPartEfficiencies_a2c64f7d69d99fe6775db42741f55bbbe}{}\label{classKFPartEfficiencies_a2c64f7d69d99fe6775db42741f55bbbe}
+
+\begin{DoxyCompactList}\small\item\em Index of the first hypernuclei in the list. \end{DoxyCompactList}\item 
+static const int \hyperlink{classKFPartEfficiencies_a0b4c54e513a38e19ada267f48affe056}{f\+Last\+Hypernucleus\+Index} = 130\hypertarget{classKFPartEfficiencies_a0b4c54e513a38e19ada267f48affe056}{}\label{classKFPartEfficiencies_a0b4c54e513a38e19ada267f48affe056}
+
+\begin{DoxyCompactList}\small\item\em Index of the last hypernuclei in the list. \end{DoxyCompactList}\item 
+static const int \hyperlink{classKFPartEfficiencies_a50c0554b3a82a0e0825451b97d8b7348}{f\+First\+Missing\+Mass\+Particle\+Index} = 131\hypertarget{classKFPartEfficiencies_a50c0554b3a82a0e0825451b97d8b7348}{}\label{classKFPartEfficiencies_a50c0554b3a82a0e0825451b97d8b7348}
+
+\begin{DoxyCompactList}\small\item\em Index of the first decay reconstructed by the missing mass method. \end{DoxyCompactList}\item 
+static const int \hyperlink{classKFPartEfficiencies_a1133cb34df9e58e2bdbc177e1761f5f2}{f\+Last\+Missing\+Mass\+Particle\+Index} = 166\hypertarget{classKFPartEfficiencies_a1133cb34df9e58e2bdbc177e1761f5f2}{}\label{classKFPartEfficiencies_a1133cb34df9e58e2bdbc177e1761f5f2}
+
+\begin{DoxyCompactList}\small\item\em Index of the last decay reconstructed by the missing mass method. \end{DoxyCompactList}\item 
+static const int \hyperlink{classKFPartEfficiencies_aa789fded121eb78a0d49505f9c58431c}{f\+First\+Stable\+Particle\+Index} = 167\hypertarget{classKFPartEfficiencies_aa789fded121eb78a0d49505f9c58431c}{}\label{classKFPartEfficiencies_aa789fded121eb78a0d49505f9c58431c}
+
+\begin{DoxyCompactList}\small\item\em Index of the first stable particle in the list. \end{DoxyCompactList}\item 
+static const int \hyperlink{classKFPartEfficiencies_a579eae22841ce1981c8aed97d316e7b8}{f\+Last\+Stable\+Particle\+Index} = 184\hypertarget{classKFPartEfficiencies_a579eae22841ce1981c8aed97d316e7b8}{}\label{classKFPartEfficiencies_a579eae22841ce1981c8aed97d316e7b8}
+
+\begin{DoxyCompactList}\small\item\em Index of the last stable particle in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::fstream \& \hyperlink{classKFPartEfficiencies_a903f9bf66d3cf46bcf72597e65c09aec}{operator$<$$<$} (std\+::fstream \&strm, \hyperlink{classKFPartEfficiencies}{K\+F\+Part\+Efficiencies} \&a)\hypertarget{classKFPartEfficiencies_a903f9bf66d3cf46bcf72597e65c09aec}{}\label{classKFPartEfficiencies_a903f9bf66d3cf46bcf72597e65c09aec}
+
+\begin{DoxyCompactList}\small\item\em Operator to write efficiencies to file. \end{DoxyCompactList}\item 
+std\+::fstream \& \hyperlink{classKFPartEfficiencies_a71e0bc1c241b95eca6f1a992761af178}{operator$>$$>$} (std\+::fstream \&strm, \hyperlink{classKFPartEfficiencies}{K\+F\+Part\+Efficiencies} \&a)\hypertarget{classKFPartEfficiencies_a71e0bc1c241b95eca6f1a992761af178}{}\label{classKFPartEfficiencies_a71e0bc1c241b95eca6f1a992761af178}
+
+\begin{DoxyCompactList}\small\item\em Operator to read efficiencies from file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class to calculate efficiency of KF Particle Finder. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class has two main purposes\+:~\newline
+1) Defines the list of decays to be analysed\+: a unique code of the decay, its mass, lifetime, a list of daughter particles, etc. See \hyperlink{classKFPartEfficiencies_a0559adf38115aa40fc8fa96a7d2b2abd}{K\+F\+Part\+Efficiencies\+::\+K\+F\+Part\+Efficiencies()} for more details.~\newline
+2) It calculates reconstruction efficiency of the decays from the KF Particle Finder scheme.~\newline
+Definitions\+:~\newline
+background -\/ physics background, when daughter particle come from the real particle, but the pdg hypothesis is incorrect, for example, Lambda-\/$>$p pi will create a physics background for K0s if the proton is misidentified;~\newline
+ghost -\/ combinatorial background, tracks do not form a real vertex;~\newline
+clone -\/ a particle is reconstructed several times, for example, particle track is split into to parts due to the multiple scattering. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}!Add\+Counter@{Add\+Counter}}
+\index{Add\+Counter@{Add\+Counter}!K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}}
+\subsubsection[{\texorpdfstring{Add\+Counter(std\+::string shortname, std\+::string name)}{AddCounter(std::string shortname, std::string name)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void K\+F\+Part\+Efficiencies\+::\+Add\+Counter (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{shortname, }
+\item[{std\+::string}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classKFPartEfficiencies_ad91a958383aeb2750786fc5c5c4c9d22}{}\label{classKFPartEfficiencies_ad91a958383aeb2750786fc5c5c4c9d22}
+Adds a counter with the name defined by \char`\"{}name\char`\"{} to all counter objects. For easiness of operation with counters, a shortname is assigned to each of them and the corresponding entry in the map indices is done. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em shortname} & -\/ a short name of the counter for fast and easy access to its index \\
+\hline
+\mbox{\tt in}  & {\em name} & -\/ name of the counter which is added to each counter object.\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}!Inc@{Inc}}
+\index{Inc@{Inc}!K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}}
+\subsubsection[{\texorpdfstring{Inc(bool is\+Reco, int n\+Clones, bool is\+M\+C1, bool is\+M\+C2, bool is\+M\+C3, const std\+::string \&name)}{Inc(bool isReco, int nClones, bool isMC1, bool isMC2, bool isMC3, const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Part\+Efficiencies\+::\+Inc (
+\begin{DoxyParamCaption}
+\item[{bool}]{is\+Reco, }
+\item[{int}]{n\+Clones, }
+\item[{bool}]{is\+M\+C1, }
+\item[{bool}]{is\+M\+C2, }
+\item[{bool}]{is\+M\+C3, }
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPartEfficiencies_ac5b13032d4d04564f696e0db9f544579}{}\label{classKFPartEfficiencies_ac5b13032d4d04564f696e0db9f544579}
+Increases counters by one, if the corresponding boolean variable is \char`\"{}true\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em is\+Reco} & -\/ \char`\"{}true\char`\"{} if particle is reconstructed \\
+\hline
+\mbox{\tt in}  & {\em n\+Clones} & -\/ number of double reconstructed particles for the given MC particle, will be added to the \char`\"{}clone\char`\"{} counters \\
+\hline
+\mbox{\tt in}  & {\em is\+M\+C1} & -\/ \char`\"{}true\char`\"{} if particle is reconstructable in 4pi, mc1 is increased \\
+\hline
+\mbox{\tt in}  & {\em is\+M\+C2} & -\/ \char`\"{}true\char`\"{} if all daughters are reconstructable, mc2 is increased \\
+\hline
+\mbox{\tt in}  & {\em is\+M\+C3} & -\/ \char`\"{}true\char`\"{} if all daughters are reconstructed, mc3 is increased \\
+\hline
+\mbox{\tt in}  & {\em name} & -\/ \char`\"{}shortname\char`\"{} of the set of counters, which should be increased\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}!Inc\+Reco@{Inc\+Reco}}
+\index{Inc\+Reco@{Inc\+Reco}!K\+F\+Part\+Efficiencies@{K\+F\+Part\+Efficiencies}}
+\subsubsection[{\texorpdfstring{Inc\+Reco(bool is\+Ghost, bool is\+Bg, const std\+::string \&name)}{IncReco(bool isGhost, bool isBg, const std::string &name)}}]{\setlength{\rightskip}{0pt plus 5cm}void K\+F\+Part\+Efficiencies\+::\+Inc\+Reco (
+\begin{DoxyParamCaption}
+\item[{bool}]{is\+Ghost, }
+\item[{bool}]{is\+Bg, }
+\item[{const std\+::string \&}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFPartEfficiencies_a1ed4b9e456cafe92158ad43b9da1b816}{}\label{classKFPartEfficiencies_a1ed4b9e456cafe92158ad43b9da1b816}
+Increases counters by one, if the corresponding boolean variable is \char`\"{}true\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em is\+Ghost} & -\/ \char`\"{}true\char`\"{} if ghost is added \\
+\hline
+\mbox{\tt in}  & {\em is\+Bg} & -\/ \char`\"{}true\char`\"{} if physics background is added \\
+\hline
+\mbox{\tt in}  & {\em name} & -\/ \char`\"{}shortname\char`\"{} of the set of counters, which should be increased\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle\+Performance/K\+F\+Part\+Efficiencies.\+h\end{DoxyCompactItemize}

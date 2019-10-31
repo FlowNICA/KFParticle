@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classKFMCParticle.html" title="A class to store relations between mother and daughter Monte Carlo simulated particles. " alt="" coords="135,5,239,32"/>
+<area shape="rect" id="node3" href="$classKFPartEfficiencies.html" title="Class to calculate efficiency of KF Particle Finder. " alt="" coords="121,56,252,83"/>
+<area shape="rect" id="node4" href="$classKFParticleBase.html" title="The base of KFParticle class, describes particle objects. " alt="" coords="130,107,243,133"/>
+<area shape="rect" id="node5" href="$classKFParticle.html" title="The main scalar class of KF Particle package, describes particle objects. " alt="" coords="300,107,383,133"/>
+<area shape="rect" id="node6" href="$classKFVertex.html" title="Mathematics for reconstruction of primary vertices based on KFParticle. " alt="" coords="431,107,508,133"/>
+</map>

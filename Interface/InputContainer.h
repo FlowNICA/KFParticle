@@ -4,24 +4,24 @@
  ** @authors Oleksii Lubynets, Viktor Klochkov, Ilya Selyuzhenkov
  **
  ** Each event is characterized with primary vertex, set of tracks and set of cuts
- ** (in general case cuts for different events can be different).
+ ** (in general case cuts for different events can be different).\n
  ** Primary vertex is characterized with its coordinates {x, y, z} and optionally with
- ** corresponding covariation matrix.
+ ** corresponding covariation matrix.\n
  ** In order to store primary vertex the KFVertex object is used.
- ** Each track is characterized with:
- ** x, y, z - three coordinates of point where it is defined;
- ** px, py, pz - three components of its momentum in this point;
- ** cov - covariation matrix of parameters mentioned above;
+ ** Each track is characterized with:\n
+ ** x, y, z - three coordinates of point where it is defined;\n
+ ** px, py, pz - three components of its momentum in this point;\n
+ ** cov - covariation matrix of parameters mentioned above;\n
  ** field[0] - field[8] - magnetic field approximation coefficients along the track's trajectory
- ** field[9] - reference point for MF coefficients;
- ** charge - its charge;
- ** pdg - PID hypothesis for the track;
- ** id - its unique number (conserves through all the algorithm);
+ ** field[9] - reference point for MF coefficients;\n
+ ** charge - its charge;\n
+ ** pdg - PID hypothesis for the track;\n
+ ** id - its unique number (conserves through all the algorithm);\n
  ** nhits - number of hits in the tracking system which belong to the track. Is not used in the
- ** current version of KFPSimple, so default value 4 can be used;
+ ** current version of KFPSimple, so default value 4 can be used;\n
  ** passcuts - flag variable which shows whether track satisfies pre-selection criteria. By default
- ** passcuts=1 should be used. 
- ** In order to store tracks the vector of KFParticle objects is used.
+ ** passcuts=1 should be used. \n
+ ** In order to store tracks the vector of KFParticle objects is used.\n
  ** In order to store cut values used for current event the CutsContainer object is used.
  **/
 

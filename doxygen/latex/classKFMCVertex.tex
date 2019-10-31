@@ -1,0 +1,187 @@
+\hypertarget{classKFMCVertex}{}\section{K\+F\+M\+C\+Vertex Class Reference}
+\label{classKFMCVertex}\index{K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}}
+
+
+A class to store information about simulated Monte Carlo primary vertices.  
+
+
+
+
+{\ttfamily \#include $<$K\+F\+M\+C\+Vertex.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classKFMCVertex_a3081f0e8c418770c5ea288a204638af3}{Par} (int i) const \hypertarget{classKFMCVertex_a3081f0e8c418770c5ea288a204638af3}{}\label{classKFMCVertex_a3081f0e8c418770c5ea288a204638af3}
+
+\begin{DoxyCompactList}\small\item\em Returns parameter with index \char`\"{}i\char`\"{} from \hyperlink{classKFMCVertex_a647ebd7994aa422d5455a3f66d9bbff9}{K\+F\+M\+C\+Vertex\+::f\+Par}. \end{DoxyCompactList}\item 
+float \hyperlink{classKFMCVertex_afd80435d29bb37bcbb5a9de88d1a89e4}{X} () const \hypertarget{classKFMCVertex_afd80435d29bb37bcbb5a9de88d1a89e4}{}\label{classKFMCVertex_afd80435d29bb37bcbb5a9de88d1a89e4}
+
+\begin{DoxyCompactList}\small\item\em Returns X coordinate of the vertex. \end{DoxyCompactList}\item 
+float \hyperlink{classKFMCVertex_abf64836dc4f3b0e88c95e5767c908c17}{Y} () const \hypertarget{classKFMCVertex_abf64836dc4f3b0e88c95e5767c908c17}{}\label{classKFMCVertex_abf64836dc4f3b0e88c95e5767c908c17}
+
+\begin{DoxyCompactList}\small\item\em Returns Y coordinate of the vertex. \end{DoxyCompactList}\item 
+float \hyperlink{classKFMCVertex_a4f4608d79cd24afa303f8bc952e02748}{Z} () const \hypertarget{classKFMCVertex_a4f4608d79cd24afa303f8bc952e02748}{}\label{classKFMCVertex_a4f4608d79cd24afa303f8bc952e02748}
+
+\begin{DoxyCompactList}\small\item\em Returns Z coordinate of the vertex. \end{DoxyCompactList}\item 
+const float $\ast$ \hyperlink{classKFMCVertex_ad2c78d7fd510edd7fc1f324442c9113c}{Get\+Par} () const \hypertarget{classKFMCVertex_ad2c78d7fd510edd7fc1f324442c9113c}{}\label{classKFMCVertex_ad2c78d7fd510edd7fc1f324442c9113c}
+
+\begin{DoxyCompactList}\small\item\em Returns pointer to the parameters of the vertex \hyperlink{classKFMCVertex_a647ebd7994aa422d5455a3f66d9bbff9}{K\+F\+M\+C\+Vertex\+::f\+Par}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a1e0ca1d5921cfdfcb071beae4b0492e4}{Set\+Par} (int i, float v)\hypertarget{classKFMCVertex_a1e0ca1d5921cfdfcb071beae4b0492e4}{}\label{classKFMCVertex_a1e0ca1d5921cfdfcb071beae4b0492e4}
+
+\begin{DoxyCompactList}\small\item\em Sets a value \char`\"{}v\char`\"{} to parameter \char`\"{}i\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a99b92b21117ac6047417327aaad2416a}{SetX} (float v)\hypertarget{classKFMCVertex_a99b92b21117ac6047417327aaad2416a}{}\label{classKFMCVertex_a99b92b21117ac6047417327aaad2416a}
+
+\begin{DoxyCompactList}\small\item\em Sets value \char`\"{}v\char`\"{} to the X coordinate. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_ae7eee5e4a16ca88f8da3fab3b307142b}{SetY} (float v)\hypertarget{classKFMCVertex_ae7eee5e4a16ca88f8da3fab3b307142b}{}\label{classKFMCVertex_ae7eee5e4a16ca88f8da3fab3b307142b}
+
+\begin{DoxyCompactList}\small\item\em Sets value \char`\"{}v\char`\"{} to the Y coordinate. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a93f5b783902d6a8d244c06ddcc189967}{SetZ} (float v)\hypertarget{classKFMCVertex_a93f5b783902d6a8d244c06ddcc189967}{}\label{classKFMCVertex_a93f5b783902d6a8d244c06ddcc189967}
+
+\begin{DoxyCompactList}\small\item\em Sets value \char`\"{}v\char`\"{} to the Z coordinate. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCVertex_a51f3aafb24777a594684b2222769c8ee}{N\+Daughter\+Tracks} () const \hypertarget{classKFMCVertex_a51f3aafb24777a594684b2222769c8ee}{}\label{classKFMCVertex_a51f3aafb24777a594684b2222769c8ee}
+
+\begin{DoxyCompactList}\small\item\em Returns number of Monte Carlo tracks produced at the current vertex. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCVertex_a9e34c5cc68180b40c0a9c59e2408fd7e}{N\+Reconstructed\+Daughter\+Tracks} () const \hypertarget{classKFMCVertex_a9e34c5cc68180b40c0a9c59e2408fd7e}{}\label{classKFMCVertex_a9e34c5cc68180b40c0a9c59e2408fd7e}
+
+\begin{DoxyCompactList}\small\item\em Returns number of reconstructed tracks from this vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_af2ccf2a07c048d97a40539482275e12a}{Add\+Daughter\+Track} (int i\+Tr)\hypertarget{classKFMCVertex_af2ccf2a07c048d97a40539482275e12a}{}\label{classKFMCVertex_af2ccf2a07c048d97a40539482275e12a}
+
+\begin{DoxyCompactList}\small\item\em Adds unique id of the Monte Carlo track produced at the current vertex. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCVertex_a8952b674a23b479a1ed642dcf8db3856}{Daughter\+Track} (int i\+Tr) const 
+\item 
+bool \hyperlink{classKFMCVertex_a87f06d29c10c29e62e62faea55cebdf9}{Is\+M\+C\+Reconstructable} () const \hypertarget{classKFMCVertex_a87f06d29c10c29e62e62faea55cebdf9}{}\label{classKFMCVertex_a87f06d29c10c29e62e62faea55cebdf9}
+
+\begin{DoxyCompactList}\small\item\em Returns flag showing if the vertex can be found (definition is based on the MC tracks) \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a41a15930645f6801706e46d5c5c92497}{Is\+Reconstructable} () const \hypertarget{classKFMCVertex_a41a15930645f6801706e46d5c5c92497}{}\label{classKFMCVertex_a41a15930645f6801706e46d5c5c92497}
+
+\begin{DoxyCompactList}\small\item\em Returns flag showing if the vertex can be found (definition is based on the reconstructed tracks) \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a46ac54d0520553cccee1e7f7217fe3fd}{Is\+Reconstructed} () const \hypertarget{classKFMCVertex_a46ac54d0520553cccee1e7f7217fe3fd}{}\label{classKFMCVertex_a46ac54d0520553cccee1e7f7217fe3fd}
+
+\begin{DoxyCompactList}\small\item\em Returns flag showing if the vertex was reconstructed. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a116a277479a9eb7523202023d6bbd6ba}{Set\+Reconstructable} ()\hypertarget{classKFMCVertex_a116a277479a9eb7523202023d6bbd6ba}{}\label{classKFMCVertex_a116a277479a9eb7523202023d6bbd6ba}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as such that can be reconstructed (based on the reconstructed tracks) \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a0c8c2b357bbb7c690cfeb22fc025e795}{Set\+Un\+Reconstructable} ()\hypertarget{classKFMCVertex_a0c8c2b357bbb7c690cfeb22fc025e795}{}\label{classKFMCVertex_a0c8c2b357bbb7c690cfeb22fc025e795}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as such that can not be reconstructed (based on the reconstructed tracks) \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a2b334e879e9b429c7acebd727ac99ee1}{Set\+M\+C\+Reconstructable} ()\hypertarget{classKFMCVertex_a2b334e879e9b429c7acebd727ac99ee1}{}\label{classKFMCVertex_a2b334e879e9b429c7acebd727ac99ee1}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as such that can be reconstructed (based on the MC tracks) \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_ac6fdfcc77e19dd3cc75de49b01843574}{Set\+M\+C\+Un\+Reconstructable} ()\hypertarget{classKFMCVertex_ac6fdfcc77e19dd3cc75de49b01843574}{}\label{classKFMCVertex_ac6fdfcc77e19dd3cc75de49b01843574}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as such that can not be reconstructed (based on the MC tracks) \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a3c20061e84e4df81331f095f64813fcf}{Set\+Reconstructed} ()\hypertarget{classKFMCVertex_a3c20061e84e4df81331f095f64813fcf}{}\label{classKFMCVertex_a3c20061e84e4df81331f095f64813fcf}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as such that was reconstructed. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_ae6338729915e9c39ef56bba7ba86af35}{Set\+Un\+Reconstructed} ()\hypertarget{classKFMCVertex_ae6338729915e9c39ef56bba7ba86af35}{}\label{classKFMCVertex_ae6338729915e9c39ef56bba7ba86af35}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as such that was not reconstructed. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_a801d833c5009f7bad8c136b68434c10a}{Set\+N\+Reconstructed\+Daughters} (int n)\hypertarget{classKFMCVertex_a801d833c5009f7bad8c136b68434c10a}{}\label{classKFMCVertex_a801d833c5009f7bad8c136b68434c10a}
+
+\begin{DoxyCompactList}\small\item\em Defines number of the reconstructed tracks produced at the current vertex. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a6858848001a3bffdf36e9c0644dfdf61}{Is\+Trigger\+PV} () const \hypertarget{classKFMCVertex_a6858848001a3bffdf36e9c0644dfdf61}{}\label{classKFMCVertex_a6858848001a3bffdf36e9c0644dfdf61}
+
+\begin{DoxyCompactList}\small\item\em Returns flag showing if the vertex is considerred as tigger. \end{DoxyCompactList}\item 
+void \hyperlink{classKFMCVertex_ac12fdb952def60c6233f34ca8ef75b6b}{Set\+Trigger\+PV} ()\hypertarget{classKFMCVertex_ac12fdb952def60c6233f34ca8ef75b6b}{}\label{classKFMCVertex_ac12fdb952def60c6233f34ca8ef75b6b}
+
+\begin{DoxyCompactList}\small\item\em Defines the current vertex as the trigger primary vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classKFMCVertex_a647ebd7994aa422d5455a3f66d9bbff9}{f\+Par} \mbox{[}3\mbox{]}\hypertarget{classKFMCVertex_a647ebd7994aa422d5455a3f66d9bbff9}{}\label{classKFMCVertex_a647ebd7994aa422d5455a3f66d9bbff9}
+
+\begin{DoxyCompactList}\small\item\em Cartesian coordinates of the vertex\+: \{ X, Y, Z \}. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \hyperlink{classKFMCVertex_a531546b4d9daed2c31383e90ad47a42b}{f\+Daughter\+Tracks}\hypertarget{classKFMCVertex_a531546b4d9daed2c31383e90ad47a42b}{}\label{classKFMCVertex_a531546b4d9daed2c31383e90ad47a42b}
+
+\begin{DoxyCompactList}\small\item\em Vector with unique ids of the Monte Carlo tracks produced at this vertex. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a47a4c3b574ca9b0a74e4613ecf326bb6}{f\+Is\+Reconstructable}\hypertarget{classKFMCVertex_a47a4c3b574ca9b0a74e4613ecf326bb6}{}\label{classKFMCVertex_a47a4c3b574ca9b0a74e4613ecf326bb6}
+
+\begin{DoxyCompactList}\small\item\em Flag showing if the vertex considered as reconstructable based on the reconstructed tracks. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a70ebe127df16f9f55051759292dabf52}{f\+Is\+M\+C\+Reconstructable}\hypertarget{classKFMCVertex_a70ebe127df16f9f55051759292dabf52}{}\label{classKFMCVertex_a70ebe127df16f9f55051759292dabf52}
+
+\begin{DoxyCompactList}\small\item\em Flag showing if the vertex considered as reconstructable based on the Monte Carlo tracks. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a1a064ccde676f3baa5f100f911dabe27}{f\+Is\+Reconstructed}\hypertarget{classKFMCVertex_a1a064ccde676f3baa5f100f911dabe27}{}\label{classKFMCVertex_a1a064ccde676f3baa5f100f911dabe27}
+
+\begin{DoxyCompactList}\small\item\em Flag showing if vertex was reconstructed. \end{DoxyCompactList}\item 
+int \hyperlink{classKFMCVertex_add1221f3483673f4641934d4933f5cd4}{f\+N\+Reconstructed\+Daughters}\hypertarget{classKFMCVertex_add1221f3483673f4641934d4933f5cd4}{}\label{classKFMCVertex_add1221f3483673f4641934d4933f5cd4}
+
+\begin{DoxyCompactList}\small\item\em Number of found tracks, produced at the current vertex. \end{DoxyCompactList}\item 
+bool \hyperlink{classKFMCVertex_a9e37d86942db0797e198ef4e61ab1867}{f\+Is\+Trigger\+PV}\hypertarget{classKFMCVertex_a9e37d86942db0797e198ef4e61ab1867}{}\label{classKFMCVertex_a9e37d86942db0797e198ef4e61ab1867}
+
+\begin{DoxyCompactList}\small\item\em Flag showing if the vertex was a trigger primary vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classKFMCVertex_af066fb42a2f04f8027e74113d5940dae}{operator$<$$<$} (std\+::ostream \&out, const \hyperlink{classKFMCVertex}{K\+F\+M\+C\+Vertex} \&a)
+\item 
+std\+::istream \& \hyperlink{classKFMCVertex_a07f15138b33749b902ae133f7ec69cb0}{operator$>$$>$} (std\+::istream \&in, \hyperlink{classKFMCVertex}{K\+F\+M\+C\+Vertex} \&a)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to store information about simulated Monte Carlo primary vertices. 
+
+\begin{DoxyAuthor}{Author}
+M.\+Zyzak, I.\+Kisel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05.\+02.\+2019 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+The class contains coordinates of the vertex, indices of the Monte Carlo tracks produced at this vertex, classification flags, number of the reconstructed Monte Carlo tracks. 
+
+\subsection{Member Function Documentation}
+\index{K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}!Daughter\+Track@{Daughter\+Track}}
+\index{Daughter\+Track@{Daughter\+Track}!K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}}
+\subsubsection[{\texorpdfstring{Daughter\+Track(int i\+Tr) const }{DaughterTrack(int iTr) const }}]{\setlength{\rightskip}{0pt plus 5cm}int K\+F\+M\+C\+Vertex\+::\+Daughter\+Track (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+Tr}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classKFMCVertex_a8952b674a23b479a1ed642dcf8db3856}{}\label{classKFMCVertex_a8952b674a23b479a1ed642dcf8db3856}
+Returns unique id of the Monte Carlo track from this vertex with index \char`\"{}i\+Tr\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em i\+Tr} & -\/ index of the track.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\index{K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}}
+\subsubsection[{\texorpdfstring{operator$<$$<$}{operator<<}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{out, }
+\item[{const {\bf K\+F\+M\+C\+Vertex} \&}]{a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classKFMCVertex_af066fb42a2f04f8027e74113d5940dae}{}\label{classKFMCVertex_af066fb42a2f04f8027e74113d5940dae}
+Operator to print coordinates of the MC vertex \char`\"{}a\char`\"{}. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em out} & -\/ stream, where coordinates will be printed \\
+\hline
+\mbox{\tt in}  & {\em a} & -\/ vertex to be printed\\
+\hline
+\end{DoxyParams}
+\index{K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!K\+F\+M\+C\+Vertex@{K\+F\+M\+C\+Vertex}}
+\subsubsection[{\texorpdfstring{operator$>$$>$}{operator>>}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std\+::istream \&}]{in, }
+\item[{{\bf K\+F\+M\+C\+Vertex} \&}]{a}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}\hypertarget{classKFMCVertex_a07f15138b33749b902ae133f7ec69cb0}{}\label{classKFMCVertex_a07f15138b33749b902ae133f7ec69cb0}
+Operator to read coordinates of the vertex from the input stream. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em in} & -\/ input stream \\
+\hline
+\mbox{\tt in}  & {\em a} & -\/ vertex, where the coordinates will be read in\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle\+Performance/K\+F\+M\+C\+Vertex.\+h\item 
+/home/user/cbmdir/kfpf/\+K\+F\+Particle/\+K\+F\+Particle\+Performance/K\+F\+M\+C\+Vertex.\+cxx\end{DoxyCompactItemize}

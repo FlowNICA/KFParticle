@@ -247,7 +247,7 @@ void SimpleFinder::FindParticles()
       
       if(lambda.GetL() >= cuts_.GetCutLUp()) continue;
       if(lambda.GetLdL() <= cuts_.GetCutLdL()) continue;
-      //if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
+      if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
       if(lambda.GetCosineTopo() <= cuts_.GetCutCosineTopo()) continue;
       if(lambda.GetL() <= cuts_.GetCutLDown()) continue;
       
