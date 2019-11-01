@@ -2,8 +2,16 @@
 \label{classSimpleFinder}\index{Simple\+Finder@{Simple\+Finder}}
 
 
-Collaboration diagram for Simple\+Finder\+:
-\nopagebreak
+V0 particle (Lambda) reconstruction algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Simple\+Finder.\+h$>$}
+
+
+
+Collaboration diagram for Simple\+Finder\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,11 +21,10 @@ Collaboration diagram for Simple\+Finder\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void {\bfseries Init} (const \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&tracks, const \hyperlink{classKFVertex}{K\+F\+Vertex} \&pv)\hypertarget{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}{}\label{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}
+void \hyperlink{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}{Init} (const \hyperlink{classKFPTrackVector}{K\+F\+P\+Track\+Vector} \&tracks, const \hyperlink{classKFVertex}{K\+F\+Vertex} \&pv)\hypertarget{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}{}\label{classSimpleFinder_ab882be29eaf3e80f7f754b3a8682dc31}
 
-\item 
-void {\bfseries Sort\+Tracks} ()\hypertarget{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}{}\label{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}
-
+\begin{DoxyCompactList}\small\item\em Initialize \hyperlink{classSimpleFinder}{Simple\+Finder} object with PV and set of tracks of the current event. \end{DoxyCompactList}\item 
+void \hyperlink{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}{Sort\+Tracks} ()
 \item 
 void {\bfseries Find\+Particles} ()\hypertarget{classSimpleFinder_a319d1c4da78badd59a538b9839bb2632}{}\label{classSimpleFinder_a319d1c4da78badd59a538b9839bb2632}
 
@@ -33,9 +40,6 @@ const std\+::vector$<$ \hyperlink{classOutputContainer}{Output\+Container} $>$ \
 \item 
 void {\bfseries Set\+Cuts} (const \hyperlink{classCutsContainer}{Cuts\+Container} \&cuts)\hypertarget{classSimpleFinder_a48534300d76d38ae2aa9f1f70dc92d4e}{}\label{classSimpleFinder_a48534300d76d38ae2aa9f1f70dc92d4e}
 
-\item 
-const \hyperlink{classCutsContainer}{Cuts\+Container} \& {\bfseries Get\+Cuts} () const \hypertarget{classSimpleFinder_aaedbd2a273aabbe3a45e00613a7d87d8}{}\label{classSimpleFinder_aaedbd2a273aabbe3a45e00613a7d87d8}
-
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -49,8 +53,7 @@ void \hyperlink{classSimpleFinder_a6f67c15111fa7a4c19144acef48f7877}{Calculate\+
 float \hyperlink{classSimpleFinder_ab2ae6ae5184a0343e9256bf2a57fa3f4}{Calculate\+Distance\+Between\+Particles} (const std\+::array$<$ float, 8 $>$ \&pars1, const std\+::array$<$ float, 8 $>$ \&pars2) const \hypertarget{classSimpleFinder_ab2ae6ae5184a0343e9256bf2a57fa3f4}{}\label{classSimpleFinder_ab2ae6ae5184a0343e9256bf2a57fa3f4}
 
 \begin{DoxyCompactList}\small\item\em Calculates the distance between daughter tracks in their closest approach. \end{DoxyCompactList}\item 
-float \hyperlink{classSimpleFinder_adf804cbf61f06440529c38f703182030}{Calculate\+Cos\+Momentum\+Sum} (const std\+::array$<$ float, 8 $>$ \&pars1, const std\+::array$<$ float, 8 $>$ \&pars2) const \hypertarget{classSimpleFinder_adf804cbf61f06440529c38f703182030}{}\label{classSimpleFinder_adf804cbf61f06440529c38f703182030}
-
+float \hyperlink{classSimpleFinder_adf804cbf61f06440529c38f703182030}{Calculate\+Cos\+Momentum\+Sum} (const std\+::array$<$ float, 8 $>$ \&pars1, const std\+::array$<$ float, 8 $>$ \&pars2) const 
 \begin{DoxyCompactList}\small\item\em Calculates the cosine of the angle between daughter\textquotesingle{}s and mother\textquotesingle{}s momenta. \end{DoxyCompactList}\item 
 \hyperlink{classKFParticleSIMD}{K\+F\+Particle\+S\+I\+MD} \hyperlink{classSimpleFinder_a10ef8ed683c90625963c3185e5399771}{Construct\+Mother} (const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track1, const int pid1, const \hyperlink{classKFPTrack}{K\+F\+P\+Track} \&track2, const int pid2) const \hypertarget{classSimpleFinder_a10ef8ed683c90625963c3185e5399771}{}\label{classSimpleFinder_a10ef8ed683c90625963c3185e5399771}
 
@@ -95,6 +98,41 @@ std\+::vector$<$ \hyperlink{classOutputContainer}{Output\+Container} $>$ {\bfser
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+V0 particle (Lambda) reconstruction algorithm. 
+
+\begin{DoxyAuthor}{Authors}
+Oleksii Lubynets, Viktor Klochkov, Ilya Selyuzhenkov
+\end{DoxyAuthor}
+Simplified version of \hyperlink{classKFParticleFinder}{K\+F\+Particle\+Finder}. At the current moment it is developed to reconstruct the only decay channel\+: $\Lambda$ $\rightarrow$ $\pi^{-}$ $p^{+}$ 
+
+\subsection{Member Function Documentation}
+\index{Simple\+Finder@{Simple\+Finder}!Calculate\+Cos\+Momentum\+Sum@{Calculate\+Cos\+Momentum\+Sum}}
+\index{Calculate\+Cos\+Momentum\+Sum@{Calculate\+Cos\+Momentum\+Sum}!Simple\+Finder@{Simple\+Finder}}
+\subsubsection[{\texorpdfstring{Calculate\+Cos\+Momentum\+Sum(const std\+::array$<$ float, 8 $>$ \&pars1, const std\+::array$<$ float, 8 $>$ \&pars2) const }{CalculateCosMomentumSum(const std::array< float, 8 > &pars1, const std::array< float, 8 > &pars2) const }}]{\setlength{\rightskip}{0pt plus 5cm}float Simple\+Finder\+::\+Calculate\+Cos\+Momentum\+Sum (
+\begin{DoxyParamCaption}
+\item[{const std\+::array$<$ float, 8 $>$ \&}]{pars1, }
+\item[{const std\+::array$<$ float, 8 $>$ \&}]{pars2}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classSimpleFinder_adf804cbf61f06440529c38f703182030}{}\label{classSimpleFinder_adf804cbf61f06440529c38f703182030}
+
+
+Calculates the cosine of the angle between daughter\textquotesingle{}s and mother\textquotesingle{}s momenta. 
+
+Find cosine bitween daughter1 and mother momenta\index{Simple\+Finder@{Simple\+Finder}!Sort\+Tracks@{Sort\+Tracks}}
+\index{Sort\+Tracks@{Sort\+Tracks}!Simple\+Finder@{Simple\+Finder}}
+\subsubsection[{\texorpdfstring{Sort\+Tracks()}{SortTracks()}}]{\setlength{\rightskip}{0pt plus 5cm}void Simple\+Finder\+::\+Sort\+Tracks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}{}\label{classSimpleFinder_aae81d5b2382f10072b91307af30ba4a2}
+Sorts tracks\textquotesingle{} indices into 4 groups\+:~\newline
+1) secondary positive~\newline
+2) secondary negative~\newline
+3) primary positive~\newline
+4) primary negative~\newline
+ 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

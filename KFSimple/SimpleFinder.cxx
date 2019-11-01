@@ -3,8 +3,6 @@
 #include "KFParticleSIMD.h"
 #include "KFParticle.h"
 
-#include "OutputContainer.h"
-
 void SimpleFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
 {
   tracks_ = tracks;
@@ -13,6 +11,13 @@ void SimpleFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
 
 void SimpleFinder::SortTracks()
 {
+  /**
+   * Sorts tracks' indices into 4 groups:\n
+   * 1) secondary positive\n
+   * 2) secondary negative\n
+   * 3) primary positive\n
+   * 4) primary negative\n
+   */
   const int Size = tracks_.Size();
   
   for(int iTr = 0; iTr < Size; iTr++)
@@ -36,7 +41,7 @@ void SimpleFinder::SortTracks()
 
 /*float SimpleFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
 {
-  // Scalar version. Not optimal (was written earlier and was not imroved after SIMD'ization of package)
+  // Scalar version. Not optimal (was written earlier and was not imroved after SIMD'ization of KFParticle package)
   KFParticle tmpPart(track, pid);
   const float point[3] = {prim_vx_.X(), prim_vx_.Y(), prim_vx_.Z()};
   tmpPart.TransportToPoint(point);
@@ -95,7 +100,9 @@ float SimpleFinder::CalculateDistanceBetweenParticles(const std::array<float, 8>
 
 float SimpleFinder::CalculateCosMomentumSum(const std::array<float, 8> &pars1, const std::array<float, 8> &pars2) const
 {
-  // Find cosine bitween daughter1 and mother momenta
+  /**
+   * Find cosine bitween daughter1 and mother momenta
+   */
   const std::array<float, 3> P1 = {pars1.at(3), pars1.at(4), pars1.at(5)};
   const std::array<float, 3> P2 = {pars2.at(3), pars2.at(4), pars2.at(5)};
   const std::array<float, 3> PSum = {P1.at(0)+P2.at(0), P1.at(1)+P2.at(1), P1.at(2)+P2.at(2)};
@@ -191,6 +198,9 @@ void SimpleFinder::SaveParticle(OutputContainer Lambda)
  
 void SimpleFinder::FindParticles()
 {
+  /*
+   * The main function which performs lambda-candidate selection algorithm.
+   */
   int nSecPoses = trIndex_[kSecPos].size();
   int nSecNegs  = trIndex_[kSecNeg].size();
   

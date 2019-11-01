@@ -1,3 +1,16 @@
+/**
+ * @class SimpleFinder
+ * @brief V0 particle (Lambda) reconstruction algorithm
+ * @authors Oleksii Lubynets, Viktor Klochkov, Ilya Selyuzhenkov
+ * 
+ * Simplified version of KFParticleFinder class. At the current moment it is developed to reconstruct the only decay channel: \f$\Lambda\f$ \f$\rightarrow\f$ \f$\pi^{-}\f$ \f$p^{+}\f$ \n
+ * SimpleFinder is based on KFParticle package, it uses mathematical apparatus implemented in KFParticle.
+ * The basic idea and reconstruction algorithm also reproduce the KFParticle, but SimpleFinder is free of overloading of too complicated procedure as in KFParticleFinder. \n
+ * Also the advantage of SimpleFinder is that reconstruction procedure is clear and under full control of user, almost in the "hand mode".
+ * It gives a possibility of detailed analysis of V0 reconstruction, in particular of decay parameters distributions in order to optomize selection criterias (cuts).\n
+ * In future SimpleFinder can be developed for another decay channels.
+ */
+
 #ifndef SimpleFinder_H
 #define SimpleFinder_H
 
@@ -17,7 +30,7 @@ class SimpleFinder
   SimpleFinder() = default;
   virtual ~SimpleFinder() = default;
   
-  void  Init(const KFPTrackVector &tracks, const KFVertex &pv);
+  void  Init(const KFPTrackVector &tracks, const KFVertex &pv);             ///< Initialize SimpleFinder object with PV and set of tracks of the current event
   void  SortTracks();
   
   void  FindParticles();
@@ -29,7 +42,6 @@ class SimpleFinder
   const std::vector<OutputContainer>& GetLambdas() const {return vec_lambda_;};
   
   void  SetCuts(const CutsContainer& cuts) { cuts_ = cuts; }
-  const CutsContainer& GetCuts() const {return cuts_;};
 
  protected:
    
