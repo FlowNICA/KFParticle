@@ -19,6 +19,7 @@
 #include "KFPTrack.h"
 #include "KFParticleSIMD.h"
 #include "Constants.h"
+#include "InputContainer"
 #include "CutsContainer.h"
 #include "OutputContainer.h"
 
@@ -31,8 +32,9 @@ class SimpleFinder
   virtual ~SimpleFinder() = default;
   
   void  Init(const KFPTrackVector &tracks, const KFVertex &pv);             ///< Initialize SimpleFinder object with PV and set of tracks of the current event
-  void  SortTracks();
+  void  Init(const InputContainer &input);
   
+  void  SortTracks();
   void  FindParticles();
   
   const KFPTrackVector* GetTracks() const {return &tracks_;};

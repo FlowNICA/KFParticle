@@ -31,7 +31,6 @@
 #include "KFParticle.h"
 #include "KFVertex.h"
 #include "KFParticleTopoReconstructor.h"
-#include "SimpleFinder.h"
 
 class InputContainer{
  public:
@@ -44,9 +43,14 @@ class InputContainer{
   void SetPV(KFPVertex vertex);
   void AddTrack(float x, float y, float z, float px, float py, float pz, std::vector<float> cov, float field[10], int charge, int pdg, int id, int nhits=4, int passcuts=1);
   KFParticleTopoReconstructor* CreateTopoReconstructor();                                                                                                   //^ not good
-  SimpleFinder CreateSimpleFinder();
 
   void SetCuts(const CutsContainer& cuts) { cuts_ = cuts; }
+  
+  const KFVertex& GetVertex() {return vtx_;};
+  const std::vector<KFParticle>& GetTracks() {return tracks_;};
+  const CutsContainer& GetCuts() {return cuts_;};
+  
+  };
 
  protected:
   
