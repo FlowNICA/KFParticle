@@ -9,7 +9,7 @@ void SimpleFinder::Init(const KFPTrackVector &tracks, const KFVertex &pv)
   prim_vx_ = pv;
 }
 
-void SimpleFinder::Init(const InputContainer input)
+void SimpleFinder::Init(const InputContainer& input)
 {
   KFPTrackVector track_tmp;
   std::vector<KFParticle> tracks = input.GetTracks();
