@@ -19,7 +19,7 @@
 #include "KFPTrack.h"
 #include "KFParticleSIMD.h"
 #include "Constants.h"
-#include "InputContainer"
+#include "InputContainer.h"
 #include "CutsContainer.h"
 #include "OutputContainer.h"
 
