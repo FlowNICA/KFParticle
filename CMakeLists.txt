@@ -30,7 +30,6 @@ list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS} ${ROOTSYS})
 # set(FIXTARGET FALSE CACHE BOOL "Compile for fix target geometry.")
 set(FIXTARGET TRUE CACHE BOOL "Compile for fix target geometry.")
 
-
 find_package(ROOT REQUIRED COMPONENTS Core Hist Matrix Physics EG Gpad Graf Graf3d RIO MathCore)
 If(DEFINED Vc_INCLUDE_DIR AND Vc_LIBRARIES)
   Message("Vc found")
@@ -38,107 +37,65 @@ Else()
   find_package(Vc REQUIRED)
 EndIf()
 
-Set(INCLUDE_DIRECTORIES
-  ${PROJECT_SOURCE_DIR}/KFParticle
-  ${PROJECT_SOURCE_DIR}/KFParticlePerformance
-  
-  ${PROJECT_SOURCE_DIR}/Interface
-  ${PROJECT_SOURCE_DIR}/KFSimple
-)
+if (ROOT_FOUND)
+  message(STATUS "Using ROOT: ${ROOT_VERSION} <${ROOT_CONFIG}>")
+  include_directories(${CMAKE_SOURCE_DIR} ${ROOT_INCLUDE_DIR} ${ROOT_INCLUDE_DIRS})
+  include(${ROOT_USE_FILE})
+endif (ROOT_FOUND)
 
 include(${ROOT_USE_FILE})
 set(CMAKE_INCLUDE_DIRECTORIES_BEFORE ON)
 Include_Directories( ${CMAKE_SOURCE_DIR} ${Vc_INCLUDE_DIR} ${INCLUDE_DIRECTORIES} )
 set(CMAKE_INCLUDE_DIRECTORIES_BEFORE OFF)
 
-set(LINK_DIRECTORIES
-  ${ROOT_LIBRARY_DIR}
-)
- 
-link_directories( ${LINK_DIRECTORIES})
 
-set (SOURCES
-  KFParticle/KFParticleTopoReconstructor.cxx
-  KFParticle/KFVertex.cxx
-  KFParticle/KFPTrack.cxx
-  KFParticle/KFPTrackVector.cxx
-  KFParticle/KFPVertex.cxx
-  KFParticle/KFParticlePVReconstructor.cxx
-  KFParticle/KFParticleDatabase.cxx
-  KFParticle/KFParticleBase.cxx
-  KFParticle/KFParticleBaseSIMD.cxx
-  KFParticle/KFParticle.cxx
-  KFParticle/KFParticleSIMD.cxx
-  KFParticle/KFParticleFinder.cxx
-  KFParticle/KFPEmcCluster.cxx
-  KFParticlePerformance/KFMCVertex.cxx
-  KFParticlePerformance/KFParticlePerformanceBase.cxx
-  KFParticlePerformance/KFTopoPerformance.cxx
-  KFParticlePerformance/KFMCParticle.cxx
-  KFParticleTest/KFParticleTest.cxx
-  
-  KFSimple/SimpleFinder.cxx
-  Interface/InputContainer.cxx
-  Interface/OutputContainer.cxx
-  Interface/CutsContainer.cxx
-)
+add_subdirectory(KFParticle)
+add_subdirectory(KFSimple)
+#add_subdirectory(Interface)
 
-set (HEADERS
-  KFParticle/KFParticleBase.h
-  KFParticle/KFParticle.h
-  KFParticle/KFVertex.h
-  KFParticlePerformance/KFPartEfficiencies.h
-  KFParticlePerformance/KFMCParticle.h
-  KFParticleTest/KFParticleTest.h
-)
+#include(CMakePackageConfigHelpers)
+#write_basic_package_version_file(
+#        "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfigVersion.cmake"
+#        VERSION ${PROJECT_VERSION}
+#        COMPATIBILITY AnyNewerVersion
+#)
+#
+#export(EXPORT KFParticleTargets
+#        FILE "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleTargets.cmake")
+#
+#message(STATUS "KFParticleTargets: ${KFParticleTargets}")
+#
+#set(ConfigPackageLocation lib/cmake/KFParticle)
+#
+#set(KFParticle_INCLUDE_DIR "include")
+#set(KFParticle_LIBRARY_DIR "lib")
+#
+#configure_package_config_file(
+#        KFParticleConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfig.cmake
+#        INSTALL_DESTINATION ${ConfigPackageLocation}
+#        PATH_VARS KFParticle_INCLUDE_DIR KFParticle_LIBRARY_DIR
+#)
+#
+#install(EXPORT KFParticleTargets
+#        FILE
+#        KFParticleTargets.cmake
+#        DESTINATION
+#        ${ConfigPackageLocation}
+#        )
+#
+#install(FILES
+#        "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfig.cmake"
+#        "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfigVersion.cmake"
+#        DESTINATION
+#        ${ConfigPackageLocation}
+#        COMPONENT
+#        Devel
+#        )
 
-if(FIXTARGET)
-  ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DNonhomogeneousField" "-DCBM" "-DUSE_TIMERS")
-  add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
-  target_link_libraries(KFParticle ${ROOT_LIBRARIES} ${Vc_LIBRARIES} )
-  add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DNonhomogeneousField -DCBM -DUSE_TIMERS")
-else(FIXTARGET)
-  ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DHomogeneousField" "-DUSE_TIMERS")
-  add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
-  target_link_libraries(KFParticle ${ROOT_LIBRARIES} ${Vc_LIBRARIES} )
-  add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DHomogeneousField -DUSE_TIMERS")
-endif(FIXTARGET)
 
-if (ROOT_VERSION_MAJOR LESS 6)
-    add_custom_target(libKFParticle.rootmap ALL DEPENDS KFParticle COMMAND rlibmap -o libKFParticle.rootmap -l libKFParticle.so -c ${PROJECT_SOURCE_DIR}/KFLinkDef.h)
-endif (ROOT_VERSION_MAJOR LESS 6)
 
-Set(NODICT_HEADERS
-  KFParticle/KFParticleTopoReconstructor.h
-  KFParticle/KFParticlePVReconstructor.h
-  KFParticle/KFPVertex.h
-  KFParticle/KFPTrack.h
-  KFParticle/KFParticleFinder.h
-  KFParticle/KFParticleSIMD.h
-  KFParticle/KFParticleBaseSIMD.h
-  KFParticle/KFParticleDef.h
-  KFParticle/KFPSimdAllocator.h
-  KFParticle/KFPTrackVector.h
-  KFParticle/KFPEmcCluster.h
-  KFParticle/KFParticleField.h
-  KFParticle/KFPTrackVector.h
-  KFParticle/KFParticleDatabase.h
-  KFParticlePerformance/KFTopoPerformance.h
-  KFParticlePerformance/KFParticlePerformanceBase.h
-  KFParticlePerformance/KFMCCounter.h
-  KFParticlePerformance/KFPVEfficiencies.h
-  KFParticlePerformance/KFMCVertex.h
-  KFParticlePerformance/KFMCTrack.h
-  KFParticlePerformance/KFPartMatch.h
-  
-  KFSimple/SimpleFinder.h
-  KFSimple/Constants.h
-  Interface/InputContainer.h
-  Interface/OutputContainer.h
-  Interface/CutsContainer.h
-)
 
-install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
-install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle_rdict.pcm DESTINATION lib OPTIONAL)
-install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
-install(TARGETS KFParticle DESTINATION lib)
+#install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
+#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle_rdict.pcm DESTINATION lib OPTIONAL)
+#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
+#install(TARGETS KFParticle DESTINATION lib)

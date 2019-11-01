@@ -1,0 +1,5 @@
+*build*/
+install/*
+doxygen/latex/*
+doxygen/html/*
+.idea/*
