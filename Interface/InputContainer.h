@@ -51,7 +51,6 @@ class InputContainer{
   const std::vector<KFParticle>& GetTracks() {return tracks_;};
   const CutsContainer& GetCuts() {return cuts_;};
   
-  };
 
  protected:
   
