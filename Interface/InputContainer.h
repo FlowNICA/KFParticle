@@ -31,6 +31,7 @@
 #include "KFParticle.h"
 #include "KFVertex.h"
 #include "KFParticleTopoReconstructor.h"
+#include "CutsContainer"
 
 class InputContainer{
  public:
