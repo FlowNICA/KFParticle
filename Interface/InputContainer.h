@@ -47,9 +47,9 @@ class InputContainer{
 
   void SetCuts(const CutsContainer& cuts) { cuts_ = cuts; };
   
-  const KFVertex& GetVertex() {return vtx_;};
-  const std::vector<KFParticle>& GetTracks() {return tracks_;};
-  const CutsContainer& GetCuts() {return cuts_;};
+  const KFVertex& GetVertex() const {return vtx_;};
+  const std::vector<KFParticle>& GetTracks() const {return tracks_;};
+  const CutsContainer& GetCuts() const {return cuts_;};
   
 
  protected:
