@@ -3,15 +3,19 @@ set(SOURCES
         )
 
 string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
-include_directories(${CMAKE_SOURCE_DIR}/KFParticle )
+include_directories(${CMAKE_SOURCE_DIR}/KFParticle
+                    ${CMAKE_SOURCE_DIR}/Interface)
 
 add_library(KFParticleSimple SHARED ${SOURCES} G__KFParticleSimple.cxx)
 
 if(ROOT_FOUND)
-    ROOT_GENERATE_DICTIONARY(G__KFParticleSimple ${HEADERS} LINKDEF KFParticleSimpleLinkDef.h)
+    ROOT_GENERATE_DICTIONARY(G__KFParticleSimple ${HEADERS} LINKDEF KFParticleSimpleLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DNonhomogeneousField" "-DCBM" "-DUSE_TIMERS")
     add_dependencies(KFParticleSimple KFParticle)
     target_link_libraries(KFParticleSimple ${ROOT_LIBRARIES} KFParticle)
 endif(ROOT_FOUND)
+
+add_target_property(KFParticleSimple COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DNonhomogeneousField -DCBM -DUSE_TIMERS")
+
 
 #set(PCM_FILE_NAME libKFParticle)
 #install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)

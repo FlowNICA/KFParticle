@@ -27,7 +27,7 @@ endif ()
 
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS} ${ROOTSYS})
 
-# set(FIXTARGET FALSE CACHE BOOL "Compile for fix target geometry.")
+# set(FIXTARGET FALSE CACHE BOOL "Compile for collider geometry.")
 set(FIXTARGET TRUE CACHE BOOL "Compile for fix target geometry.")
 
 find_package(ROOT REQUIRED COMPONENTS Core Hist Matrix Physics EG Gpad Graf Graf3d RIO MathCore)
@@ -51,7 +51,7 @@ set(CMAKE_INCLUDE_DIRECTORIES_BEFORE OFF)
 
 add_subdirectory(KFParticle)
 add_subdirectory(KFSimple)
-#add_subdirectory(Interface)
+add_subdirectory(Interface)
 
 #include(CMakePackageConfigHelpers)
 #write_basic_package_version_file(

@@ -23,10 +23,11 @@ set (HEADERS
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
         
 if(ROOT_FOUND)
-  ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFParticleLinkDef.h)
+  ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFParticleLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DNonhomogeneousField" "-DCBM" "-DUSE_TIMERS")
   target_link_libraries(KFParticle ${ROOT_LIBRARIES})
 endif(ROOT_FOUND)
 
+add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DNonhomogeneousField -DCBM -DUSE_TIMERS")
 
 Set(NODICT_HEADERS
   KFParticleTopoReconstructor.h
