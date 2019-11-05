@@ -209,8 +209,10 @@ void FullControlFinder::FindParticles()
       KFPTrack trackNeg;
       tracks_.GetTrack(trackNeg, trIndex_[kSecNeg][iSecNeg]);
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
-            
+      
+      std::cout << "1\n";
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
+      std::cout << "2\n";
       
       Output_interface lambda;
             
@@ -218,6 +220,7 @@ void FullControlFinder::FindParticles()
       if(lambda.GetChi2PrimPos() <= cuts_.GetCutChi2PrimPos()) continue;
       lambda.SetChi2PrimNeg(CalculateChiToPrimaryVertex(trackNeg, pidNeg));
       if(lambda.GetChi2PrimNeg() <= cuts_.GetCutChi2PrimNeg()) continue;
+      std::cout << "3\n";
                   
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
@@ -225,16 +228,19 @@ void FullControlFinder::FindParticles()
       
       lambda.SetDistance(CalculateDistanceBetweenParticles(pars1, pars2));
       if(lambda.GetDistance() > cuts_.GetCutDistance()) continue;
+      std::cout << "4\n";
       
       lambda.SetCosineDaughterPos(CalculateCosMomentumSum(pars1, pars2));
       lambda.SetCosineDaughterNeg(CalculateCosMomentumSum(pars2, pars1));
       if(lambda.GetCosineDaughterPos() < cuts_.GetCutCosineDaughterPos() || lambda.GetCosineDaughterNeg() < cuts_.GetCutCosineDaughterNeg()) continue;
+      std::cout << "5\n";
             
       KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
       
       lambda.SetChi2Geo(CalculateChi2Geo(mother));
       if(!finite(lambda.GetChi2Geo()) || lambda.GetChi2Geo() <= 0) continue;
       if(lambda.GetChi2Geo() >= cuts_.GetCutChi2Geo()) continue;
+      std::cout << "6\n";
       
       float l, ldl;
       int isfrompv = -1;
@@ -250,6 +256,7 @@ void FullControlFinder::FindParticles()
       if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
 //       if(lambda.GetCosineTopo() <= cuts_.GetCutCosineTopo()) continue;
       if(lambda.GetL() <= cuts_.GetCutLDown()) continue;
+      std::cout << "7\n";
       
       lambda.SetChi2Topo(CalculateChi2Topo(mother));
 //       if(lambda.GetChi2Topo() > cuts_.GetCutChi2Topo()) continue;
@@ -269,6 +276,6 @@ void FullControlFinder::FindParticles()
     }
   }
   
-//   std::cout << N << std::endl;
+  std::cout << N << std::endl;
   
 }
