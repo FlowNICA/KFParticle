@@ -210,9 +210,7 @@ void FullControlFinder::FindParticles()
       tracks_.GetTrack(trackNeg, trIndex_[kSecNeg][iSecNeg]);
       const int pidNeg = tracks_.PDG()[trIndex_[kSecNeg][iSecNeg]];
       
-      std::cout << "1\n";
       if(!(pidPos==pdg_proton && pidNeg==pdg_pionMinus)) continue;
-      std::cout << "2\n";
       
       Output_interface lambda;
             
