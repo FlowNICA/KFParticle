@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8.8 FATAL_ERROR)
 
 project(KFParticleLibrary)
 
+set(PROJECT_VERSION 1.0)
+
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb -g -DDEBUG -D__DEBUG -Wall -Wextra")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELEASE} -ggdb")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -ftree-vectorize -ffast-math -DNODEBUG")
@@ -53,49 +55,46 @@ add_subdirectory(KFParticle)
 add_subdirectory(KFSimple)
 add_subdirectory(Interface)
 
-#include(CMakePackageConfigHelpers)
-#write_basic_package_version_file(
-#        "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfigVersion.cmake"
-#        VERSION ${PROJECT_VERSION}
-#        COMPATIBILITY AnyNewerVersion
-#)
-#
-#export(EXPORT KFParticleTargets
-#        FILE "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleTargets.cmake")
-#
-#message(STATUS "KFParticleTargets: ${KFParticleTargets}")
-#
-#set(ConfigPackageLocation lib/cmake/KFParticle)
-#
-#set(KFParticle_INCLUDE_DIR "include")
-#set(KFParticle_LIBRARY_DIR "lib")
-#
-#configure_package_config_file(
-#        KFParticleConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfig.cmake
-#        INSTALL_DESTINATION ${ConfigPackageLocation}
-#        PATH_VARS KFParticle_INCLUDE_DIR KFParticle_LIBRARY_DIR
-#)
-#
-#install(EXPORT KFParticleTargets
-#        FILE
-#        KFParticleTargets.cmake
-#        DESTINATION
-#        ${ConfigPackageLocation}
-#        )
-#
-#install(FILES
-#        "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfig.cmake"
-#        "${CMAKE_CURRENT_BINARY_DIR}/KFParticle/KFParticleConfigVersion.cmake"
-#        DESTINATION
-#        ${ConfigPackageLocation}
-#        COMPONENT
-#        Devel
-#        )
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+       "${CMAKE_CURRENT_BINARY_DIR}/KFParticleMain/KFParticleConfigVersion.cmake"
+       VERSION ${PROJECT_VERSION}
+       COMPATIBILITY AnyNewerVersion
+)
 
+export(EXPORT KFParticleTargets
+       FILE "${CMAKE_CURRENT_BINARY_DIR}/KFParticleMain/KFParticleTargets.cmake")
 
+message(STATUS "KFParticleTargets: ${KFParticleTargets}")
 
+set(ConfigPackageLocation lib/cmake/KFParticle)
 
-#install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
-#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle_rdict.pcm DESTINATION lib OPTIONAL)
-#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
-#install(TARGETS KFParticle DESTINATION lib)
+set(KFParticle_INCLUDE_DIR "include")
+set(KFParticle_LIBRARY_DIR "lib")
+
+configure_package_config_file(
+       KFParticleConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/KFParticleMain/KFParticleConfig.cmake
+       INSTALL_DESTINATION ${ConfigPackageLocation}
+       PATH_VARS KFParticle_INCLUDE_DIR KFParticle_LIBRARY_DIR
+)
+
+install(EXPORT KFParticleTargets
+       FILE
+       KFParticleTargets.cmake
+       DESTINATION
+       ${ConfigPackageLocation}
+       )
+
+install(FILES
+       "${CMAKE_CURRENT_BINARY_DIR}/KFParticleMain/KFParticleConfig.cmake"
+       "${CMAKE_CURRENT_BINARY_DIR}/KFParticleMain/KFParticleConfigVersion.cmake"
+       DESTINATION
+       ${ConfigPackageLocation}
+       COMPONENT
+       Devel
+       )
+
+# install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
+# install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle_rdict.pcm DESTINATION lib OPTIONAL)
+# install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
+# install(TARGETS KFParticle DESTINATION lib)
