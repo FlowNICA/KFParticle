@@ -16,6 +16,23 @@ endif(ROOT_FOUND)
 
 add_target_property(KFParticleSimple COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DNonhomogeneousField -DCBM -DUSE_TIMERS")
 
+set(PCM_FILE_NAME libKFParticle)
+install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
+#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
+
+install(TARGETS KFParticleSimple EXPORT KFParticleTargets
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+        INCLUDES DESTINATION include
+        )
+
+install(FILES
+        "${CMAKE_CURRENT_BINARY_DIR}/${PCM_FILE_NAME}_rdict.pcm"
+        DESTINATION
+        lib
+        OPTIONAL
+        )
 
 #set(PCM_FILE_NAME libKFParticle)
 #install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
