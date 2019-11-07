@@ -4,7 +4,18 @@ project(KFParticleLibrary)
 
 set(PROJECT_VERSION 1.0)
 
-set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb -g -DDEBUG -D__DEBUG -Wall -Wextra")
+# by default build optimized code with debug symbols
+if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE RELWITHDEBINFO)
+endif ()
+
+# in DEBUG mode make verbose Makefile
+if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+    set(CMAKE_VERBOSE_MAKEFILE ON)
+endif ()
+
+# set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb -g -DDEBUG -D__DEBUG -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb -DDEBUG -D__DEBUG -Wall")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELEASE} -ggdb")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -march=native -ftree-vectorize -ffast-math -DNODEBUG")
 message(STATUS "Using CXX flags for ${CMAKE_BUILD_TYPE}: ${CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE}}")
@@ -49,7 +60,6 @@ include(${ROOT_USE_FILE})
 set(CMAKE_INCLUDE_DIRECTORIES_BEFORE ON)
 Include_Directories( ${CMAKE_SOURCE_DIR} ${Vc_INCLUDE_DIR} ${INCLUDE_DIRECTORIES} )
 set(CMAKE_INCLUDE_DIRECTORIES_BEFORE OFF)
-
 
 add_subdirectory(KFParticle)
 add_subdirectory(KFSimple)

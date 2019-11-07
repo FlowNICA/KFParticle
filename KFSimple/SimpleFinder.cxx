@@ -282,11 +282,11 @@ void SimpleFinder::FindParticles()
       if(lambda.GetL() >= cuts_.GetCutLUp()) continue;
       if(lambda.GetLdL() <= cuts_.GetCutLdL()) continue;
       if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
-      if(lambda.GetCosineTopo() <= cuts_.GetCutCosineTopo()) continue;
+//       if(lambda.GetCosineTopo() <= cuts_.GetCutCosineTopo()) continue;
       if(lambda.GetL() <= cuts_.GetCutLDown()) continue;
       
       lambda.SetChi2Topo(CalculateChi2Topo(mother));
-      if(lambda.GetChi2Topo() > cuts_.GetCutChi2Topo()) continue;
+//       if(lambda.GetChi2Topo() > cuts_.GetCutChi2Topo()) continue;
       
       KFParticle particle;
       mother.GetKFParticle(particle, 0);
