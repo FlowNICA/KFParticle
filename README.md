@@ -2,7 +2,7 @@
 
 ## General information
 
-KFSimple package is a simplified version of the KFParticle package. At the current moment it is developed to reconstruct only one decay channel: $`\Lambda` `\rightarrow` `\pi^-` `p^+`$.
+KFSimple package is a simplified version of the KFParticle package. At the current moment it is developed to reconstruct only one decay channel: $`\Lambda`$ `\rightarrow` `\pi^-` `p^+`$.
 KFP Simple is based on KFParticle Finder, it uses mathematical apparatus implemented in KFPF.
 The basic idea and reconstruction algorithm also reproduce the "Usual" KFParticle Finder, but KFP Simple is free of overloading of too complicated procedure as in KFParticle Finder.
 Also the advantage of KFPS is that reconstruction procedure is clear and under full control of user, almost in the "hand mode". It gives a possibility of detailed analysis of V0 reconstruction, in particular of decay parameters distributions in order to optomize selection criterias (cuts).
