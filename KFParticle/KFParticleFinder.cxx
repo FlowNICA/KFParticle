@@ -184,9 +184,9 @@ void KFParticleFinder::FindParticles(KFPTrackVector* vRTracks, kfvector_float* C
         KFParticle tmp(kfTrack, pdg);
         tmp.SetPDG(pdg);
         tmp.SetId(Particles.size());
-        vRTracks[iV].SetId(Particles.size(),iTr);
-        if(vRTracks[iV+4].Size() > 0)
-          vRTracks[iV+4].SetId(Particles.size(),iTr);
+//         vRTracks[iV].SetId(Particles.size(),iTr);                      // do NOT overwrite daughters' Ids!
+//         if(vRTracks[iV+4].Size() > 0)
+//           vRTracks[iV+4].SetId(Particles.size(),iTr);
         tmp.AddDaughterId( kfTrack.Id() );
 #ifdef NonhomogeneousField
         for(int iF=0; iF<10; iF++)
@@ -1041,12 +1041,12 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         startTCNeg[1] = 0; endTCNeg[1] = 0; 
         //pi- + ghosts
         startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = nPositiveTracks;
-        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();        
+        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion()+1;        
         //K-
-        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon();
-        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
+        startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = posTracks.LastKaon()+1;
+        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon()+1;  
         //p-, d-, t-, he3-, he4-
-        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastPion();
+        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastPion()+1;
         startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracksSize[0];  
       }
       
@@ -1066,22 +1066,22 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
         startTCPos[0] = 0; endTCPos[0] = nPositiveTracks; //posTracks.LastElectron();
         startTCNeg[0] = 0; endTCNeg[0] = negTracksSize[0];  //negTracks.LastElectron(); 
         //mu-
-        startTCPos[1] = posTracks.FirstMuon(); endTCPos[1] = posTracks.LastMuon();
-        startTCNeg[1] = negTracks.FirstMuon(); endTCNeg[1] = negTracks.LastMuon(); 
+        startTCPos[1] = posTracks.FirstMuon(); endTCPos[1] = posTracks.LastMuon()+1;
+        startTCNeg[1] = negTracks.FirstMuon(); endTCNeg[1] = negTracks.LastMuon()+1; 
         //pi- + ghosts
-        startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = posTracks.LastProton();
-        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion();        
+        startTCPos[2] = posTracks.FirstPion(); endTCPos[2] = posTracks.LastProton()+1;
+        startTCNeg[2] = negTracks.FirstPion(); endTCNeg[2] = negTracks.LastPion()+1;        
         //K-
         startTCPos[3] = posTracks.FirstPion(); endTCPos[3] = nPositiveTracks;
-        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon();  
+        startTCNeg[3] = negTracks.FirstKaon(); endTCNeg[3] = negTracks.LastKaon()+1;  
         //p-
-        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastProton();
-        startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracks.LastProton();      
+        startTCPos[4] = posTracks.FirstPion(); endTCPos[4] = posTracks.LastProton()+1;
+        startTCNeg[4] = negTracks.FirstProton(); endTCNeg[4] = negTracks.LastProton()+1;      
       }
       
       for(int iTC=0; iTC<nTC; iTC++)
       {
-        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC]; iTrN += float_vLen)
+        for(int iTrN=startTCNeg[iTC]; iTrN < endTCNeg[iTC] && iTrN < negTracksSize[0]; iTrN += float_vLen)
         {
           const int NTracksNeg = (iTrN + float_vLen < negTracks.Size()) ? float_vLen : (negTracks.Size() - iTrN);
 
@@ -1111,7 +1111,7 @@ void KFParticleFinder::Find2DaughterDecay(KFPTrackVector* vTracks, kfvector_floa
           if( (iTrTypeNeg == 0) && (iTrTypePos == 0) )
             chiPrimNeg = reinterpret_cast<const float_v&>( ChiToPrimVtx[trTypeIndexNeg[iTrTypeNeg]][iTrN]);
           
-          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC]; iTrP += float_vLen)
+          for(int iTrP=startTCPos[iTC]; iTrP < endTCPos[iTC] && iTrP < nPositiveTracks; iTrP += float_vLen)
           {
             const int NTracks = (iTrP + float_vLen < nPositiveTracks) ? float_vLen : (nPositiveTracks - iTrP);
 
