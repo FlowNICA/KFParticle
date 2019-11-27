@@ -65,7 +65,7 @@ void SimpleFinder::SortTracks()
 
 /*float SimpleFinder::CalculateChiToPrimaryVertex(const KFPTrack &track, const int pid) const
 {
-  // Scalar version. Not optimal (was written earlier and was not imroved after SIMD'ization of KFParticle package)
+  // Scalar version. Not optimal (was written earlier and was not improved after SIMD'ization of KFParticle package)
   KFParticle tmpPart(track, pid);
   const float point[3] = {prim_vx_.X(), prim_vx_.Y(), prim_vx_.Z()};
   tmpPart.TransportToPoint(point);
@@ -153,7 +153,7 @@ KFParticleSIMD SimpleFinder::ConstructMother(const KFPTrack &track1, const int p
   const KFParticleSIMD* vDaughtersPointer[2] = {&particleSIMD1, &particleSIMD2};
   
   KFParticleSIMD mother;
-  mother.Construct(vDaughtersPointer, 2, 0);
+  mother.Construct(vDaughtersPointer, 2, nullptr);
   
   return mother;
 }
@@ -174,6 +174,10 @@ void SimpleFinder::CalculateMotherProperties(const KFParticleSIMD mother, float 
   const KFParticleSIMD prim_vx_Simd(prim_vx_tmp);
 
   mother.GetDistanceToVertexLine(prim_vx_Simd, l_Simd, dl_Simd, &isFromPV_Simd);
+  
+  KFParticleSIMD motherTopo = mother;
+  motherTopo.SetProductionVertex(prim_vx_Simd);
+  motherTopo.KFParticleBaseSIMD::GetDecayLength(l_Simd, dl_Simd);
   
   l = l_Simd[0];
   ldl = l_Simd[0]/dl_Simd[0];
@@ -249,22 +253,23 @@ void SimpleFinder::FindParticles()
       OutputContainer lambda;
             
       lambda.SetChi2PrimPos(CalculateChiToPrimaryVertex(trackPos, pidPos));
-      if(lambda.GetChi2PrimPos() <= cuts_.GetCutChi2PrimPos()) continue;
+      if(lambda.GetChi2PrimPos() <= cuts_.GetCutChi2PrimPos() || lambda.GetChi2PrimPos()!=lambda.GetChi2PrimPos()) continue;
       lambda.SetChi2PrimNeg(CalculateChiToPrimaryVertex(trackNeg, pidNeg));
-      if(lambda.GetChi2PrimNeg() <= cuts_.GetCutChi2PrimNeg()) continue;
+      if(lambda.GetChi2PrimNeg() <= cuts_.GetCutChi2PrimNeg() || lambda.GetChi2PrimNeg()!=lambda.GetChi2PrimNeg()) continue;
                   
       std::array<float, 8> pars1;
       std::array<float, 8> pars2;
-      CalculateParamsInPCA(trackPos, pidPos, trackNeg, pidNeg, pars1, pars2);
+      CalculateParamsInPCA(trackNeg, pidNeg, trackPos, pidPos, pars1, pars2);
       
       lambda.SetDistance(CalculateDistanceBetweenParticles(pars1, pars2));
-      if(lambda.GetDistance() > cuts_.GetCutDistance()) continue;
+      if(lambda.GetDistance() >= cuts_.GetCutDistance() || lambda.GetDistance()!=lambda.GetDistance()) continue;
       
-      lambda.SetCosineDaughterPos(CalculateCosMomentumSum(pars1, pars2));
-      lambda.SetCosineDaughterNeg(CalculateCosMomentumSum(pars2, pars1));
-      if(lambda.GetCosineDaughterPos() < cuts_.GetCutCosineDaughterPos() || lambda.GetCosineDaughterNeg() < cuts_.GetCutCosineDaughterNeg()) continue;
+      lambda.SetCosineDaughterPos(CalculateCosMomentumSum(pars2, pars1));
+      lambda.SetCosineDaughterNeg(CalculateCosMomentumSum(pars1, pars2));
+      if(lambda.GetCosineDaughterPos() < cuts_.GetCutCosineDaughterPos() || lambda.GetCosineDaughterNeg() < cuts_.GetCutCosineDaughterNeg()
+         || lambda.GetCosineDaughterPos()!=lambda.GetCosineDaughterPos() || lambda.GetCosineDaughterNeg()!=lambda.GetCosineDaughterNeg()) continue;
             
-      KFParticleSIMD mother = ConstructMother(trackPos, pidPos, trackNeg, pidNeg);
+      KFParticleSIMD mother = ConstructMother(trackNeg, pidNeg, trackPos, pidPos);
       
       lambda.SetChi2Geo(CalculateChi2Geo(mother));
       if(!finite(lambda.GetChi2Geo()) || lambda.GetChi2Geo() <= 0) continue;
@@ -279,8 +284,8 @@ void SimpleFinder::FindParticles()
       
       lambda.SetCosineTopo(CalculateCosTopo(mother));
       
-      if(lambda.GetL() >= cuts_.GetCutLUp()) continue;
-      if(lambda.GetLdL() <= cuts_.GetCutLdL()) continue;
+      if(lambda.GetL() >= cuts_.GetCutLUp() || lambda.GetL()!=lambda.GetL()) continue;
+      if(lambda.GetLdL() <= cuts_.GetCutLdL() || lambda.GetLdL()!=lambda.GetLdL()) continue;
       if(lambda.GetIsFromPV() == cuts_.GetCutIsFromPV()) continue;
 //       if(lambda.GetCosineTopo() <= cuts_.GetCutCosineTopo()) continue;
       if(lambda.GetL() <= cuts_.GetCutLDown()) continue;
