@@ -155,6 +155,15 @@ KFParticleSIMD SimpleFinder::ConstructMother(const KFPTrack &track1, const int p
   KFParticleSIMD mother;
   mother.Construct(vDaughtersPointer, 2, nullptr);
   
+  KFParticle part1, part2, partM;
+  particleSIMD1.GetKFParticle(part1, 0);
+  particleSIMD2.GetKFParticle(part2, 0);
+  mother.GetKFParticle(partM, 0);
+  
+  std::cout << part1.GetP() << "\t" << part1.E() << "\t" << part1.GetMass() << std::endl;
+  std::cout << part2.GetP() << "\t" << part2.E() << "\t" << part2.GetMass() << std::endl;
+  std::cout << partM.GetP() << "\t" << partM.E() << "\t" << partM.GetMass() << "\n" << std::endl;
+  
   return mother;
 }
 
