@@ -58,12 +58,10 @@ endif (ROOT_FOUND)
 
 include(${ROOT_USE_FILE})
 set(CMAKE_INCLUDE_DIRECTORIES_BEFORE ON)
-Include_Directories( ${CMAKE_SOURCE_DIR} ${Vc_INCLUDE_DIR} ${INCLUDE_DIRECTORIES} KFParticle KFSimple Interface)
+Include_Directories( ${CMAKE_SOURCE_DIR} ${Vc_INCLUDE_DIR} ${INCLUDE_DIRECTORIES} KFParticle)
 set(CMAKE_INCLUDE_DIRECTORIES_BEFORE OFF)
 
 add_subdirectory(KFParticle)
-add_subdirectory(KFSimple)
-add_subdirectory(Interface)
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
