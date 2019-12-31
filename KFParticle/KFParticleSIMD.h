@@ -23,6 +23,11 @@
 #include "KFPEmcCluster.h"
 #include "KFPVertex.h"
 
+#include "TFile.h"
+#include "TH3.h"
+#include "iostream"
+#include "MFMap.h"
+
 #ifdef NonhomogeneousField
 #include "KFParticleField.h"
 #endif
@@ -80,7 +85,7 @@ class KFParticleSIMD :public KFParticleBaseSIMD
 #ifdef NonhomogeneousField
   , fField() 
 #endif
-  { }
+  {}
 
   //* Destructor (empty)
 
@@ -268,6 +273,7 @@ class KFParticleSIMD :public KFParticleBaseSIMD
   
   void Transport( float_v dS, const float_v* dsdr, float_v P[], float_v C[], float_v* dsdr1=nullptr, float_v* F=nullptr, float_v* F1=nullptr  ) const ;
   void TransportFast( float_v dS, float_v P[] ) const ;
+    
   
  protected: 
   
@@ -691,17 +697,22 @@ inline void KFParticleSIMD::GetFieldValue( const float_v * /*xyz*/, float_v B[] 
 #endif
 
 #ifdef NonhomogeneousField
-inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[] ) const 
+// inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[] ) const 
+// {
+//   /** Calculates the Bx, By, Bz components at the point xyz using approximation of the
+//    ** magnetic field along the particle trajectory.
+//    ** \param[in] xyz[3] - X, Y, Z coordiantes of the point where the magnetic field should be calculated
+//    ** \param[out] B[3] - value of X, Y, Z components of the calculated magnetic field at the given point
+//    **/
+//   KFParticleFieldValue mB = const_cast<KFParticleFieldRegion&>(fField).Get(xyz[2]);
+//   B[0] = mB.x;
+//   B[1] = mB.y;
+//   B[2] = mB.z;
+// }
+//-----------------------------------------------------------------------------------------------------------
+inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[]) const
 {
-  /** Calculates the Bx, By, Bz components at the point xyz using approximation of the
-   ** magnetic field along the particle trajectory.
-   ** \param[in] xyz[3] - X, Y, Z coordiantes of the point where the magnetic field should be calculated
-   ** \param[out] B[3] - value of X, Y, Z components of the calculated magnetic field at the given point
-   **/
-  KFParticleFieldValue mB = const_cast<KFParticleFieldRegion&>(fField).Get(xyz[2]);
-  B[0] = mB.x;
-  B[1] = mB.y;
-  B[2] = mB.z;
+  MFMap* mf = MFMap::Instance();
 }
 #endif
 

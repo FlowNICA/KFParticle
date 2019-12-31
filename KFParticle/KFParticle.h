@@ -24,6 +24,10 @@
 #include "KFParticleBase.h"
 #include <cmath>
 
+#include "TFile.h"
+#include "TH3.h"
+#include "iostream"
+
 class KFPTrack;
 class KFPVertex;
 
@@ -761,6 +765,22 @@ inline void KFParticle::GetFieldValue( const float xyz[], float B[] ) const
   B[1] = fieldRegion[3] + fieldRegion[4]*dz + fieldRegion[5]*dz2;
   B[2] = fieldRegion[6] + fieldRegion[7]*dz + fieldRegion[8]*dz2;
 }
+//-------------------------------------------------------------------------------------------------------------
+// inline void KFParticle::GetFieldValue( const float xyz[], float B[] ) const 
+// {
+//   TFile fileMF("/home/user/cbmdir/kfpf/kfpf_analysis_tree_converter/input/field_mapF.root");
+//   TH3F* histoBx = (TH3F*)fileMF.Get("histoBx");
+//   TH3F* histoBy = (TH3F*)fileMF.Get("histoBy");
+//   TH3F* histoBz = (TH3F*)fileMF.Get("histoBz");
+//   
+//   const float x_l = fabs(xyz[0]);
+//   const float y_l = fabs(xyz[1]);
+//   const float z_l = fabs(xyz[2] - 40.);
+//   
+//   B[0] = histoBx -> GetBinContent( histoBx->FindBin(x_l, y_l, z_l) );
+//   B[1] = histoBy -> GetBinContent( histoBy->FindBin(x_l, y_l, z_l) );
+//   B[2] = histoBz -> GetBinContent( histoBz->FindBin(x_l, y_l, z_l) );
+// }
 #endif
 
 inline void KFParticle::GetDStoParticle( const KFParticleBase &p, float dS[2], float dsdr[4][6] ) const

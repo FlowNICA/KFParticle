@@ -1,5 +1,5 @@
 set(SOURCES
-  KFParticleTopoReconstructor.cxx
+#   KFParticleTopoReconstructor.cxx
   KFVertex.cxx
   KFPTrack.cxx
   KFPTrackVector.cxx
@@ -10,14 +10,17 @@ set(SOURCES
   KFParticleBaseSIMD.cxx
   KFParticle.cxx
   KFParticleSIMD.cxx
-  KFParticleFinder.cxx
+#   KFParticleFinder.cxx
   KFPEmcCluster.cxx
+  MFMap.cxx
+#   MFHistos.cxx
   )
 
 set (HEADERS
   KFParticleBase.h
   KFParticle.h
   KFVertex.h
+  MFMap.h
   )
 
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
@@ -30,11 +33,11 @@ endif(ROOT_FOUND)
 add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DNonhomogeneousField -DCBM -DUSE_TIMERS")
 
 Set(NODICT_HEADERS
-  KFParticleTopoReconstructor.h
+#   KFParticleTopoReconstructor.h
   KFParticlePVReconstructor.h
   KFPVertex.h
   KFPTrack.h
-  KFParticleFinder.h
+#   KFParticleFinder.h
   KFParticleSIMD.h
   KFParticleBaseSIMD.h
   KFParticleDef.h
@@ -44,7 +47,8 @@ Set(NODICT_HEADERS
   KFParticleField.h
   KFPTrackVector.h
   KFParticleDatabase.h
-  )
+#   MFHistos.h
+)
 
 set(PCM_FILE_NAME libKFParticle)
 install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
