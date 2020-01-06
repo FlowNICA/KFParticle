@@ -21,7 +21,7 @@ public:
   
   void Pass(){/*std::cout << "NULL\n"*/;};
     
-private:
+// private:
   
   MFMap() = default;
 //   {
