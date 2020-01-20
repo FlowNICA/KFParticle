@@ -713,6 +713,7 @@ inline void KFParticleSIMD::GetFieldValue( const float_v * /*xyz*/, float_v B[] 
 inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[]) const
 {
   MFMap* mf = MFMap::Instance();
+  mf -> GetField(xyz, B);
 }
 #endif
 

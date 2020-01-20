@@ -13,9 +13,9 @@ class MFMap
 public:
   
   static MFMap* Instance() {return instance_;};
- 
-  void Pass(){/*std::cout << "NULL\n"*/;};
-    
+  
+  void GetField(const float_v xyz[], float_v B[]) const;
+     
 protected:
   
   MFMap()
