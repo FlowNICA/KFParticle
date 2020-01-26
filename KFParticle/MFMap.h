@@ -32,6 +32,8 @@ private:
   
   static MFMap* instance_;
   
+//   float signum(float x);           //TODO WHY not working in singleton?
+  
   TFile* fileMF_;
   TH3F* histoBx_;
   TH3F* histoBy_;

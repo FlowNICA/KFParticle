@@ -4,7 +4,7 @@ set(SOURCES
   KFPTrack.cxx
   KFPTrackVector.cxx
   KFPVertex.cxx
-  KFParticlePVReconstructor.cxx
+#   KFParticlePVReconstructor.cxx
   KFParticleDatabase.cxx
   KFParticleBase.cxx
   KFParticleBaseSIMD.cxx
@@ -34,7 +34,7 @@ add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE 
 
 Set(NODICT_HEADERS
 #   KFParticleTopoReconstructor.h
-  KFParticlePVReconstructor.h
+#   KFParticlePVReconstructor.h
   KFPVertex.h
   KFPTrack.h
 #   KFParticleFinder.h
