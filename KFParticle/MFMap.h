@@ -20,7 +20,8 @@ protected:
   
   MFMap()
   {
-    fileMF_ =  TFile::Open("/home/user/cbmdir/kfpf/kfpf_analysis_tree_converter/input/field_mapF.root", "read");
+//     fileMF_ =  TFile::Open("/home/user/cbmdir/kfpf/kfpf_analysis_tree_converter/input/field_mapF.root", "read");
+    fileMF_ =  TFile::Open("/lustre/cbm/users/lubynets/kfpf/macro/field_mapF.root", "read");
     histoBx_ = (TH3F*)fileMF_->Get("histoBx");
     histoBy_ = (TH3F*)fileMF_->Get("histoBy");
     histoBz_ = (TH3F*)fileMF_->Get("histoBz");
