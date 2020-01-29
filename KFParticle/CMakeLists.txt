@@ -47,6 +47,7 @@ Set(NODICT_HEADERS
   KFParticleField.h
   KFPTrackVector.h
   KFParticleDatabase.h
+  KFPInputData.h
 #   MFHistos.h
 )
 

@@ -697,24 +697,24 @@ inline void KFParticleSIMD::GetFieldValue( const float_v * /*xyz*/, float_v B[] 
 #endif
 
 #ifdef NonhomogeneousField
-// inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[] ) const 
-// {
-//   /** Calculates the Bx, By, Bz components at the point xyz using approximation of the
-//    ** magnetic field along the particle trajectory.
-//    ** \param[in] xyz[3] - X, Y, Z coordiantes of the point where the magnetic field should be calculated
-//    ** \param[out] B[3] - value of X, Y, Z components of the calculated magnetic field at the given point
-//    **/
-//   KFParticleFieldValue mB = const_cast<KFParticleFieldRegion&>(fField).Get(xyz[2]);
-//   B[0] = mB.x;
-//   B[1] = mB.y;
-//   B[2] = mB.z;
-// }
-//-----------------------------------------------------------------------------------------------------------
-inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[]) const
+inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[] ) const 
 {
-  MFMap* mf = MFMap::Instance();
-  mf -> GetField(xyz, B);
+  /** Calculates the Bx, By, Bz components at the point xyz using approximation of the
+   ** magnetic field along the particle trajectory.
+   ** \param[in] xyz[3] - X, Y, Z coordiantes of the point where the magnetic field should be calculated
+   ** \param[out] B[3] - value of X, Y, Z components of the calculated magnetic field at the given point
+   **/
+  KFParticleFieldValue mB = const_cast<KFParticleFieldRegion&>(fField).Get(xyz[2]);
+  B[0] = mB.x;
+  B[1] = mB.y;
+  B[2] = mB.z;
 }
+//-----------------------------------------------------------------------------------------------------------
+// inline void KFParticleSIMD::GetFieldValue( const float_v xyz[], float_v B[]) const
+// {
+//   MFMap* mf = MFMap::Instance();
+//   mf -> GetField(xyz, B);
+// }
 #endif
 
 inline void KFParticleSIMD::GetDStoParticle( const KFParticleBaseSIMD &p, float_v dS[2], float_v dsdr[4][6] )const
