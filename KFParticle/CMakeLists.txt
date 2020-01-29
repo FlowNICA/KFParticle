@@ -12,15 +12,12 @@ set(SOURCES
   KFParticleSIMD.cxx
 #   KFParticleFinder.cxx
   KFPEmcCluster.cxx
-  MFMap.cxx
-#   MFHistos.cxx
   )
 
 set (HEADERS
   KFParticleBase.h
   KFParticle.h
   KFVertex.h
-  MFMap.h
   )
 
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
@@ -48,7 +45,6 @@ Set(NODICT_HEADERS
   KFPTrackVector.h
   KFParticleDatabase.h
   KFPInputData.h
-#   MFHistos.h
 )
 
 set(PCM_FILE_NAME libKFParticle)
