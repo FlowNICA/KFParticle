@@ -26,6 +26,8 @@
 #include <vector>
 #include "KFParticleDef.h"
 
+#include "TH3.h"
+
 /** @class KFParticleBaseSIMD
  ** @brief The base of KFParticleSIMD class.
  ** @author  M.Zyzak
