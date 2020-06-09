@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8.8 FATAL_ERROR)
 
 project(KFParticleLibrary)
-
 set(PROJECT_VERSION 1.0)
+include(ExternalProject)
 
 # by default build optimized code with debug symbols
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -44,11 +44,16 @@ list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS} ${ROOTSYS})
 set(FIXTARGET TRUE CACHE BOOL "Compile for fix target geometry.")
 
 find_package(ROOT REQUIRED COMPONENTS Core Hist Matrix Physics EG Gpad Graf Graf3d RIO MathCore)
-If(DEFINED Vc_INCLUDE_DIR AND Vc_LIBRARIES)
-  Message("Vc found")
-Else()
-  find_package(Vc REQUIRED)
-EndIf()
+#If(DEFINED Vc_INCLUDE_DIR AND Vc_LIBRARIES)
+#  Message("Vc found")
+#Else()
+#  find_package(Vc REQUIRED)
+#EndIf()
+
+set(EXTERNAL_DIR ${CMAKE_BINARY_DIR}/external)
+set(EXTERNAL_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/external)
+
+include(cmake_modules/Vc.cmake)
 
 if (ROOT_FOUND)
   message(STATUS "Using ROOT: ${ROOT_VERSION} <${ROOT_CONFIG}>")
