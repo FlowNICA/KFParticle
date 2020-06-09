@@ -8,6 +8,14 @@
 #pragma link C++ class  KFParticleBase+;
 #pragma link C++ class  KFParticle+;
 #pragma link C++ class  KFVertex+;
+#pragma link C++ class  KFPTrack+;
+
+#pragma link C++ class  KFPTrackVector+;
+#pragma link C++ class  KFParticleDatabase+;
+#pragma link C++ class  KFParticleBaseSIMD+;
+#pragma link C++ class  KFParticleSIMD+;
+#pragma link C++ class  KFPEmcCluster+;
+
 //#pragma link C++ class  KFPartEfficiencies+;
 //#pragma link C++ class  KFMCParticle+;
 //#pragma link C++ class  KFParticleTest+;

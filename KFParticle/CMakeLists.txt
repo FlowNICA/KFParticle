@@ -1,24 +1,18 @@
 set(SOURCES
-#   KFParticleTopoReconstructor.cxx
   KFVertex.cxx
   KFPTrack.cxx
   KFPTrackVector.cxx
   KFPVertex.cxx
-#   KFParticlePVReconstructor.cxx
   KFParticleDatabase.cxx
   KFParticleBase.cxx
   KFParticleBaseSIMD.cxx
   KFParticle.cxx
   KFParticleSIMD.cxx
-#   KFParticleFinder.cxx
   KFPEmcCluster.cxx
   )
 
-set (HEADERS
-  KFParticleBase.h
-  KFParticle.h
-  KFVertex.h
-  )
+string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
+list(APPEND HEADERS "KFParticleField.h" "KFPSimdAllocator.h" "KFPInputData.h")
 
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
         
@@ -32,19 +26,6 @@ add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE 
 Set(NODICT_HEADERS
 #   KFParticleTopoReconstructor.h
 #   KFParticlePVReconstructor.h
-  KFPVertex.h
-  KFPTrack.h
-#   KFParticleFinder.h
-  KFParticleSIMD.h
-  KFParticleBaseSIMD.h
-  KFParticleDef.h
-  KFPSimdAllocator.h
-  KFPTrackVector.h
-  KFPEmcCluster.h
-  KFParticleField.h
-  KFPTrackVector.h
-  KFParticleDatabase.h
-  KFPInputData.h
 )
 
 set(PCM_FILE_NAME libKFParticle)
