@@ -14,8 +14,8 @@ set(SOURCES
 string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
 list(APPEND HEADERS "KFParticleField.h" "KFPSimdAllocator.h" "KFPInputData.h")
 
-add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
-        
+add_library(KFParticle STATIC ${SOURCES} G__KFParticle.cxx)
+
 if(ROOT_FOUND)
   ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFParticleLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DNonhomogeneousField" "-DCBM" "-DUSE_TIMERS")
   target_link_libraries(KFParticle ${ROOT_LIBRARIES} ${Vc_LIBRARIES})
@@ -23,14 +23,8 @@ endif(ROOT_FOUND)
 
 add_target_property(KFParticle COMPILE_FLAGS "-DDO_TPCCATRACKER_EFF_PERFORMANCE -DNonhomogeneousField -DCBM -DUSE_TIMERS")
 
-Set(NODICT_HEADERS
-#   KFParticleTopoReconstructor.h
-#   KFParticlePVReconstructor.h
-)
-
 set(PCM_FILE_NAME libKFParticle)
-install(FILES ${HEADERS} ${NODICT_HEADERS} DESTINATION include)
-#install(FILES ${CMAKE_BINARY_DIR}/${CMAKE_SHARED_LIBRARY_PREFIX}KFParticle.rootmap DESTINATION lib)
+install(FILES ${HEADERS} DESTINATION include)
 
 install(TARGETS KFParticle EXPORT KFParticleTargets
         LIBRARY DESTINATION lib
