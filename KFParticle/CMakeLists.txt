@@ -12,7 +12,7 @@ set(SOURCES
   )
 
 string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
-list(APPEND HEADERS "KFParticleField.h" "KFPSimdAllocator.h" "KFPInputData.h")
+list(APPEND HEADERS "KFParticleField.h" "KFPSimdAllocator.h" "KFPInputData.h"  "KFParticleDef.h")
 
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
 
