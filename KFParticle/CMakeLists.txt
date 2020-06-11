@@ -13,8 +13,8 @@ set(SOURCES
 
 string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
 list(APPEND HEADERS "KFParticleField.h" "KFPSimdAllocator.h" "KFPInputData.h"  "KFParticleDef.h")
-
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
+add_dependencies(KFParticle ${PROJECT_DEPENDENCIES})
 
 if(ROOT_FOUND)
   ROOT_GENERATE_DICTIONARY(G__KFParticle ${HEADERS} LINKDEF KFParticleLinkDef.h OPTIONS "-DDO_TPCCATRACKER_EFF_PERFORMANCE" "-DNonhomogeneousField" "-DCBM" "-DUSE_TIMERS")
