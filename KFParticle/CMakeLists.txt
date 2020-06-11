@@ -15,7 +15,7 @@ string(REPLACE ".cxx" ".h" HEADERS "${SOURCES}")
 list(APPEND HEADERS "KFParticleField.h" "KFPSimdAllocator.h" "KFPInputData.h"  "KFParticleDef.h")
 add_library(KFParticle SHARED ${SOURCES} G__KFParticle.cxx)
 
-if(${PROJECT_DEPENDENCIES})
+if(PROJECT_DEPENDENCIES)
   add_dependencies(KFParticle ${PROJECT_DEPENDENCIES})
 endif()
 
