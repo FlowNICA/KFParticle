@@ -6,7 +6,7 @@ include(ExternalProject)
 
 # by default build optimized code with debug symbols
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-    set(CMAKE_BUILD_TYPE RELWITHDEBINFO)
+    set(CMAKE_BUILD_TYPE RELEASE)
 endif ()
 
 # in DEBUG mode make verbose Makefile
